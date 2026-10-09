@@ -1,0 +1,55 @@
+"""Headless simulation entry point for M0a."""
+
+from __future__ import annotations
+
+import random
+from dataclasses import dataclass
+from typing import Mapping
+
+from ..agents.base import Agent
+from ..agents.rule_based import RuleBasedAgent
+from ..engine.game import Game, compute_winner
+from ..engine.initial_state import build_initial_state
+from ..schema import GameState, ResolutionEvent, TurnLog
+
+
+@dataclass(frozen=True)
+class GameResult:
+    final_state: GameState
+    stats: Mapping[str, int]
+    events: tuple[ResolutionEvent, ...]
+    winner: str | None
+    log: TurnLog | None = None
+
+
+def run_headless(
+    seed: int = 42,
+    turns: int = 20,
+    agents_by_faction: Mapping[str, Agent] | None = None,
+) -> GameResult:
+    """Run a complete headless game and return its result.
+
+    When ``agents_by_faction`` is omitted, every faction uses the deterministic
+    :class:`RuleBasedAgent`. A single seeded RNG is shared by the engine and any
+    stochastic resolution, so the same seed reproduces the same result.
+    """
+    rng = random.Random(seed)
+    state = build_initial_state()
+    if agents_by_faction is None:
+        agents_by_faction = {fid: RuleBasedAgent() for fid in state.factions}
+
+    game = Game(state, agents_by_faction, rng)
+    final_state = game.run(turns)
+    log = TurnLog(
+        seed=seed,
+        turns=turns,
+        entries=tuple(game.log_entries),
+        stats=tuple(sorted(game.stats.items())),
+    )
+    return GameResult(
+        final_state=final_state,
+        stats=dict(game.stats),
+        events=tuple(game.events),
+        winner=compute_winner(final_state),
+        log=log,
+    )

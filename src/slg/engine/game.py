@@ -1,0 +1,147 @@
+"""Game orchestration: decide, apply, step, run.
+
+The :class:`Game` owns the mutable simulation handle. The state itself is an
+immutable :class:`GameState` that is replaced (copy-on-write) on every action.
+A deterministic, sequential order (factions by id, officers by id) plus a
+seeded RNG make a full run reproducible.
+"""
+
+from __future__ import annotations
+
+import random
+from dataclasses import replace
+
+from ..agents.rule_based import RuleBasedAgent
+from ..schema import AgentDecision, GameState, LogEntry
+from .legal_actions import generate_legal_actions
+from .resolution import resolve_decision
+from .validation import validate_decision
+
+
+class Game:
+    def __init__(self, state: GameState, agents_by_faction, rng: random.Random):
+        self.state = state
+        self.agents = agents_by_faction
+        self.rng = rng
+        self.stats = {"decisions": 0, "valid": 0, "rejected": 0, "fallbacks": 0}
+        self.events: list = []
+        self.log_entries: list = []
+        self._fallback = RuleBasedAgent()
+
+    # -- decision with safety net -----------------------------------------
+    def decide(self, officer) -> tuple[AgentDecision, bool, str, int]:
+        """Return ``(decision, fallback, agent_name, legal_count)``.
+
+        Safety net: try the primary agent up to twice; on exception or
+        validation failure record a rejection. After two primary failures fall
+        back to the rule-based agent, and finally to a hardcoded ``rest``
+        (always legal). This guarantees ``stats["valid"] == stats["decisions"]``.
+        """
+        self.stats["decisions"] += 1
+        agent = self.agents.get(officer.faction_id)
+        legal = generate_legal_actions(self.state, officer)
+        legal_count = len(legal)
+        agent_name = getattr(agent, "name", "agent") if agent is not None else "safety_net"
+
+        # Primary agent: up to two attempts.
+        for _ in range(2):
+            try:
+                decision = agent.decide(self.state, officer, legal)
+            except Exception:
+                self.stats["rejected"] += 1
+                continue
+            ok, _ = validate_decision(self.state, officer, decision)
+            if ok:
+                self.stats["valid"] += 1
+                return (decision, False, agent_name, legal_count)
+            self.stats["rejected"] += 1
+
+        # Fallback: rule-based agent.
+        self.stats["fallbacks"] += 1
+        fallback = self._fallback.decide(self.state, officer, legal)
+        ok, _ = validate_decision(self.state, officer, fallback)
+        if ok:
+            self.stats["valid"] += 1
+            return (fallback, True, "rule_based", legal_count)
+
+        # Last resort: hardcoded rest (always legal).
+        self.stats["valid"] += 1
+        return (AgentDecision(officer.officer_id, "rest"), True, "safety_net", legal_count)
+
+    # -- apply / step / run ------------------------------------------------
+    def apply(self, officer, decision: AgentDecision):
+        new_state, event = resolve_decision(self.state, officer, decision, self.rng)
+        self.state = new_state
+        self.events.append(event)
+        return event
+
+    def step(self) -> GameState:
+        """Run one full turn: income, then every active officer acts once."""
+        self.state = apply_income(self.state)
+        self.state = replace(self.state, turn=self.state.turn + 1)
+        turn = self.state.turn
+
+        for fid in sorted(self.state.factions):
+            faction = self.state.factions[fid]
+            if not faction.is_active:
+                continue
+            if not self.state.cities_of(fid):
+                continue  # eliminated mid-turn
+            for oid in sorted(self.state.officers):
+                officer = self.state.officers[oid]
+                if officer.faction_id != fid or not officer.is_alive:
+                    continue
+                decision, fallback, agent_name, legal_count = self.decide(officer)
+                event = self.apply(officer, decision)
+                self.log_entries.append(LogEntry(
+                    turn=turn,
+                    officer_id=officer.officer_id,
+                    faction_id=officer.faction_id,
+                    agent_name=agent_name,
+                    legal_count=legal_count,
+                    action=decision.action,
+                    params=tuple(sorted(decision.params.items())),
+                    valid=True,
+                    fallback=fallback,
+                    event=event,
+                ))
+
+        self.state = update_faction_status(self.state)
+        return self.state
+
+    def run(self, turns: int) -> GameState:
+        for _ in range(turns):
+            self.step()
+        return self.state
+
+
+# -- per-turn helpers --------------------------------------------------------
+
+def apply_income(state: GameState) -> GameState:
+    """Turn-start income: gold += commerce // 5, food += agriculture // 5."""
+    new_cities = {}
+    for cid, c in state.cities.items():
+        new_cities[cid] = replace(c, gold=c.gold + c.commerce // 5,
+                                  food=c.food + c.agriculture // 5)
+    return replace(state, cities=new_cities)
+
+
+def update_faction_status(state: GameState) -> GameState:
+    """Deactivate any faction that no longer owns a city."""
+    new_factions = {}
+    for fid, f in state.factions.items():
+        has_cities = any(c.owner == fid for c in state.cities.values())
+        new_factions[fid] = replace(f, is_active=has_cities)
+    return replace(state, factions=new_factions)
+
+
+def compute_winner(state: GameState) -> str | None:
+    """Faction owning the most cities; ``None`` on a tie or no cities."""
+    counts: dict[str, int] = {}
+    for c in state.cities.values():
+        counts[c.owner] = counts.get(c.owner, 0) + 1
+    if not counts:
+        return None
+    best = max(counts.values())
+    winners = [fid for fid, n in counts.items() if n == best]
+    return winners[0] if len(winners) == 1 else None
