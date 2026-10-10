@@ -24,6 +24,10 @@ class BackendUnavailable(RuntimeError):
     """Raised when the backend circuit breaker has tripped and is open."""
 
 
+class ConfigError(RuntimeError):
+    """Raised when backend configuration (e.g. API key) is invalid."""
+
+
 class CircuitBreakerCompleter:
     """Circuit breaker wrapper around a Completer to protect against persistent failures."""
 
@@ -42,9 +46,15 @@ class CircuitBreakerCompleter:
                 f"Last error: {self.last_error}"
             )
 
-        self.real_calls += 1
         try:
+            self.real_calls += 1
             res = self.inner(system, user)
+        except ConfigError as exc:
+            self.real_calls -= 1
+            self.consecutive_errors += 1
+            self.last_error = str(exc)
+            self.is_open = True
+            raise
         except Exception as exc:
             self.consecutive_errors += 1
             self.last_error = str(exc)
@@ -139,6 +149,13 @@ class OpenAIChatCompleter:
         self.max_tokens = max_tokens
 
     def __call__(self, system: str, user: str) -> str:
+        api_key = os.environ.get(self.api_key_env) if self.api_key_env else None
+        if api_key is not None:
+            if not api_key.isascii() or any(c.isspace() for c in api_key):
+                raise ConfigError(
+                    f"環境變數 {self.api_key_env} 的值含非 ASCII 或空白字元（可能貼成了佔位文字或多了換行）"
+                )
+
         url = f"{self.base_url.rstrip('/')}/chat/completions"
         payload = {
             "model": self.model,
@@ -152,7 +169,6 @@ class OpenAIChatCompleter:
         data = json.dumps(payload).encode("utf-8")
         headers = {"Content-Type": "application/json"}
 
-        api_key = os.environ.get(self.api_key_env) if self.api_key_env else None
         if api_key:
             headers["Authorization"] = f"Bearer {api_key}"
 

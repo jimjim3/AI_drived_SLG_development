@@ -15,6 +15,7 @@ from ..schema import (
     AgentDecision,
     FactionPlan,
 )
+from .backends import ConfigError
 from .base import AgentError, FactionAgent
 
 if TYPE_CHECKING:
@@ -158,6 +159,11 @@ class LLMFactionAgent(FactionAgent):
 
             try:
                 raw = self._completer(self._system_prompt, user_prompt)
+            except ConfigError as exc:
+                self.usage["calls"] -= 1
+                self.usage["prompt_chars"] -= prompt_chars
+                self._record_error(str(exc))
+                raise
             except Exception as exc:
                 self.usage["errors"] += 1
                 last_error = str(exc)
