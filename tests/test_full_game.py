@@ -14,8 +14,8 @@ class FullGameTests(unittest.TestCase):
             self.assertLessEqual(len(active), 1)
         else:
             self.assertGreater(len(active), 1)
-        self.assertEqual(len(final.cities), 5)
-        self.assertEqual(len(final.officers), 20)
+        self.assertEqual(len(final.cities), 9)
+        self.assertEqual(len(final.officers), 42)
         self.assertEqual(result.stats["valid"], result.stats["decisions"])
         self.assertEqual(len(result.events), result.stats["decisions"])
 

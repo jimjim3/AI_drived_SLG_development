@@ -1,9 +1,9 @@
-"""Deterministic initial game state for the M0b skeleton.
+"""Deterministic initial game state for scenario v3.
 
-Three factions, five cities, twenty officers:
+Three factions, nine cities, forty-two officers:
   - faction_1 (曹操 / Cao Cao) owns 許昌, 陳留, and 襄陽
-  - faction_2 (劉備 / Liu Bei) owns 洛陽
-  - faction_3 (孫權 / Sun Quan) owns 建業
+  - faction_2 (劉備 / Liu Bei) owns 洛陽, 宛城, and 漢中
+  - faction_3 (孫權 / Sun Quan) owns 建業, 吳郡, and 會稽
 """
 
 from __future__ import annotations
@@ -24,35 +24,58 @@ def build_initial_state() -> GameState:
     }
 
     cities = {
+        # faction_1
         "xuchang": CityState(
             "xuchang", "許昌", "faction_1",
-            agriculture=500, commerce=500, defense=150,
-            gold=1000, food=1000, troops=1000,
+            agriculture=550, commerce=550, defense=150,
+            gold=1000, food=1000, troops=1400,
         ),
         "chenliu": CityState(
             "chenliu", "陳留", "faction_1",
-            agriculture=400, commerce=400, defense=100,
-            gold=500, food=500, troops=500,
+            agriculture=450, commerce=450, defense=120,
+            gold=600, food=600, troops=800,
         ),
         "xiangyang": CityState(
             "xiangyang", "襄陽", "faction_1",
-            agriculture=450, commerce=400, defense=120,
-            gold=700, food=700, troops=800,
+            agriculture=500, commerce=500, defense=150,
+            gold=800, food=800, troops=1200,
         ),
+        # faction_2
         "luoyang": CityState(
             "luoyang", "洛陽", "faction_2",
-            agriculture=990, commerce=990, defense=150,
-            gold=1760, food=1760, troops=2200,
+            agriculture=550, commerce=550, defense=120,
+            gold=900, food=900, troops=1100,
         ),
+        "wancheng": CityState(
+            "wancheng", "宛城", "faction_2",
+            agriculture=450, commerce=450, defense=120,
+            gold=600, food=600, troops=700,
+        ),
+        "hanzhong": CityState(
+            "hanzhong", "漢中", "faction_2",
+            agriculture=450, commerce=450, defense=120,
+            gold=600, food=600, troops=700,
+        ),
+        # faction_3
         "jianye": CityState(
             "jianye", "建業", "faction_3",
-            agriculture=900, commerce=990, defense=120,
-            gold=1620, food=1620, troops=1620,
+            agriculture=550, commerce=550, defense=120,
+            gold=900, food=900, troops=1200,
+        ),
+        "wujun": CityState(
+            "wujun", "吳郡", "faction_3",
+            agriculture=450, commerce=450, defense=120,
+            gold=600, food=600, troops=800,
+        ),
+        "kuaiji": CityState(
+            "kuaiji", "會稽", "faction_3",
+            agriculture=450, commerce=450, defense=120,
+            gold=600, food=600, troops=800,
         ),
     }
 
     officers = {
-        # faction_1
+        # faction_1 (14 officers: 6 xuchang, 2 chenliu, 6 xiangyang)
         "xun_yu": OfficerState(
             "xun_yu", "荀彧", "faction_1", "xuchang",
             politics=95, war=30, leadership=60, loyalty=90, ambition=30,
@@ -85,7 +108,32 @@ def build_initial_state() -> GameState:
             "cheng_yu", "程昱", "faction_1", "xiangyang",
             politics=60, war=75, leadership=68, loyalty=80, ambition=50,
         ),
-        # faction_2
+        "guo_jia": OfficerState(
+            "guo_jia", "郭嘉", "faction_1", "xuchang",
+            politics=92, war=20, leadership=55, loyalty=90, ambition=30,
+        ),
+        "jia_xu": OfficerState(
+            "jia_xu", "賈詡", "faction_1", "xiangyang",
+            politics=88, war=35, leadership=60, loyalty=80, ambition=35,
+        ),
+        "xu_chu": OfficerState(
+            "xu_chu", "許褚", "faction_1", "xuchang",
+            politics=20, war=92, leadership=70, loyalty=90, ambition=25,
+        ),
+        "xiahou_yuan": OfficerState(
+            "xiahou_yuan", "夏侯淵", "faction_1", "xiangyang",
+            politics=40, war=84, leadership=80, loyalty=88, ambition=35,
+        ),
+        "zhang_he": OfficerState(
+            "zhang_he", "張郃", "faction_1", "xiangyang",
+            politics=45, war=82, leadership=78, loyalty=82, ambition=35,
+        ),
+        "zhang_liao": OfficerState(
+            "zhang_liao", "張遼", "faction_1", "xiangyang",
+            politics=45, war=85, leadership=76, loyalty=85, ambition=35,
+        ),
+
+        # faction_2 (14 officers: 3 luoyang, 6 wancheng, 5 hanzhong)
         "zhuge_liang": OfficerState(
             "zhuge_liang", "諸葛亮", "faction_2", "luoyang",
             politics=98, war=60, leadership=75, loyalty=95, ambition=20,
@@ -99,18 +147,51 @@ def build_initial_state() -> GameState:
             politics=30, war=92, leadership=85, loyalty=90, ambition=40,
         ),
         "zhao_yun": OfficerState(
-            "zhao_yun", "趙雲", "faction_2", "luoyang",
+            "zhao_yun", "趙雲", "faction_2", "wancheng",
             politics=50, war=93, leadership=88, loyalty=93, ambition=25,
         ),
         "huang_zhong": OfficerState(
-            "huang_zhong", "黃忠", "faction_2", "luoyang",
+            "huang_zhong", "黃忠", "faction_2", "wancheng",
             politics=40, war=88, leadership=82, loyalty=85, ambition=35,
         ),
         "wei_yan": OfficerState(
-            "wei_yan", "魏延", "faction_2", "luoyang",
+            "wei_yan", "魏延", "faction_2", "hanzhong",
             politics=40, war=85, leadership=78, loyalty=85, ambition=45,
         ),
-        # faction_3
+        "pang_tong": OfficerState(
+            "pang_tong", "龐統", "faction_2", "wancheng",
+            politics=92, war=40, leadership=65, loyalty=90, ambition=25,
+        ),
+        "fa_zheng": OfficerState(
+            "fa_zheng", "法正", "faction_2", "wancheng",
+            politics=88, war=45, leadership=70, loyalty=88, ambition=40,
+        ),
+        "ma_chao": OfficerState(
+            "ma_chao", "馬超", "faction_2", "wancheng",
+            politics=30, war=93, leadership=85, loyalty=80, ambition=45,
+        ),
+        "jiang_wei": OfficerState(
+            "jiang_wei", "姜維", "faction_2", "hanzhong",
+            politics=70, war=88, leadership=88, loyalty=90, ambition=40,
+        ),
+        "ma_liang": OfficerState(
+            "ma_liang", "馬良", "faction_2", "hanzhong",
+            politics=85, war=25, leadership=50, loyalty=90, ambition=20,
+        ),
+        "xu_shu": OfficerState(
+            "xu_shu", "徐庶", "faction_2", "wancheng",
+            politics=88, war=50, leadership=68, loyalty=88, ambition=20,
+        ),
+        "jian_yong": OfficerState(
+            "jian_yong", "簡雍", "faction_2", "hanzhong",
+            politics=72, war=25, leadership=45, loyalty=88, ambition=20,
+        ),
+        "sun_qian": OfficerState(
+            "sun_qian", "孫乾", "faction_2", "hanzhong",
+            politics=75, war=25, leadership=45, loyalty=88, ambition=20,
+        ),
+
+        # faction_3 (14 officers: 6 jianye, 5 wujun, 3 kuaiji)
         "zhou_yu": OfficerState(
             "zhou_yu", "周瑜", "faction_3", "jianye",
             politics=85, war=75, leadership=90, loyalty=80, ambition=50,
@@ -124,30 +205,67 @@ def build_initial_state() -> GameState:
             politics=45, war=85, leadership=78, loyalty=80, ambition=50,
         ),
         "huang_gai": OfficerState(
-            "huang_gai", "黄蓋", "faction_3", "jianye",
+            "huang_gai", "黄蓋", "faction_3", "wujun",
             politics=50, war=78, leadership=70, loyalty=80, ambition=50,
         ),
         "gan_ning": OfficerState(
-            "gan_ning", "甘寧", "faction_3", "jianye",
+            "gan_ning", "甘寧", "faction_3", "wujun",
             politics=30, war=92, leadership=80, loyalty=80, ambition=50,
         ),
         "zhou_tai": OfficerState(
-            "zhou_tai", "周泰", "faction_3", "jianye",
+            "zhou_tai", "周泰", "faction_3", "wujun",
             politics=40, war=80, leadership=75, loyalty=80, ambition=50,
+        ),
+        "lu_xun": OfficerState(
+            "lu_xun", "陸遜", "faction_3", "jianye",
+            politics=88, war=75, leadership=92, loyalty=90, ambition=30,
+        ),
+        "lu_meng": OfficerState(
+            "lu_meng", "呂蒙", "faction_3", "jianye",
+            politics=75, war=82, leadership=88, loyalty=88, ambition=35,
+        ),
+        "zhang_zhao": OfficerState(
+            "zhang_zhao", "張昭", "faction_3", "jianye",
+            politics=90, war=20, leadership=45, loyalty=85, ambition=30,
+        ),
+        "ling_tong": OfficerState(
+            "ling_tong", "凌統", "faction_3", "wujun",
+            politics=40, war=84, leadership=78, loyalty=85, ambition=40,
+        ),
+        "cheng_pu": OfficerState(
+            "cheng_pu", "程普", "faction_3", "wujun",
+            politics=65, war=80, leadership=80, loyalty=88, ambition=30,
+        ),
+        "han_dang": OfficerState(
+            "han_dang", "韓當", "faction_3", "kuaiji",
+            politics=45, war=78, leadership=75, loyalty=82, ambition=35,
+        ),
+        "gu_yong": OfficerState(
+            "gu_yong", "顧雍", "faction_3", "kuaiji",
+            politics=85, war=20, leadership=45, loyalty=88, ambition=20,
+        ),
+        "zhu_ran": OfficerState(
+            "zhu_ran", "朱然", "faction_3", "kuaiji",
+            politics=60, war=80, leadership=82, loyalty=85, ambition=35,
         ),
     }
 
     # Scenario map (bidirectional):
-    #   chenliu - xuchang - luoyang
+    #   chenliu - xuchang - luoyang - wancheng - hanzhong
     #              |          |
-    #            xiangyang - jianye
-    #   xuchang also links to xiangyang.
+    #            xiangyang ---+
+    #              |
+    #            jianye - wujun - kuaiji
     adjacency = {
         "chenliu": ("xuchang",),
         "xuchang": ("chenliu", "luoyang", "xiangyang"),
-        "luoyang": ("xuchang", "xiangyang"),
+        "luoyang": ("xuchang", "xiangyang", "wancheng"),
         "xiangyang": ("luoyang", "xuchang", "jianye"),
-        "jianye": ("xiangyang",),
+        "jianye": ("xiangyang", "wujun"),
+        "wancheng": ("luoyang", "hanzhong"),
+        "hanzhong": ("wancheng",),
+        "wujun": ("jianye", "kuaiji"),
+        "kuaiji": ("wujun",),
     }
 
     return GameState(turn=0, factions=factions, cities=cities, officers=officers,

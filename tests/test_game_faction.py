@@ -179,7 +179,7 @@ class GameFactionTests(unittest.TestCase):
 
     def test_unmentioned_officers_delegated(self):
         def plan_fn(view):
-            # Only order 1 officer; faction_1 has 8 living officers total
+            # Only order 1 officer; faction_1 has 14 living officers total
             return FactionPlan(orders=(AgentDecision("xun_yu", "develop_agri"),))
 
         agent = DummyFactionAgent(plan_fn)
@@ -187,11 +187,11 @@ class GameFactionTests(unittest.TestCase):
         game.step()
 
         self.assertEqual(game.stats["orders"], 1)
-        self.assertEqual(game.stats["delegated"], 7)
+        self.assertEqual(game.stats["delegated"], 13)
         log = [l for l in game.faction_logs if l.faction_id == "faction_1"][0]
-        self.assertEqual(len(log.delegated), 7)
+        self.assertEqual(len(log.delegated), 13)
         self.assertNotIn("xun_yu", log.delegated)
-        self.assertEqual(len(log.executed), 8)
+        self.assertEqual(len(log.executed), 14)
 
     def test_agent_raises_exception_full_delegation_game_continues(self):
         class ExplodingAgent(FactionAgent):
@@ -206,13 +206,13 @@ class GameFactionTests(unittest.TestCase):
 
         self.assertEqual(game.stats["plan_failures"], 1)
         self.assertEqual(game.stats["orders"], 0)
-        self.assertEqual(game.stats["delegated"], 8)
+        self.assertEqual(game.stats["delegated"], 14)
         self.assertEqual(game.stats["valid"], game.stats["decisions"])
 
         log = [l for l in game.faction_logs if l.faction_id == "faction_1"][0]
         self.assertTrue(log.plan_failed)
-        self.assertEqual(len(log.delegated), 8)
-        self.assertEqual(len(log.executed), 8)
+        self.assertEqual(len(log.delegated), 14)
+        self.assertEqual(len(log.executed), 14)
 
         # Game can continue to next turn
         game.step()
@@ -356,7 +356,7 @@ class GameFactionTests(unittest.TestCase):
 
         self.assertEqual(game.stats["valid"], game.stats["decisions"])
         self.assertEqual(game.stats["orders"], 1)
-        self.assertEqual(game.stats["delegated"], 7)
+        self.assertEqual(game.stats["delegated"], 13)
 
         # Logs should record correct sources
         f1_entries = [e for e in game.log_entries if e.faction_id == "faction_1"]

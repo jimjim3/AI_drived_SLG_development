@@ -170,10 +170,13 @@ class ViewTests(unittest.TestCase):
         self.assertNotIn("荀彧", roster_names)
         self.assertNotIn("曹仁", roster_names)
 
-        # The other 6 living officers of faction_1 must be in roster
+        # The other 12 living officers of faction_1 must be in roster
         remaining_names = {
             state.officer(oid).name
-            for oid in ("xiahou_dun", "yu_jin", "dian_wei", "li_dian", "yue_jin", "cheng_yu")
+            for oid in (
+                "xiahou_dun", "yu_jin", "dian_wei", "li_dian", "yue_jin", "cheng_yu",
+                "guo_jia", "jia_xu", "xu_chu", "xiahou_yuan", "zhang_he", "zhang_liao",
+            )
         }
         self.assertEqual(roster_names, remaining_names)
 

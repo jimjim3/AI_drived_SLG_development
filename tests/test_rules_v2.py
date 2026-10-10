@@ -198,19 +198,19 @@ class RulesV2Tests(unittest.TestCase):
         self.assertFalse(ok, "Troops not on step 100 must be rejected")
 
     def test_siege_troops_max_boundary_valid(self):
-        # xuchang troops = 1000. max = ((1000 - 100) // 100) * 100 = 900
+        # xuchang troops = 1400. max = ((1400 - 100) // 100) * 100 = 1300
         officer = self.state.officer("xiahou_dun")
         city = self.state.city("xuchang")
         max_troops = ((city.troops - 100) // 100) * 100
-        self.assertEqual(max_troops, 900)
+        self.assertEqual(max_troops, 1300)
         decision = AgentDecision("xiahou_dun", "siege", {"to": "luoyang", "troops": max_troops})
         ok, reason = validate_decision(self.state, officer, decision)
         self.assertTrue(ok, reason)
 
     def test_siege_troops_exceeding_max_rejected(self):
-        # max + 100 = 1000 leaves no minimum garrison (100)
+        # max + 100 = 1400 leaves no minimum garrison (100)
         officer = self.state.officer("xiahou_dun")
-        decision = AgentDecision("xiahou_dun", "siege", {"to": "luoyang", "troops": 1000})
+        decision = AgentDecision("xiahou_dun", "siege", {"to": "luoyang", "troops": 1400})
         ok, reason = validate_decision(self.state, officer, decision)
         self.assertFalse(ok, "Troops exceeding maximum garrison allowance must be rejected")
 
@@ -388,12 +388,18 @@ class RulesV2Tests(unittest.TestCase):
     # 9. Faction elimination: officer capture, defection, and deactivation
     # -------------------------------------------------------------------------
     def test_faction_elimination_capture_and_defection(self):
-        # In initial state, faction_2 owns only luoyang.
+        # In expanded state, eliminate faction_2's other cities and concentrate officers at luoyang.
         # Conquering luoyang eliminates faction_2.
         cities = dict(self.state.cities)
         cities["xuchang"] = replace(cities["xuchang"], troops=5000)
         cities["luoyang"] = replace(cities["luoyang"], troops=100, defense=0)
-        state = replace(self.state, cities=cities)
+        cities["wancheng"] = replace(cities["wancheng"], owner="faction_1")
+        cities["hanzhong"] = replace(cities["hanzhong"], owner="faction_1")
+        officers = {
+            oid: replace(o, city_id="luoyang") if o.faction_id == "faction_2" else o
+            for oid, o in self.state.officers.items()
+        }
+        state = replace(self.state, cities=cities, officers=officers)
 
         officer = state.officer("xiahou_dun")
         new_state, event = resolve_decision(
@@ -401,7 +407,7 @@ class RulesV2Tests(unittest.TestCase):
         )
 
         faction_2_officers = [o for o in state.officers.values() if o.faction_id == "faction_2"]
-        self.assertEqual(len(faction_2_officers), 6)
+        self.assertEqual(len(faction_2_officers), 14)
         self.assertEqual(set(event.captured_officers), {o.officer_id for o in faction_2_officers})
 
         for o in faction_2_officers:
@@ -419,12 +425,13 @@ class RulesV2Tests(unittest.TestCase):
     # -------------------------------------------------------------------------
     def test_compute_winner_more_cities_wins(self):
         # faction_1 has 2 cities with 100 troops each; faction_2 has 1 city with 9999 troops
-        cities = dict(self.state.cities)
-        cities["xuchang"] = replace(cities["xuchang"], owner="faction_1", troops=100)
-        cities["chenliu"] = replace(cities["chenliu"], owner="faction_1", troops=100)
-        cities["luoyang"] = replace(cities["luoyang"], owner="faction_2", troops=9999)
-        cities["xiangyang"] = replace(cities["xiangyang"], owner="faction_3", troops=50)
-        cities["jianye"] = replace(cities["jianye"], owner="faction_3", troops=50)
+        cities = {
+            "xuchang": replace(self.state.city("xuchang"), owner="faction_1", troops=100),
+            "chenliu": replace(self.state.city("chenliu"), owner="faction_1", troops=100),
+            "luoyang": replace(self.state.city("luoyang"), owner="faction_2", troops=9999),
+            "xiangyang": replace(self.state.city("xiangyang"), owner="faction_3", troops=50),
+            "jianye": replace(self.state.city("jianye"), owner="faction_3", troops=50),
+        }
         custom_state = replace(self.state, cities=cities)
 
         # faction_1 has 2 cities (200 troops), faction_3 has 2 cities (100 troops), faction_2 has 1 city (9999 troops)
