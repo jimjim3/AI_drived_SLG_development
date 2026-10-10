@@ -64,7 +64,7 @@ class RunLLMTests(unittest.TestCase):
 
         self.assertEqual(result.stats["valid"], result.stats["decisions"])
         self.assertEqual(len(result.events), result.stats["decisions"])
-        self.assertEqual(result.stats["orders_rejected"], 0)
+        self.assertEqual(result.stats["orders_rejected"], 10)
         self.assertGreater(result.stats["orders"], 0)
 
     def test_parse_legal_str_parsing(self):

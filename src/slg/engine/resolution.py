@@ -154,6 +154,8 @@ def _resolve_siege(
                     )
                     captured_officers.append(o.officer_id)
 
+        officers[officer.officer_id] = replace(officers[officer.officer_id], city_id=target_id)
+
         new_state = replace(state, cities=cities, officers=officers)
         event = ResolutionEvent(
             state.turn, officer.officer_id, attacker_faction, "siege", target_id,

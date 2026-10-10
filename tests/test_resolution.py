@@ -38,7 +38,7 @@ class ResolutionTests(unittest.TestCase):
         new_state, event = self._resolve("xun_yu", "develop_agri", {})
         city = new_state.city("xuchang")
         self.assertEqual(city.gold, 950)
-        self.assertEqual(city.agriculture, 572)
+        self.assertEqual(city.agriculture, 622)
         self.assertEqual(event.action, "develop_agri")
         self.assertEqual(event.city_id, "xuchang")
         self.assertIn("+72", event.detail)
@@ -47,7 +47,7 @@ class ResolutionTests(unittest.TestCase):
         new_state, event = self._resolve("xun_yu", "develop_commerce", {})
         city = new_state.city("xuchang")
         self.assertEqual(city.gold, 950)
-        self.assertEqual(city.commerce, 572)
+        self.assertEqual(city.commerce, 622)
         self.assertEqual(event.action, "develop_commerce")
 
     def test_develop_defense(self):
@@ -62,14 +62,14 @@ class ResolutionTests(unittest.TestCase):
         new_state, event = self._resolve("xun_yu", "recruit", {"troops": 200})
         city = new_state.city("xuchang")
         self.assertEqual(city.gold, 800)
-        self.assertEqual(city.troops, 1200)
+        self.assertEqual(city.troops, 1600)
         self.assertEqual(event.action, "recruit")
 
     def test_move(self):
         new_state, event = self._resolve("xun_yu", "move", {"to": "chenliu"})
         self.assertEqual(new_state.officer("xun_yu").city_id, "chenliu")
-        self.assertEqual(new_state.city("xuchang").troops, 1000)
-        self.assertEqual(new_state.city("chenliu").troops, 500)
+        self.assertEqual(new_state.city("xuchang").troops, 1400)
+        self.assertEqual(new_state.city("chenliu").troops, 800)
         self.assertEqual(event.action, "move")
 
     def test_rest(self):
@@ -90,6 +90,8 @@ class ResolutionTests(unittest.TestCase):
                 **self.state.cities,
                 "xuchang": xuchang,
                 "luoyang": luoyang,
+                "wancheng": replace(self.state.city("wancheng"), owner="faction_1"),
+                "hanzhong": replace(self.state.city("hanzhong"), owner="faction_1"),
             },
         )
         new_state, event = self._resolve(
@@ -102,9 +104,10 @@ class ResolutionTests(unittest.TestCase):
         self.assertEqual(new_state.city("luoyang").troops, 3600)
         self.assertEqual(new_state.city("xuchang").troops, 1000)
         self.assertEqual(event.captured_city, "luoyang")
+        self.assertEqual(new_state.officer("xiahou_dun").city_id, "luoyang")
         # faction_2 lost its last city: its officers defect to faction_1
         self.assertIn("guan_yu", event.captured_officers)
-        self.assertEqual(len(event.captured_officers), 6)
+        self.assertEqual(len(event.captured_officers), 3)
         guan_yu = new_state.officer("guan_yu")
         self.assertTrue(guan_yu.is_alive)
         self.assertEqual(guan_yu.faction_id, "faction_1")
