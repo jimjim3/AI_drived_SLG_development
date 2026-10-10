@@ -21,6 +21,7 @@ class GameResult:
     winner: str | None
     log: TurnLog | None = None
     usage: Mapping[str, dict] = field(default_factory=dict)
+    incidents: tuple = ()
 
 
 def run_headless(
@@ -66,4 +67,5 @@ def run_headless(
         winner=compute_winner(final_state),
         log=log,
         usage=usage,
+        incidents=tuple(game.incidents),
     )

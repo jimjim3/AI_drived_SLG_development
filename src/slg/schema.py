@@ -28,6 +28,16 @@ DEVELOP_AGRICULTURE_BASE = 50
 DEVELOP_COMMERCE_BASE = 50
 DEVELOP_DEFENSE_BASE = 25
 
+# --- Loyalty & neglect constants (M2/M3) -------------------------------------
+NEGLECT_PENALTY_START = 5
+NEGLECT_PETITION = 4
+PETITION_LOYALTY_BELOW = 80
+LOYALTY_BOOST = 1
+DISOBEY_BELOW = 50
+DEFECT_BELOW = 35
+DEFECT_REJOIN_LOYALTY = 60
+LOYALTY_MAX = 100
+
 
 def develop_gain(base: int, politics: int) -> int:
     """Increment for a develop_* action performed by an officer.
@@ -138,6 +148,7 @@ class OfficerState:
     loyalty: int
     ambition: int
     is_alive: bool = True
+    neglect: int = 0
 
 
 @dataclass(frozen=True)
@@ -217,3 +228,4 @@ class FactionTurnLog:
     rejected: tuple = ()
     delegated: tuple = ()
     plan_failed: bool = False
+    ordered: tuple = ()

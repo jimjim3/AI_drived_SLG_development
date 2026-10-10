@@ -15,6 +15,8 @@ from ..schema import (
     EVENT_LIMIT,
     GameState,
     LegalAction,
+    NEGLECT_PETITION,
+    PETITION_LOYALTY_BELOW,
     ResolutionEvent,
 )
 from .legal_actions import generate_legal_actions
@@ -188,7 +190,7 @@ def forced_cast(
     faction_id: str,
     events: Sequence[ResolutionEvent],
 ) -> tuple[str, ...]:
-    """Return officers forced into cast due to siege or capture events."""
+    """Return officers forced into cast due to siege, capture events, or neglected petition."""
     forced: set[str] = set()
     for o in state.officers.values():
         if o.faction_id != faction_id or not o.is_alive:
@@ -209,7 +211,21 @@ def forced_cast(
         if is_siege_target or is_captured:
             forced.add(o.officer_id)
 
-    return tuple(sorted(forced))
+    siege_officers = sorted(forced)
+
+    petition_officers = [
+        o
+        for o in state.officers.values()
+        if o.faction_id == faction_id
+        and o.is_alive
+        and o.officer_id not in forced
+        and o.neglect >= NEGLECT_PETITION
+        and o.loyalty < PETITION_LOYALTY_BELOW
+    ]
+    petition_officers.sort(key=lambda o: (-o.neglect, o.officer_id))
+
+    result = siege_officers + [o.officer_id for o in petition_officers]
+    return tuple(result[:CAST_LIMIT])
 
 
 def build_faction_view(
@@ -282,6 +298,7 @@ def build_faction_view(
             "leadership": o.leadership,
             "loyalty": o.loyalty,
             "ambition": o.ambition,
+            "neglect": o.neglect,
             "legal": legal_formatted,
         })
 
