@@ -315,7 +315,7 @@ def apply_income(state: GameState, rng: random.Random) -> GameState:
     """Turn-start income and upkeep, in fixed city_id order.
 
     Each city rolls two uniforms (gold first, then food):
-      gold += int(commerce // 5 * rg)
+      gold += int(commerce // GOLD_INCOME_DIV * rg)
       food += int(agriculture // 4 * rf)
     Then upkeep: food -= troops // 10. If food goes negative it is clamped to
     0 and the garrison deserts by 10% (troops = troops * 9 // 10).
