@@ -20,6 +20,22 @@ MAX_RECRUIT = 1200         # hard cap on troops a single recruit may request
 RECRUIT_STEP = 100         # granularity for recruit troop amounts
 MIN_SIEGE_TROOPS = 500     # minimum troops to attempt a siege
 SIEGE_MIN_TROOPS = MIN_SIEGE_TROOPS
+SIEGE_TROOP_STEP = 100     # granularity for siege troop amounts
+SIEGE_MIN_GARRISON = 100   # troops that must stay behind in the origin city
+
+# Base increments for develop_* actions, scaled by the officer's politics.
+DEVELOP_AGRICULTURE_BASE = 50
+DEVELOP_COMMERCE_BASE = 50
+DEVELOP_DEFENSE_BASE = 25
+
+
+def develop_gain(base: int, politics: int) -> int:
+    """Increment for a develop_* action performed by an officer.
+
+    ``base * (50 + politics) // 100`` so that politics directly shapes the
+    payoff of development.
+    """
+    return base * (50 + politics) // 100
 
 
 @dataclass(frozen=True)
@@ -148,6 +164,11 @@ class GameState:
     factions: Mapping[str, FactionState]
     cities: Mapping[str, CityState]
     officers: Mapping[str, OfficerState]
+    adjacency: Mapping[str, tuple[str, ...]] = field(default_factory=dict)
+
+    def adjacent(self, a: str, b: str) -> bool:
+        """True if cities ``a`` and ``b`` are connected on the map."""
+        return b in self.adjacency.get(a, ())
 
     def city(self, city_id: str) -> CityState:
         return self.cities[city_id]

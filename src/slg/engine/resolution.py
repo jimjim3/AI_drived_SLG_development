@@ -11,19 +11,20 @@ from dataclasses import replace
 
 from ..schema import (
     DEVELOP_COST,
+    DEVELOP_AGRICULTURE_BASE,
+    DEVELOP_COMMERCE_BASE,
+    DEVELOP_DEFENSE_BASE,
     GOLD_PER_TROOP,
     AgentDecision,
     CityState,
     GameState,
     OfficerState,
     ResolutionEvent,
+    develop_gain,
 )
 
-DEVELOP_AGRICULTURE_GAIN = 50
-DEVELOP_COMMERCE_GAIN = 50
-DEVELOP_DEFENSE_GAIN = 25
-REPEL_LOSS_NUMERATOR = 3   # 30% loss on a repelled siege
-REPEL_LOSS_DENOMINATOR = 10
+# Fallback combat skill for a city with no surviving defending officer.
+NO_OFFICER_DEFENSE_SKILL = 40
 
 
 def _replace_city(state: GameState, city: CityState) -> GameState:
@@ -48,24 +49,27 @@ def resolve_decision(
     action = decision.action
 
     if action == "develop_agri":
+        gain = develop_gain(DEVELOP_AGRICULTURE_BASE, officer.politics)
         new_city = replace(city, gold=city.gold - DEVELOP_COST,
-                           agriculture=city.agriculture + DEVELOP_AGRICULTURE_GAIN)
+                           agriculture=city.agriculture + gain)
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id,
-                                action, city.city_id, f"agri +{DEVELOP_AGRICULTURE_GAIN}")
+                                action, city.city_id, f"agri +{gain}")
         return _replace_city(state, new_city), event
 
     if action == "develop_commerce":
+        gain = develop_gain(DEVELOP_COMMERCE_BASE, officer.politics)
         new_city = replace(city, gold=city.gold - DEVELOP_COST,
-                           commerce=city.commerce + DEVELOP_COMMERCE_GAIN)
+                           commerce=city.commerce + gain)
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id,
-                                action, city.city_id, f"commerce +{DEVELOP_COMMERCE_GAIN}")
+                                action, city.city_id, f"commerce +{gain}")
         return _replace_city(state, new_city), event
 
     if action == "develop_defense":
+        gain = develop_gain(DEVELOP_DEFENSE_BASE, officer.politics)
         new_city = replace(city, gold=city.gold - DEVELOP_COST,
-                           defense=city.defense + DEVELOP_DEFENSE_GAIN)
+                           defense=city.defense + gain)
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id,
-                                action, city.city_id, f"defense +{DEVELOP_DEFENSE_GAIN}")
+                                action, city.city_id, f"defense +{gain}")
         return _replace_city(state, new_city), event
 
     if action == "recruit":
@@ -101,52 +105,74 @@ def _resolve_siege(
     rng: random.Random,
 ) -> tuple[GameState, ResolutionEvent]:
     target_id = decision.params["to"]
+    c = int(decision.params["troops"])
     attacker_city = state.city(officer.city_id)
     defender_city = state.city(target_id)
     attacker_faction = officer.faction_id
     defender_faction = defender_city.owner
+    def_troops = defender_city.troops
 
-    attack = attacker_city.troops * (officer.leadership / 100) * rng.uniform(0.8, 1.2)
-    defense = defender_city.troops * (1.0 + defender_city.defense / 100) * rng.uniform(0.8, 1.2)
+    # Fixed rng draw order: attacker roll first, then defender roll.
+    atk = c * (0.5 + (officer.war + officer.leadership) / 200) * rng.uniform(0.85, 1.15)
+    defenders = [
+        o for o in state.officers.values()
+        if o.faction_id == defender_faction and o.city_id == target_id and o.is_alive
+    ]
+    dq = (max((o.war + o.leadership) / 2 for o in defenders)
+          if defenders else float(NO_OFFICER_DEFENSE_SKILL))
+    dfn = (def_troops * (1 + defender_city.defense / 200)
+           * (0.5 + dq / 100) * rng.uniform(0.85, 1.15))
 
     cities = dict(state.cities)
     officers = dict(state.officers)
 
-    if attack > defense:
-        # Capture: city changes owner, both garrisons are consumed.
-        cities[target_id] = replace(defender_city, owner=attacker_faction, troops=0)
-        cities[officer.city_id] = replace(attacker_city, troops=0)
+    if atk > dfn:
+        # Victory: survivors garrison the captured city; the origin city keeps
+        # only its garrison.
+        loss = int(c * min(0.5, max(0.1, 0.4 * dfn / atk)))
+        survivors = c - loss
+        cities[target_id] = replace(defender_city, owner=attacker_faction, troops=survivors)
+        cities[officer.city_id] = replace(attacker_city, troops=attacker_city.troops - c)
 
         captured_officers = []
-        old_owner_cities = sorted(
-            c.city_id for c in state.cities.values()
-            if c.owner == defender_faction and c.city_id != target_id
+        fallback_cities = sorted(
+            cid for cid, cstate in state.cities.items()
+            if cstate.owner == defender_faction and cid != target_id
         )
         for o in state.officers.values():
-            if o.city_id == target_id and o.faction_id == defender_faction and o.is_alive:
-                if old_owner_cities:
-                    officers[o.officer_id] = replace(o, city_id=old_owner_cities[0])
+            if o.faction_id == defender_faction and o.city_id == target_id and o.is_alive:
+                if fallback_cities:
+                    # Retreat to the faction's other city with the smallest id.
+                    officers[o.officer_id] = replace(o, city_id=fallback_cities[0])
                 else:
-                    officers[o.officer_id] = replace(o, is_alive=False)
+                    # Faction eliminated: the officer is captured and defects.
+                    officers[o.officer_id] = replace(
+                        o,
+                        faction_id=attacker_faction,
+                        city_id=target_id,
+                        loyalty=min(o.loyalty, 60),
+                    )
                     captured_officers.append(o.officer_id)
 
         new_state = replace(state, cities=cities, officers=officers)
         event = ResolutionEvent(
             state.turn, officer.officer_id, attacker_faction, "siege", target_id,
-            f"captured {defender_city.name} (atk {attack:.0f} > def {defense:.0f})",
+            f"captured {defender_city.name} (atk {atk:.0f} > def {dfn:.0f}, "
+            f"{survivors} troops garrison)",
             captured_city=target_id,
             captured_officers=tuple(captured_officers),
         )
         return new_state, event
 
-    # Repel: both sides lose 30% of their troops; the officer stays put.
-    attacker_loss = attacker_city.troops * REPEL_LOSS_NUMERATOR // REPEL_LOSS_DENOMINATOR
-    defender_loss = defender_city.troops * REPEL_LOSS_NUMERATOR // REPEL_LOSS_DENOMINATOR
+    # Repelled: the expedition loses a large share and returns home.
+    attacker_loss = int(c * min(0.8, max(0.3, 0.5 * dfn / atk)))
+    defender_loss = int(def_troops * min(0.3, 0.15 * atk / dfn))
     cities[officer.city_id] = replace(attacker_city, troops=attacker_city.troops - attacker_loss)
-    cities[target_id] = replace(defender_city, troops=defender_city.troops - defender_loss)
+    cities[target_id] = replace(defender_city, troops=def_troops - defender_loss)
     new_state = replace(state, cities=cities)
     event = ResolutionEvent(
         state.turn, officer.officer_id, attacker_faction, "siege", target_id,
-        f"repelled at {defender_city.name} (atk {attack:.0f} <= def {defense:.0f})",
+        f"repelled at {defender_city.name} (atk {atk:.0f} <= def {dfn:.0f}, "
+        f"lost {attacker_loss} of {c})",
     )
     return new_state, event

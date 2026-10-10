@@ -29,14 +29,20 @@ def run_headless(
 ) -> GameResult:
     """Run a complete headless game and return its result.
 
-    When ``agents_by_faction`` is omitted, every faction uses the deterministic
-    :class:`RuleBasedAgent`. A single seeded RNG is shared by the engine and any
-    stochastic resolution, so the same seed reproduces the same result.
+    When ``agents_by_faction`` is omitted, the rule-based agent is used with a
+    different style per faction (faction ids sorted): faction_1 "balanced",
+    faction_2 "balanced", faction_3 "balanced". A single seeded RNG is shared
+    by the engine and any stochastic resolution, so the same seed reproduces
+    the same result.
     """
     rng = random.Random(seed)
     state = build_initial_state()
     if agents_by_faction is None:
-        agents_by_faction = {fid: RuleBasedAgent() for fid in state.factions}
+        default_styles = ("balanced", "balanced", "balanced")
+        agents_by_faction = {
+            fid: RuleBasedAgent(default_styles[i])
+            for i, fid in enumerate(sorted(state.factions))
+        }
 
     game = Game(state, agents_by_faction, rng)
     final_state = game.run(turns)

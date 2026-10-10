@@ -43,6 +43,9 @@ def validate_decision(state: GameState, officer: OfficerState, decision: AgentDe
     if action not in legal:
         return False, f"action {action!r} not legal"
     spec = legal[action]
+    for pname in spec.params:
+        if pname not in decision.params:
+            return False, f"missing required param {pname!r}"
     for pname, pvalue in decision.params.items():
         if pname not in spec.params:
             return False, f"unknown param {pname!r}"
