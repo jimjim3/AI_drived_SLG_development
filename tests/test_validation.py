@@ -74,13 +74,32 @@ class ValidationTests(unittest.TestCase):
         )
         self.assertFalse(ok)
 
+    def test_move_non_adjacent_friendly_city_rejected(self):
+        # xiangyang is faction_1's but not adjacent to chenliu
+        ok, reason = validate_decision(
+            self.state,
+            self.state.officer("cao_ren"),
+            AgentDecision("cao_ren", "move", {"to": "xiangyang"}),
+        )
+        self.assertFalse(ok)
+        self.assertIn("choices", reason)
+
     def test_siege_valid(self):
         ok, reason = validate_decision(
             self.state,
             self.state.officer("xiahou_dun"),
-            AgentDecision("xiahou_dun", "siege", {"to": "luoyang"}),
+            AgentDecision("xiahou_dun", "siege", {"to": "luoyang", "troops": 500}),
         )
         self.assertTrue(ok, reason)
+
+    def test_siege_non_adjacent_city_rejected(self):
+        # jianye is an enemy city but not adjacent to xuchang
+        ok, reason = validate_decision(
+            self.state,
+            self.state.officer("xiahou_dun"),
+            AgentDecision("xiahou_dun", "siege", {"to": "jianye", "troops": 500}),
+        )
+        self.assertFalse(ok)
 
     def test_develop_insufficient_gold(self):
         city = self.state.city("xuchang")

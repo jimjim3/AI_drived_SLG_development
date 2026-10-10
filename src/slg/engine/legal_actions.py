@@ -8,15 +8,21 @@ from __future__ import annotations
 
 from ..schema import (
     DEVELOP_COST,
+    DEVELOP_AGRICULTURE_BASE,
+    DEVELOP_COMMERCE_BASE,
+    DEVELOP_DEFENSE_BASE,
     GOLD_PER_TROOP,
     MAX_RECRUIT,
     MIN_RECRUIT,
     MIN_SIEGE_TROOPS,
     RECRUIT_STEP,
+    SIEGE_MIN_GARRISON,
+    SIEGE_TROOP_STEP,
     GameState,
     LegalAction,
     OfficerState,
     ParamSpec,
+    develop_gain,
 )
 
 
@@ -25,9 +31,15 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
     actions: list[LegalAction] = []
 
     if city.gold >= DEVELOP_COST:
-        actions.append(LegalAction("develop_agri", cost=DEVELOP_COST, note="agri +50"))
-        actions.append(LegalAction("develop_commerce", cost=DEVELOP_COST, note="commerce +50"))
-        actions.append(LegalAction("develop_defense", cost=DEVELOP_COST, note="defense +25"))
+        agri_gain = develop_gain(DEVELOP_AGRICULTURE_BASE, officer.politics)
+        commerce_gain = develop_gain(DEVELOP_COMMERCE_BASE, officer.politics)
+        defense_gain = develop_gain(DEVELOP_DEFENSE_BASE, officer.politics)
+        actions.append(LegalAction("develop_agri", cost=DEVELOP_COST,
+                                   note=f"agri +{agri_gain}"))
+        actions.append(LegalAction("develop_commerce", cost=DEVELOP_COST,
+                                   note=f"commerce +{commerce_gain}"))
+        actions.append(LegalAction("develop_defense", cost=DEVELOP_COST,
+                                   note=f"defense +{defense_gain}"))
 
     max_troops = min(MAX_RECRUIT, city.gold // GOLD_PER_TROOP)
     max_troops = (max_troops // RECRUIT_STEP) * RECRUIT_STEP
@@ -41,26 +53,34 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
 
     friendly_other = sorted(
         c.city_id for c in state.cities.values()
-        if c.owner == officer.faction_id and c.city_id != officer.city_id
+        if c.owner == officer.faction_id
+        and c.city_id != city.city_id
+        and state.adjacent(city.city_id, c.city_id)
     )
     if friendly_other:
         actions.append(LegalAction(
             "move",
             params={"to": ParamSpec("to", choices=tuple(friendly_other))},
             cost=0,
-            note="relocate officer",
+            note="relocate officer to adjacent friendly city",
         ))
 
-    enemy_cities = sorted(
+    enemy_adjacent = sorted(
         c.city_id for c in state.cities.values()
         if c.owner != officer.faction_id
+        and state.adjacent(city.city_id, c.city_id)
     )
-    if city.troops >= MIN_SIEGE_TROOPS and enemy_cities:
+    siege_max = ((city.troops - SIEGE_MIN_GARRISON) // SIEGE_TROOP_STEP) * SIEGE_TROOP_STEP
+    if siege_max >= MIN_SIEGE_TROOPS and enemy_adjacent:
         actions.append(LegalAction(
             "siege",
-            params={"to": ParamSpec("to", choices=tuple(enemy_cities))},
+            params={
+                "to": ParamSpec("to", choices=tuple(enemy_adjacent)),
+                "troops": ParamSpec("troops", min=MIN_SIEGE_TROOPS,
+                                    max=siege_max, step=SIEGE_TROOP_STEP),
+            },
             cost=0,
-            note=f"from {city.troops} troops",
+            note=f"from {city.troops} troops, keep {SIEGE_MIN_GARRISON} garrison",
         ))
 
     actions.append(LegalAction("rest", cost=0, note="always available"))

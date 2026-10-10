@@ -76,12 +76,18 @@ class Game:
         return event
 
     def step(self) -> GameState:
-        """Run one full turn: income, then every active officer acts once."""
-        self.state = apply_income(self.state)
+        """Run one full turn: income, then every active officer acts once.
+
+        Factions act in a per-turn ``rng.shuffle``d order (sorted first) so
+        that the seed influences who moves first.
+        """
+        self.state = apply_income(self.state, self.rng)
+        order = sorted(self.state.factions)
+        self.rng.shuffle(order)
         self.state = replace(self.state, turn=self.state.turn + 1)
         turn = self.state.turn
 
-        for fid in sorted(self.state.factions):
+        for fid in order:
             faction = self.state.factions[fid]
             if not faction.is_active:
                 continue
@@ -111,18 +117,39 @@ class Game:
 
     def run(self, turns: int) -> GameState:
         for _ in range(turns):
+            active = sum(
+                1 for f in self.state.factions.values() if f.is_active
+            )
+            if active <= 1:
+                break  # game decided: at most one faction remains
             self.step()
         return self.state
 
 
 # -- per-turn helpers --------------------------------------------------------
 
-def apply_income(state: GameState) -> GameState:
-    """Turn-start income: gold += commerce // 5, food += agriculture // 5."""
+def apply_income(state: GameState, rng: random.Random) -> GameState:
+    """Turn-start income and upkeep, in fixed city_id order.
+
+    Each city rolls two uniforms (gold first, then food):
+      gold += int(commerce // 5 * rg)
+      food += int(agriculture // 4 * rf)
+    Then upkeep: food -= troops // 10. If food goes negative it is clamped to
+    0 and the garrison deserts by 10% (troops = troops * 9 // 10).
+    """
     new_cities = {}
-    for cid, c in state.cities.items():
-        new_cities[cid] = replace(c, gold=c.gold + c.commerce // 5,
-                                  food=c.food + c.agriculture // 5)
+    for cid in sorted(state.cities):
+        c = state.cities[cid]
+        rg = rng.uniform(0.8, 1.2)
+        rf = rng.uniform(0.8, 1.2)
+        gold = c.gold + int(c.commerce // 5 * rg)
+        food = c.food + int(c.agriculture // 4 * rf)
+        food -= c.troops // 10
+        troops = c.troops
+        if food < 0:
+            food = 0
+            troops = c.troops * 9 // 10
+        new_cities[cid] = replace(c, gold=gold, food=food, troops=troops)
     return replace(state, cities=new_cities)
 
 
@@ -136,12 +163,15 @@ def update_faction_status(state: GameState) -> GameState:
 
 
 def compute_winner(state: GameState) -> str | None:
-    """Faction owning the most cities; ``None`` on a tie or no cities."""
-    counts: dict[str, int] = {}
-    for c in state.cities.values():
-        counts[c.owner] = counts.get(c.owner, 0) + 1
-    if not counts:
-        return None
-    best = max(counts.values())
-    winners = [fid for fid, n in counts.items() if n == best]
+    """Faction with the lexicographically largest ``(cities, total_troops)``.
+
+    Returns ``None`` only when the leading factions are exactly tied on both
+    city count and total troops.
+    """
+    scores: dict[str, tuple[int, int]] = {}
+    for fid in state.factions:
+        owned = [c for c in state.cities.values() if c.owner == fid]
+        scores[fid] = (len(owned), sum(c.troops for c in owned))
+    best = max(scores.values())
+    winners = [fid for fid, s in scores.items() if s == best]
     return winners[0] if len(winners) == 1 else None

@@ -137,4 +137,18 @@ def build_initial_state() -> GameState:
         ),
     }
 
-    return GameState(turn=0, factions=factions, cities=cities, officers=officers)
+    # Scenario map (bidirectional):
+    #   chenliu - xuchang - luoyang
+    #              |          |
+    #            xiangyang - jianye
+    #   xuchang also links to xiangyang.
+    adjacency = {
+        "chenliu": ("xuchang",),
+        "xuchang": ("chenliu", "luoyang", "xiangyang"),
+        "luoyang": ("xuchang", "xiangyang"),
+        "xiangyang": ("luoyang", "xuchang", "jianye"),
+        "jianye": ("xiangyang",),
+    }
+
+    return GameState(turn=0, factions=factions, cities=cities, officers=officers,
+                     adjacency=adjacency)
