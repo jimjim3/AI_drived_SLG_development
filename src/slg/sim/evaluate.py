@@ -1,4 +1,7 @@
-"""Comparative evaluation script (LLM vs Rule-Based baseline) with call budget protection."""
+"""Comparative evaluation script (LLM vs Rule-Based baseline) with call budget protection.
+
+Exit code is non-zero (1) if the evaluation is aborted (e.g. circuit breaker tripped).
+"""
 
 from __future__ import annotations
 
@@ -6,10 +9,15 @@ import argparse
 import inspect
 import json
 import os
+import re
 import sys
 from typing import Callable, Sequence
 
-from ..agents.backends import BackendUnavailable, CircuitBreakerCompleter
+from ..agents.backends import (
+    BackendUnavailable,
+    CircuitBreakerCompleter,
+    ConfigError,
+)
 from ..agents.base import FactionAgent
 from ..agents.llm_agent import Completer, LLMFactionAgent
 from ..agents.rule_based import RuleBasedAgent
@@ -90,8 +98,15 @@ class CallBudget:
             if self.max_calls is not None and self.calls_used >= self.max_calls:
                 self.stopped_early = True
                 raise RuntimeError("call budget exceeded")
+            try:
+                res = cb(system, user)
+            except ConfigError:
+                raise
+            except Exception:
+                self.calls_used += 1
+                raise
             self.calls_used += 1
-            return cb(system, user)
+            return res
 
         wrapped.circuit_breaker = cb  # type: ignore[attr-defined]
         return wrapped
@@ -109,6 +124,280 @@ def _instantiate_agent(factory: Callable, budget: CallBudget) -> FactionAgent:
             return factory(budget)
         except TypeError:
             return factory()
+
+
+def _compute_officer_loss_curve(
+    initial_count: int,
+    actual_turns: int,
+    incidents: Sequence,
+    seat: str,
+) -> list[int]:
+    """Compute officer count of seat at the end of each turn.
+
+    Length equals actual_turns. Computed from initial living officer count and
+    per-turn defection events in GameResult.incidents (net change from officers
+    defecting away from seat vs defecting to seat).
+    """
+    curr = initial_count
+    curve: list[int] = []
+    for t in range(1, actual_turns + 1):
+        for inc in incidents:
+            if getattr(inc, "turn", 0) == t and getattr(inc, "action", "") == "defect":
+                orig_fid = getattr(inc, "faction_id", "")
+                detail = getattr(inc, "detail", "") or ""
+                if orig_fid == seat:
+                    curr -= 1
+                elif bool(re.search(rf"->\s*{re.escape(seat)}\b", detail)):
+                    curr += 1
+        curve.append(curr)
+    return curve
+
+
+def _compute_rejection_reasons(flogs: Sequence, seat: str, top_n: int = 3) -> list[dict[str, object]]:
+    """Compute top N normalized rejection reasons for seat from faction logs."""
+    rej_counts: dict[str, int] = {}
+    for flog in flogs:
+        if getattr(flog, "faction_id", "") == seat:
+            for rej in getattr(flog, "rejected", ()):
+                reason = rej[2] if len(rej) > 2 else str(rej)
+                norm_r = re.sub(r"\d+", "N", reason)
+                rej_counts[norm_r] = rej_counts.get(norm_r, 0) + 1
+    sorted_rej = sorted(rej_counts.items(), key=lambda x: (-x[1], x[0]))[:top_n]
+    return [{"reason": r, "count": c} for r, c in sorted_rej]
+
+
+def _compute_game_diagnostics(
+    res,
+    initial_state,
+    seat: str,
+) -> dict[str, object]:
+    """Compute diagnostic metrics for a single game run."""
+    action_counts: dict[str, int] = {}
+    for e in res.events:
+        if getattr(e, "faction_id", "") == seat:
+            act = getattr(e, "action", "")
+            if act:
+                action_counts[act] = action_counts.get(act, 0) + 1
+
+    defect_count = sum(
+        1
+        for inc in res.incidents
+        if getattr(inc, "action", "") == "defect" and getattr(inc, "faction_id", "") == seat
+    )
+    disobey_count = res.stats.get("disobeyed")
+    if disobey_count is None:
+        disobey_count = sum(
+            1
+            for e in res.events
+            if getattr(e, "faction_id", "") == seat and "抗旨" in (getattr(e, "detail", "") or "")
+        )
+    init_officers = len(
+        [o for o in initial_state.officers.values() if o.faction_id == seat and o.is_alive]
+    )
+    final_living = [
+        o for o in res.final_state.officers.values() if o.faction_id == seat and o.is_alive
+    ]
+    final_officers = len(final_living)
+    final_avg_loyalty = (
+        round(sum(o.loyalty for o in final_living) / len(final_living), 2)
+        if final_living
+        else 0.0
+    )
+    incidents_data = {
+        "deflections": defect_count,
+        "defect_count": defect_count,
+        "disobeyed": disobey_count,
+        "disobey_count": disobey_count,
+        "initial_officers": init_officers,
+        "final_officers": final_officers,
+        "final_avg_loyalty": final_avg_loyalty,
+    }
+
+    actual_turns = res.final_state.turn
+    curve = _compute_officer_loss_curve(
+        initial_count=init_officers,
+        actual_turns=actual_turns,
+        incidents=res.incidents,
+        seat=seat,
+    )
+
+    flogs = res.log.faction_logs if res.log else ()
+    rejection_reasons = _compute_rejection_reasons(flogs, seat=seat, top_n=3)
+
+    seat_flogs = [f for f in flogs if getattr(f, "faction_id", "") == seat]
+    total_named = sum(len(getattr(f, "ordered", ())) for f in seat_flogs)
+    total_delegated = sum(len(getattr(f, "delegated", ())) for f in seat_flogs)
+    if actual_turns > 0:
+        avg_named = round(total_named / actual_turns, 2)
+        avg_delegated = round(total_delegated / actual_turns, 2)
+    else:
+        avg_named = 0.0
+        avg_delegated = 0.0
+    named_per_turn = {
+        "named": avg_named,
+        "delegated": avg_delegated,
+        "ordered": avg_named,
+    }
+
+    return {
+        "action_counts": dict(sorted(action_counts.items())),
+        "incidents": incidents_data,
+        "officer_loss_curve": curve,
+        "rejection_reasons": rejection_reasons,
+        "named_per_turn": named_per_turn,
+        "actual_turns": actual_turns,
+    }
+
+
+def _aggregate_diagnostics(per_seed: list[dict], total_exp_turns: int) -> dict[str, object]:
+    """Aggregate per-seed diagnostic metrics across all evaluated seeds."""
+    n = len(per_seed)
+    base_actions: dict[str, int] = {}
+    exp_actions: dict[str, int] = {}
+    all_rejection_counts: dict[str, int] = {}
+    total_named = 0
+    total_delegated = 0
+
+    base_defects = 0
+    exp_defects = 0
+    base_disobeys = 0
+    exp_disobeys = 0
+    base_init_officers = 0
+    exp_init_officers = 0
+    base_final_officers_sum = 0
+    exp_final_officers_sum = 0
+    base_loyalty_sum = 0.0
+    exp_loyalty_sum = 0.0
+
+    curves: list[list[int]] = []
+
+    for s in per_seed:
+        diag = s.get("diagnostics", {})
+        ac = diag.get("action_counts", {})
+        for act, cnt in ac.get("baseline", {}).items():
+            base_actions[act] = base_actions.get(act, 0) + cnt
+        for act, cnt in ac.get("experiment", {}).items():
+            exp_actions[act] = exp_actions.get(act, 0) + cnt
+
+        for r_item in diag.get("rejection_reasons", []):
+            r_str = str(r_item["reason"])
+            r_cnt = int(r_item["count"])
+            all_rejection_counts[r_str] = all_rejection_counts.get(r_str, 0) + r_cnt
+
+        inc = diag.get("incidents", {})
+        b_inc = inc.get("baseline", {})
+        e_inc = inc.get("experiment", {})
+        base_defects += int(b_inc.get("deflections", 0))
+        exp_defects += int(e_inc.get("deflections", 0))
+        base_disobeys += int(b_inc.get("disobeyed", 0))
+        exp_disobeys += int(e_inc.get("disobeyed", 0))
+        base_init_officers = int(b_inc.get("initial_officers", base_init_officers))
+        exp_init_officers = int(e_inc.get("initial_officers", exp_init_officers))
+        base_final_officers_sum += int(b_inc.get("final_officers", 0))
+        exp_final_officers_sum += int(e_inc.get("final_officers", 0))
+        base_loyalty_sum += float(b_inc.get("final_avg_loyalty", 0.0))
+        exp_loyalty_sum += float(e_inc.get("final_avg_loyalty", 0.0))
+
+        c = diag.get("officer_loss_curve", [])
+        if c:
+            curves.append(c)
+
+        actual_turns = int(s.get("actual_turns", len(c)))
+        npt = diag.get("named_per_turn", {})
+        total_named += round(float(npt.get("named", 0.0)) * actual_turns)
+        total_delegated += round(float(npt.get("delegated", 0.0)) * actual_turns)
+
+    max_len = max((len(c) for c in curves), default=0)
+    avg_curve = []
+    for idx in range(max_len):
+        vals = [c[idx] for c in curves if len(c) > idx]
+        avg_val = round(sum(vals) / len(vals), 2) if vals else 0.0
+        avg_curve.append(avg_val)
+
+    sorted_all_reasons = sorted(all_rejection_counts.items(), key=lambda x: (-x[1], x[0]))[:3]
+    top_rejection_reasons = [{"reason": r, "count": c} for r, c in sorted_all_reasons]
+
+    if total_exp_turns > 0:
+        named_avg = round(total_named / total_exp_turns, 2)
+        delegated_avg = round(total_delegated / total_exp_turns, 2)
+    else:
+        named_avg = 0.0
+        delegated_avg = 0.0
+
+    b_final_avg = round(base_final_officers_sum / n, 2) if n else 0.0
+    e_final_avg = round(exp_final_officers_sum / n, 2) if n else 0.0
+    b_loyalty_avg = round(base_loyalty_sum / n, 2) if n else 0.0
+    e_loyalty_avg = round(exp_loyalty_sum / n, 2) if n else 0.0
+
+    return {
+        "action_counts": {
+            "baseline": dict(sorted(base_actions.items())),
+            "experiment": dict(sorted(exp_actions.items())),
+        },
+        "incidents": {
+            "baseline": {
+                "deflections": base_defects,
+                "disobeyed": base_disobeys,
+                "initial_officers": base_init_officers,
+                "final_officers": b_final_avg,
+                "final_avg_loyalty": b_loyalty_avg,
+            },
+            "experiment": {
+                "deflections": exp_defects,
+                "disobeyed": exp_disobeys,
+                "initial_officers": exp_init_officers,
+                "final_officers": e_final_avg,
+                "final_avg_loyalty": e_loyalty_avg,
+            },
+            "deflections": exp_defects,
+            "defect_count": exp_defects,
+            "disobeyed": exp_disobeys,
+            "disobey_count": exp_disobeys,
+            "initial_officers": exp_init_officers,
+            "final_officers": e_final_avg,
+            "final_avg_loyalty": e_loyalty_avg,
+        },
+        "officer_loss_curve": avg_curve,
+        "rejection_reasons": top_rejection_reasons,
+        "named_per_turn": {
+            "named": named_avg,
+            "delegated": delegated_avg,
+            "ordered": named_avg,
+        },
+    }
+
+
+def generate_possible_cause_hint(summary: dict) -> str:
+    """Generate diagnostic rule-based possible cause hint without calling LLM."""
+    diag = summary.get("diagnostics", {})
+    action_counts = diag.get("action_counts", {})
+    base_recruit = action_counts.get("baseline", {}).get("recruit", 0)
+    exp_recruit = action_counts.get("experiment", {}).get("recruit", 0)
+
+    incidents = diag.get("incidents", {})
+    exp_inc = incidents.get("experiment", incidents)
+    exp_defect = exp_inc.get("deflections", 0)
+
+    rejection_reasons = diag.get("rejection_reasons", [])
+
+    hints: list[str] = []
+    # 1. 徵兵偏少: 實驗組徵兵次數 < 基準線一半
+    if base_recruit > 0 and exp_recruit < base_recruit / 2:
+        hints.append("LLM 徵兵偏少")
+
+    # 2. 出奔: 出奔數 >= 1
+    if exp_defect >= 1:
+        hints.append("有武將出奔，檢查冷落機制")
+
+    # 3. 拒絕率 > 10%
+    accept_rate = summary.get("orders_accept_rate")
+    if accept_rate is not None and (1.0 - accept_rate) > 0.10:
+        top_reason = rejection_reasons[0]["reason"] if rejection_reasons else "未知原因"
+        hints.append(f"指令被拒比例偏高，主因：{top_reason}")
+
+    if not hints:
+        return "表現正常，未見明顯異常。"
+    return "；".join(hints)
 
 
 def evaluate(
@@ -234,9 +523,35 @@ def evaluate(
             if err not in all_error_samples and len(all_error_samples) < 5:
                 all_error_samples.append(err)
 
+        base_diag = _compute_game_diagnostics(baseline_res, state_template, seat)
+        exp_diag = _compute_game_diagnostics(exp_res, state_template, seat)
+
+        seed_diag = {
+            "action_counts": {
+                "baseline": base_diag["action_counts"],
+                "experiment": exp_diag["action_counts"],
+            },
+            "incidents": {
+                "baseline": base_diag["incidents"],
+                "experiment": exp_diag["incidents"],
+                "deflections": exp_diag["incidents"]["deflections"],
+                "defect_count": exp_diag["incidents"]["defect_count"],
+                "disobeyed": exp_diag["incidents"]["disobeyed"],
+                "disobey_count": exp_diag["incidents"]["disobey_count"],
+                "initial_officers": exp_diag["incidents"]["initial_officers"],
+                "final_officers": exp_diag["incidents"]["final_officers"],
+                "final_avg_loyalty": exp_diag["incidents"]["final_avg_loyalty"],
+            },
+            "officer_loss_curve": exp_diag["officer_loss_curve"],
+            "officer_loss_curve_baseline": base_diag["officer_loss_curve"],
+            "rejection_reasons": exp_diag["rejection_reasons"],
+            "named_per_turn": exp_diag["named_per_turn"],
+        }
+
         per_seed.append(
             {
                 "seed": seed,
+                "actual_turns": exp_res.final_state.turn,
                 "baseline": {
                     "winner": baseline_res.winner,
                     "cities": baseline_seat_cities,
@@ -249,6 +564,7 @@ def evaluate(
                     "stats": dict(exp_res.stats),
                     "usage": exp_usage,
                 },
+                "diagnostics": seed_diag,
             }
         )
 
@@ -359,9 +675,16 @@ def evaluate(
         s["experiment"]["usage"].get("errors", 0) for s in per_seed
     )
 
+    summary_diagnostics = _aggregate_diagnostics(per_seed, total_exp_turns)
+    summary_diagnostics["possible_cause_hint"] = generate_possible_cause_hint({
+        "diagnostics": summary_diagnostics,
+        "orders_accept_rate": orders_accept_rate,
+    })
+
     summary = {
         "seat": seat,
         "seeds": [s["seed"] for s in per_seed],
+        "planned_seeds": seed_list,
         "baseline_win_rate": baseline_win_rate,
         "experiment_win_rate": experiment_win_rate,
         "win_rate_delta": win_rate_delta,
@@ -374,6 +697,7 @@ def evaluate(
         "est_tokens": est_tokens,
         "parse_failures": parse_failures,
         "errors": errors,
+        "diagnostics": summary_diagnostics,
     }
 
     return {
@@ -406,16 +730,25 @@ def render_markdown(result: dict) -> str:
 
     lines.append("# SLG 勢力決策評測報告 (LLM 對規則 AI 基準線)")
     lines.append("")
+    planned_seeds = summary.get("planned_seeds", summary["seeds"])
+    n_planned = len(planned_seeds)
+    n_completed = len(summary["seeds"])
     lines.append("## 評測設定")
     lines.append(f"- **評測席位 (Seat)**: `{summary['seat']}`")
-    lines.append(f"- **評測種子數**: {len(summary['seeds'])} (種子: `{summary['seeds']}`)")
+    lines.append(
+        f"- **評測種子數**: 計畫種子 {n_planned} 個，實際完成 {n_completed} 個 (種子: `{summary['seeds']}`)"
+    )
     lines.append(
         f"- **呼叫預算 (Max Calls)**: {budget['max_calls'] if budget['max_calls'] is not None else '無上限'}"
     )
-    lines.append(
-        f"- **已使用呼叫數 (Calls Used)**: {budget['calls_used']}"
-        + (" (⚠️ 預算耗盡，提前終止)" if budget["stopped_early"] else " (未觸發提前終止)")
-    )
+    calls_status = " (未觸發提前終止)"
+    if aborted:
+        reason = abort_reason or "後端連續失敗"
+        calls_status = f" (已中止（{reason}）)"
+    elif budget.get("stopped_early", False):
+        calls_status = " (已中止（預算耗盡）)"
+
+    lines.append(f"- **已使用呼叫數 (Calls Used)**: {budget['calls_used']}{calls_status}")
     lines.append("")
 
     all_llm_failed = (
@@ -454,6 +787,9 @@ def render_markdown(result: dict) -> str:
     lines.append(f"| 解析失敗次數 (parse_failures) | {summary['parse_failures']} |")
     lines.append(f"| 呼叫錯誤次數 (errors) | {summary['errors']} |")
     lines.append("")
+    possible_hint = summary.get("diagnostics", {}).get("possible_cause_hint") or generate_possible_cause_hint(summary)
+    lines.append(f"**可能原因提示**：{possible_hint}")
+    lines.append("")
     lines.append("## 逐種子明細")
     lines.append("")
     lines.append(
@@ -482,6 +818,83 @@ def render_markdown(result: dict) -> str:
             f"| {seed} | {b_win} | {b_cp} | {e_win} | {e_cp} | {c_diff:+d} | {t_diff:+d} | {calls_count} | {stats_str} |"
         )
     lines.append("")
+
+    diag = summary.get("diagnostics", {})
+    action_counts = diag.get("action_counts", {})
+    base_actions = action_counts.get("baseline", {})
+    exp_actions = action_counts.get("experiment", {})
+    all_action_keys = sorted(set(base_actions.keys()) | set(exp_actions.keys()))
+
+    incidents = diag.get("incidents", {})
+    base_inc = incidents.get("baseline", {})
+    exp_inc = incidents.get("experiment", {})
+
+    rejection_reasons = diag.get("rejection_reasons", [])
+    named_per_turn = diag.get("named_per_turn", {})
+
+    lines.append("## 診斷")
+    lines.append("")
+    lines.append("### 動作分布 (基準線 vs 實驗組)")
+    lines.append("")
+    lines.append("| 動作 | 基準線次數 | 實驗組次數 | 差異 |")
+    lines.append("| --- | --- | --- | --- |")
+    if all_action_keys:
+        for act in all_action_keys:
+            b_cnt = base_actions.get(act, 0)
+            e_cnt = exp_actions.get(act, 0)
+            diff = e_cnt - b_cnt
+            lines.append(f"| {act} | {b_cnt} | {e_cnt} | {diff:+d} |")
+    else:
+        lines.append("| (無動作記錄) | 0 | 0 | +0 |")
+    lines.append("")
+
+    lines.append("### 出奔 / 抗旨 / 武將流失")
+    lines.append("")
+    lines.append("| 指標 | 基準線 | 實驗組 | 差異 |")
+    lines.append("| --- | --- | --- | --- |")
+    b_defect = base_inc.get("deflections", 0)
+    e_defect = exp_inc.get("deflections", 0)
+    lines.append(f"| 出奔數 | {b_defect} | {e_defect} | {e_defect - b_defect:+d} |")
+    b_disobey = base_inc.get("disobeyed", 0)
+    e_disobey = exp_inc.get("disobeyed", 0)
+    lines.append(f"| 抗旨數 | {b_disobey} | {e_disobey} | {e_disobey - b_disobey:+d} |")
+    b_init = base_inc.get("initial_officers", 0)
+    e_init = exp_inc.get("initial_officers", 0)
+    lines.append(f"| 初始武將數 | {b_init} | {e_init} | {e_init - b_init:+d} |")
+    b_fin = base_inc.get("final_officers", 0.0)
+    e_fin = exp_inc.get("final_officers", 0.0)
+    lines.append(f"| 最終存活武將數 | {b_fin:.1f} | {e_fin:.1f} | {e_fin - b_fin:+.1f} |")
+    b_loss = b_init - b_fin
+    e_loss = e_init - e_fin
+    lines.append(f"| 武將流失數 | {b_loss:.1f} | {e_loss:.1f} | {e_loss - b_loss:+.1f} |")
+    b_loyalty = base_inc.get("final_avg_loyalty", 0.0)
+    e_loyalty = exp_inc.get("final_avg_loyalty", 0.0)
+    lines.append(f"| 最終平均忠誠 | {b_loyalty:.1f} | {e_loyalty:.1f} | {e_loyalty - b_loyalty:+.1f} |")
+    lines.append("")
+
+    lines.append("### 被拒指令原因前 3 名")
+    lines.append("")
+    if rejection_reasons:
+        lines.append("| 排名 | 原因 | 次數 |")
+        lines.append("| --- | --- | --- |")
+        for rank, r_item in enumerate(rejection_reasons, 1):
+            r_str = r_item.get("reason", "")
+            r_cnt = r_item.get("count", 0)
+            lines.append(f"| {rank} | `{r_str}` | {r_cnt} |")
+    else:
+        lines.append("無指令被拒記錄。")
+    lines.append("")
+
+    lines.append("### 點名與委任平均 (每回合)")
+    lines.append("")
+    lines.append("| 類別 | 平均人數 |")
+    lines.append("| --- | --- |")
+    named_val = named_per_turn.get("named", 0.0)
+    delegated_val = named_per_turn.get("delegated", 0.0)
+    lines.append(f"| 點名執行 (Orders) | {named_val:.2f} |")
+    lines.append(f"| 系統委任 (Delegated) | {delegated_val:.2f} |")
+    lines.append("")
+
     lines.append("## 預算保護")
     lines.append(f"- **max_calls**: {budget['max_calls']}")
     lines.append(f"- **calls_used**: {budget['calls_used']}")
@@ -530,7 +943,8 @@ def _reorder_command_args(argv: list[str], known_flags: set[str]) -> list[str]:
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(
-        description="Run comparative SLG evaluation (LLM vs Rule-based baseline) with call budget protection."
+        description="Run comparative SLG evaluation (LLM vs Rule-based baseline) with call budget protection. Exits with non-zero status code if aborted.",
+        epilog="Exit status: 0 on success, 1 if evaluation aborted (e.g. circuit breaker opened), 2 on invalid CLI arguments.",
     )
     parser.add_argument("--seat", type=str, default="faction_2", help="Faction seat to evaluate (default: faction_2)")
     parser.add_argument("--seeds", type=str, default="0-4", help="Seeds range/list, e.g. 0-9 or 1,3,5 (default: 0-4)")
