@@ -9,11 +9,35 @@ import random
 import sys
 
 from ..agents.backends import CommandCompleter, DemoCompleter, OpenAIChatCompleter
-from ..agents.llm_agent import LLMFactionAgent
+from ..agents.llm_agent import Completer, LLMFactionAgent
 from ..agents.rule_based import RuleBasedAgent
 from ..engine.game import Game, compute_winner
 from ..engine.initial_state import build_initial_state
 from ..schema import TurnLog
+
+
+def build_completer(args: argparse.Namespace) -> Completer | None:
+    """Build a Completer instance from parsed CLI arguments.
+
+    Returns None if no backend options are specified.
+    """
+    has_command = getattr(args, "command", None) is not None and len(args.command) > 0
+    has_openai = bool(getattr(args, "openai_base_url", None) and getattr(args, "model", None))
+    has_demo = bool(getattr(args, "demo", False))
+
+    if not (has_demo or has_command or has_openai):
+        return None
+
+    if has_demo:
+        return DemoCompleter()
+    elif has_command:
+        return CommandCompleter(args.command)
+    else:
+        return OpenAIChatCompleter(
+            base_url=args.openai_base_url,
+            model=args.model,
+            api_key_env=args.api_key_env,
+        )
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -40,25 +64,10 @@ def main(argv: list[str] | None = None) -> None:
 
     args = parser.parse_args(argv)
 
-    # Validate that at least one backend is specified
-    has_command = args.command is not None and len(args.command) > 0
-    has_openai = bool(args.openai_base_url and args.model)
-    has_demo = bool(args.demo)
-
-    if not (has_demo or has_command or has_openai):
+    completer = build_completer(args)
+    if completer is None:
         parser.print_usage(sys.stderr)
         sys.exit(1)
-
-    if has_demo:
-        completer = DemoCompleter()
-    elif has_command:
-        completer = CommandCompleter(args.command)
-    else:
-        completer = OpenAIChatCompleter(
-            base_url=args.openai_base_url,
-            model=args.model,
-            api_key_env=args.api_key_env,
-        )
 
     llm_factions = set(args.llm_faction if args.llm_faction is not None else ["faction_2"])
 
