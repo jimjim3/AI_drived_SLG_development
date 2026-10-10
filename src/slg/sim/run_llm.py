@@ -8,7 +8,12 @@ import json
 import random
 import sys
 
-from ..agents.backends import CommandCompleter, DemoCompleter, OpenAIChatCompleter
+from ..agents.backends import (
+    CircuitBreakerCompleter,
+    CommandCompleter,
+    DemoCompleter,
+    OpenAIChatCompleter,
+)
 from ..agents.llm_agent import Completer, LLMFactionAgent
 from ..agents.rule_based import RuleBasedAgent
 from ..engine.game import Game, compute_winner
@@ -29,15 +34,37 @@ def build_completer(args: argparse.Namespace) -> Completer | None:
         return None
 
     if has_demo:
-        return DemoCompleter()
+        base = DemoCompleter()
     elif has_command:
-        return CommandCompleter(args.command)
+        base = CommandCompleter(args.command)
     else:
-        return OpenAIChatCompleter(
+        base = OpenAIChatCompleter(
             base_url=args.openai_base_url,
             model=args.model,
             api_key_env=args.api_key_env,
         )
+
+    max_errors = getattr(args, "max_consecutive_errors", 3)
+    return CircuitBreakerCompleter(base, max_consecutive_errors=max_errors)
+
+
+def _reorder_command_args(argv: list[str], known_flags: set[str]) -> list[str]:
+    if "--command" not in argv:
+        return argv
+    idx = argv.index("--command")
+    before = argv[:idx]
+    after = argv[idx + 1 :]
+    cmd_tokens = []
+    trailing_flags = []
+    i = 0
+    while i < len(after):
+        tok = after[i]
+        if tok in known_flags or any(tok.startswith(kf + "=") for kf in known_flags):
+            trailing_flags.extend(after[i:])
+            break
+        cmd_tokens.append(tok)
+        i += 1
+    return before + trailing_flags + ["--command"] + cmd_tokens
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -54,6 +81,12 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--openai-base-url", type=str, default=None, help="OpenAI-compatible base URL")
     parser.add_argument("--model", type=str, default=None, help="OpenAI model name")
     parser.add_argument("--api-key-env", type=str, default=None, help="Env var name for API key")
+    parser.add_argument(
+        "--max-consecutive-errors",
+        type=int,
+        default=3,
+        help="Max consecutive errors before circuit breaker opens (default: 3)",
+    )
     parser.add_argument("--save-log", type=str, default=None, help="Path to save TurnLog JSON")
     parser.add_argument(
         "--command",
@@ -62,7 +95,20 @@ def main(argv: list[str] | None = None) -> None:
         help="Subprocess command for CommandCompleter",
     )
 
-    args = parser.parse_args(argv)
+    raw_argv = sys.argv[1:] if argv is None else list(argv)
+    known = {
+        "--seed",
+        "--turns",
+        "--llm-faction",
+        "--demo",
+        "--openai-base-url",
+        "--model",
+        "--api-key-env",
+        "--save-log",
+        "--max-consecutive-errors",
+    }
+    processed_argv = _reorder_command_args(raw_argv, known)
+    args = parser.parse_args(processed_argv)
 
     completer = build_completer(args)
     if completer is None:
@@ -117,6 +163,12 @@ def main(argv: list[str] | None = None) -> None:
         )
         with open(args.save_log, "w", encoding="utf-8") as f:
             json.dump(dataclasses.asdict(log), f, default=str, ensure_ascii=False)
+
+    if getattr(completer, "is_open", False):
+        err_msg = f"⚠️ 斷路器已跳脫，後端連續失敗：{getattr(completer, 'last_error', '')}"
+        print(err_msg, file=sys.stderr)
+        print(err_msg)
+        sys.exit(1)
 
     sys.exit(0)
 

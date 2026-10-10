@@ -138,6 +138,12 @@ class LLMFactionAgent(FactionAgent):
             "parse_failures": 0,
             "errors": 0,
         }
+        self.errors_seen: list[str] = []
+
+    def _record_error(self, msg: str) -> None:
+        sample = msg[:300]
+        if sample not in self.errors_seen and len(self.errors_seen) < 5:
+            self.errors_seen.append(sample)
 
     def decide(self, view: FactionView) -> FactionPlan:
         last_error: str | None = None
@@ -155,6 +161,7 @@ class LLMFactionAgent(FactionAgent):
             except Exception as exc:
                 self.usage["errors"] += 1
                 last_error = str(exc)
+                self._record_error(str(exc))
                 continue
 
             self.usage["response_chars"] += len(raw)
@@ -164,6 +171,7 @@ class LLMFactionAgent(FactionAgent):
             except PlanParseError as exc:
                 self.usage["parse_failures"] += 1
                 last_error = str(exc)
+                self._record_error(f"parse: {exc}")
 
         raise AgentError(f"LLM 決策失敗（重試耗盡）：{last_error}")
 
