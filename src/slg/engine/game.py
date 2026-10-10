@@ -14,12 +14,20 @@ from dataclasses import replace
 from ..agents.base import Agent, FactionAgent
 from ..agents.rule_based import RuleBasedAgent
 from ..schema import (
+    CAST_LIMIT,
+    DEFECT_BELOW,
+    DEFECT_REJOIN_LOYALTY,
+    DISOBEY_BELOW,
     EVENT_LIMIT,
+    LOYALTY_BOOST,
+    LOYALTY_MAX,
+    NEGLECT_PENALTY_START,
     AgentDecision,
     FactionPlan,
     FactionTurnLog,
     GameState,
     LogEntry,
+    ResolutionEvent,
 )
 from .legal_actions import generate_legal_actions
 from .resolution import resolve_decision
@@ -53,10 +61,20 @@ class Game:
             "orders_rejected": 0,
             "delegated": 0,
             "plan_failures": 0,
+            "disobeyed": 0,
         }
         self.events: list = []
+        self.incidents: list[ResolutionEvent] = []
         self.log_entries: list = []
         self._fallback = RuleBasedAgent()
+
+    def _is_faction_level(self, fid: str) -> bool:
+        agent = self.agents.get(fid)
+        if agent is None:
+            return False
+        if getattr(agent, "name", "") == "replay" and hasattr(agent, "is_faction_level"):
+            return agent.is_faction_level(fid)
+        return isinstance(agent, FactionAgent)
 
     # -- decision with safety net -----------------------------------------
     def decide(self, officer, agent: Agent | None = None) -> tuple[AgentDecision, bool, str, int]:
@@ -80,6 +98,8 @@ class Game:
                 try:
                     decision = agent.decide(self.state, officer, legal)
                 except Exception:
+                    if getattr(agent, "name", "") == "replay_delegate":
+                        raise
                     self.stats["rejected"] += 1
                     continue
                 ok, _ = validate_decision(self.state, officer, decision)
@@ -118,6 +138,7 @@ class Game:
         self.rng.shuffle(order)
         self.state = replace(self.state, turn=self.state.turn + 1)
         turn = self.state.turn
+        noticed_by_faction: dict[str, set[str]] = {fid: set() for fid in self.state.factions}
 
         for fid in order:
             faction = self.state.factions[fid]
@@ -129,7 +150,9 @@ class Game:
             agent = self.agents.get(fid)
             if isinstance(agent, FactionAgent):
                 # 1. build view
-                prev_events = [e for e in self.events if e.turn == turn - 1]
+                prev_events = [e for e in self.events if e.turn == turn - 1] + [
+                    inc for inc in self.incidents if inc.turn == turn - 1
+                ]
                 cast = select_cast(
                     self.state,
                     fid,
@@ -160,7 +183,10 @@ class Game:
                 # 3. process orders
                 acted_officers: set[str] = set()
                 executed_decisions: list[AgentDecision] = []
+                ordered_officers: list[str] = []
                 rejected_list: list[tuple[str, str, str]] = []
+                disobey_feedback: list[str] = []
+                noticed_candidates: list[str] = []
 
                 for order_decision in plan.orders:
                     oid = order_decision.officer_id
@@ -185,27 +211,71 @@ class Game:
                         rejected_list.append((oid, order_decision.action, reason))
                     else:
                         acted_officers.add(oid)
+                        ordered_officers.append(oid)
                         self.stats["decisions"] += 1
                         self.stats["valid"] += 1
                         self.stats["orders"] += 1
-                        legal_count = len(generate_legal_actions(self.state, officer))
-                        event = self.apply(officer, order_decision)
                         executed_decisions.append(order_decision)
-                        self.log_entries.append(
-                            LogEntry(
-                                turn=turn,
-                                officer_id=officer.officer_id,
-                                faction_id=officer.faction_id,
-                                agent_name=getattr(agent, "name", "faction_agent"),
-                                legal_count=legal_count,
-                                action=order_decision.action,
-                                params=tuple(sorted(order_decision.params.items())),
-                                valid=True,
-                                fallback=False,
-                                event=event,
-                                source="order",
+
+                        disobeyed = False
+                        if self._is_faction_level(fid) and officer.loyalty < DISOBEY_BELOW:
+                            u = self.rng.random()
+                            p = min(
+                                0.5,
+                                (DISOBEY_BELOW - officer.loyalty) / 100.0 * (0.5 + officer.ambition / 100.0),
                             )
-                        )
+                            if u < p:
+                                disobeyed = True
+
+                        if disobeyed:
+                            self.stats["disobeyed"] += 1
+                            disobey_feedback.append(f"{oid} 抗旨（忠誠{officer.loyalty}）")
+                            rest_decision = AgentDecision(oid, "rest")
+                            event = self.apply(officer, rest_decision)
+                            event = replace(
+                                event,
+                                detail=f"抗旨: 忠誠{officer.loyalty} 野心{officer.ambition} 原令{order_decision.action}",
+                            )
+                            self.events[-1] = event
+                            legal_count = len(generate_legal_actions(self.state, officer))
+                            self.log_entries.append(
+                                LogEntry(
+                                    turn=turn,
+                                    officer_id=officer.officer_id,
+                                    faction_id=officer.faction_id,
+                                    agent_name=getattr(agent, "name", "faction_agent"),
+                                    legal_count=legal_count,
+                                    action="rest",
+                                    params=(),
+                                    valid=True,
+                                    fallback=False,
+                                    event=event,
+                                    source="disobey",
+                                )
+                            )
+                        else:
+                            legal_count = len(generate_legal_actions(self.state, officer))
+                            event = self.apply(officer, order_decision)
+                            self.log_entries.append(
+                                LogEntry(
+                                    turn=turn,
+                                    officer_id=officer.officer_id,
+                                    faction_id=officer.faction_id,
+                                    agent_name=getattr(agent, "name", "faction_agent"),
+                                    legal_count=legal_count,
+                                    action=order_decision.action,
+                                    params=tuple(sorted(order_decision.params.items())),
+                                    valid=True,
+                                    fallback=False,
+                                    event=event,
+                                    source="order",
+                                )
+                            )
+                            if order_decision.action != "rest":
+                                if oid not in noticed_candidates:
+                                    noticed_candidates.append(oid)
+
+                noticed_by_faction[fid] = set(noticed_candidates[:CAST_LIMIT])
 
                 # 4. delegation
                 delegated_officers: list[str] = []
@@ -251,10 +321,12 @@ class Game:
                         rejected=tuple(rejected_list),
                         delegated=tuple(delegated_officers),
                         plan_failed=plan_failed,
+                        ordered=tuple(ordered_officers),
                     )
                 )
                 self.next_cast[fid] = plan.next_cast
                 feedback_items = [f"{o_id} {act}: {rsn}" for o_id, act, rsn in rejected_list]
+                feedback_items.extend(disobey_feedback)
                 if plan_failed and plan_error_str is not None:
                     feedback_items.append(f"plan failed: {plan_error_str}")
                 self.feedback[fid] = tuple(feedback_items[:EVENT_LIMIT])
@@ -291,6 +363,78 @@ class Game:
                         executed=tuple(executed_decisions),
                     )
                 )
+
+        # Turn-end processing (before update_faction_status)
+        # 3.a Neglect & loyalty boost/penalty for living officers of faction-level agents
+        new_officers = dict(self.state.officers)
+        for oid in sorted(new_officers):
+            officer = new_officers[oid]
+            if not officer.is_alive:
+                continue
+            if not self._is_faction_level(officer.faction_id):
+                continue
+
+            fid = officer.faction_id
+            if oid in noticed_by_faction.get(fid, set()):
+                new_neglect = 0
+                new_loyalty = min(LOYALTY_MAX, officer.loyalty + LOYALTY_BOOST)
+            else:
+                new_neglect = officer.neglect + 1
+                new_loyalty = officer.loyalty
+                if new_neglect >= NEGLECT_PENALTY_START:
+                    penalty = new_neglect - NEGLECT_PENALTY_START + 1
+                    new_loyalty = max(0, new_loyalty - penalty)
+
+            new_officers[oid] = replace(officer, neglect=new_neglect, loyalty=new_loyalty)
+
+        self.state = replace(self.state, officers=new_officers)
+
+        # 3.b Defection: all living officers sorted by officer_id
+        new_officers = dict(self.state.officers)
+        for oid in sorted(new_officers):
+            officer = new_officers[oid]
+            if not officer.is_alive:
+                continue
+            if officer.loyalty >= DEFECT_BELOW:
+                continue
+
+            # Always consume one random roll
+            u = self.rng.random()
+
+            # Adjacent enemy cities
+            curr_city = officer.city_id
+            adj_cids = self.state.adjacency.get(curr_city, ())
+            enemy_cids = [
+                cid for cid in adj_cids
+                if self.state.city(cid).owner != officer.faction_id
+            ]
+
+            if enemy_cids:
+                p = (officer.ambition / 100.0) * (1.0 - officer.loyalty / DEFECT_BELOW)
+                if u < p:
+                    target_cid = min(enemy_cids)
+                    target_city = self.state.city(target_cid)
+                    new_faction_id = target_city.owner
+                    orig_faction_id = officer.faction_id
+
+                    new_officers[oid] = replace(
+                        officer,
+                        faction_id=new_faction_id,
+                        city_id=target_cid,
+                        loyalty=DEFECT_REJOIN_LOYALTY,
+                        neglect=0,
+                    )
+                    incident = ResolutionEvent(
+                        turn=turn,
+                        officer_id=oid,
+                        faction_id=orig_faction_id,
+                        action="defect",
+                        city_id=target_cid,
+                        detail=f"出奔: {orig_faction_id} -> {new_faction_id} (忠誠{officer.loyalty})",
+                    )
+                    self.incidents.append(incident)
+
+        self.state = replace(self.state, officers=new_officers)
 
         self.state = update_faction_status(self.state)
         return self.state
