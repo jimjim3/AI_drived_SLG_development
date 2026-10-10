@@ -8,9 +8,12 @@ officer, and the engine-generated legal actions, and returns exactly one
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import ClassVar
+from typing import TYPE_CHECKING, ClassVar
 
-from ..schema import AgentDecision, GameState, LegalAction, OfficerState
+from ..schema import AgentDecision, FactionPlan, GameState, LegalAction, OfficerState
+
+if TYPE_CHECKING:
+    from ..engine.view import FactionView
 
 
 class Agent(ABC):
@@ -24,3 +27,16 @@ class Agent(ABC):
         legal: list[LegalAction],
     ) -> AgentDecision:
         """Return one decision for ``officer`` from ``legal``."""
+
+
+class AgentError(Exception):
+    """Raised when an agent fails to make a decision."""
+
+
+class FactionAgent(ABC):
+    name: ClassVar[str] = "faction_agent"
+
+    @abstractmethod
+    def decide(self, view: FactionView) -> FactionPlan:
+        """Return a faction plan for the current turn view."""
+

@@ -112,6 +112,7 @@ class LogEntry:
     valid: bool = True
     fallback: bool = False
     event: ResolutionEvent | None = None
+    source: str = "agent"
 
 
 @dataclass(frozen=True)
@@ -122,6 +123,7 @@ class TurnLog:
     turns: int
     entries: tuple = ()
     stats: tuple = ()
+    faction_logs: tuple = ()
 
 
 @dataclass(frozen=True)
@@ -187,3 +189,31 @@ class GameState:
 
     def officers_in(self, city_id: str) -> tuple[OfficerState, ...]:
         return tuple(o for o in self.officers.values() if o.city_id == city_id)
+
+
+# --- Faction-level narration mode constants & schemas -----------------------
+
+CAST_LIMIT = 6
+EVENT_LIMIT = 12
+MEMO_MAX = 20
+CHRONICLE_MAX = 300
+
+
+@dataclass(frozen=True)
+class FactionPlan:
+    orders: tuple = ()
+    chronicle: str = ""
+    next_cast: tuple = ()
+
+
+@dataclass(frozen=True)
+class FactionTurnLog:
+    turn: int
+    faction_id: str
+    agent_name: str
+    executed: tuple = ()
+    chronicle: str = ""
+    next_cast: tuple = ()
+    rejected: tuple = ()
+    delegated: tuple = ()
+    plan_failed: bool = False
