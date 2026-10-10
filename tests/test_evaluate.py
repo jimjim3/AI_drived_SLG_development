@@ -10,7 +10,12 @@ import sys
 import tempfile
 import unittest
 
-from slg.agents.backends import CommandCompleter, DemoCompleter, OpenAIChatCompleter
+from slg.agents.backends import (
+    CircuitBreakerCompleter,
+    CommandCompleter,
+    DemoCompleter,
+    OpenAIChatCompleter,
+)
 from slg.agents.base import FactionAgent
 from slg.agents.llm_agent import LLMFactionAgent
 from slg.agents.rule_based import RuleBasedAgent
@@ -101,7 +106,13 @@ class TestEvaluate(unittest.TestCase):
             max_calls=60,
         )
 
-        self.assertEqual(set(res.keys()), {"per_seed", "summary", "budget"})
+        self.assertEqual(
+            set(res.keys()),
+            {"per_seed", "summary", "budget", "aborted", "abort_reason", "error_samples"},
+        )
+        self.assertFalse(res["aborted"])
+        self.assertIsNone(res["abort_reason"])
+        self.assertEqual(res["error_samples"], [])
         self.assertEqual(len(res["per_seed"]), 3)
 
         # per_seed structure
@@ -404,10 +415,14 @@ class TestEvaluate(unittest.TestCase):
     # 20: build_completer unit tests
     def test_build_completer_helper(self):
         args_demo = argparse.Namespace(demo=True, command=None, openai_base_url=None, model=None)
-        self.assertIsInstance(build_completer(args_demo), DemoCompleter)
+        cb_demo = build_completer(args_demo)
+        self.assertIsInstance(cb_demo, CircuitBreakerCompleter)
+        self.assertIsInstance(cb_demo.inner, DemoCompleter)
 
         args_cmd = argparse.Namespace(demo=False, command=["echo", "1"], openai_base_url=None, model=None)
-        self.assertIsInstance(build_completer(args_cmd), CommandCompleter)
+        cb_cmd = build_completer(args_cmd)
+        self.assertIsInstance(cb_cmd, CircuitBreakerCompleter)
+        self.assertIsInstance(cb_cmd.inner, CommandCompleter)
 
         args_openai = argparse.Namespace(
             demo=False,
@@ -416,7 +431,9 @@ class TestEvaluate(unittest.TestCase):
             model="gpt-4o",
             api_key_env="KEY",
         )
-        self.assertIsInstance(build_completer(args_openai), OpenAIChatCompleter)
+        cb_openai = build_completer(args_openai)
+        self.assertIsInstance(cb_openai, CircuitBreakerCompleter)
+        self.assertIsInstance(cb_openai.inner, OpenAIChatCompleter)
 
         args_none = argparse.Namespace(demo=False, command=None, openai_base_url=None, model=None)
         self.assertIsNone(build_completer(args_none))

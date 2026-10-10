@@ -9,6 +9,7 @@ import os
 import sys
 from typing import Callable, Sequence
 
+from ..agents.backends import BackendUnavailable, CircuitBreakerCompleter
 from ..agents.base import FactionAgent
 from ..agents.llm_agent import Completer, LLMFactionAgent
 from ..agents.rule_based import RuleBasedAgent
@@ -62,19 +63,37 @@ class CallBudget:
     calls raise ``RuntimeError("call budget exceeded")``.
     """
 
-    def __init__(self, max_calls: int | None = None) -> None:
+    def __init__(
+        self,
+        max_calls: int | None = None,
+        max_consecutive_errors: int = 3,
+    ) -> None:
         self.max_calls = max_calls
+        self.max_consecutive_errors = max_consecutive_errors
         self.calls_used = 0
         self.stopped_early = False
+        self.circuit_breaker: CircuitBreakerCompleter | None = None
 
     def wrap(self, completer: Completer) -> Completer:
+        if isinstance(completer, CircuitBreakerCompleter):
+            cb = completer
+        elif self.circuit_breaker is not None and getattr(self.circuit_breaker, "inner", None) is completer:
+            cb = self.circuit_breaker
+        else:
+            cb = CircuitBreakerCompleter(completer, max_consecutive_errors=self.max_consecutive_errors)
+
+        self.circuit_breaker = cb
+
         def wrapped(system: str, user: str) -> str:
+            if cb.is_open:
+                return cb(system, user)
             if self.max_calls is not None and self.calls_used >= self.max_calls:
                 self.stopped_early = True
                 raise RuntimeError("call budget exceeded")
             self.calls_used += 1
-            return completer(system, user)
+            return cb(system, user)
 
+        wrapped.circuit_breaker = cb  # type: ignore[attr-defined]
         return wrapped
 
 
@@ -99,6 +118,8 @@ def evaluate(
     agent_factory: Callable[..., FactionAgent] | None = None,
     baseline_style: str = "balanced",
     max_calls: int | None = None,
+    max_consecutive_errors: int = 3,
+    api_key_env: str | None = None,
 ) -> dict:
     """Run paired comparative games (baseline vs experiment) across seeds.
 
@@ -122,25 +143,43 @@ def evaluate(
         further seeds are skipped and ``budget.stopped_early`` is set to True.
         Inside a game, ``budget.wrap(completer)`` blocks excess calls by
         raising ``RuntimeError("call budget exceeded")``.
+    max_consecutive_errors : int
+        Max consecutive errors before circuit breaker opens (default: 3).
+    api_key_env : str or None
+        Environment variable name for API key to redact from reports/samples.
 
     Returns
     -------
     dict
         A JSON-serializable dictionary with keys ``per_seed``, ``summary``,
-        and ``budget``.
+        ``budget``, ``aborted``, ``abort_reason``, and ``error_samples``.
     """
     if agent_factory is None:
         raise ValueError("agent_factory must be provided")
 
     seed_list = list(seeds)
     per_seed: list[dict] = []
-    budget = CallBudget(max_calls=max_calls)
+    budget = CallBudget(
+        max_calls=max_calls,
+        max_consecutive_errors=max_consecutive_errors,
+    )
     total_exp_turns = 0
+    all_error_samples: list[str] = []
+    aborted = False
+    abort_reason: str | None = None
 
     state_template = build_initial_state()
     faction_ids = sorted(state_template.factions)
 
     for seed in seed_list:
+        if budget.circuit_breaker is not None and budget.circuit_breaker.is_open:
+            aborted = True
+            abort_reason = (
+                f"後端連續失敗（{budget.circuit_breaker.consecutive_errors} 次）："
+                f"{budget.circuit_breaker.last_error}"
+            )
+            break
+
         cumulative_usage_calls = sum(
             s["experiment"]["usage"].get("calls", 0) for s in per_seed
         )
@@ -165,6 +204,13 @@ def evaluate(
 
         # 2. Experiment game: seat faction uses agent_factory
         exp_agent = _instantiate_agent(agent_factory, budget)
+        if budget.circuit_breaker is None:
+            comp = getattr(exp_agent, "_completer", None)
+            if isinstance(comp, CircuitBreakerCompleter):
+                budget.circuit_breaker = comp
+            elif hasattr(comp, "circuit_breaker") and isinstance(comp.circuit_breaker, CircuitBreakerCompleter):
+                budget.circuit_breaker = comp.circuit_breaker
+
         exp_agents = {
             fid: RuleBasedAgent(baseline_style) for fid in faction_ids
         }
@@ -180,6 +226,13 @@ def evaluate(
             exp_res.usage.get(seat, getattr(exp_agent, "usage", {}))
         )
         total_exp_turns += exp_res.final_state.turn
+
+        if budget.circuit_breaker is not None and budget.calls_used == 0:
+            budget.calls_used = budget.circuit_breaker.real_calls
+
+        for err in getattr(exp_agent, "errors_seen", []):
+            if err not in all_error_samples and len(all_error_samples) < 5:
+                all_error_samples.append(err)
 
         per_seed.append(
             {
@@ -198,6 +251,32 @@ def evaluate(
                 },
             }
         )
+
+        if budget.circuit_breaker is not None and budget.circuit_breaker.is_open:
+            aborted = True
+            abort_reason = (
+                f"後端連續失敗（{budget.circuit_breaker.consecutive_errors} 次）："
+                f"{budget.circuit_breaker.last_error}"
+            )
+            break
+
+    if budget.circuit_breaker is not None and budget.circuit_breaker.is_open:
+        aborted = True
+        if abort_reason is None:
+            abort_reason = (
+                f"後端連續失敗（{budget.circuit_breaker.consecutive_errors} 次）："
+                f"{budget.circuit_breaker.last_error}"
+            )
+
+    if budget.circuit_breaker is not None and budget.circuit_breaker.last_error:
+        if budget.circuit_breaker.last_error not in all_error_samples and len(all_error_samples) < 5:
+            all_error_samples.append(budget.circuit_breaker.last_error[:300])
+
+    secret_val = os.environ.get(api_key_env) if api_key_env else None
+    if secret_val:
+        all_error_samples = [s.replace(secret_val, "[REDACTED]") for s in all_error_samples]
+        if abort_reason:
+            abort_reason = abort_reason.replace(secret_val, "[REDACTED]")
 
     n_seeds = len(per_seed)
     if n_seeds > 0:
@@ -259,7 +338,12 @@ def evaluate(
     usage_calls = sum(
         s["experiment"]["usage"].get("calls", 0) for s in per_seed
     )
-    calls = usage_calls if (usage_calls > 0 or not budget.calls_used) else budget.calls_used
+    budget_calls_used = (
+        budget.calls_used
+        if (budget.calls_used > 0 or max_calls == 0 or budget.circuit_breaker is not None)
+        else usage_calls
+    )
+    calls = budget_calls_used if (budget.calls_used > 0 or budget.circuit_breaker is not None) else usage_calls
     est_tokens = sum(
         (
             s["experiment"]["usage"].get("prompt_chars", 0)
@@ -292,12 +376,6 @@ def evaluate(
         "errors": errors,
     }
 
-    budget_calls_used = (
-        budget.calls_used
-        if (budget.calls_used > 0 or max_calls == 0)
-        else usage_calls
-    )
-
     return {
         "per_seed": per_seed,
         "summary": summary,
@@ -306,6 +384,9 @@ def evaluate(
             "calls_used": budget_calls_used,
             "stopped_early": budget.stopped_early,
         },
+        "aborted": aborted,
+        "abort_reason": abort_reason,
+        "error_samples": all_error_samples,
     }
 
 
@@ -314,8 +395,15 @@ def render_markdown(result: dict) -> str:
     summary = result["summary"]
     budget = result["budget"]
     per_seed = result["per_seed"]
+    aborted = result.get("aborted", False)
+    abort_reason = result.get("abort_reason")
+    error_samples = result.get("error_samples", [])
 
     lines = []
+    if aborted:
+        lines.append(f"⚠️ 後端連續失敗，評測已中止：{abort_reason}")
+        lines.append("")
+
     lines.append("# SLG 勢力決策評測報告 (LLM 對規則 AI 基準線)")
     lines.append("")
     lines.append("## 評測設定")
@@ -329,8 +417,22 @@ def render_markdown(result: dict) -> str:
         + (" (⚠️ 預算耗盡，提前終止)" if budget["stopped_early"] else " (未觸發提前終止)")
     )
     lines.append("")
-    lines.append("## 評測摘要")
-    lines.append("")
+
+    all_llm_failed = (
+        (summary["calls"] > 0 and summary["errors"] >= summary["calls"])
+        or (summary["calls"] > 0 and summary["plan_failure_rate"] >= 1.0)
+    )
+
+    if all_llm_failed:
+        lines.append("## 評測摘要（⚠️ 實驗組實為規則 AI 代打，結果無效）")
+        lines.append("")
+        lines.append("> [!WARNING]")
+        lines.append("> 實驗組實為規則 AI 代打，結果無效（全部 LLM 呼叫皆失敗）。")
+        lines.append("")
+    else:
+        lines.append("## 評測摘要")
+        lines.append("")
+
     lines.append("| 指標 | 數值 |")
     lines.append("| --- | --- |")
     lines.append(f"| 評測席位 (seat) | {summary['seat']} |")
@@ -385,6 +487,14 @@ def render_markdown(result: dict) -> str:
     lines.append(f"- **calls_used**: {budget['calls_used']}")
     lines.append(f"- **stopped_early**: {'是 (True)' if budget['stopped_early'] else '否 (False)'}")
     lines.append("")
+    lines.append("## 錯誤樣本")
+    lines.append("")
+    if error_samples:
+        for idx, sample in enumerate(error_samples, 1):
+            lines.append(f"{idx}. `{sample}`")
+    else:
+        lines.append("無錯誤記錄。")
+    lines.append("")
     lines.append("## 限制說明與注意事項")
     lines.append("> [!NOTE]")
     lines.append("> **同座位比較、樣本數小時差異不具統計顯著性**。")
@@ -397,6 +507,25 @@ def render_markdown(result: dict) -> str:
     )
     lines.append("")
     return "\n".join(lines)
+
+
+def _reorder_command_args(argv: list[str], known_flags: set[str]) -> list[str]:
+    if "--command" not in argv:
+        return argv
+    idx = argv.index("--command")
+    before = argv[:idx]
+    after = argv[idx + 1 :]
+    cmd_tokens = []
+    trailing_flags = []
+    i = 0
+    while i < len(after):
+        tok = after[i]
+        if tok in known_flags or any(tok.startswith(kf + "=") for kf in known_flags):
+            trailing_flags.extend(after[i:])
+            break
+        cmd_tokens.append(tok)
+        i += 1
+    return before + trailing_flags + ["--command"] + cmd_tokens
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -414,13 +543,34 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--model", type=str, default=None, help="OpenAI model name")
     parser.add_argument("--api-key-env", type=str, default=None, help="Env var name for API key")
     parser.add_argument(
+        "--max-consecutive-errors",
+        type=int,
+        default=3,
+        help="Max consecutive errors before circuit breaker opens (default: 3)",
+    )
+    parser.add_argument(
         "--command",
         nargs=argparse.REMAINDER,
         default=None,
         help="Subprocess command for CommandCompleter",
     )
 
-    args = parser.parse_args(argv)
+    raw_argv = sys.argv[1:] if argv is None else list(argv)
+    known = {
+        "--seat",
+        "--seeds",
+        "--turns",
+        "--max-calls",
+        "--baseline-style",
+        "--out",
+        "--demo",
+        "--openai-base-url",
+        "--model",
+        "--api-key-env",
+        "--max-consecutive-errors",
+    }
+    processed_argv = _reorder_command_args(raw_argv, known)
+    args = parser.parse_args(processed_argv)
 
     completer = build_completer(args)
     if completer is None:
@@ -442,6 +592,8 @@ def main(argv: list[str] | None = None) -> None:
         agent_factory=agent_factory,
         baseline_style=args.baseline_style,
         max_calls=args.max_calls,
+        max_consecutive_errors=args.max_consecutive_errors,
+        api_key_env=args.api_key_env,
     )
 
     report_md = render_markdown(result)
@@ -474,6 +626,10 @@ def main(argv: list[str] | None = None) -> None:
                     f.write(json_str)
 
     print(report_md)
+
+    if result.get("aborted", False):
+        print(f"⚠️ 評測中止：{result.get('abort_reason', '')}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

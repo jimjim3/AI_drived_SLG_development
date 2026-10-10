@@ -15,7 +15,44 @@ import subprocess
 import tempfile
 import urllib.error
 import urllib.request
-from typing import Sequence
+from typing import Callable, Sequence
+
+Completer = Callable[[str, str], str]
+
+
+class BackendUnavailable(RuntimeError):
+    """Raised when the backend circuit breaker has tripped and is open."""
+
+
+class CircuitBreakerCompleter:
+    """Circuit breaker wrapper around a Completer to protect against persistent failures."""
+
+    def __init__(self, inner: Completer, max_consecutive_errors: int = 3) -> None:
+        self.inner = inner
+        self.max_consecutive_errors = max_consecutive_errors
+        self.is_open: bool = False
+        self.consecutive_errors: int = 0
+        self.real_calls: int = 0
+        self.last_error: str | None = None
+
+    def __call__(self, system: str, user: str) -> str:
+        if self.is_open:
+            raise BackendUnavailable(
+                f"Backend circuit breaker is open after {self.consecutive_errors} consecutive errors. "
+                f"Last error: {self.last_error}"
+            )
+
+        self.real_calls += 1
+        try:
+            res = self.inner(system, user)
+        except Exception as exc:
+            self.consecutive_errors += 1
+            self.last_error = str(exc)
+            if self.max_consecutive_errors > 0 and self.consecutive_errors >= self.max_consecutive_errors:
+                self.is_open = True
+            raise
+        self.consecutive_errors = 0
+        return res
 
 
 class ScriptedCompleter:
