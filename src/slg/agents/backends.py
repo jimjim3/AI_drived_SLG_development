@@ -130,7 +130,11 @@ class OpenAIChatCompleter:
             with urllib.request.urlopen(req, timeout=self.timeout) as resp:
                 body = resp.read().decode("utf-8")
         except urllib.error.HTTPError as exc:
-            raise RuntimeError(_clean(f"HTTP error {exc.code}: {exc.reason}")) from None
+            try:
+                detail = exc.read().decode("utf-8", "replace")[:300]
+            except Exception:
+                detail = ""
+            raise RuntimeError(_clean(f"HTTP error {exc.code}: {exc.reason} {detail}".strip())) from None
         except urllib.error.URLError as exc:
             raise RuntimeError(_clean(f"Network error: {exc.reason}")) from None
         except Exception as exc:
