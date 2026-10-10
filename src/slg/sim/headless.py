@@ -31,14 +31,14 @@ def run_headless(
 
     When ``agents_by_faction`` is omitted, the rule-based agent is used with a
     different style per faction (faction ids sorted): faction_1 "balanced",
-    faction_2 "aggressive", faction_3 "turtle". A single seeded RNG is shared
+    faction_2 "balanced", faction_3 "balanced". A single seeded RNG is shared
     by the engine and any stochastic resolution, so the same seed reproduces
     the same result.
     """
     rng = random.Random(seed)
     state = build_initial_state()
     if agents_by_faction is None:
-        default_styles = ("balanced", "aggressive", "turtle")
+        default_styles = ("balanced", "balanced", "balanced")
         agents_by_faction = {
             fid: RuleBasedAgent(default_styles[i])
             for i, fid in enumerate(sorted(state.factions))

@@ -41,13 +41,13 @@ def build_initial_state() -> GameState:
         ),
         "luoyang": CityState(
             "luoyang", "洛陽", "faction_2",
-            agriculture=450, commerce=450, defense=150,
-            gold=800, food=800, troops=1000,
+            agriculture=990, commerce=990, defense=150,
+            gold=1760, food=1760, troops=2200,
         ),
         "jianye": CityState(
             "jianye", "建業", "faction_3",
-            agriculture=500, commerce=550, defense=120,
-            gold=900, food=900, troops=900,
+            agriculture=900, commerce=990, defense=120,
+            gold=1620, food=1620, troops=1620,
         ),
     }
 

@@ -128,6 +128,9 @@ class Game:
 
 # -- per-turn helpers --------------------------------------------------------
 
+GOLD_INCOME_DIV = 3
+
+
 def apply_income(state: GameState, rng: random.Random) -> GameState:
     """Turn-start income and upkeep, in fixed city_id order.
 
@@ -142,7 +145,7 @@ def apply_income(state: GameState, rng: random.Random) -> GameState:
         c = state.cities[cid]
         rg = rng.uniform(0.8, 1.2)
         rf = rng.uniform(0.8, 1.2)
-        gold = c.gold + int(c.commerce // 5 * rg)
+        gold = c.gold + int(c.commerce // GOLD_INCOME_DIV * rg)
         food = c.food + int(c.agriculture // 4 * rf)
         food -= c.troops // 10
         troops = c.troops
