@@ -144,3 +144,77 @@ class OpenAIChatCompleter:
             return content
         except Exception as exc:
             raise RuntimeError(_clean(f"Invalid response JSON structure: {exc}")) from None
+
+
+def _parse_legal_str(s: str) -> tuple[str, dict[str, object]]:
+    parts = s.split()
+    action = parts[0]
+    params: dict[str, object] = {}
+    for part in parts[1:]:
+        if "=" not in part:
+            continue
+        pname, pval = part.split("=", 1)
+        if pval.startswith("[") and pval.endswith("]"):
+            choices_str = pval[1:-1]
+            choices = [c.strip() for c in choices_str.split(",") if c.strip()]
+            if choices:
+                params[pname] = choices[0]
+        elif ".." in pval:
+            range_part = pval.split("/")[0]
+            min_str = range_part.split("..")[0]
+            if "." in min_str:
+                val = float(min_str)
+                if val.is_integer():
+                    val = int(val)
+            else:
+                val = int(min_str)
+            params[pname] = val
+        else:
+            params[pname] = pval
+    return action, params
+
+
+class DemoCompleter:
+    """Offline demonstration completer for faction-level decisions."""
+
+    def __call__(self, system: str, user: str) -> str:
+        idx = user.find("狀態：")
+        if idx == -1:
+            raise ValueError("User prompt does not contain '狀態：'")
+        json_part = user[idx + len("狀態：") :]
+        decoder = json.JSONDecoder()
+        data, _ = decoder.raw_decode(json_part)
+
+        turn = data.get("turn", 1)
+        faction_name = data.get("faction_name", "")
+        cast = data.get("cast", [])
+
+        orders: list[dict[str, object]] = []
+        for officer in cast:
+            oid = officer.get("id")
+            legal_list = officer.get("legal", [])
+            chosen_action_str = None
+            for item in legal_list:
+                action_name = item.split()[0]
+                if action_name != "rest":
+                    chosen_action_str = item
+                    break
+            if chosen_action_str is None:
+                continue
+
+            action, params = _parse_legal_str(chosen_action_str)
+            orders.append({
+                "officer": oid,
+                "action": action,
+                "params": params,
+                "memo": "示範",
+            })
+
+        chronicle = f"第{turn}回合，{faction_name}依計策行事。"
+        next_cast = [o.get("id") for o in cast if "id" in o]
+
+        return json.dumps({
+            "orders": orders,
+            "chronicle": chronicle,
+            "next_cast": next_cast,
+        }, ensure_ascii=False)

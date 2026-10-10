@@ -11,25 +11,55 @@ from __future__ import annotations
 import random
 from dataclasses import replace
 
+from ..agents.base import Agent, FactionAgent
 from ..agents.rule_based import RuleBasedAgent
-from ..schema import AgentDecision, GameState, LogEntry
+from ..schema import (
+    EVENT_LIMIT,
+    AgentDecision,
+    FactionPlan,
+    FactionTurnLog,
+    GameState,
+    LogEntry,
+)
 from .legal_actions import generate_legal_actions
 from .resolution import resolve_decision
 from .validation import validate_decision
+from .view import build_faction_view, forced_cast, select_cast
 
 
 class Game:
-    def __init__(self, state: GameState, agents_by_faction, rng: random.Random):
+    def __init__(
+        self,
+        state: GameState,
+        agents_by_faction,
+        rng: random.Random,
+        delegate_agent: Agent | None = None,
+    ):
         self.state = state
         self.agents = agents_by_faction
         self.rng = rng
-        self.stats = {"decisions": 0, "valid": 0, "rejected": 0, "fallbacks": 0}
+        self.delegate_agent = (
+            delegate_agent if delegate_agent is not None else RuleBasedAgent("balanced")
+        )
+        self.next_cast: dict[str, tuple] = {}
+        self.feedback: dict[str, tuple] = {}
+        self.faction_logs: list[FactionTurnLog] = []
+        self.stats = {
+            "decisions": 0,
+            "valid": 0,
+            "rejected": 0,
+            "fallbacks": 0,
+            "orders": 0,
+            "orders_rejected": 0,
+            "delegated": 0,
+            "plan_failures": 0,
+        }
         self.events: list = []
         self.log_entries: list = []
         self._fallback = RuleBasedAgent()
 
     # -- decision with safety net -----------------------------------------
-    def decide(self, officer) -> tuple[AgentDecision, bool, str, int]:
+    def decide(self, officer, agent: Agent | None = None) -> tuple[AgentDecision, bool, str, int]:
         """Return ``(decision, fallback, agent_name, legal_count)``.
 
         Safety net: try the primary agent up to twice; on exception or
@@ -38,23 +68,25 @@ class Game:
         (always legal). This guarantees ``stats["valid"] == stats["decisions"]``.
         """
         self.stats["decisions"] += 1
-        agent = self.agents.get(officer.faction_id)
+        if agent is None:
+            agent = self.agents.get(officer.faction_id)
         legal = generate_legal_actions(self.state, officer)
         legal_count = len(legal)
         agent_name = getattr(agent, "name", "agent") if agent is not None else "safety_net"
 
         # Primary agent: up to two attempts.
-        for _ in range(2):
-            try:
-                decision = agent.decide(self.state, officer, legal)
-            except Exception:
+        if isinstance(agent, Agent) or (agent is not None and not isinstance(agent, FactionAgent)):
+            for _ in range(2):
+                try:
+                    decision = agent.decide(self.state, officer, legal)
+                except Exception:
+                    self.stats["rejected"] += 1
+                    continue
+                ok, _ = validate_decision(self.state, officer, decision)
+                if ok:
+                    self.stats["valid"] += 1
+                    return (decision, False, agent_name, legal_count)
                 self.stats["rejected"] += 1
-                continue
-            ok, _ = validate_decision(self.state, officer, decision)
-            if ok:
-                self.stats["valid"] += 1
-                return (decision, False, agent_name, legal_count)
-            self.stats["rejected"] += 1
 
         # Fallback: rule-based agent.
         self.stats["fallbacks"] += 1
@@ -93,24 +125,172 @@ class Game:
                 continue
             if not self.state.cities_of(fid):
                 continue  # eliminated mid-turn
-            for oid in sorted(self.state.officers):
-                officer = self.state.officers[oid]
-                if officer.faction_id != fid or not officer.is_alive:
-                    continue
-                decision, fallback, agent_name, legal_count = self.decide(officer)
-                event = self.apply(officer, decision)
-                self.log_entries.append(LogEntry(
-                    turn=turn,
-                    officer_id=officer.officer_id,
-                    faction_id=officer.faction_id,
-                    agent_name=agent_name,
-                    legal_count=legal_count,
-                    action=decision.action,
-                    params=tuple(sorted(decision.params.items())),
-                    valid=True,
-                    fallback=fallback,
-                    event=event,
-                ))
+
+            agent = self.agents.get(fid)
+            if isinstance(agent, FactionAgent):
+                # 1. build view
+                prev_events = [e for e in self.events if e.turn == turn - 1]
+                cast = select_cast(
+                    self.state,
+                    fid,
+                    requested=self.next_cast.get(fid, ()),
+                    forced=forced_cast(self.state, fid, prev_events),
+                )
+                view = build_faction_view(
+                    self.state,
+                    fid,
+                    cast,
+                    prev_events,
+                    self.feedback.get(fid, ()),
+                )
+
+                # 2. plan
+                plan_failed = False
+                plan_error_str = None
+                try:
+                    plan = agent.decide(view)
+                except Exception as exc:
+                    if getattr(agent, "name", "") == "replay":
+                        raise
+                    self.stats["plan_failures"] += 1
+                    plan = FactionPlan()
+                    plan_failed = True
+                    plan_error_str = str(exc)
+
+                # 3. process orders
+                acted_officers: set[str] = set()
+                executed_decisions: list[AgentDecision] = []
+                rejected_list: list[tuple[str, str, str]] = []
+
+                for order_decision in plan.orders:
+                    oid = order_decision.officer_id
+                    officer = self.state.officers.get(oid)
+                    reason = None
+                    if officer is None:
+                        reason = f"officer {oid!r} not found"
+                    elif officer.faction_id != fid:
+                        reason = f"officer {oid!r} not in faction {fid!r}"
+                    elif not officer.is_alive:
+                        reason = f"officer {oid!r} not alive"
+                    elif oid in acted_officers:
+                        reason = f"officer {oid!r} already acted this turn"
+                    else:
+                        ok, val_reason = validate_decision(self.state, officer, order_decision)
+                        if not ok:
+                            reason = val_reason
+
+                    if reason is not None:
+                        self.stats["rejected"] += 1
+                        self.stats["orders_rejected"] += 1
+                        rejected_list.append((oid, order_decision.action, reason))
+                    else:
+                        acted_officers.add(oid)
+                        self.stats["decisions"] += 1
+                        self.stats["valid"] += 1
+                        self.stats["orders"] += 1
+                        legal_count = len(generate_legal_actions(self.state, officer))
+                        event = self.apply(officer, order_decision)
+                        executed_decisions.append(order_decision)
+                        self.log_entries.append(
+                            LogEntry(
+                                turn=turn,
+                                officer_id=officer.officer_id,
+                                faction_id=officer.faction_id,
+                                agent_name=getattr(agent, "name", "faction_agent"),
+                                legal_count=legal_count,
+                                action=order_decision.action,
+                                params=tuple(sorted(order_decision.params.items())),
+                                valid=True,
+                                fallback=False,
+                                event=event,
+                                source="order",
+                            )
+                        )
+
+                # 4. delegation
+                delegated_officers: list[str] = []
+                for oid in sorted(self.state.officers):
+                    if oid in acted_officers:
+                        continue
+                    officer = self.state.officers.get(oid)
+                    if officer is None or officer.faction_id != fid or not officer.is_alive:
+                        continue
+                    decision, fallback, _name, legal_count = self.decide(
+                        officer, agent=self.delegate_agent
+                    )
+                    self.stats["delegated"] += 1
+                    acted_officers.add(oid)
+                    executed_decisions.append(decision)
+                    delegated_officers.append(oid)
+                    event = self.apply(officer, decision)
+                    self.log_entries.append(
+                        LogEntry(
+                            turn=turn,
+                            officer_id=officer.officer_id,
+                            faction_id=officer.faction_id,
+                            agent_name=getattr(self.delegate_agent, "name", "delegate"),
+                            legal_count=legal_count,
+                            action=decision.action,
+                            params=tuple(sorted(decision.params.items())),
+                            valid=True,
+                            fallback=fallback,
+                            event=event,
+                            source="delegate",
+                        )
+                    )
+
+                # 5. append FactionTurnLog and update next_cast / feedback
+                self.faction_logs.append(
+                    FactionTurnLog(
+                        turn=turn,
+                        faction_id=fid,
+                        agent_name=getattr(agent, "name", "faction_agent"),
+                        executed=tuple(executed_decisions),
+                        chronicle=plan.chronicle,
+                        next_cast=plan.next_cast,
+                        rejected=tuple(rejected_list),
+                        delegated=tuple(delegated_officers),
+                        plan_failed=plan_failed,
+                    )
+                )
+                self.next_cast[fid] = plan.next_cast
+                feedback_items = [f"{o_id} {act}: {rsn}" for o_id, act, rsn in rejected_list]
+                if plan_failed and plan_error_str is not None:
+                    feedback_items.append(f"plan failed: {plan_error_str}")
+                self.feedback[fid] = tuple(feedback_items[:EVENT_LIMIT])
+
+            else:
+                executed_decisions = []
+                for oid in sorted(self.state.officers):
+                    officer = self.state.officers[oid]
+                    if officer.faction_id != fid or not officer.is_alive:
+                        continue
+                    decision, fallback, agent_name, legal_count = self.decide(officer, agent=agent)
+                    executed_decisions.append(decision)
+                    event = self.apply(officer, decision)
+                    self.log_entries.append(
+                        LogEntry(
+                            turn=turn,
+                            officer_id=officer.officer_id,
+                            faction_id=officer.faction_id,
+                            agent_name=agent_name,
+                            legal_count=legal_count,
+                            action=decision.action,
+                            params=tuple(sorted(decision.params.items())),
+                            valid=True,
+                            fallback=fallback,
+                            event=event,
+                            source="agent",
+                        )
+                    )
+                self.faction_logs.append(
+                    FactionTurnLog(
+                        turn=turn,
+                        faction_id=fid,
+                        agent_name=getattr(agent, "name", "agent") if agent is not None else "agent",
+                        executed=tuple(executed_decisions),
+                    )
+                )
 
         self.state = update_faction_status(self.state)
         return self.state

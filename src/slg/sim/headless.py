@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 import random
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Mapping
 
-from ..agents.base import Agent
+from ..agents.base import Agent, FactionAgent
 from ..agents.rule_based import RuleBasedAgent
 from ..engine.game import Game, compute_winner
 from ..engine.initial_state import build_initial_state
@@ -20,12 +20,13 @@ class GameResult:
     events: tuple[ResolutionEvent, ...]
     winner: str | None
     log: TurnLog | None = None
+    usage: Mapping[str, dict] = field(default_factory=dict)
 
 
 def run_headless(
     seed: int = 42,
     turns: int = 20,
-    agents_by_faction: Mapping[str, Agent] | None = None,
+    agents_by_faction: Mapping[str, Agent | FactionAgent] | None = None,
 ) -> GameResult:
     """Run a complete headless game and return its result.
 
@@ -51,11 +52,18 @@ def run_headless(
         turns=turns,
         entries=tuple(game.log_entries),
         stats=tuple(sorted(game.stats.items())),
+        faction_logs=tuple(game.faction_logs),
     )
+    usage = {
+        fid: dict(agent.usage)
+        for fid, agent in agents_by_faction.items()
+        if hasattr(agent, "usage")
+    }
     return GameResult(
         final_state=final_state,
         stats=dict(game.stats),
         events=tuple(game.events),
         winner=compute_winner(final_state),
         log=log,
+        usage=usage,
     )

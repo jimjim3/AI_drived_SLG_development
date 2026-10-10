@@ -1,6 +1,6 @@
 """Replaceable, untrusted AI plugins."""
 
-from .backends import CommandCompleter, OpenAIChatCompleter, ScriptedCompleter
+from .backends import CommandCompleter, DemoCompleter, OpenAIChatCompleter, ScriptedCompleter
 from .base import Agent, AgentError, FactionAgent
 from .llm_agent import (
     Completer,
@@ -19,6 +19,7 @@ __all__ = [
     "AgentError",
     "CommandCompleter",
     "Completer",
+    "DemoCompleter",
     "FactionAgent",
     "LLMAgent",
     "LLMFactionAgent",
