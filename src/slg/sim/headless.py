@@ -28,6 +28,7 @@ def run_headless(
     seed: int = 42,
     turns: int = 20,
     agents_by_faction: Mapping[str, Agent | FactionAgent] | None = None,
+    scenario: str = "default",
 ) -> GameResult:
     """Run a complete headless game and return its result.
 
@@ -38,7 +39,7 @@ def run_headless(
     the same result.
     """
     rng = random.Random(seed)
-    state = build_initial_state()
+    state = build_initial_state(scenario=scenario)
     if agents_by_faction is None:
         default_styles = ("balanced", "balanced", "balanced")
         agents_by_faction = {
@@ -54,6 +55,7 @@ def run_headless(
         entries=tuple(game.log_entries),
         stats=tuple(sorted(game.stats.items())),
         faction_logs=tuple(game.faction_logs),
+        scenario=scenario,
     )
     usage = {
         fid: dict(agent.usage)

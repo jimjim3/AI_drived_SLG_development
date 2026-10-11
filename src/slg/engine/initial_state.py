@@ -8,6 +8,8 @@ Three factions, nine cities, forty-two officers:
 
 from __future__ import annotations
 
+import dataclasses
+
 from ..schema import (
     CityState,
     FactionState,
@@ -16,7 +18,10 @@ from ..schema import (
 )
 
 
-def build_initial_state() -> GameState:
+def build_initial_state(scenario: str = "default") -> GameState:
+    if scenario not in ("default", "advantage"):
+        raise ValueError(f"Unknown scenario: {scenario!r}")
+
     factions = {
         "faction_1": FactionState("faction_1", "曹操", True),
         "faction_2": FactionState("faction_2", "劉備", True),
@@ -267,6 +272,29 @@ def build_initial_state() -> GameState:
         "wujun": ("jianye", "kuaiji"),
         "kuaiji": ("wujun",),
     }
+
+    if scenario == "advantage":
+        f2_city_ids = {cid for cid, c in cities.items() if c.owner == "faction_2"}
+        f2_neighbor_enemy_ids = set()
+        for f2_cid in f2_city_ids:
+            for nbr in adjacency.get(f2_cid, ()):
+                if cities[nbr].owner != "faction_2":
+                    f2_neighbor_enemy_ids.add(nbr)
+
+        cities = {
+            cid: dataclasses.replace(
+                c,
+                troops=int(c.troops * 2.5),
+                gold=int(c.gold * 1.5),
+            )
+            if c.owner == "faction_2"
+            else (
+                dataclasses.replace(c, troops=int(c.troops * 0.5))
+                if cid in f2_neighbor_enemy_ids
+                else c
+            )
+            for cid, c in cities.items()
+        }
 
     return GameState(turn=0, factions=factions, cities=cities, officers=officers,
                      adjacency=adjacency)

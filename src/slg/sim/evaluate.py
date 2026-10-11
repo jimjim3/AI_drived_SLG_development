@@ -11,6 +11,7 @@ import json
 import os
 import re
 import sys
+import threading
 from typing import Callable, Sequence
 
 from ..agents.backends import (
@@ -23,7 +24,7 @@ from ..agents.llm_agent import Completer, LLMFactionAgent
 from ..agents.rule_based import RuleBasedAgent
 from ..engine.initial_state import build_initial_state
 from .headless import run_headless
-from .run_llm import build_completer
+from .run_llm import _parse_extra_body_json, build_completer
 
 
 def parse_seeds(s: str) -> list[int]:
@@ -63,6 +64,42 @@ def parse_seeds(s: str) -> list[int]:
     return seeds
 
 
+class SharedCallCounter:
+    """Thread-safe shared call counter for multi-seat/multi-scenario evaluations."""
+
+    def __init__(self, max_calls: int | None = None) -> None:
+        self.max_calls = max_calls
+        self.calls_used = 0
+        self.stopped_early = False
+        self._lock = threading.Lock()
+
+    def check_and_record(self) -> bool:
+        with self._lock:
+            if self.max_calls is not None and self.calls_used >= self.max_calls:
+                self.stopped_early = True
+                return False
+            self.calls_used += 1
+            return True
+
+    def check_exceeded(self) -> bool:
+        with self._lock:
+            if self.max_calls is not None and self.calls_used >= self.max_calls:
+                self.stopped_early = True
+                return True
+            return False
+
+    def increment(self) -> None:
+        with self._lock:
+            self.calls_used += 1
+            if self.max_calls is not None and self.calls_used >= self.max_calls:
+                self.stopped_early = True
+
+    def refund(self) -> None:
+        with self._lock:
+            if self.calls_used > 0:
+                self.calls_used -= 1
+
+
 class CallBudget:
     """Tracks and enforces LLM call budget.
 
@@ -75,12 +112,14 @@ class CallBudget:
         self,
         max_calls: int | None = None,
         max_consecutive_errors: int = 3,
+        shared_counter: SharedCallCounter | None = None,
     ) -> None:
         self.max_calls = max_calls
         self.max_consecutive_errors = max_consecutive_errors
         self.calls_used = 0
         self.stopped_early = False
         self.circuit_breaker: CircuitBreakerCompleter | None = None
+        self.shared_counter = shared_counter
 
     def wrap(self, completer: Completer) -> Completer:
         if isinstance(completer, CircuitBreakerCompleter):
@@ -95,12 +134,18 @@ class CallBudget:
         def wrapped(system: str, user: str) -> str:
             if cb.is_open:
                 return cb(system, user)
-            if self.max_calls is not None and self.calls_used >= self.max_calls:
+            if self.shared_counter is not None:
+                if not self.shared_counter.check_and_record():
+                    self.stopped_early = True
+                    raise RuntimeError("call budget exceeded")
+            elif self.max_calls is not None and self.calls_used >= self.max_calls:
                 self.stopped_early = True
                 raise RuntimeError("call budget exceeded")
             try:
                 res = cb(system, user)
             except ConfigError:
+                if self.shared_counter is not None:
+                    self.shared_counter.refund()
                 raise
             except Exception:
                 self.calls_used += 1
@@ -474,6 +519,8 @@ def evaluate(
     max_calls: int | None = None,
     max_consecutive_errors: int = 3,
     api_key_env: str | None = None,
+    scenario: str = "default",
+    shared_counter: SharedCallCounter | None = None,
 ) -> dict:
     """Run paired comparative games (baseline vs experiment) across seeds.
 
@@ -501,6 +548,10 @@ def evaluate(
         Max consecutive errors before circuit breaker opens (default: 3).
     api_key_env : str or None
         Environment variable name for API key to redact from reports/samples.
+    scenario : str
+        Initial state scenario name (default: "default").
+    shared_counter : SharedCallCounter or None
+        Optional shared counter across evaluations.
 
     Returns
     -------
@@ -516,16 +567,21 @@ def evaluate(
     budget = CallBudget(
         max_calls=max_calls,
         max_consecutive_errors=max_consecutive_errors,
+        shared_counter=shared_counter,
     )
     total_exp_turns = 0
     all_error_samples: list[str] = []
     aborted = False
     abort_reason: str | None = None
 
-    state_template = build_initial_state()
+    state_template = build_initial_state(scenario=scenario)
     faction_ids = sorted(state_template.factions)
 
     for seed in seed_list:
+        if shared_counter is not None and shared_counter.check_exceeded():
+            budget.stopped_early = True
+            break
+
         if budget.circuit_breaker is not None and budget.circuit_breaker.is_open:
             aborted = True
             abort_reason = (
@@ -549,7 +605,7 @@ def evaluate(
             fid: RuleBasedAgent(baseline_style) for fid in faction_ids
         }
         baseline_res = run_headless(
-            seed=seed, turns=turns, agents_by_faction=baseline_agents
+            seed=seed, turns=turns, agents_by_faction=baseline_agents, scenario=scenario
         )
         baseline_seat_cities = len(baseline_res.final_state.cities_of(seat))
         baseline_seat_troops = sum(
@@ -570,7 +626,7 @@ def evaluate(
         }
         exp_agents[seat] = exp_agent
         exp_res = run_headless(
-            seed=seed, turns=turns, agents_by_faction=exp_agents
+            seed=seed, turns=turns, agents_by_faction=exp_agents, scenario=scenario
         )
         exp_seat_cities = len(exp_res.final_state.cities_of(seat))
         exp_seat_troops = sum(
@@ -763,8 +819,12 @@ def evaluate(
         "per_seed": per_seed,
     })
 
+    if shared_counter is not None and shared_counter.stopped_early:
+        budget.stopped_early = True
+
     summary = {
         "seat": seat,
+        "scenario": scenario,
         "seeds": [s["seed"] for s in per_seed],
         "planned_seeds": seed_list,
         "baseline_win_rate": baseline_win_rate,
@@ -818,6 +878,7 @@ def render_markdown(result: dict) -> str:
     n_completed = len(summary["seeds"])
     lines.append("## 評測設定")
     lines.append(f"- **評測席位 (Seat)**: `{summary['seat']}`")
+    lines.append(f"- **情境 (Scenario)**: `{summary.get('scenario', 'default')}`")
     lines.append(
         f"- **評測種子數**: 計畫種子 {n_planned} 個，實際完成 {n_completed} 個 (種子: `{summary['seeds']}`)"
     )
@@ -1053,6 +1114,13 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--turns", type=int, default=20, help="Turns per game (default: 20)")
     parser.add_argument("--max-calls", type=int, default=60, help="Maximum LLM call budget (default: 60)")
     parser.add_argument("--baseline-style", type=str, default="balanced", help="Baseline rule-based style (default: balanced)")
+    parser.add_argument("--scenario", type=str, default="default", help="Initial state scenario (default: default)")
+    parser.add_argument(
+        "--extra-body-json",
+        type=_parse_extra_body_json,
+        default=None,
+        help="Additional JSON object to merge into OpenAI request body",
+    )
     parser.add_argument("--out", type=str, default=None, help="Output path for markdown report (and .json)")
     parser.add_argument("--demo", action="store_true", help="Use DemoCompleter backend")
     parser.add_argument("--openai-base-url", type=str, default=None, help="OpenAI-compatible base URL")
@@ -1078,6 +1146,8 @@ def main(argv: list[str] | None = None) -> None:
         "--turns",
         "--max-calls",
         "--baseline-style",
+        "--scenario",
+        "--extra-body-json",
         "--out",
         "--demo",
         "--openai-base-url",
@@ -1110,6 +1180,7 @@ def main(argv: list[str] | None = None) -> None:
         max_calls=args.max_calls,
         max_consecutive_errors=args.max_consecutive_errors,
         api_key_env=args.api_key_env,
+        scenario=args.scenario,
     )
 
     report_md = render_markdown(result)

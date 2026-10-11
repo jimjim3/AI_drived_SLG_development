@@ -140,6 +140,7 @@ class OpenAIChatCompleter:
         timeout: float = 120.0,
         temperature: float = 0.2,
         max_tokens: int = 900,
+        extra_body: dict | None = None,
     ) -> None:
         self.base_url = base_url
         self.model = model
@@ -147,6 +148,7 @@ class OpenAIChatCompleter:
         self.timeout = timeout
         self.temperature = temperature
         self.max_tokens = max_tokens
+        self.extra_body = dict(extra_body) if extra_body is not None else None
 
     def __call__(self, system: str, user: str) -> str:
         api_key = os.environ.get(self.api_key_env) if self.api_key_env else None
@@ -157,7 +159,7 @@ class OpenAIChatCompleter:
                 )
 
         url = f"{self.base_url.rstrip('/')}/chat/completions"
-        payload = {
+        payload: dict[str, object] = {
             "model": self.model,
             "messages": [
                 {"role": "system", "content": system},
@@ -166,6 +168,10 @@ class OpenAIChatCompleter:
             "temperature": self.temperature,
             "max_tokens": self.max_tokens,
         }
+        if self.extra_body:
+            for k, v in self.extra_body.items():
+                if k not in ("model", "messages"):
+                    payload[k] = v
         data = json.dumps(payload).encode("utf-8")
         headers = {"Content-Type": "application/json"}
 
