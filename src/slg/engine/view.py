@@ -7,6 +7,7 @@ cities, and cast selection bounds the input token budget per turn.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Mapping, Sequence
 
@@ -20,6 +21,7 @@ from ..schema import (
     ResolutionEvent,
 )
 from .legal_actions import generate_legal_actions
+from .resolution import estimate_siege_ratio
 
 
 @dataclass(frozen=True)
@@ -289,7 +291,7 @@ def build_faction_view(
         cast_set.add(oid)
         legal_actions = generate_legal_actions(state, o)
         legal_formatted = [format_legal(la) for la in legal_actions]
-        cast_data.append({
+        officer_dict: dict[str, object] = {
             "id": o.officer_id,
             "name": o.name,
             "city": o.city_id,
@@ -300,7 +302,16 @@ def build_faction_view(
             "ambition": o.ambition,
             "neglect": o.neglect,
             "legal": legal_formatted,
-        })
+        }
+        siege_la = next((la for la in legal_actions if la.action == "siege"), None)
+        if siege_la is not None:
+            max_troops = int(siege_la.params["troops"].max)
+            siege_odds = {}
+            for target_id in (siege_la.params["to"].choices or ()):
+                ratio = estimate_siege_ratio(state, o, target_id, max_troops)
+                siege_odds[target_id] = 99.0 if math.isinf(ratio) else round(ratio, 2)
+            officer_dict["siege_odds"] = siege_odds
+        cast_data.append(officer_dict)
 
     roster_data = {}
     for c in friendly_cities:

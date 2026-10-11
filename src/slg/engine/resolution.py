@@ -98,6 +98,41 @@ def resolve_decision(
     raise ValueError(f"unknown action: {action!r}")
 
 
+def _siege_strengths(
+    state: GameState,
+    officer: OfficerState,
+    target_id: str,
+    troops: int,
+) -> tuple[float, float]:
+    c = int(troops)
+    defender_city = state.city(target_id)
+    defender_faction = defender_city.owner
+    def_troops = defender_city.troops
+
+    atk_base = c * (0.5 + (officer.war + officer.leadership) / 200)
+    defenders = [
+        o for o in state.officers.values()
+        if o.faction_id == defender_faction and o.city_id == target_id and o.is_alive
+    ]
+    dq = (max((o.war + o.leadership) / 2 for o in defenders)
+          if defenders else float(NO_OFFICER_DEFENSE_SKILL))
+    dfn_base = (def_troops * (1 + defender_city.defense / 200)
+                * (0.5 + dq / 100))
+    return atk_base, dfn_base
+
+
+def estimate_siege_ratio(
+    state: GameState,
+    officer: OfficerState,
+    target_city_id: str,
+    troops: int,
+) -> float:
+    atk_base, dfn_base = _siege_strengths(state, officer, target_city_id, troops)
+    if dfn_base <= 0:
+        return float("inf")
+    return atk_base / dfn_base
+
+
 def _resolve_siege(
     state: GameState,
     officer: OfficerState,
@@ -112,16 +147,11 @@ def _resolve_siege(
     defender_faction = defender_city.owner
     def_troops = defender_city.troops
 
+    atk_base, dfn_base = _siege_strengths(state, officer, target_id, c)
+
     # Fixed rng draw order: attacker roll first, then defender roll.
-    atk = c * (0.5 + (officer.war + officer.leadership) / 200) * rng.uniform(0.85, 1.15)
-    defenders = [
-        o for o in state.officers.values()
-        if o.faction_id == defender_faction and o.city_id == target_id and o.is_alive
-    ]
-    dq = (max((o.war + o.leadership) / 2 for o in defenders)
-          if defenders else float(NO_OFFICER_DEFENSE_SKILL))
-    dfn = (def_troops * (1 + defender_city.defense / 200)
-           * (0.5 + dq / 100) * rng.uniform(0.85, 1.15))
+    atk = atk_base * rng.uniform(0.85, 1.15)
+    dfn = dfn_base * rng.uniform(0.85, 1.15)
 
     cities = dict(state.cities)
     officers = dict(state.officers)
