@@ -75,7 +75,8 @@ ReplayAgent = ReplayFactionAgent
 
 
 def replay(log: TurnLog) -> GameResult:
-    state = build_initial_state()
+    scenario = getattr(log, "scenario", "default")
+    state = build_initial_state(scenario=scenario)
     rng = random.Random(log.seed)
 
     factions_in_log = sorted(set(fl.faction_id for fl in log.faction_logs))

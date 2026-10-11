@@ -134,6 +134,7 @@ class TurnLog:
     entries: tuple = ()
     stats: tuple = ()
     faction_logs: tuple = ()
+    scenario: str = "default"
 
 
 @dataclass(frozen=True)

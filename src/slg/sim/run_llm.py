@@ -21,6 +21,20 @@ from ..engine.initial_state import build_initial_state
 from ..schema import TurnLog
 
 
+def _parse_extra_body_json(value: str) -> dict:
+    try:
+        parsed = json.loads(value)
+        if not isinstance(parsed, dict):
+            raise argparse.ArgumentTypeError(
+                f"--extra-body-json must be a JSON object (dict), got {type(parsed).__name__}"
+            )
+        return parsed
+    except Exception as exc:
+        if isinstance(exc, argparse.ArgumentTypeError):
+            raise
+        raise argparse.ArgumentTypeError(f"Invalid JSON for --extra-body-json: {exc}") from exc
+
+
 def build_completer(args: argparse.Namespace) -> Completer | None:
     """Build a Completer instance from parsed CLI arguments.
 
@@ -38,10 +52,24 @@ def build_completer(args: argparse.Namespace) -> Completer | None:
     elif has_command:
         base = CommandCompleter(args.command)
     else:
+        extra_body = getattr(args, "extra_body", None)
+        if extra_body is None:
+            eb_json = getattr(args, "extra_body_json", None)
+            if isinstance(eb_json, str):
+                try:
+                    extra_body = json.loads(eb_json)
+                    if not isinstance(extra_body, dict):
+                        raise ValueError(f"--extra-body-json must be a JSON object, got {type(extra_body).__name__}")
+                except Exception as exc:
+                    raise ValueError(f"Invalid JSON for --extra-body-json: {exc}") from exc
+            elif isinstance(eb_json, dict):
+                extra_body = eb_json
+
         base = OpenAIChatCompleter(
             base_url=args.openai_base_url,
             model=args.model,
             api_key_env=args.api_key_env,
+            extra_body=extra_body,
         )
 
     max_errors = getattr(args, "max_consecutive_errors", 3)
@@ -88,6 +116,13 @@ def main(argv: list[str] | None = None) -> None:
         help="Max consecutive errors before circuit breaker opens (default: 3)",
     )
     parser.add_argument("--save-log", type=str, default=None, help="Path to save TurnLog JSON")
+    parser.add_argument("--scenario", type=str, default="default", help="Scenario name (default: default)")
+    parser.add_argument(
+        "--extra-body-json",
+        type=_parse_extra_body_json,
+        default=None,
+        help="Additional JSON object to merge into OpenAI request body",
+    )
     parser.add_argument(
         "--command",
         nargs=argparse.REMAINDER,
@@ -106,6 +141,8 @@ def main(argv: list[str] | None = None) -> None:
         "--api-key-env",
         "--save-log",
         "--max-consecutive-errors",
+        "--scenario",
+        "--extra-body-json",
     }
     processed_argv = _reorder_command_args(raw_argv, known)
     args = parser.parse_args(processed_argv)
@@ -117,7 +154,7 @@ def main(argv: list[str] | None = None) -> None:
 
     llm_factions = set(args.llm_faction if args.llm_faction is not None else ["faction_2"])
 
-    state = build_initial_state()
+    state = build_initial_state(scenario=args.scenario)
     rng = random.Random(args.seed)
 
     agents_by_faction = {}
@@ -160,6 +197,7 @@ def main(argv: list[str] | None = None) -> None:
             entries=tuple(game.log_entries),
             stats=tuple(sorted(game.stats.items())),
             faction_logs=tuple(game.faction_logs),
+            scenario=args.scenario,
         )
         with open(args.save_log, "w", encoding="utf-8") as f:
             json.dump(dataclasses.asdict(log), f, default=str, ensure_ascii=False)
