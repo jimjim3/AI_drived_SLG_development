@@ -29,7 +29,9 @@ SYSTEM_PROMPT = (
     "金錢與兵力有限、指令依序結算（先列者先扣）。"
     "未被點名的武將由系統委任。"
     "久未被點名（且動作非 rest）的武將忠誠會下降並可能出奔，忠誠低者可能抗旨；請輪流關注全體武將。"
-    "出征前請比較 frontier 中敵城的 troops 與 defense，兵力不占明顯優勢的攻擊會造成重大損失；出征會抽走本城守軍。\n"
+    "出征前請比較 frontier 中敵城的 troops 與 defense，並參考 cast 中的 siege_odds"
+    "（勝算比 = 攻方戰力 ÷ 守方戰力（不含隨機）；實戰有約 ±15% 的隨機，比值低於 1.3 的出征很可能失敗並損失大量兵力，"
+    "除非有特殊理由否則不要出征；也可以選擇徵兵、開發或移動等待時機）；出征會抽走本城守軍。\n"
     "【參數格式】\n"
     "params 的鍵名必須與該武將 legal 清單中的鍵名完全相同；值為單一字串或數字，不可為陣列。"
     "legal 清單中若標示 to=[a,b]，表示 to 只能取 a 或 b 其中一個，不可為陣列。\n"
@@ -63,19 +65,47 @@ TROOPS_ALIASES = ("troop", "soldiers", "army", "num_troops")
 
 def parse_plan(raw: str, stats: dict[str, int] | None = None) -> FactionPlan:
     """Parse raw LLM response text into a validated FactionPlan."""
-    start = raw.find("{")
-    end = raw.rfind("}")
-    if start == -1 or end == -1 or end < start:
-        raise PlanParseError("未找到 JSON 物件（缺少 '{' 或 '}'）")
+    fence_start = raw.find("```")
+    search_from = 0
+    if fence_start != -1:
+        nl = raw.find("\n", fence_start)
+        search_from = nl + 1 if nl != -1 else fence_start + 3
 
-    json_str = raw[start : end + 1]
-    try:
-        data = json.loads(json_str)
-    except json.JSONDecodeError as exc:
-        raise PlanParseError(f"JSON 語法錯誤：{exc}") from exc
+    decoder = json.JSONDecoder()
+    brace = raw.find("{", search_from)
+    bracket = raw.find("[", search_from)
 
-    if not isinstance(data, dict):
-        raise PlanParseError(f"頂層必須為 dict，實際為 {type(data).__name__}")
+    data = None
+    # If an array starts before the first brace, check if top-level was meant to be a list
+    if bracket != -1 and (brace == -1 or bracket < brace):
+        try:
+            val, _ = decoder.raw_decode(raw, bracket)
+            if not isinstance(val, dict):
+                raise PlanParseError(f"頂層必須為 dict，實際為 {type(val).__name__}")
+            data = val
+        except json.JSONDecodeError:
+            data = None
+
+    if data is None:
+        if brace == -1:
+            if bracket != -1:
+                try:
+                    val, _ = decoder.raw_decode(raw, bracket)
+                except json.JSONDecodeError as exc:
+                    raise PlanParseError(f"JSON 語法錯誤：{exc}") from exc
+                if not isinstance(val, dict):
+                    raise PlanParseError(f"頂層必須為 dict，實際為 {type(val).__name__}")
+                data = val
+            else:
+                raise PlanParseError("未找到 JSON 物件（缺少 '{' 或 '}'）")
+        else:
+            try:
+                data, _ = decoder.raw_decode(raw, brace)
+            except json.JSONDecodeError as exc:
+                raise PlanParseError(f"JSON 語法錯誤：{exc}") from exc
+
+            if not isinstance(data, dict):
+                raise PlanParseError(f"頂層必須為 dict，實際為 {type(data).__name__}")
 
     if "orders" in data:
         raw_orders = data["orders"]
