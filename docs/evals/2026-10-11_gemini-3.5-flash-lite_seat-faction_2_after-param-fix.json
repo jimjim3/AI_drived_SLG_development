@@ -1,0 +1,1073 @@
+{
+  "per_seed": [
+    {
+      "seed": 0,
+      "actual_turns": 20,
+      "baseline": {
+        "winner": "faction_1",
+        "cities": 3,
+        "troops": 10000
+      },
+      "experiment": {
+        "winner": "faction_1",
+        "cities": 3,
+        "troops": 9000,
+        "stats": {
+          "decisions": 840,
+          "valid": 840,
+          "rejected": 6,
+          "fallbacks": 0,
+          "orders": 114,
+          "orders_rejected": 6,
+          "delegated": 166,
+          "plan_failures": 0,
+          "disobeyed": 0
+        },
+        "usage": {
+          "calls": 22,
+          "prompt_chars": 81076,
+          "response_chars": 14662,
+          "parse_failures": 2,
+          "errors": 0,
+          "normalized_params": 0
+        }
+      },
+      "diagnostics": {
+        "action_counts": {
+          "baseline": {
+            "develop_agri": 63,
+            "develop_commerce": 12,
+            "develop_defense": 47,
+            "recruit": 41,
+            "rest": 117
+          },
+          "experiment": {
+            "develop_agri": 45,
+            "develop_commerce": 32,
+            "develop_defense": 81,
+            "move": 1,
+            "recruit": 43,
+            "rest": 75,
+            "siege": 3
+          }
+        },
+        "siege_outcomes": {
+          "baseline": {
+            "attempts": 0,
+            "captured": 0,
+            "repelled": 0
+          },
+          "experiment": {
+            "attempts": 3,
+            "captured": 0,
+            "repelled": 3
+          }
+        },
+        "incidents": {
+          "baseline": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 88.71
+          },
+          "experiment": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 81.21
+          },
+          "deflections": 0,
+          "defect_count": 0,
+          "disobeyed": 0,
+          "disobey_count": 0,
+          "initial_officers": 14,
+          "final_officers": 14,
+          "final_avg_loyalty": 81.21
+        },
+        "officer_loss_curve": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "officer_loss_curve_baseline": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "rejection_reasons": [
+          {
+            "reason": "param troops=N out of range [N, N]",
+            "count": 4
+          },
+          {
+            "reason": "action 'develop_agri' not legal",
+            "count": 1
+          },
+          {
+            "reason": "action 'recruit' not legal",
+            "count": 1
+          }
+        ],
+        "named_per_turn": {
+          "named": 5.7,
+          "delegated": 8.3,
+          "ordered": 5.7
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "actual_turns": 20,
+      "baseline": {
+        "winner": "faction_1",
+        "cities": 3,
+        "troops": 9800
+      },
+      "experiment": {
+        "winner": "faction_3",
+        "cities": 3,
+        "troops": 5840,
+        "stats": {
+          "decisions": 840,
+          "valid": 840,
+          "rejected": 6,
+          "fallbacks": 0,
+          "orders": 111,
+          "orders_rejected": 6,
+          "delegated": 169,
+          "plan_failures": 0,
+          "disobeyed": 0
+        },
+        "usage": {
+          "calls": 21,
+          "prompt_chars": 77247,
+          "response_chars": 13778,
+          "parse_failures": 1,
+          "errors": 0,
+          "normalized_params": 0
+        }
+      },
+      "diagnostics": {
+        "action_counts": {
+          "baseline": {
+            "develop_agri": 63,
+            "develop_commerce": 11,
+            "develop_defense": 45,
+            "recruit": 38,
+            "rest": 123
+          },
+          "experiment": {
+            "develop_agri": 45,
+            "develop_commerce": 35,
+            "develop_defense": 76,
+            "move": 1,
+            "recruit": 34,
+            "rest": 81,
+            "siege": 8
+          }
+        },
+        "siege_outcomes": {
+          "baseline": {
+            "attempts": 0,
+            "captured": 0,
+            "repelled": 0
+          },
+          "experiment": {
+            "attempts": 8,
+            "captured": 0,
+            "repelled": 8
+          }
+        },
+        "incidents": {
+          "baseline": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 88.71
+          },
+          "experiment": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 82.43
+          },
+          "deflections": 0,
+          "defect_count": 0,
+          "disobeyed": 0,
+          "disobey_count": 0,
+          "initial_officers": 14,
+          "final_officers": 14,
+          "final_avg_loyalty": 82.43
+        },
+        "officer_loss_curve": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "officer_loss_curve_baseline": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "rejection_reasons": [
+          {
+            "reason": "action 'siege' not legal",
+            "count": 2
+          },
+          {
+            "reason": "param troops=N out of range [N, N]",
+            "count": 2
+          },
+          {
+            "reason": "action 'develop_commerce' not legal",
+            "count": 1
+          }
+        ],
+        "named_per_turn": {
+          "named": 5.55,
+          "delegated": 8.45,
+          "ordered": 5.55
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "actual_turns": 20,
+      "baseline": {
+        "winner": "faction_1",
+        "cities": 3,
+        "troops": 9700
+      },
+      "experiment": {
+        "winner": "faction_3",
+        "cities": 3,
+        "troops": 6917,
+        "stats": {
+          "decisions": 840,
+          "valid": 840,
+          "rejected": 6,
+          "fallbacks": 0,
+          "orders": 112,
+          "orders_rejected": 6,
+          "delegated": 168,
+          "plan_failures": 0,
+          "disobeyed": 0
+        },
+        "usage": {
+          "calls": 21,
+          "prompt_chars": 76983,
+          "response_chars": 13665,
+          "parse_failures": 1,
+          "errors": 0,
+          "normalized_params": 0
+        }
+      },
+      "diagnostics": {
+        "action_counts": {
+          "baseline": {
+            "develop_agri": 60,
+            "develop_commerce": 11,
+            "develop_defense": 47,
+            "recruit": 40,
+            "rest": 122
+          },
+          "experiment": {
+            "develop_agri": 47,
+            "develop_commerce": 31,
+            "develop_defense": 75,
+            "move": 9,
+            "recruit": 40,
+            "rest": 73,
+            "siege": 5
+          }
+        },
+        "siege_outcomes": {
+          "baseline": {
+            "attempts": 0,
+            "captured": 0,
+            "repelled": 0
+          },
+          "experiment": {
+            "attempts": 5,
+            "captured": 0,
+            "repelled": 5
+          }
+        },
+        "incidents": {
+          "baseline": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 88.71
+          },
+          "experiment": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 82.21
+          },
+          "deflections": 0,
+          "defect_count": 0,
+          "disobeyed": 0,
+          "disobey_count": 0,
+          "initial_officers": 14,
+          "final_officers": 14,
+          "final_avg_loyalty": 82.21
+        },
+        "officer_loss_curve": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "officer_loss_curve_baseline": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "rejection_reasons": [
+          {
+            "reason": "param troops=N out of range [N, N]",
+            "count": 4
+          },
+          {
+            "reason": "action 'siege' not legal",
+            "count": 2
+          }
+        ],
+        "named_per_turn": {
+          "named": 5.6,
+          "delegated": 8.4,
+          "ordered": 5.6
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "actual_turns": 20,
+      "baseline": {
+        "winner": "faction_1",
+        "cities": 3,
+        "troops": 10000
+      },
+      "experiment": {
+        "winner": "faction_1",
+        "cities": 2,
+        "troops": 3890,
+        "stats": {
+          "decisions": 840,
+          "valid": 840,
+          "rejected": 8,
+          "fallbacks": 0,
+          "orders": 104,
+          "orders_rejected": 8,
+          "delegated": 176,
+          "plan_failures": 0,
+          "disobeyed": 0
+        },
+        "usage": {
+          "calls": 20,
+          "prompt_chars": 71324,
+          "response_chars": 12576,
+          "parse_failures": 0,
+          "errors": 0,
+          "normalized_params": 0
+        }
+      },
+      "diagnostics": {
+        "action_counts": {
+          "baseline": {
+            "develop_agri": 60,
+            "develop_commerce": 12,
+            "develop_defense": 48,
+            "recruit": 40,
+            "rest": 120
+          },
+          "experiment": {
+            "develop_agri": 39,
+            "develop_commerce": 33,
+            "develop_defense": 67,
+            "move": 4,
+            "recruit": 33,
+            "rest": 97,
+            "siege": 7
+          }
+        },
+        "siege_outcomes": {
+          "baseline": {
+            "attempts": 0,
+            "captured": 0,
+            "repelled": 0
+          },
+          "experiment": {
+            "attempts": 7,
+            "captured": 0,
+            "repelled": 7
+          }
+        },
+        "incidents": {
+          "baseline": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 88.71
+          },
+          "experiment": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 80.57
+          },
+          "deflections": 0,
+          "defect_count": 0,
+          "disobeyed": 0,
+          "disobey_count": 0,
+          "initial_officers": 14,
+          "final_officers": 14,
+          "final_avg_loyalty": 80.57
+        },
+        "officer_loss_curve": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "officer_loss_curve_baseline": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "rejection_reasons": [
+          {
+            "reason": "param troops=N out of range [N, N]",
+            "count": 3
+          },
+          {
+            "reason": "action 'develop_defense' not legal",
+            "count": 2
+          },
+          {
+            "reason": "action 'develop_agri' not legal",
+            "count": 1
+          }
+        ],
+        "named_per_turn": {
+          "named": 5.2,
+          "delegated": 8.8,
+          "ordered": 5.2
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "actual_turns": 20,
+      "baseline": {
+        "winner": "faction_1",
+        "cities": 3,
+        "troops": 10000
+      },
+      "experiment": {
+        "winner": "faction_3",
+        "cities": 3,
+        "troops": 6490,
+        "stats": {
+          "decisions": 840,
+          "valid": 840,
+          "rejected": 3,
+          "fallbacks": 0,
+          "orders": 117,
+          "orders_rejected": 3,
+          "delegated": 163,
+          "plan_failures": 0,
+          "disobeyed": 0
+        },
+        "usage": {
+          "calls": 20,
+          "prompt_chars": 72787,
+          "response_chars": 13348,
+          "parse_failures": 0,
+          "errors": 0,
+          "normalized_params": 0
+        }
+      },
+      "diagnostics": {
+        "action_counts": {
+          "baseline": {
+            "develop_agri": 62,
+            "develop_commerce": 10,
+            "develop_defense": 45,
+            "recruit": 40,
+            "rest": 123
+          },
+          "experiment": {
+            "develop_agri": 41,
+            "develop_commerce": 40,
+            "develop_defense": 84,
+            "move": 2,
+            "recruit": 34,
+            "rest": 74,
+            "siege": 5
+          }
+        },
+        "siege_outcomes": {
+          "baseline": {
+            "attempts": 0,
+            "captured": 0,
+            "repelled": 0
+          },
+          "experiment": {
+            "attempts": 5,
+            "captured": 0,
+            "repelled": 5
+          }
+        },
+        "incidents": {
+          "baseline": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 88.71
+          },
+          "experiment": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 80.93
+          },
+          "deflections": 0,
+          "defect_count": 0,
+          "disobeyed": 0,
+          "disobey_count": 0,
+          "initial_officers": 14,
+          "final_officers": 14,
+          "final_avg_loyalty": 80.93
+        },
+        "officer_loss_curve": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "officer_loss_curve_baseline": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "rejection_reasons": [
+          {
+            "reason": "action 'siege' not legal",
+            "count": 2
+          },
+          {
+            "reason": "param troops=N out of range [N, N]",
+            "count": 1
+          }
+        ],
+        "named_per_turn": {
+          "named": 5.85,
+          "delegated": 8.15,
+          "ordered": 5.85
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "actual_turns": 20,
+      "baseline": {
+        "winner": "faction_1",
+        "cities": 3,
+        "troops": 9900
+      },
+      "experiment": {
+        "winner": "faction_1",
+        "cities": 2,
+        "troops": 4433,
+        "stats": {
+          "decisions": 840,
+          "valid": 840,
+          "rejected": 11,
+          "fallbacks": 0,
+          "orders": 108,
+          "orders_rejected": 11,
+          "delegated": 172,
+          "plan_failures": 0,
+          "disobeyed": 0
+        },
+        "usage": {
+          "calls": 22,
+          "prompt_chars": 75539,
+          "response_chars": 14622,
+          "parse_failures": 2,
+          "errors": 0,
+          "normalized_params": 0
+        }
+      },
+      "diagnostics": {
+        "action_counts": {
+          "baseline": {
+            "develop_agri": 58,
+            "develop_commerce": 13,
+            "develop_defense": 49,
+            "recruit": 37,
+            "rest": 123
+          },
+          "experiment": {
+            "develop_agri": 29,
+            "develop_commerce": 31,
+            "develop_defense": 52,
+            "move": 8,
+            "recruit": 31,
+            "rest": 122,
+            "siege": 7
+          }
+        },
+        "siege_outcomes": {
+          "baseline": {
+            "attempts": 0,
+            "captured": 0,
+            "repelled": 0
+          },
+          "experiment": {
+            "attempts": 7,
+            "captured": 0,
+            "repelled": 7
+          }
+        },
+        "incidents": {
+          "baseline": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 88.71
+          },
+          "experiment": {
+            "deflections": 0,
+            "defect_count": 0,
+            "disobeyed": 0,
+            "disobey_count": 0,
+            "initial_officers": 14,
+            "final_officers": 14,
+            "final_avg_loyalty": 81.71
+          },
+          "deflections": 0,
+          "defect_count": 0,
+          "disobeyed": 0,
+          "disobey_count": 0,
+          "initial_officers": 14,
+          "final_officers": 14,
+          "final_avg_loyalty": 81.71
+        },
+        "officer_loss_curve": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "officer_loss_curve_baseline": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "rejection_reasons": [
+          {
+            "reason": "action 'siege' not legal",
+            "count": 5
+          },
+          {
+            "reason": "action 'develop_agri' not legal",
+            "count": 2
+          },
+          {
+            "reason": "action 'recruit' not legal",
+            "count": 2
+          }
+        ],
+        "named_per_turn": {
+          "named": 5.4,
+          "delegated": 8.6,
+          "ordered": 5.4
+        }
+      }
+    }
+  ],
+  "summary": {
+    "seat": "faction_2",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "planned_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "baseline_win_rate": 0.0,
+    "experiment_win_rate": 0.0,
+    "win_rate_delta": 0.0,
+    "mean_cities_delta": -0.3333333333333333,
+    "mean_troops_delta": -3805.0,
+    "orders_accept_rate": 0.943342776203966,
+    "plan_failure_rate": 0.0,
+    "delegated_per_turn": 8.45,
+    "calls": 126,
+    "est_tokens": 268802,
+    "parse_failures": 6,
+    "errors": 0,
+    "normalized_params": 0,
+    "diagnostics": {
+      "action_counts": {
+        "baseline": {
+          "develop_agri": 366,
+          "develop_commerce": 69,
+          "develop_defense": 281,
+          "recruit": 236,
+          "rest": 728
+        },
+        "experiment": {
+          "develop_agri": 246,
+          "develop_commerce": 202,
+          "develop_defense": 435,
+          "move": 25,
+          "recruit": 215,
+          "rest": 522,
+          "siege": 35
+        }
+      },
+      "siege_outcomes": {
+        "baseline": {
+          "attempts": 0,
+          "captured": 0,
+          "repelled": 0
+        },
+        "experiment": {
+          "attempts": 35,
+          "captured": 0,
+          "repelled": 35
+        }
+      },
+      "incidents": {
+        "baseline": {
+          "deflections": 0,
+          "disobeyed": 0,
+          "initial_officers": 14,
+          "final_officers": 14.0,
+          "final_avg_loyalty": 88.71
+        },
+        "experiment": {
+          "deflections": 0,
+          "disobeyed": 0,
+          "initial_officers": 14,
+          "final_officers": 14.0,
+          "final_avg_loyalty": 81.51
+        },
+        "deflections": 0,
+        "defect_count": 0,
+        "disobeyed": 0,
+        "disobey_count": 0,
+        "initial_officers": 14,
+        "final_officers": 14.0,
+        "final_avg_loyalty": 81.51
+      },
+      "officer_loss_curve": [
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0
+      ],
+      "rejection_reasons": [
+        {
+          "reason": "param troops=N out of range [N, N]",
+          "count": 14
+        },
+        {
+          "reason": "action 'siege' not legal",
+          "count": 11
+        },
+        {
+          "reason": "action 'develop_agri' not legal",
+          "count": 4
+        }
+      ],
+      "named_per_turn": {
+        "named": 5.55,
+        "delegated": 8.45,
+        "ordered": 5.55
+      },
+      "troops": {
+        "baseline": 59400,
+        "experiment": 36570
+      },
+      "possible_cause_hint": "最終兵力明顯低於基準線（-38.4%），檢查出征損失（siege 成功率 0/35）與徵兵"
+    }
+  },
+  "budget": {
+    "max_calls": 130,
+    "calls_used": 126,
+    "stopped_early": false
+  },
+  "aborted": false,
+  "abort_reason": null,
+  "error_samples": [
+    "parse: JSON 語法錯誤：Extra data: line 1 column 474 (char 473)",
+    "parse: JSON 語法錯誤：Extra data: line 1 column 506 (char 505)",
+    "parse: JSON 語法錯誤：Extra data: line 2 column 1 (char 538)",
+    "parse: JSON 語法錯誤：Expecting ',' delimiter: line 1 column 480 (char 479)",
+    "parse: JSON 語法錯誤：Extra data: line 2 column 1 (char 500)"
+  ]
+}
