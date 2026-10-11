@@ -239,8 +239,26 @@ def _compute_game_diagnostics(
         "ordered": avg_named,
     }
 
+    siege_attempts = 0
+    siege_captured = 0
+    siege_repelled = 0
+    for e in res.events:
+        if getattr(e, "faction_id", "") == seat and getattr(e, "action", "") == "siege":
+            siege_attempts += 1
+            if getattr(e, "captured_city", None) is not None:
+                siege_captured += 1
+            else:
+                siege_repelled += 1
+
+    siege_outcomes = {
+        "attempts": siege_attempts,
+        "captured": siege_captured,
+        "repelled": siege_repelled,
+    }
+
     return {
         "action_counts": dict(sorted(action_counts.items())),
+        "siege_outcomes": siege_outcomes,
         "incidents": incidents_data,
         "officer_loss_curve": curve,
         "rejection_reasons": rejection_reasons,
@@ -269,6 +287,9 @@ def _aggregate_diagnostics(per_seed: list[dict], total_exp_turns: int) -> dict[s
     base_loyalty_sum = 0.0
     exp_loyalty_sum = 0.0
 
+    base_siege = {"attempts": 0, "captured": 0, "repelled": 0}
+    exp_siege = {"attempts": 0, "captured": 0, "repelled": 0}
+
     curves: list[list[int]] = []
 
     for s in per_seed:
@@ -278,6 +299,16 @@ def _aggregate_diagnostics(per_seed: list[dict], total_exp_turns: int) -> dict[s
             base_actions[act] = base_actions.get(act, 0) + cnt
         for act, cnt in ac.get("experiment", {}).items():
             exp_actions[act] = exp_actions.get(act, 0) + cnt
+
+        so = diag.get("siege_outcomes", {})
+        b_so = so.get("baseline", {})
+        e_so = so.get("experiment", {})
+        base_siege["attempts"] += int(b_so.get("attempts", 0))
+        base_siege["captured"] += int(b_so.get("captured", 0))
+        base_siege["repelled"] += int(b_so.get("repelled", 0))
+        exp_siege["attempts"] += int(e_so.get("attempts", 0))
+        exp_siege["captured"] += int(e_so.get("captured", 0))
+        exp_siege["repelled"] += int(e_so.get("repelled", 0))
 
         for r_item in diag.get("rejection_reasons", []):
             r_str = str(r_item["reason"])
@@ -333,6 +364,10 @@ def _aggregate_diagnostics(per_seed: list[dict], total_exp_turns: int) -> dict[s
         "action_counts": {
             "baseline": dict(sorted(base_actions.items())),
             "experiment": dict(sorted(exp_actions.items())),
+        },
+        "siege_outcomes": {
+            "baseline": base_siege,
+            "experiment": exp_siege,
         },
         "incidents": {
             "baseline": {
@@ -394,6 +429,36 @@ def generate_possible_cause_hint(summary: dict) -> str:
     if accept_rate is not None and (1.0 - accept_rate) > 0.10:
         top_reason = rejection_reasons[0]["reason"] if rejection_reasons else "未知原因"
         hints.append(f"指令被拒比例偏高，主因：{top_reason}")
+
+    # 4. 兵力偏低: 實驗組最終兵力 < 基準線的 80%
+    base_troops = summary.get("baseline_troops")
+    exp_troops = summary.get("experiment_troops")
+    if base_troops is None or exp_troops is None:
+        troops_data = diag.get("troops") or summary.get("troops") or {}
+        if base_troops is None:
+            base_troops = troops_data.get("baseline")
+        if exp_troops is None:
+            exp_troops = troops_data.get("experiment")
+    if (base_troops is None or exp_troops is None) and "per_seed" in summary:
+        ps = summary["per_seed"]
+        if ps:
+            base_troops = sum(s.get("baseline", {}).get("troops", 0) for s in ps)
+            exp_troops = sum(s.get("experiment", {}).get("troops", 0) for s in ps)
+
+    if base_troops is not None and exp_troops is not None and base_troops > 0:
+        if exp_troops < base_troops * 0.8:
+            drop_pct = (base_troops - exp_troops) / base_troops * 100
+            if abs(drop_pct - round(drop_pct)) < 1e-5:
+                x_str = f"{int(round(drop_pct))}"
+            else:
+                x_str = f"{drop_pct:.1f}"
+
+            siege_outcomes = diag.get("siege_outcomes", {})
+            exp_siege = siege_outcomes.get("experiment", {})
+            y = exp_siege.get("captured", 0)
+            z = exp_siege.get("attempts", 0)
+
+            hints.append(f"最終兵力明顯低於基準線（-{x_str}%），檢查出征損失（siege 成功率 {y}/{z}）與徵兵")
 
     if not hints:
         return "表現正常，未見明顯異常。"
@@ -530,6 +595,10 @@ def evaluate(
             "action_counts": {
                 "baseline": base_diag["action_counts"],
                 "experiment": exp_diag["action_counts"],
+            },
+            "siege_outcomes": {
+                "baseline": base_diag["siege_outcomes"],
+                "experiment": exp_diag["siege_outcomes"],
             },
             "incidents": {
                 "baseline": base_diag["incidents"],
@@ -675,10 +744,23 @@ def evaluate(
         s["experiment"]["usage"].get("errors", 0) for s in per_seed
     )
 
+    baseline_troops = sum(s["baseline"]["troops"] for s in per_seed)
+    exp_troops = sum(s["experiment"]["troops"] for s in per_seed)
+    normalized_params = sum(
+        s["experiment"]["usage"].get("normalized_params", 0) for s in per_seed
+    )
+
     summary_diagnostics = _aggregate_diagnostics(per_seed, total_exp_turns)
+    summary_diagnostics["troops"] = {
+        "baseline": baseline_troops,
+        "experiment": exp_troops,
+    }
     summary_diagnostics["possible_cause_hint"] = generate_possible_cause_hint({
         "diagnostics": summary_diagnostics,
         "orders_accept_rate": orders_accept_rate,
+        "baseline_troops": baseline_troops,
+        "experiment_troops": exp_troops,
+        "per_seed": per_seed,
     })
 
     summary = {
@@ -697,6 +779,7 @@ def evaluate(
         "est_tokens": est_tokens,
         "parse_failures": parse_failures,
         "errors": errors,
+        "normalized_params": normalized_params,
         "diagnostics": summary_diagnostics,
     }
 
@@ -846,6 +929,25 @@ def render_markdown(result: dict) -> str:
             lines.append(f"| {act} | {b_cnt} | {e_cnt} | {diff:+d} |")
     else:
         lines.append("| (無動作記錄) | 0 | 0 | +0 |")
+    lines.append("")
+
+    siege_outcomes = diag.get("siege_outcomes", {})
+    base_so = siege_outcomes.get("baseline", {})
+    exp_so = siege_outcomes.get("experiment", {})
+    b_att = int(base_so.get("attempts", 0))
+    e_att = int(exp_so.get("attempts", 0))
+    b_cap = int(base_so.get("captured", 0))
+    e_cap = int(exp_so.get("captured", 0))
+    b_rep = int(base_so.get("repelled", 0))
+    e_rep = int(exp_so.get("repelled", 0))
+
+    lines.append("### 攻城勝敗 (出征 / siege_outcomes)")
+    lines.append("")
+    lines.append("| 指標 | 基準線 | 實驗組 | 差異 |")
+    lines.append("| --- | --- | --- | --- |")
+    lines.append(f"| 攻城嘗試 (siege attempts) | {b_att} | {e_att} | {e_att - b_att:+d} |")
+    lines.append(f"| 成功攻克 (captured) | {b_cap} | {e_cap} | {e_cap - b_cap:+d} |")
+    lines.append(f"| 擊退受挫 (repelled) | {b_rep} | {e_rep} | {e_rep - b_rep:+d} |")
     lines.append("")
 
     lines.append("### 出奔 / 抗旨 / 武將流失")

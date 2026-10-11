@@ -29,6 +29,14 @@ SYSTEM_PROMPT = (
     "金錢與兵力有限、指令依序結算（先列者先扣）。"
     "未被點名的武將由系統委任。"
     "久未被點名（且動作非 rest）的武將忠誠會下降並可能出奔，忠誠低者可能抗旨；請輪流關注全體武將。"
+    "出征前請比較 frontier 中敵城的 troops 與 defense，兵力不占明顯優勢的攻擊會造成重大損失；出征會抽走本城守軍。\n"
+    "【參數格式】\n"
+    "params 的鍵名必須與該武將 legal 清單中的鍵名完全相同；值為單一字串或數字，不可為陣列。"
+    "legal 清單中若標示 to=[a,b]，表示 to 只能取 a 或 b 其中一個，不可為陣列。\n"
+    "範例：\n"
+    '- 移動：{"officer":"<officer_id>","action":"move","params":{"to":"<city_id>"},"memo":"…"}\n'
+    '- 攻城：{"officer":"<officer_id>","action":"siege","params":{"to":"<city_id>","troops":<troops>},"memo":"…"}\n'
+    '- 徵兵：{"officer":"<officer_id>","action":"recruit","params":{"troops":<troops>},"memo":"…"}\n'
     "輸出只能是一個 JSON 物件，格式如下：\n"
     '{"orders":[{"officer":"<id>","action":"<動作>","params":{},"memo":"≤20字奏摺"}],'
     '"chronicle":"≤300字，以史官口吻記述上回合結果與本回合決策",'
@@ -49,7 +57,11 @@ class PlanParseError(ValueError):
     """Raised when raw LLM response cannot be parsed into a FactionPlan."""
 
 
-def parse_plan(raw: str) -> FactionPlan:
+TO_ALIASES = ("target", "destination", "dest", "city", "target_city")
+TROOPS_ALIASES = ("troop", "soldiers", "army", "num_troops")
+
+
+def parse_plan(raw: str, stats: dict[str, int] | None = None) -> FactionPlan:
     """Parse raw LLM response text into a validated FactionPlan."""
     start = raw.find("{")
     end = raw.rfind("}")
@@ -72,6 +84,7 @@ def parse_plan(raw: str) -> FactionPlan:
     else:
         raw_orders = []
 
+    normalized_orders_count = 0
     orders: list[AgentDecision] = []
     for idx, item in enumerate(raw_orders):
         if not isinstance(item, dict):
@@ -87,16 +100,58 @@ def parse_plan(raw: str) -> FactionPlan:
         if not isinstance(action, str) or not action:
             raise PlanParseError(f"order #{idx} 缺少有效的 'action' 字串")
 
-        params_raw = item.get("params", {})
-        if not isinstance(params_raw, dict):
-            raise PlanParseError(f"order #{idx} 的 'params' 須為 dict，實際為 {type(params_raw).__name__}")
+        order_normalized = False
+        params_specified = "params" in item and item["params"] is not None
+        if not params_specified:
+            params_raw: dict[str, object] = {}
+            for fk in ("to", "troops", *TO_ALIASES, *TROOPS_ALIASES):
+                if fk in item:
+                    params_raw[fk] = item[fk]
+                    order_normalized = True
+        else:
+            p_val = item["params"]
+            if not isinstance(p_val, dict):
+                raise PlanParseError(f"order #{idx} 的 'params' 須為 dict，實際為 {type(p_val).__name__}")
+            params_raw = dict(p_val)
+            if not params_raw:
+                for fk in ("to", "troops", *TO_ALIASES, *TROOPS_ALIASES):
+                    if fk in item:
+                        params_raw[fk] = item[fk]
+                        order_normalized = True
+
+        # Alias normalization for 'to'
+        to_present = "to" in params_raw
+        aliases_to_found = [a for a in TO_ALIASES if a in params_raw]
+        if aliases_to_found:
+            order_normalized = True
+            if not to_present:
+                params_raw["to"] = params_raw[aliases_to_found[0]]
+            for a in aliases_to_found:
+                del params_raw[a]
+
+        # Alias normalization for 'troops'
+        troops_present = "troops" in params_raw
+        aliases_troops_found = [a for a in TROOPS_ALIASES if a in params_raw]
+        if aliases_troops_found:
+            order_normalized = True
+            if not troops_present:
+                params_raw["troops"] = params_raw[aliases_troops_found[0]]
+            for a in aliases_troops_found:
+                del params_raw[a]
 
         params: dict[str, object] = {}
         for k, v in params_raw.items():
+            if isinstance(v, (list, tuple)):
+                if len(v) == 1:
+                    v = v[0]
+                    order_normalized = True
             if isinstance(v, float) and v.is_integer():
                 params[k] = int(v)
             else:
                 params[k] = v
+
+        if order_normalized:
+            normalized_orders_count += 1
 
         memo_raw = item.get("memo", "")
         memo = str(memo_raw)[:MEMO_MAX]
@@ -116,6 +171,9 @@ def parse_plan(raw: str) -> FactionPlan:
         next_cast = tuple(raw_next_cast[:12])
     else:
         next_cast = ()
+
+    if stats is not None:
+        stats["normalized_params"] = stats.get("normalized_params", 0) + normalized_orders_count
 
     return FactionPlan(orders=tuple(orders), chronicle=chronicle, next_cast=next_cast)
 
@@ -138,6 +196,7 @@ class LLMFactionAgent(FactionAgent):
             "response_chars": 0,
             "parse_failures": 0,
             "errors": 0,
+            "normalized_params": 0,
         }
         self.errors_seen: list[str] = []
 
@@ -173,7 +232,10 @@ class LLMFactionAgent(FactionAgent):
             self.usage["response_chars"] += len(raw)
 
             try:
-                return parse_plan(raw)
+                stats: dict[str, int] = {}
+                plan = parse_plan(raw, stats=stats)
+                self.usage["normalized_params"] += stats.get("normalized_params", 0)
+                return plan
             except PlanParseError as exc:
                 self.usage["parse_failures"] += 1
                 last_error = str(exc)
