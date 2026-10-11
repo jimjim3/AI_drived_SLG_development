@@ -29,7 +29,11 @@ DEVELOP_COMMERCE_BASE = 50
 DEVELOP_DEFENSE_BASE = 25
 
 # --- Loyalty & neglect constants (M2/M3) -------------------------------------
-NEGLECT_PENALTY_START = 5
+# NEGLECT_PENALTY_START=4 was retuned in Task M (docs/EVALUATION.md section 10):
+# with 5, real-LLM play (naming ~4.5/14 officers per turn) produced 0 defections
+# and 0 disobey over 40 turns; 4 is the closest grid value that makes neglected
+# officers defect while a rotating cast stays safe.
+NEGLECT_PENALTY_START = 4
 NEGLECT_PETITION = 4
 PETITION_LOYALTY_BELOW = 80
 LOYALTY_BOOST = 1

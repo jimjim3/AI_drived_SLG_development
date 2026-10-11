@@ -1,206 +1,118 @@
-"""Behavioral acceptance tests for loyalty, neglect, disobey, and defection mechanics."""
+"""Behavioral acceptance tests for the tuned loyalty/neglect mechanics (Task M).
+
+Thresholds follow the Task-M spec (20 seeds, 40 turns, faction_2 seat):
+  - Rotator:    >= 90% of the seeds have ZERO defections.
+  - RandomFive: <= 30% of the seeds have any defection, and the final
+                average loyalty is at least 4 points below the rule-AI
+                baseline.
+  - Core8:      >= 50% of the seeds have at least 1 defection.
+  - FixedSix:   >= 90% of the seeds have at least 1 defection.
+  - Stubborn:   >= 90% of the seeds have at least 1 defection, and within
+                the first 8 turns no seed has more defections than 25% of
+                the faction's officers.
+  - Baseline:   zero defections and zero disobey.
+
+The strategies themselves live in ``slg.sim.tune_attention`` (single source
+of truth shared with the tuning tool).
+"""
 
 import unittest
 
-from slg.agents.backends import _parse_legal_str
-from slg.agents.base import FactionAgent
-from slg.agents.rule_based import RuleBasedAgent
-from slg.schema import (
-    CAST_LIMIT,
-    AgentDecision,
-    FactionPlan,
-)
-from slg.sim.headless import run_headless
+from slg.engine.initial_state import build_initial_state
+from slg.sim.tune_attention import SEEDS, TURNS, faction_officer_ids, run_strategy
 
-ALL_FACTION_2_OFFICERS = [
-    "zhuge_liang", "guan_yu", "zhang_fei", "zhao_yun", "huang_zhong", "wei_yan",
-    "pang_tong", "fa_zheng", "ma_chao", "jiang_wei", "ma_liang", "xu_shu",
-    "jian_yong", "sun_qian"
-]
-
-
-class StubbornAgent(FactionAgent):
-    """Never issues orders; all officers are delegated to rule-based fallback."""
-
-    def decide(self, view):
-        return FactionPlan(orders=())
-
-
-class FixedSixAgent(FactionAgent):
-    """Always orders the exact same 6 officers each turn."""
-
-    def __init__(self):
-        self._fixed_six = None
-
-    def decide(self, view):
-        if self._fixed_six is None:
-            self._fixed_six = tuple(c["id"] for c in view.cast[:CAST_LIMIT])
-
-        orders = []
-        cast_by_id = {c["id"]: c for c in view.cast}
-        for oid in self._fixed_six:
-            if oid in cast_by_id:
-                c = cast_by_id[oid]
-                for legal_str in c["legal"]:
-                    act, params = _parse_legal_str(legal_str)
-                    if act != "rest":
-                        orders.append(AgentDecision(oid, act, params))
-                        break
-        return FactionPlan(orders=tuple(orders), next_cast=self._fixed_six)
-
-
-class RotatorAgent(FactionAgent):
-    """Prioritizes ordering officers with highest neglect, and rotates next_cast."""
-
-    def __init__(self):
-        self._rotation_idx = 0
-
-    def decide(self, view):
-        # 1. Orders: sort view.cast by neglect descending, order up to CAST_LIMIT
-        sorted_cast = sorted(view.cast, key=lambda c: -c.get("neglect", 0))
-        orders = []
-        for c in sorted_cast[:CAST_LIMIT]:
-            for legal_str in c["legal"]:
-                act, params = _parse_legal_str(legal_str)
-                if act != "rest":
-                    orders.append(AgentDecision(c["id"], act, params))
-                    break
-
-        # 2. Next cast: rotate through all faction_2 officers so everyone is seen
-        next_cast = tuple(
-            ALL_FACTION_2_OFFICERS[(self._rotation_idx + i) % len(ALL_FACTION_2_OFFICERS)]
-            for i in range(CAST_LIMIT)
-        )
-        self._rotation_idx = (self._rotation_idx + CAST_LIMIT) % len(ALL_FACTION_2_OFFICERS)
-        return FactionPlan(orders=tuple(orders), next_cast=next_cast)
+STRATEGY_NAMES = ("stubborn", "fixed_six", "core8", "random_five", "rotator", "baseline")
 
 
 class TestAttentionBehavior(unittest.TestCase):
-    def test_stubborn_agent_acceptance(self):
-        # Stubborn: >= 50% of seeds 0-19 within 30 turns have at least 1 defection from faction_2.
-        # Within the first 8 turns, defections in any seed <= 25% of the faction's officers (<= 3).
-        seeds_with_defect = 0
-        total_defects = 0
-        total_disobey = 0
-        max_early_defects = 0
+    @classmethod
+    def setUpClass(cls):
+        cls.n_officers = len(faction_officer_ids(build_initial_state()))
+        cls.stats = {
+            name: run_strategy(None, name, seeds=SEEDS, turns=TURNS)
+            for name in STRATEGY_NAMES
+        }
 
-        for seed in range(20):
-            res = run_headless(
-                seed=seed,
-                turns=30,
-                agents_by_faction={
-                    "faction_1": RuleBasedAgent("balanced"),
-                    "faction_2": StubbornAgent(),
-                    "faction_3": RuleBasedAgent("balanced"),
-                },
-            )
-            f2_defects = [
-                inc for inc in res.incidents
-                if inc.action == "defect" and inc.faction_id == "faction_2"
-            ]
-            if f2_defects:
-                seeds_with_defect += 1
-            total_defects += len(f2_defects)
-            total_disobey += res.stats.get("disobeyed", 0)
-
-            early = [inc for inc in f2_defects if inc.turn <= 8]
-            max_early_defects = max(max_early_defects, len(early))
-
-        ratio = seeds_with_defect / 20.0
-        avg_defects = total_defects / 20.0
-        # Expected: >= 50%
-        self.assertGreaterEqual(
-            ratio,
-            0.50,
-            f"Stubborn defection seed ratio {ratio:.1%} should be >= 50%",
-        )
-        # Expected: max early <= 25% of 14 officers (<= 3.5 -> <= 3)
-        self.assertLessEqual(
-            max_early_defects,
-            int(len(ALL_FACTION_2_OFFICERS) * 0.25),
-            f"Early defection max {max_early_defects} exceeds 25% of officers",
-        )
-
-    def test_fixed_six_agent_acceptance(self):
-        # FixedSix: >= 50% of seeds 0-19 within 30 turns have at least 1 defection
-        # among the remaining 8 officers of faction_2.
-        seeds_with_defect = 0
-        total_defects = 0
-        total_disobey = 0
-
-        for seed in range(20):
-            agent = FixedSixAgent()
-            res = run_headless(
-                seed=seed,
-                turns=30,
-                agents_by_faction={
-                    "faction_1": RuleBasedAgent("balanced"),
-                    "faction_2": agent,
-                    "faction_3": RuleBasedAgent("balanced"),
-                },
-            )
-            f2_remaining_defects = [
-                inc for inc in res.incidents
-                if inc.action == "defect"
-                and inc.faction_id == "faction_2"
-                and inc.officer_id not in agent._fixed_six
-            ]
-            if f2_remaining_defects:
-                seeds_with_defect += 1
-            total_defects += len(f2_remaining_defects)
-            total_disobey += res.stats.get("disobeyed", 0)
-
-        ratio = seeds_with_defect / 20.0
-        avg_defects = total_defects / 20.0
-        # Expected: >= 50%
-        self.assertGreaterEqual(
-            ratio,
-            0.50,
-            f"FixedSix defection seed ratio {ratio:.1%} should be >= 50%",
-        )
-
-    def test_rotator_agent_acceptance(self):
-        # Rotator: >= 90% of seeds 0-19 within 30 turns have ZERO defections for faction_2.
-        zero_defect_seeds = 0
-        total_defects = 0
-        total_disobey = 0
-
-        for seed in range(20):
-            agent = RotatorAgent()
-            res = run_headless(
-                seed=seed,
-                turns=30,
-                agents_by_faction={
-                    "faction_1": RuleBasedAgent("balanced"),
-                    "faction_2": agent,
-                    "faction_3": RuleBasedAgent("balanced"),
-                },
-            )
-            f2_defects = [
-                inc for inc in res.incidents
-                if inc.action == "defect" and inc.faction_id == "faction_2"
-            ]
-            if len(f2_defects) == 0:
-                zero_defect_seeds += 1
-            total_defects += len(f2_defects)
-            total_disobey += res.stats.get("disobeyed", 0)
-
-        ratio = zero_defect_seeds / 20.0
-        avg_defects = total_defects / 20.0
-        # Expected: >= 90%
+    def test_rotator_zero_defection(self):
+        # Rotator: >= 90% of seeds 0-19 within 40 turns have ZERO defections.
+        ratio = self.stats["rotator"]["zero_defect_seed_ratio"]
         self.assertGreaterEqual(
             ratio,
             0.90,
             f"Rotator zero-defection ratio {ratio:.1%} should be >= 90%",
         )
 
-    def test_rule_based_baseline_acceptance(self):
-        # All balanced rule-based agents: zero defect and zero disobey across all seeds 0-19.
-        for seed in range(20):
-            res = run_headless(seed=seed, turns=30)
-            defects = [inc for inc in res.incidents if inc.action == "defect"]
-            self.assertEqual(len(defects), 0, f"Seed {seed} had unexpected defection")
-            self.assertEqual(res.stats.get("disobeyed", 0), 0, f"Seed {seed} had unexpected disobey")
+    def test_random_five_defect_ratio_bounded(self):
+        # RandomFive: <= 30% of seeds 0-19 within 40 turns have any defection.
+        ratio = self.stats["random_five"]["defect_seed_ratio"]
+        self.assertLessEqual(
+            ratio,
+            0.30,
+            f"RandomFive defection seed ratio {ratio:.1%} should be <= 30%",
+        )
+
+    def test_random_five_loyalty_below_baseline(self):
+        # RandomFive: final average loyalty at least 4 points below the
+        # rule-AI baseline (the neglect must be "felt").
+        rf = self.stats["random_five"]["final_avg_loyalty"]
+        bl = self.stats["baseline"]["final_avg_loyalty"]
+        self.assertLessEqual(
+            rf,
+            bl - 4.0,
+            f"RandomFive final loyalty {rf:.2f} should be <= baseline "
+            f"{bl:.2f} - 4 = {bl - 4.0:.2f}",
+        )
+
+    def test_core8_defection(self):
+        # Core8: >= 50% of seeds 0-19 within 40 turns have at least 1 defection.
+        ratio = self.stats["core8"]["defect_seed_ratio"]
+        self.assertGreaterEqual(
+            ratio,
+            0.50,
+            f"Core8 defection seed ratio {ratio:.1%} should be >= 50%",
+        )
+
+    def test_fixed_six_defection(self):
+        # FixedSix: >= 90% of seeds 0-19 within 40 turns have at least 1 defection.
+        ratio = self.stats["fixed_six"]["defect_seed_ratio"]
+        self.assertGreaterEqual(
+            ratio,
+            0.90,
+            f"FixedSix defection seed ratio {ratio:.1%} should be >= 90%",
+        )
+
+    def test_stubborn_defection(self):
+        # Stubborn: >= 90% of seeds 0-19 within 40 turns have at least 1 defection.
+        ratio = self.stats["stubborn"]["defect_seed_ratio"]
+        self.assertGreaterEqual(
+            ratio,
+            0.90,
+            f"Stubborn defection seed ratio {ratio:.1%} should be >= 90%",
+        )
+
+    def test_stubborn_early_defection_capped(self):
+        # Stubborn: within the first 8 turns, defections in any seed are at
+        # most 25% of the faction's officers.
+        max_early = self.stats["stubborn"]["max_early_defects"]
+        cap = self.n_officers * 0.25
+        self.assertLessEqual(
+            max_early,
+            cap,
+            f"Early defection max {max_early} exceeds 25% of officers ({cap:g})",
+        )
+
+    def test_rule_based_baseline_zero(self):
+        # All balanced rule-based agents: zero defect and zero disobey across
+        # all seeds 0-19 within 40 turns.
+        bl = self.stats["baseline"]
+        self.assertEqual(
+            bl["defect_seed_ratio"], 0.0,
+            f"Baseline had defections in {bl['defect_seed_ratio']:.1%} of seeds",
+        )
+        self.assertEqual(
+            bl["disobey_total"], 0,
+            f"Baseline had {bl['disobey_total']} disobey incidents",
+        )
 
 
 if __name__ == "__main__":

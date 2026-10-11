@@ -141,3 +141,35 @@ PYTHONPATH=src python3 -m slg.sim.evaluate \
 ### 建議的下一步
 (a) 重新調整冷落／忠誠機制（縮短門檻或加大懲罰）並以長局驗證；(b) 在視圖加入「各城可用金幣預算」以降低資源爭用造成的拒絕；(c) 在提示詞或視圖標示低勝算出征的風險並記錄出征時的勝算比，以診斷冒進；(d) 平衡座位優勢後重做自我對弈；(e) 增加種子數並加上信賴區間。
 
+## 10. 忠誠／冷落機制重調（2026-10-11）
+
+**問題**：第 9 節的真實 LLM 玩法（每回合點名約 4.5/14 位武將）在 40 回合內 0 出奔、0 抗旨，平均忠誠僅由約 89 緩降至約 79——冷落門檻對這種玩法太寬，機制沒有「牙齒」。
+
+**方法**：`src/slg/sim/tune_attention.py` 對 6 個常數做網格搜尋（1296 組合：`NEGLECT_PENALTY_START`∈{2,3,4,5}、`NEGLECT_PETITION`∈{2,3,4}、`LOYALTY_BOOST`∈{1,2,3}、`DEFECT_BELOW`∈{35,40,45,50}、`DISOBEY_BELOW`∈{50,55,60}、`PETITION_LOYALTY_BELOW`∈{80,85,90}），每組合在 faction_2 席位以 5 個測試策略（Stubborn／FixedSix／Core8／RandomFive／Rotator）＋規則 AI 基準跑 20 種子×40 回合；常數以模組屬性 patch 覆寫（`slg.engine.game`／`slg.engine.view`／`slg.schema`），引擎公式與結算順序不變。驗收條件：Rotator ≥90% 種子零出奔；RandomFive 出奔種子比例 ≤30% 且最終平均忠誠比基準低 ≥4 點；Core8 ≥50% 種子 ≥1 出奔；FixedSix ≥90%；Stubborn ≥90% 且前 8 回合出奔數 ≤武將數 25%；基準零出奔零抗旨。
+
+**結果**：481/1296 組合同時滿足全部條件；選「與舊常數距離」（各常數絕對差之和）最小者（d=1）：
+
+| 常數 | 舊 | 新 |
+|---|---|---|
+| NEGLECT_PENALTY_START | 5 | **4** |
+| NEGLECT_PETITION | 4 | 4 |
+| LOYALTY_BOOST | 1 | 1 |
+| DEFECT_BELOW | 35 | 35 |
+| DISOBEY_BELOW | 50 | 50 |
+| PETITION_LOYALTY_BELOW | 80 | 80 |
+
+**選定組合實測**（20 種子、40 回合、faction_2；最終平均忠誠＝原 14 位武將的均值）：
+
+| 策略 | 出奔種子比例 | 平均出奔數 | 前 8 回合最大出奔 | 最終平均忠誠 | 抗旨次數 |
+|---|---|---|---|---|---|
+| Stubborn | 100% | 3.00 | 0 | 12.86 | 0 |
+| FixedSix | 100% | 3.00 | 0 | 12.86 | 0 |
+| Core8 | 100% | 3.00 | 0 | 12.86 | 0 |
+| RandomFive | 5% | 0.05 | 0 | 81.08 | 15 |
+| Rotator | 0% | 0.00 | 0 | 99.51 | 0 |
+| 規則 AI 基準 | 0% | 0.00 | 0 | 88.71 | 0 |
+
+全部驗收條件通過（RandomFive 忠誠 81.08 ≤ 88.71−4=84.71）。
+
+**限制**：驗收基於固定 20 種子、無信賴區間；RandomFive 忠誠餘裕約 3.6 點；長局下 Stubborn／FixedSix／Core8 皆收斂為 3 次出奔（洛陽 3 位武將），平均出奔數對常數不敏感，鑑別力主要來自種子比例與 RandomFive／Rotator；「Core8」點名 8 位但引擎只 notice 前 6 位（CAST_LIMIT=6）。行為驗收固化於 `tests/test_attention_behavior.py`（8 項），調參工具測試見 `tests/test_tune_attention.py`（10 項）。
+
