@@ -1,0 +1,53 @@
+[
+ {
+  "try": 1,
+  "seconds": 2492,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 4335,
+   "prompt_tokens": 17602,
+   "total_tokens": 21937,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "hard": [
+   "7 numbers not in sources/spec: ['74', '183', '2000', '5000', '8000', '10000', '12000']"
+  ],
+  "warn": [],
+  "cjk_chars": 3288,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": [
+   "74",
+   "183",
+   "2000",
+   "5000",
+   "8000",
+   "10000",
+   "12000"
+  ]
+ },
+ {
+  "try": 2,
+  "seconds": 3119,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3075,
+   "prompt_tokens": 17705,
+   "total_tokens": 20780,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "hard": [],
+  "warn": [],
+  "cjk_chars": 3040,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": [
+   "400",
+   "4500",
+   "5000",
+   "8000"
+  ]
+ }
+]

@@ -30,3 +30,22 @@ Gemini flash-lite 三階段（參數格式修正、勝算偵察）與 Qwen3.8-27
 
 ## 已知缺陷
 rest 比例約 47%；faction_2 的宛城／漢中武將不與任何敵城相鄰故無法出奔；`evaluate` 整組結束才寫檔、中途不可見；攻城後的「可能原因提示」規則較粗。
+
+---
+## 補充（2026-10-12）：教科書專案進度
+
+**目標**：繁體中文教科書《讓 LLM 當君主：分層 AI 決策策略遊戲的設計、實作與實驗》（14 章＋附錄、16 張圖）。我為總編輯；Qwen 轉寫、agy 做腳手架／修圖／審稿。
+
+**已完成**
+- 腳手架（`scripts/textbook/`）：通用工具複製自姊妹專案（已確認無領域內容）；`book.py`、`chapters.py`（14 章規格：素材＋必備事實＋圖表）、`figs_concept.py`／`figs_data.py`（16 張圖）、`validate_spec.py`；16 張圖已由 agy 逐張目視修正並由總編輯抽查，輸出在 `docs/textbook/figures/zh-TW/`。
+- **Qwen 中文草稿已通過自動檢查：第 1–8 章與第 12 章**（`docs/textbook/drafts/zh-TW/chNN.md`，每章約 2900–3500 字，低於 3500–6000 字目標，待審稿時一併評估是否補寫）。
+- 修正一個腳手架 bug：`chapters.py` 的素材萬用字元（`docs/evals/*.md`）原本沒展開導致第 9、10 章無法載入，現在於 `chapters.py` 末尾展開。
+
+**尚未完成**：第 9、10、11、13、14 章草稿 → agy 審稿員逐章對照 repo 查核事實 → 依清單修稿（簡單的由 Qwen 重寫，關鍵數字總編輯抽查）→ `build_book.py` 組書成 PDF（weasyprint）→ 目視檢查（封面、目錄、圖、寬表格）→（使用者慣例）驗證後以 `send-report` 寄出 PDF。
+
+**接手步驟**
+1. Qwen 服務是**使用者自己啟動、與其他工作共用**；2026-10-12 為 DOWN（使用者關閉）。**不要自行重啟或搶 GPU**，先問使用者；服務就緒後：`OMP_NUM_THREADS=1 python3 scripts/textbook/draft.py zh --threads 2 --no-audit`（已完成章節會跳過；服務中斷時腳本會印 PAUSED 並保留進度）。
+2. `OMP_NUM_THREADS=1 python3 scripts/textbook/status.py` 看每章進度（不需 GPU）。
+3. 草稿齊全後依上列流程審稿。Qwen 自我審查（`--no-audit` 已略過）只供參考，不要自動套用。
+4. 轉寫速度參考：服務被使用者其他工作共用時，單章約 50 分鐘（2 路平行）。
+

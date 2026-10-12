@@ -1,0 +1,50 @@
+[
+ {
+  "try": 1,
+  "seconds": 586,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3555,
+   "prompt_tokens": 17671,
+   "total_tokens": 21226,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "hard": [
+   "too short: 2346 < 2800",
+   "LaTeX math",
+   "missing required fact: 481／1296"
+  ],
+  "warn": [],
+  "cjk_chars": 2346,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": [
+   "45",
+   "55",
+   "85"
+  ]
+ },
+ {
+  "try": 2,
+  "seconds": 233,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 4374,
+   "prompt_tokens": 17758,
+   "total_tokens": 22132,
+   "prompt_tokens_details": {
+    "cached_tokens": 17155
+   }
+  },
+  "hard": [],
+  "warn": [],
+  "cjk_chars": 3830,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": [
+   "45",
+   "55",
+   "85"
+  ]
+ }
+]

@@ -1,0 +1,42 @@
+[
+ {
+  "try": 1,
+  "seconds": 959,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3335,
+   "prompt_tokens": 10722,
+   "total_tokens": 14057,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "hard": [
+   "missing required fact: 著作權不保護"
+  ],
+  "warn": [],
+  "cjk_chars": 3308,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": []
+ },
+ {
+  "try": 2,
+  "seconds": 1764,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 2718,
+   "prompt_tokens": 10785,
+   "total_tokens": 13503,
+   "prompt_tokens_details": {
+    "cached_tokens": 10206
+   }
+  },
+  "hard": [],
+  "warn": [],
+  "cjk_chars": 2879,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": [
+   "3000"
+  ]
+ }
+]

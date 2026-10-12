@@ -520,3 +520,17 @@ FIG_EN = {
 }
 
 FIG_CAPTIONS = {fid: cap for c in CHAPTERS for fid, cap, _ in c["figures"]}
+
+# draft.py reads each source with Path(item).read_text(), which does not expand wildcards,
+# so expand patterns such as "docs/evals/*.md" once here (sorted for reproducibility).
+import glob as _glob
+from pathlib import Path as _P
+for _c in CHAPTERS:
+    _expanded = []
+    for _s in _c["sources"]:
+        _t = str(_s)
+        if any(_ch in _t for _ch in "*?["):
+            _expanded.extend(_P(_x) for _x in sorted(_glob.glob(_t)))
+        else:
+            _expanded.append(_s)
+    _c["sources"] = _expanded

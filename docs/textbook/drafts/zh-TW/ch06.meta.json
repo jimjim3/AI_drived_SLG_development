@@ -1,0 +1,66 @@
+[
+ {
+  "try": 1,
+  "seconds": 869,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3917,
+   "prompt_tokens": 11927,
+   "total_tokens": 15844,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "hard": [
+   "LaTeX math"
+  ],
+  "warn": [],
+  "cjk_chars": 3519,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": [
+   "180"
+  ]
+ },
+ {
+  "try": 2,
+  "seconds": 210,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3723,
+   "prompt_tokens": 11983,
+   "total_tokens": 15706,
+   "prompt_tokens_details": {
+    "cached_tokens": 11411
+   }
+  },
+  "hard": [
+   "repeated text (5x a 24-char run)"
+  ],
+  "warn": [],
+  "cjk_chars": 3424,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": []
+ },
+ {
+  "try": 3,
+  "seconds": 153,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3004,
+   "prompt_tokens": 11993,
+   "total_tokens": 14997,
+   "prompt_tokens_details": {
+    "cached_tokens": 11467
+   }
+  },
+  "hard": [
+   "LaTeX math"
+  ],
+  "warn": [],
+  "cjk_chars": 3011,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": [
+   "3.8"
+  ]
+ }
+]

@@ -1,0 +1,26 @@
+[
+ {
+  "try": 1,
+  "seconds": 2798,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 4114,
+   "prompt_tokens": 12479,
+   "total_tokens": 16593,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "hard": [],
+  "warn": [],
+  "cjk_chars": 3605,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": [
+   "50",
+   "101",
+   "150",
+   "200",
+   "450"
+  ]
+ }
+]

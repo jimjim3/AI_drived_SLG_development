@@ -1,0 +1,22 @@
+[
+ {
+  "try": 1,
+  "seconds": 2587,
+  "finish": "stop",
+  "usage": {
+   "completion_tokens": 3950,
+   "prompt_tokens": 10542,
+   "total_tokens": 14492,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "hard": [],
+  "warn": [],
+  "cjk_chars": 3827,
+  "simplified_fraction": 0.0,
+  "unknown_numbers": [
+   "13"
+  ]
+ }
+]
