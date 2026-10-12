@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from book import BOOK, TITLE_EN, TITLE_ZH
 from chapters import CHAPTERS, FIG_EN
 
-FONT_DIR = BOOK.parent / "report" / "_assets" / "fonts"
+FONT_DIR = Path.home() / ".fonts"
 CH = sorted(CHAPTERS, key=lambda c: c["n"])
 EXTRA = {"zh-TW": [("A", "appendix_a", "附錄"), ], "en": [("A", "appendix_a", "Appendices")]}
 
@@ -153,7 +153,16 @@ def build(lang, out_pdf):
     print(f"wrote {out_pdf} ({page} pages)")
 
 
-PART_EN = {"第一部分　基礎": "Part I  Foundations", "第二部分　編譯器": "Part II  The Compiler", "第三部分　實驗與證據": "Part III  Experiments and Evidence", "第四部分　結論與下一步": "Part IV  Conclusions and Next Steps"}
+PART_EN = {
+    "第一部分　動機與基礎": "Part I: Motivation and Foundations",
+    "第二部分　設計與實作": "Part II: Design and Implementation",
+    "第三部分　實驗與結果": "Part III: Experiments and Results",
+    "第四部分　方法論與展望": "Part IV: Methodology and Outlook",
+    "第一篇　動機與基礎": "Part I: Motivation and Foundations",
+    "第二篇　設計與實作": "Part II: Design and Implementation",
+    "第三篇　實驗與結果": "Part III: Experiments and Results",
+    "第四篇　方法論與展望": "Part IV: Methodology and Outlook",
+}
 
 
 def stamp(pdf, toc, lang):
