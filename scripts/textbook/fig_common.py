@@ -9,11 +9,18 @@ from matplotlib import font_manager as fm
 from matplotlib.patches import FancyBboxPatch, Rectangle, FancyArrowPatch
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-FONTS = ROOT / "docs" / "report" / "_assets" / "fonts"
-for f in ("NotoSansTC-Regular.ttf", "NotoSansTC-Bold.ttf"):
-    fm.fontManager.addfont(str(FONTS / f))
+FONT_VF = pathlib.Path.home() / ".fonts" / "NotoSansTC-VF.ttf"
+if FONT_VF.exists():
+    fe_normal = fm.FontEntry(fname=str(FONT_VF), name="NotoSansTC-VF", weight="normal")
+    fe_bold = fm.FontEntry(fname=str(FONT_VF), name="NotoSansTC-VF", weight="bold")
+    fm.fontManager.ttflist.insert(0, fe_bold)
+    fm.fontManager.ttflist.insert(0, fe_normal)
+    font_family = "NotoSansTC-VF"
+else:
+    font_family = "sans-serif"
+
 plt.rcParams.update({
-    "font.family": "Noto Sans TC", "axes.unicode_minus": False, "figure.dpi": 100, "savefig.dpi": 170,
+    "font.family": font_family, "axes.unicode_minus": False, "figure.dpi": 100, "savefig.dpi": 170,
     "axes.spines.top": False, "axes.spines.right": False, "axes.titleweight": "bold", "axes.titlesize": 11,
     "axes.labelsize": 10, "legend.fontsize": 8.5, "xtick.labelsize": 9, "ytick.labelsize": 9,
 })
@@ -30,9 +37,15 @@ def T(zh, en):
 
 
 def save(fig, name):
-    fig.savefig(OUT / f"{name}.png", bbox_inches="tight", facecolor="white")
+    target = OUT / f"{name}.png"
+    fig.savefig(target, bbox_inches="tight", facecolor="white")
     plt.close(fig)
-    print("wrote", OUT / f"{name}.png")
+    print("wrote", target)
+    if LANG == "zh-TW":
+        en_out = ROOT / "docs" / "textbook" / "figures" / "en"
+        en_out.mkdir(parents=True, exist_ok=True)
+        import shutil
+        shutil.copy2(target, en_out / f"{name}.png")
 
 
 def box(ax, x, y, w, h, text, fc=LIGHT, ec=NAVY, fs=9, bold=False, tc="black", lw=1.2, r=0.02):
