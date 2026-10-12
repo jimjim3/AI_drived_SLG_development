@@ -41,20 +41,20 @@ def f03_token_cost():
     vals = [it[1] for it in items]
     colors = [it[2] for it in items]
 
-    fig, ax = plt.subplots(figsize=(8.4, 3.8))
+    fig, ax = plt.subplots(figsize=(8.6, 4.0))
     bars = ax.barh(labels[::-1], [v / 1000 for v in vals[::-1]], color=colors[::-1], height=0.55)
     
     for bar, val in zip(bars, vals[::-1]):
         w = bar.get_width()
         ax.text(w + 12, bar.get_y() + bar.get_height() / 2, f"{w:g}k tokens",
-                va="center", fontsize=8.8, fontweight="bold", color="#1f2937")
+                va="center", fontsize=9.0, fontweight="bold", color="#1f2937")
 
     ax.set_xlim(0, 750)
     ax.set_xlabel(T("每回合估計消耗 Tokens (k)", "Estimated Tokens per Turn (k)"))
     ax.set_title(T("四種 AI 決策架構每回合 Token 預算估算比較", "Estimated Token Budget per Turn Across Four AI Architectures"))
-    ax.text(0.99, -0.18, T("資料來源：docs/DESIGN.md §3（以 20 勢力、約 400 位武將之全域規模估算）",
+    ax.text(0.99, -0.22, T("資料來源：docs/DESIGN.md §3（以 20 勢力、約 400 位武將之全域規模估算）",
                           "Source: docs/DESIGN.md §3 (Estimated at 20 factions, ~400 officers total scale)"),
-            transform=ax.transAxes, ha="right", fontsize=7.5, color=GREY)
+            transform=ax.transAxes, ha="right", fontsize=9.0, color=GREY)
 
     save(fig, "f03_token_cost")
 
@@ -82,30 +82,33 @@ def f08_attention_policies():
         defect_rates.append(float(parts[1].replace("%", "")))
         loyalties.append(float(parts[4]))
 
-    fig, ax1 = plt.subplots(figsize=(8.8, 4.2))
+    fig, ax1 = plt.subplots(figsize=(9.0, 4.4))
     x = np.arange(len(policies))
     w = 0.35
 
     c_defect = [RED if r >= 50 else ORANGE if r > 0 else GREY for r in defect_rates]
     b1 = ax1.bar(x - w / 2, defect_rates, w, label=T("出奔種子比例 (%)", "Defection Seed Ratio (%)"), color=c_defect)
     ax1.set_ylabel(T("出奔種子比例 (%)", "Defection Seed Ratio (%)"), color=RED)
-    ax1.set_ylim(0, 115)
+    ax1.set_ylim(0, 130)
     ax1.tick_params(axis="y", labelcolor=RED)
 
     ax2 = ax1.twinx()
     b2 = ax2.bar(x + w / 2, loyalties, w, label=T("最終平均忠誠", "Final Average Loyalty"), color=NAVY, alpha=0.85)
     ax2.set_ylabel(T("最終平均忠誠度 (滿分 100)", "Final Average Loyalty (Max 100)"), color=NAVY)
-    ax2.set_ylim(0, 115)
+    ax2.set_ylim(0, 130)
     ax2.tick_params(axis="y", labelcolor=NAVY)
 
     # Threshold markers
-    ax2.axhline(50, color="#f59e0b", ls="--", lw=1.2, alpha=0.7)
-    ax2.text(len(policies) - 0.5, 52, T("抗旨門檻 (50)", "Disobey (50)"), color="#f59e0b", fontsize=7.8, ha="right")
-    ax2.axhline(35, color=RED, ls=":", lw=1.2, alpha=0.7)
-    ax2.text(len(policies) - 0.5, 37, T("出奔門檻 (35)", "Defect (35)"), color=RED, fontsize=7.8, ha="right")
+    l_disobey = ax2.axhline(50, color="#f59e0b", ls="--", lw=1.2, alpha=0.7, label=T("抗旨門檻 (50)", "Disobey (50)"))
+    l_defect = ax2.axhline(35, color=RED, ls=":", lw=1.2, alpha=0.7, label=T("出奔門檻 (35)", "Defect (35)"))
+
+    # Combined legend including bars and threshold lines
+    handles = [b1, b2, l_disobey, l_defect]
+    labels = [h.get_label() for h in handles]
+    ax1.legend(handles, labels, loc="upper right", frameon=True, fontsize=9.0)
 
     ax1.set_xticks(x)
-    ax1.set_xticklabels(policies, rotation=15, ha="right", fontsize=8.5)
+    ax1.set_xticklabels(policies, rotation=15, ha="right", fontsize=9.0)
     ax1.set_title(T("六種注意力策略之出奔比例與最終平均忠誠（20 種子、40 回合實測）",
                     "Defection Ratio and Final Loyalty Across Six Attention Policies (20 seeds, 40 turns)"))
 
@@ -131,14 +134,15 @@ def f09_balance():
     counts = [winners["faction_1"], winners["faction_2"], winners["faction_3"], winners["draw"]]
     colors = [NAVY, GREEN, ORANGE, GREY]
 
-    fig, ax = plt.subplots(figsize=(7.6, 3.8))
+    fig, ax = plt.subplots(figsize=(7.8, 4.0))
     bars = ax.bar(labels, counts, color=colors, width=0.5)
 
-    for bar, c in zip(bars, counts):
+    for i, (bar, c) in enumerate(zip(bars, counts)):
         h = bar.get_height()
         pct = (c / 40) * 100
-        ax.text(bar.get_x() + bar.get_width() / 2, h + 0.35, f"{c} 勝 ({pct:.1f}%)" if c > 0 and bar.get_x() < 2 else f"{c} 局 ({pct:.1f}%)",
-                ha="center", fontsize=8.8, fontweight="bold")
+        txt = f"{c} 勝 ({pct:.1f}%)" if i < 3 else f"{c} 局 ({pct:.1f}%)"
+        ax.text(bar.get_x() + bar.get_width() / 2, h + 0.35, txt,
+                ha="center", fontsize=9.0, fontweight="bold")
 
     ax.set_ylim(0, 16)
     ax.set_ylabel(T("對局數（總計 40 種子）", "Number of Games (40 seeds total)"))
@@ -165,13 +169,13 @@ def f10_gemini_stages():
     accept_rates = [s["orders_accept_rate"] * 100 for s in summaries]
     troop_deltas = [s["mean_troops_delta"] for s in summaries]
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.0, 4.0))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.2, 4.0))
 
     # Acceptance rate
     bars1 = ax1.bar(stages, accept_rates, color=[ORANGE, GREEN, GREEN], width=0.5)
     for bar, v in zip(bars1, accept_rates):
         ax1.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1.2, f"{v:.1f}%",
-                 ha="center", fontsize=8.8, fontweight="bold")
+                 ha="center", fontsize=9.0, fontweight="bold")
     ax1.set_ylim(70, 105)
     ax1.set_ylabel(T("指令接受率 (%)", "Order Acceptance Rate (%)"))
     ax1.set_title(T("各階段指令接受率進展", "Acceptance Rate Progression"))
@@ -183,7 +187,7 @@ def f10_gemini_stages():
         va = "bottom" if v >= 0 else "top"
         y_pos = v + (150 if v >= 0 else -350)
         ax2.text(bar.get_x() + bar.get_width() / 2, y_pos, f"{v:+.1f}",
-                 ha="center", fontsize=8.8, fontweight="bold", color=GREEN if v >= 0 else RED)
+                 ha="center", fontsize=9.0, fontweight="bold", color=GREEN if v >= 0 else RED)
     ax2.axhline(0, color=GREY, ls="--", lw=1.2)
     ax2.set_ylim(-4800, 1600)
     ax2.set_ylabel(T("平均兵力差（相對規則 AI 基準）", "Mean Troops Delta (vs Rule Baseline)"))
@@ -215,15 +219,15 @@ def f11_rejections():
     labels_s2 = [clean_reason(x["reason"]) for x in r2[:3]]
     counts_s2 = [x["count"] for x in r2[:3]]
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.2, 3.8))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.4, 4.0))
 
     # Stage 1
     y1 = np.arange(len(labels_s1))
     ax1.barh(y1, counts_s1, color=RED, height=0.55)
     for i, v in enumerate(counts_s1):
-        ax1.text(v + 1.2, i, f"{v} 次", va="center", fontsize=8.8, fontweight="bold")
+        ax1.text(v + 1.2, i, f"{v} 次", va="center", fontsize=9.0, fontweight="bold")
     ax1.set_yticks(y1)
-    ax1.set_yticklabels(labels_s1, fontsize=8.2)
+    ax1.set_yticklabels(labels_s1, fontsize=9.0)
     ax1.set_xlim(0, 52)
     ax1.set_xlabel(T("被拒次數", "Count"))
     ax1.set_title(T("修正前（階段一，總計 64 次被拒）", "Before Fix (Stage 1, 64 total rejects)"))
@@ -233,9 +237,9 @@ def f11_rejections():
     y2 = np.arange(len(labels_s2))
     ax2.barh(y2, counts_s2, color=ORANGE, height=0.55)
     for i, v in enumerate(counts_s2):
-        ax2.text(v + 0.6, i, f"{v} 次", va="center", fontsize=8.8, fontweight="bold")
+        ax2.text(v + 0.6, i, f"{v} 次", va="center", fontsize=9.0, fontweight="bold")
     ax2.set_yticks(y2)
-    ax2.set_yticklabels(labels_s2, fontsize=8.2)
+    ax2.set_yticklabels(labels_s2, fontsize=9.0)
     ax2.set_xlim(0, 20)
     ax2.set_xlabel(T("被拒次數", "Count"))
     ax2.set_title(T("修正後（階段二，總計 29 次被拒）", "After Fix (Stage 2, 29 total rejects)"))
@@ -262,7 +266,7 @@ def f12_qwen_q1():
         troop_deltas.append(data["mean_troops_delta"])
         accept_rates.append(data["orders_accept_rate"] * 100)
 
-    fig, ax1 = plt.subplots(figsize=(8.2, 4.0))
+    fig, ax1 = plt.subplots(figsize=(8.4, 4.0))
     x = np.arange(len(seats))
     w = 0.35
 
@@ -272,7 +276,7 @@ def f12_qwen_q1():
         va = "bottom" if td >= 0 else "top"
         y_pos = td + (120 if td >= 0 else -280)
         ax1.text(bar.get_x() + bar.get_width() / 2, y_pos, f"{td:+.1f}",
-                 ha="center", fontsize=8.5, fontweight="bold")
+                 ha="center", fontsize=9.0, fontweight="bold")
     ax1.axhline(0, color=GREY, ls="--", lw=1.0)
     ax1.set_ylabel(T("兵力差（相對規則 AI）", "Troops Delta (vs Baseline)"), color=NAVY)
     ax1.set_ylim(-1200, 3400)
@@ -281,13 +285,18 @@ def f12_qwen_q1():
     b2 = ax2.bar(x + w / 2, accept_rates, w, color=PURPLE, alpha=0.8, label=T("指令接受率 (%)", "Acceptance Rate (%)"))
     for bar, ar in zip(b2, accept_rates):
         ax2.text(bar.get_x() + bar.get_width() / 2, ar + 1.2, f"{ar:.1f}%",
-                 ha="center", fontsize=8.5, fontweight="bold", color=PURPLE)
+                 ha="center", fontsize=9.0, fontweight="bold", color=PURPLE)
     ax2.set_ylabel(T("指令接受率 (%)", "Order Acceptance Rate (%)"), color=PURPLE)
     ax2.set_ylim(50, 105)
     ax2.tick_params(axis="y", labelcolor=PURPLE)
 
+    # Combined legend
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left", frameon=True, fontsize=9.0)
+
     ax1.set_xticks(x)
-    ax1.set_xticklabels(seat_names, fontsize=9)
+    ax1.set_xticklabels(seat_names, fontsize=9.0)
     ax1.set_title(T("本機 Qwen3.8-27B（Q1 實驗）三座位兵力差與指令接受率",
                     "Local Qwen3.8-27B (Q1) Troop Delta and Acceptance Rate Across Three Seats"))
 
@@ -314,9 +323,9 @@ def f13_siege_outcomes():
 
     labels = [
         T("Q2 優勢情境: Qwen\n(具勝算偵察情報)", "Q2 Advantage: Qwen\n(With Recon Odds)"),
-        T("Q2 優勢情境: 規則 AI\n(基準線無勝算提示)", "Q2 Advantage: Rule AI\n(Baseline)"),
-        T("Gemini 第二階段\n(無勝算提示，盲目出征)", "Gemini Stage 2\n(No Recon Odds)"),
-        T("Q1/Q3 標準情境\n(防守反擊/少主動攻城)", "Q1/Q3 Default Scenario\n(Defensive Posture)"),
+        T("Q2 優勢情境: 規則 AI\n(基準線無勝算提示)", "Q2 Advantage: Rule AI\n(Baseline, No Odds)"),
+        T("Gemini 第二階段\n(預設情境/無勝算提示)", "Gemini Stage 2\n(Default / No Recon Odds)"),
+        T("Q1/Q3 預設情境: Qwen\n(無兵力優勢攻城)", "Q1/Q3 Default: Qwen\n(No Troop Advantage)"),
     ]
     attempts = [q2_exp_att, q2_base_att, gem_att, q_other_att]
     captures = [q2_exp_cap, q2_base_cap, gem_cap, q_other_cap]
@@ -329,16 +338,16 @@ def f13_siege_outcomes():
     b2 = ax.bar(x + w / 2, captures, w, label=T("攻克成功次數", "Successful Captures"), color=GREEN)
 
     for bar, a, c in zip(b1, attempts, captures):
-        ax.text(bar.get_x() + bar.get_width() / 2, a + 0.8, f"{a} 次", ha="center", fontsize=8.2)
+        ax.text(bar.get_x() + bar.get_width() / 2, a + 0.8, f"{a} 次", ha="center", fontsize=9.0)
     for bar, c in zip(b2, captures):
-        ax.text(bar.get_x() + bar.get_width() / 2, c + 0.8, f"{c} 次", ha="center", fontsize=8.2, fontweight="bold", color=GREEN if c > 0 else GREY)
+        ax.text(bar.get_x() + bar.get_width() / 2, c + 0.8, f"{c} 次", ha="center", fontsize=9.0, fontweight="bold", color=GREEN if c > 0 else GREY)
 
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=8.5)
+    ax.set_xticklabels(labels, fontsize=9.0)
     ax.set_ylim(0, 42)
     ax.set_ylabel(T("次數", "Count"))
     ax.set_title(T("不同模型與情境下攻城嘗試與成功攻克戰績對比", "Siege Attempts vs Captures Across Models and Scenarios"))
-    ax.legend(frameon=True, fontsize=8.8)
+    ax.legend(frameon=True, fontsize=9.0)
 
     save(fig, "f13_siege_outcomes")
 
@@ -347,9 +356,9 @@ def f14_long_games():
     """Q3 40-turn games troop deltas across three seats (all 0 defections)."""
     seats = ["faction_1", "faction_2", "faction_3"]
     seat_labels = [
-        T("曹操 (faction_1)\n長局兵力大幅領先", "Cao Cao (faction_1)\nTroop Lead"),
-        T("劉備 (faction_2)\n長局穩定維持正成長", "Liu Bei (faction_2)\nStable Growth"),
-        T("孫權 (faction_3)\n長局高兵力優勢", "Sun Quan (faction_3)\nHigh Advantage"),
+        T("曹操 (faction_1)\n(種子 0–3)", "Cao Cao (faction_1)\n(Seeds 0-3)"),
+        T("劉備 (faction_2)\n(種子 0–3)", "Liu Bei (faction_2)\n(Seeds 0-3)"),
+        T("孫權 (faction_3)\n(種子 0–3)", "Sun Quan (faction_3)\n(Seeds 0-3)"),
     ]
     deltas = []
     deflections = []
@@ -368,10 +377,10 @@ def f14_long_games():
         ax.text(bar.get_x() + bar.get_width() / 2, h + 140, f"{d:+.1f}",
                 ha="center", fontsize=9.2, fontweight="bold")
         ax.text(bar.get_x() + bar.get_width() / 2, h / 2, T(f"出奔次數: {defl}", f"Defections: {defl}"),
-                ha="center", fontsize=8.2, color="white", fontweight="bold")
+                ha="center", fontsize=9.0, color="white", fontweight="bold")
 
     ax.set_xticks(x)
-    ax.set_xticklabels(seat_labels, fontsize=8.5)
+    ax.set_xticklabels(seat_labels, fontsize=9.0)
     ax.set_ylim(0, 5200)
     ax.set_ylabel(T("40 回合最終平均兵力差（相對規則 AI）", "40-Turn Final Mean Troops Delta (vs Rule AI)"))
     ax.set_title(T("Q3 四十回合長局各座位兵力差（全部座位 0 次出奔）",
