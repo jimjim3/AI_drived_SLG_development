@@ -131,22 +131,22 @@ class TestLoyaltyMechanics(unittest.TestCase):
         self.assertEqual(game.state.officer("xun_yu").neglect, 1)
 
     def test_neglect_penalty_progression_by_turn(self):
-        # Test neglect and loyalty step by step:
+        # Test neglect and loyalty step by step (NEGLECT_PENALTY_START = 4):
         # Starting loyalty = 80.
         # Turn 1: neglect=1, penalty=0 -> loyalty=80
         # Turn 2: neglect=2, penalty=0 -> loyalty=80
         # Turn 3: neglect=3, penalty=0 -> loyalty=80
-        # Turn 4: neglect=4, penalty=0 -> loyalty=80
-        # Turn 5: neglect=5, penalty=5-5+1=1 -> loyalty=79
-        # Turn 6: neglect=6, penalty=6-5+1=2 -> loyalty=77
-        # Turn 7: neglect=7, penalty=7-5+1=3 -> loyalty=74
-        # Turn 8: neglect=8, penalty=8-5+1=4 -> loyalty=70
+        # Turn 4: neglect=4, penalty=4-4+1=1 -> loyalty=79
+        # Turn 5: neglect=5, penalty=5-4+1=2 -> loyalty=77
+        # Turn 6: neglect=6, penalty=6-4+1=3 -> loyalty=74
+        # Turn 7: neglect=7, penalty=7-4+1=4 -> loyalty=70
+        # Turn 8: neglect=8, penalty=8-4+1=5 -> loyalty=65
         officer = self.state.officer("xun_yu")
         cur_state = replace(
             self.state,
             officers={**self.state.officers, "xun_yu": replace(officer, loyalty=80, neglect=0)},
         )
-        expected_loyalties = [80, 80, 80, 80, 79, 77, 74, 70]
+        expected_loyalties = [80, 80, 80, 79, 77, 74, 70, 65]
         expected_neglects = [1, 2, 3, 4, 5, 6, 7, 8]
 
         agent = ScriptedFactionAgent(orders=())  # empty orders so xun_yu is not noticed
@@ -512,10 +512,10 @@ class TestLoyaltyMechanics(unittest.TestCase):
         )
         game = Game(s, {"faction_1": ScriptedFactionAgent(orders=())}, random.Random(42))
         game.step()
-        # neglect=5, penalty=1 -> loyalty=0
+        # neglect=5, penalty=5-4+1=2 -> loyalty=0
         self.assertEqual(game.state.officer("xun_yu").loyalty, 0)
         game.step()
-        # neglect=6, penalty=2 -> loyalty still 0 (cannot be negative)
+        # neglect=6, penalty=3 -> loyalty still 0 (cannot be negative)
         self.assertEqual(game.state.officer("xun_yu").loyalty, 0)
 
     def test_disobey_cap_at_half(self):
