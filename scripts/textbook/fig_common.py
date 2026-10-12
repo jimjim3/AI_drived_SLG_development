@@ -22,7 +22,7 @@ else:
 plt.rcParams.update({
     "font.family": font_family, "axes.unicode_minus": False, "figure.dpi": 100, "savefig.dpi": 170,
     "axes.spines.top": False, "axes.spines.right": False, "axes.titleweight": "bold", "axes.titlesize": 11,
-    "axes.labelsize": 10, "legend.fontsize": 8.5, "xtick.labelsize": 9, "ytick.labelsize": 9,
+    "axes.labelsize": 10, "legend.fontsize": 9.0, "xtick.labelsize": 9.0, "ytick.labelsize": 9.0,
 })
 LANG = os.environ.get("TEXTBOOK_LANG", "zh-TW")
 OUT = ROOT / "docs" / "textbook" / "figures" / LANG
