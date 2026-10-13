@@ -22,7 +22,8 @@ class App:
 
     def new(self, body: dict) -> dict:
         s = Session(scenario=body.get("scenario", "default"), seed=int(body.get("seed", 0)),
-                    player_faction=body.get("player_faction", "faction_2"), turns=int(body.get("turns", 20)))
+                    player_faction=body.get("player_faction", "faction_2"), turns=int(body.get("turns", 20)),
+                    ai=body.get("ai") if isinstance(body.get("ai"), dict) else None)
         with self.lock:
             self.session = s
         s.start()

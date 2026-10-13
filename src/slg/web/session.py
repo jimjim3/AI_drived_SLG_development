@@ -6,11 +6,11 @@ import random
 import threading
 
 from ..agents.base import FactionAgent
-from ..agents.rule_based import RuleBasedAgent
 from ..engine.game import Game, compute_winner
 from ..engine.initial_state import build_initial_state
 from ..engine.resolution import estimate_siege_ratio
 from ..schema import AgentDecision, CAST_LIMIT, FactionPlan
+from .backends import make_ai_agent
 from .payload import state_payload
 
 
@@ -69,7 +69,7 @@ class HumanFactionAgent(FactionAgent):
 
 
 class Session:
-    def __init__(self, scenario="default", seed=0, player_faction="faction_2", turns=20, human_timeout=900.0):
+    def __init__(self, scenario="default", seed=0, player_faction="faction_2", turns=20, human_timeout=900.0, ai=None):
         self.lock = threading.RLock()
         self.turns = turns
         self.player_faction = player_faction
@@ -83,7 +83,8 @@ class Session:
         if player_faction not in state.factions:
             raise ValueError(f"unknown faction {player_faction!r}")
         self.human = HumanFactionAgent(self, human_timeout)
-        agents = {f: RuleBasedAgent("balanced") for f in sorted(state.factions) if f != player_faction}
+        ai = ai or {}
+        agents = {f: make_ai_agent(ai.get(f, "rule")) for f in sorted(state.factions) if f != player_faction}
         agents[player_faction] = self.human
         self.game = Game(state, agents, random.Random(seed))
         self.thread = threading.Thread(target=self._run, daemon=True)

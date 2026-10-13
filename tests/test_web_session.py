@@ -77,6 +77,19 @@ class SessionTest(unittest.TestCase):
         wait_phase(s, "game_over")
 
 
+class BackendTest(unittest.TestCase):
+    def test_unknown_backend_rejected(self):
+        with self.assertRaises(ValueError):
+            Session(ai={"faction_1": "nope"})
+
+    def test_demo_llm_opponent_plays(self):
+        s = Session(seed=0, turns=2, human_timeout=0.2, ai={"faction_1": "demo", "faction_3": "demo"})
+        s.start()
+        wait_phase(s, "game_over", 30)
+        self.assertIsNone(s.status()["error"])
+        self.assertGreater(s.game.stats["orders"] + s.game.stats["plan_failures"], 0)
+
+
 class HttpTest(unittest.TestCase):
     def test_roundtrip(self):
         app = App()
