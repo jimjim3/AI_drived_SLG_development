@@ -173,3 +173,29 @@ PYTHONPATH=src python3 -m slg.sim.evaluate \
 
 **限制**：驗收基於固定 20 種子、無信賴區間；RandomFive 忠誠餘裕約 3.6 點；長局下 Stubborn／FixedSix／Core8 皆收斂為 3 次出奔（洛陽 3 位武將），平均出奔數對常數不敏感，鑑別力主要來自種子比例與 RandomFive／Rotator；「Core8」點名 8 位但引擎只 notice 前 6 位（CAST_LIMIT=6）。行為驗收固化於 `tests/test_attention_behavior.py`（8 項），調參工具測試見 `tests/test_tune_attention.py`（10 項）。
 
+
+## 11. NVIDIA NIM（Nemotron 3）作為玩家 LLM（2026-10-13）
+
+**設定**：NVIDIA NIM 免費端點 `https://integrate.api.nvidia.com/v1`（OpenAI 相容），`--extra-body-json '{"chat_template_kwargs":{"enable_thinking":false}}'`，其餘同第 8、9 節（faction_2 席位、20 回合、對照規則 AI balanced）。原始報告見 `docs/evals/nim/`。
+
+**必須關閉思考**：Nemotron 3 Super 預設會先輸出推理過程，遊戲提示較長時耗盡 `max_tokens=900`，正文為空，後端回報 `Response message content is not a string`，3 回合內斷路器跳脫、全部退回規則 AI。關閉思考後 3 回合煙霧測試 19 秒、0 拒絕、0 解析失敗；保留思考並把上限調到 4096 則需 87 秒。
+
+| 實驗 | 模型／情境 | 呼叫 | 兵力差 | 城數差 | 接受率 | 攻城（嘗試／成功） | 席位勝率（實驗／基準） |
+|---|---|---|---|---|---|---|---|
+| N1 | Super、預設、種子 0–5 | 120 | -5444 | -0.67 | 84.6% | 49 / 2 | 0/6 ／ 0/6 |
+| N2 | Super、**進攻情境**、種子 0–9 | 201 | -4035 | +0.20 | 86.3% | 102 / 9 | 6/10 ／ 10/10 |
+| N3 | Ultra、預設、種子 0–3（**中止**） | 87 | -316 | 0.00 | 78.8% | 1 / 0 | 1/4 ／ 0/4 |
+
+對照：Gemini flash-lite 第 8 節 ③ 階段兵力差 +472、攻城 0；Qwen3.8-27B 的 Q2（同進攻情境）兵力差 +849、攻城 10 / 7、勝率 9/10。
+
+### 發現
+1. **Super 一直冒進**：N1、N2 共 151 次出征只成功 11 次；N2 的兵力優勢劇本中，Super 勝率 60%，低於規則 AI 的 100%，也低於 Qwen 的 90%。
+2. **不是沒看到勝算比**：診斷腳本 `scripts/diag_siege_odds.py`（Super、種子 0–2、20 回合）記錄每次出征命令當下視圖所顯示的 `siege_odds`：36 次出征全部低於 1.3，最低 0.19、中位數 0.36、最高 0.70（`docs/evals/nim/d1_siege_odds_shown_super.json`）。備註卻寫「勝算可期」（勝算比 0.56）。提示詞明言「低於 1.3 除非有特殊理由否則不要出征」，模型仍照「北伐」的敘事行動。
+3. **被拒指令主因**：N1、N2 皆以 `action 'recruit' not legal`（N2 為 63 次）居首，其次是 `troops` 不在合法級距；與第 9 節的「同城金幣被先行指令用完」一致，支持「視圖加入各城可用金幣預算」的建議。
+4. **N3 不能作結論**：NIM 免費層對 Ultra 回應 `HTTP 503 Service temporarily overloaded`，累計 20 次呼叫錯誤，斷路器在第 4 個種子後中止；只有 1 次出征，樣本不足以判斷 Ultra 是否比 Super 更守紀律。
+
+### 限制
+單一次執行、種子 4–10 個、無信賴區間；N2 的勝率比較中規則 AI 為 10/10；NIM 免費層會限速與過載，Ultra 需在離峰重跑；遊戲狀態與提示會送至 NVIDIA 雲端（本專案為開源，無機密）。
+
+### 建議的下一步
+(a) 離峰重跑 N3（Ultra 種子 0–5）；(b) 把「低勝算出征」改成引擎層的可見成本，例如視圖直接標示 `不建議`，而不只靠提示詞；(c) 視圖加入各城可用金幣預算。

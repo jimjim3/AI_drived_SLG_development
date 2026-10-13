@@ -1,0 +1,326 @@
+[
+ {
+  "seed": 0,
+  "turn": 1,
+  "officer": "guan_yu",
+  "to": "xiangyang",
+  "troops": 800,
+  "odds_shown": 0.51,
+  "memo": "關羽率兵北伐，直取襄陽，志在破敵先機"
+ },
+ {
+  "seed": 0,
+  "turn": 3,
+  "officer": "guan_yu",
+  "to": "xiangyang",
+  "troops": 1000,
+  "odds_shown": 0.37,
+  "memo": "北伐襄陽，決戰在即"
+ },
+ {
+  "seed": 0,
+  "turn": 4,
+  "officer": "guan_yu",
+  "to": "xiangyang",
+  "troops": 500,
+  "odds_shown": 0.19,
+  "memo": "關羽北伐襄陽，志在必取"
+ },
+ {
+  "seed": 0,
+  "turn": 7,
+  "officer": "zhang_fei",
+  "to": "xiangyang",
+  "troops": 500,
+  "odds_shown": 0.31,
+  "memo": "進軍襄陽，試探敵虛實"
+ },
+ {
+  "seed": 0,
+  "turn": 8,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.56,
+  "memo": "進攻洛陽，勝算可期"
+ },
+ {
+  "seed": 0,
+  "turn": 12,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 600,
+  "odds_shown": 0.21,
+  "memo": "關羽率兵進攻洛陽"
+ },
+ {
+  "seed": 0,
+  "turn": 14,
+  "officer": "fa_zheng",
+  "to": "luoyang",
+  "troops": 550,
+  "odds_shown": 0.31,
+  "memo": "乘勢北伐，攻取洛陽"
+ },
+ {
+  "seed": 0,
+  "turn": 15,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 800,
+  "odds_shown": 0.37,
+  "memo": "關羽北伐，直取洛陽"
+ },
+ {
+  "seed": 0,
+  "turn": 16,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.2,
+  "memo": "關羽率軍北伐洛陽"
+ },
+ {
+  "seed": 0,
+  "turn": 19,
+  "officer": "wei_yan",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.28,
+  "memo": "進攻洛陽，削弱曹操勢力"
+ },
+ {
+  "seed": 0,
+  "turn": 20,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.22,
+  "memo": "關羽率軍北伐，直取洛陽"
+ },
+ {
+  "seed": 1,
+  "turn": 1,
+  "officer": "guan_yu",
+  "to": "xiangyang",
+  "troops": 800,
+  "odds_shown": 0.31,
+  "memo": "關羽率兵北伐襄陽"
+ },
+ {
+  "seed": 1,
+  "turn": 2,
+  "officer": "guan_yu",
+  "to": "xiangyang",
+  "troops": 1000,
+  "odds_shown": 0.36,
+  "memo": "進軍襄陽，爭取先機"
+ },
+ {
+  "seed": 1,
+  "turn": 3,
+  "officer": "zhao_yun",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.41,
+  "memo": "趙雲率兵攻洛陽"
+ },
+ {
+  "seed": 1,
+  "turn": 3,
+  "officer": "huang_zhong",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.4,
+  "memo": "黃忠繼進攻洛陽"
+ },
+ {
+  "seed": 1,
+  "turn": 3,
+  "officer": "ma_chao",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.41,
+  "memo": "馬超協同攻洛陽"
+ },
+ {
+  "seed": 1,
+  "turn": 4,
+  "officer": "zhao_yun",
+  "to": "luoyang",
+  "troops": 600,
+  "odds_shown": 0.59,
+  "memo": "趙雲率兵攻洛陽，志在必取"
+ },
+ {
+  "seed": 1,
+  "turn": 10,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 550,
+  "odds_shown": 0.29,
+  "memo": "進攻洛陽，削弱曹操勢力"
+ },
+ {
+  "seed": 1,
+  "turn": 11,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 600,
+  "odds_shown": 0.43,
+  "memo": "攻洛陽，勝算偏低但嘗試突擊"
+ },
+ {
+  "seed": 1,
+  "turn": 12,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.2,
+  "memo": "進攻洛陽，削弱曹軍"
+ },
+ {
+  "seed": 1,
+  "turn": 14,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 550,
+  "odds_shown": 0.56,
+  "memo": "進攻洛陽，勝算56%"
+ },
+ {
+  "seed": 1,
+  "turn": 15,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 600,
+  "odds_shown": 0.46,
+  "memo": "關羽率兵攻洛陽"
+ },
+ {
+  "seed": 1,
+  "turn": 16,
+  "officer": "zhao_yun",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.21,
+  "memo": "趙雲率軍北伐，直搗洛陽"
+ },
+ {
+  "seed": 1,
+  "turn": 18,
+  "officer": "ma_chao",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.28,
+  "memo": "乘虛襲洛陽，馬超親領五百精銳，衝擊曹魏腹"
+ },
+ {
+  "seed": 1,
+  "turn": 20,
+  "officer": "ma_chao",
+  "to": "luoyang",
+  "troops": 600,
+  "odds_shown": 0.43,
+  "memo": "進攻洛陽，乘其防弱"
+ },
+ {
+  "seed": 2,
+  "turn": 1,
+  "officer": "guan_yu",
+  "to": "xiangyang",
+  "troops": 800,
+  "odds_shown": 0.31,
+  "memo": "襄陽兵力雖眾，吾以精銳挑戰，志在必取"
+ },
+ {
+  "seed": 2,
+  "turn": 2,
+  "officer": "guan_yu",
+  "to": "xiangyang",
+  "troops": 1200,
+  "odds_shown": 0.32,
+  "memo": "全力攻襄陽，志在必取"
+ },
+ {
+  "seed": 2,
+  "turn": 4,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 550,
+  "odds_shown": 0.54,
+  "memo": "進攻洛陽，勝算54%，謀求突破"
+ },
+ {
+  "seed": 2,
+  "turn": 5,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 600,
+  "odds_shown": 0.7,
+  "memo": "進攻洛陽，勝算0.7，謀定而後動"
+ },
+ {
+  "seed": 2,
+  "turn": 6,
+  "officer": "guan_yu",
+  "to": "luoyang",
+  "troops": 600,
+  "odds_shown": 0.31,
+  "memo": "進攻洛陽，勝算偏低但機會難得"
+ },
+ {
+  "seed": 2,
+  "turn": 12,
+  "officer": "xu_shu",
+  "to": "luoyang",
+  "troops": 700,
+  "odds_shown": 0.27,
+  "memo": "乘虛襲洛，一舉奪關"
+ },
+ {
+  "seed": 2,
+  "turn": 13,
+  "officer": "xu_shu",
+  "to": "luoyang",
+  "troops": 500,
+  "odds_shown": 0.33,
+  "memo": "再戰洛陽，志在必取"
+ },
+ {
+  "seed": 2,
+  "turn": 16,
+  "officer": "zhao_yun",
+  "to": "luoyang",
+  "troops": 600,
+  "odds_shown": 0.37,
+  "memo": "趙雲率兵攻洛陽，志在必取"
+ },
+ {
+  "seed": 2,
+  "turn": 18,
+  "officer": "ma_chao",
+  "to": "luoyang",
+  "troops": 550,
+  "odds_shown": 0.38,
+  "memo": "率軍北上，直搗洛陽"
+ },
+ {
+  "seed": 2,
+  "turn": 19,
+  "officer": "ma_chao",
+  "to": "luoyang",
+  "troops": 600,
+  "odds_shown": 0.57,
+  "memo": "進攻洛陽"
+ },
+ {
+  "seed": 2,
+  "turn": 20,
+  "officer": "ma_chao",
+  "to": "luoyang",
+  "troops": 600,
+  "odds_shown": 0.36,
+  "memo": "馬超率眾伐洛陽，志在必取"
+ }
+]
