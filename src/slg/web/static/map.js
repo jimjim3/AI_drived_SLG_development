@@ -81,7 +81,16 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
 
   const svgNS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(svgNS, "svg");
-  svg.setAttribute("viewBox", "0 0 960 720");
+  let vb = "0 0 960 720";
+  if (window.matchMedia && window.matchMedia("(max-width: 899px)").matches) {
+    // Mobile: crop the viewBox tightly around the city boxes so no empty bands are drawn.
+    const pts = Object.values(coords);
+    const x0 = Math.min(...pts.map((p) => p[0])) - 84, x1 = Math.max(...pts.map((p) => p[0])) + 84;
+    const y0 = Math.min(...pts.map((p) => p[1])) - 64, y1 = Math.max(...pts.map((p) => p[1])) + 64;
+    vb = `${x0} ${y0} ${x1 - x0} ${y1 - y0}`;
+    svg.dataset.mobileWidth = String(Math.round(x1 - x0));
+  }
+  svg.setAttribute("viewBox", vb);
   svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
   svg.classList.add("tactical-map-svg");
   svg.setAttribute("role", "region");
