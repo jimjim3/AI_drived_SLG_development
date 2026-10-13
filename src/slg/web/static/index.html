@@ -85,11 +85,29 @@
 
             <!-- AI Engine -->
             <div class="form-group">
-              <label>對手諸侯 AI 後端模式：</label>
-              <div class="radio-pill-group">
+              <label id="aiLabel">對手諸侯 AI 後端模式：</label>
+              <div class="radio-pill-group" role="radiogroup" aria-labelledby="aiLabel">
                 <label class="pill-option">
                   <input type="radio" name="setupAI" value="rule" checked>
-                  <span>經典規則策略引擎 (rule - 離線標準)</span>
+                  <span class="pill-title">rule（離線標準）</span>
+                </label>
+                <label class="pill-option">
+                  <input type="radio" name="setupAI" value="demo">
+                  <span class="pill-title">demo（示範 LLM，離線）</span>
+                </label>
+                <label class="pill-option pill-option-with-note">
+                  <input type="radio" name="setupAI" value="qwen">
+                  <div class="pill-text-wrap">
+                    <span class="pill-title">qwen（本機 Qwen，需伺服器端已啟動）</span>
+                    <small class="option-note">需要伺服器端設定；回合結算可能需數十秒</small>
+                  </div>
+                </label>
+                <label class="pill-option pill-option-with-note">
+                  <input type="radio" name="setupAI" value="gemini">
+                  <div class="pill-text-wrap">
+                    <span class="pill-title">gemini（雲端，耗用伺服器端額度）</span>
+                    <small class="option-note">需要伺服器端設定；回合結算可能需數十秒</small>
+                  </div>
                 </label>
               </div>
             </div>
@@ -151,10 +169,20 @@
           </div>
         </header>
 
-        <!-- Right Middle: Dynamic Information Panel Container -->
-        <section id="panelsContainer" class="panels-main-container" aria-live="polite">
-          <!-- Swapped dynamically by panels.js -->
-        </section>
+        <!-- Right Middle: Dynamic Information Panel Stage -->
+        <div class="panels-stage">
+          <section id="panelsContainer" class="panels-main-container" aria-live="polite">
+            <!-- Swapped dynamically by panels.js -->
+          </section>
+          <div id="resolvingOverlay" class="resolving-overlay" style="display: none;" role="status" aria-live="assertive">
+            <div class="resolving-content">
+              <div class="resolving-spinner" aria-hidden="true"></div>
+              <h3 class="resolving-title">各勢力正在決策…</h3>
+              <p class="resolving-time">已等待 <span id="resolvingSeconds">0</span> 秒</p>
+              <p class="resolving-tip text-muted">各方諸侯調兵遣將中；若啟用 LLM 對手推演可能需 40–75 秒</p>
+            </div>
+          </div>
+        </div>
 
         <!-- Right Bottom: Numbered Command Bar (Classic DOS RTK2 Keypad) -->
         <nav id="commandBarNav" class="command-bar-nav" aria-label="數字軍令指令列">

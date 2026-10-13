@@ -197,8 +197,21 @@ body {
   cursor: pointer;
   font-size: 14px;
 }
+.pill-option.pill-option-with-note {
+  align-items: flex-start;
+}
+.pill-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.option-note {
+  font-size: 14px;
+  color: var(--warn-orange);
+}
 .pill-option input[type="radio"] {
   cursor: pointer;
+  margin-top: 2px;
 }
 .pill-option:has(input:checked) {
   border-color: var(--gold-border);
@@ -215,28 +228,37 @@ body {
 /* ==========================================================================
    2. Main Game Screen Layout (Classic RTK2 Split)
    ========================================================================== */
+.screen-view.main-game-screen.active,
+.main-game-screen.active,
 .main-game-screen {
   width: 100%;
   max-width: 100%;
+  height: 100vh;
   min-height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: row;
+  overflow: hidden;
   background: var(--bg-app);
 }
 
-/* Left Column: Tactical SVG Map */
+/* Left Column: Tactical SVG Map (approx 55-60% width, full height) */
 .map-column {
-  flex: 1 1 52%;
+  flex: 0 0 58%;
+  width: 58%;
   max-width: 58%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background: #090e17;
   border-right: 2px solid var(--border-dim);
   position: relative;
   min-width: 0;
+  overflow: hidden;
 }
 
 .map-header-bar {
+  flex-shrink: 0;
   padding: 10px 16px;
   background: var(--bg-card);
   border-bottom: 1px solid var(--border-dim);
@@ -254,35 +276,43 @@ body {
 }
 
 .tactical-map-container {
-  flex: 1;
+  flex: 1 1 auto;
   width: 100%;
-  min-height: 380px;
+  height: calc(100vh - 45px);
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  padding: 8px;
 }
 
 .tactical-map-svg {
   width: 100%;
   height: 100%;
-  max-height: 85vh;
+  max-height: 100%;
   display: block;
 }
 
-/* Right Column: Header + Panels + Numbered Bar */
+/* Right Column: Three Tiers (Header / Info Panels / Fixed Command Bar) */
 .info-column {
-  flex: 1 1 48%;
-  max-width: 48%;
+  flex: 0 0 42%;
+  width: 42%;
+  max-width: 42%;
+  height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   min-width: 0;
   background: var(--bg-app);
+  overflow: hidden;
+  position: relative;
 }
 
-/* Right Top Header */
+/* Right Top Header (Tier 1) */
 .main-header {
+  flex-shrink: 0;
   background: var(--bg-card);
   border-bottom: 2px solid var(--border-dim);
   padding: 12px 16px;
@@ -375,13 +405,98 @@ body {
   50% { opacity: 0.55; }
 }
 
-/* Right Mid: Panels Container */
+/* Right Mid: Panels Stage & Panels Container (Tier 2, Scrollable, Main Content) */
+.panels-stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .panels-main-container {
-  flex: 1;
+  flex: 1 1 auto;
   overflow-y: auto;
+  min-height: 0;
   padding: 14px 16px;
   background: var(--bg-card);
-  min-height: 360px;
+}
+
+/* Resolving State Overlay */
+.resolving-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(11, 17, 32, 0.94);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.resolving-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 420px;
+}
+
+.resolving-spinner {
+  width: 52px;
+  height: 52px;
+  border: 4px solid rgba(250, 204, 21, 0.2);
+  border-top-color: var(--gold-accent);
+  border-right-color: var(--gold-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.resolving-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--gold-accent);
+  letter-spacing: 1px;
+}
+
+.resolving-time {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+.resolving-tip {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.badge-spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(245, 158, 11, 0.25);
+  border-top-color: #f59e0b;
+  border-right-color: #f59e0b;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: -1px;
+  margin-right: 4px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .panel-content {
@@ -404,13 +519,14 @@ body {
   color: var(--gold-accent);
 }
 
-/* Right Bottom: Numbered Command Bar (Classic DOS RTK2 Keypad) */
+/* Right Bottom: Numbered Command Bar (Tier 3, Fixed at right bottom) */
 .command-bar-nav {
+  flex-shrink: 0;
   background: #090e18;
   border-top: 2px solid var(--border-dim);
   padding: 10px 12px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
 
@@ -1081,9 +1197,16 @@ body {
    6. Responsive Layout Rules (360px to 1280px)
    NO horizontal scrolling under any circumstance!
    ========================================================================== */
-@media (max-width: 900px) {
+@media (max-width: 899px) {
+  .screen-view.main-game-screen.active,
+  .main-game-screen.active,
   .main-game-screen {
     flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .map-column {
     flex: none;
@@ -1100,6 +1223,19 @@ body {
     flex: none;
     max-width: 100%;
     width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .panels-stage {
+    flex: none;
+    height: auto;
+    overflow: visible;
+  }
+  .panels-main-container {
+    flex: none;
+    height: auto;
+    min-height: 280px;
+    overflow-y: visible;
   }
   .command-bar-nav {
     grid-template-columns: repeat(3, 1fr);
@@ -1131,6 +1267,9 @@ body {
   .cmd-btn {
     padding: 8px 6px;
     font-size: 14px;
+  }
+  .cmd-btn:last-child {
+    grid-column: span 2;
   }
   .panels-main-container {
     padding: 10px;

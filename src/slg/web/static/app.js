@@ -39,6 +39,7 @@ class SLGApp {
 
     this.pollTimer = null;
     this.isResolving = false;
+    this.resolveStartTime = null;
 
     this.initDOM();
     this.bindEvents();
@@ -73,6 +74,8 @@ class SLGApp {
       mapContainer: document.getElementById("mapContainer"),
       mapStatusText: document.getElementById("mapStatusText"),
       panelsContainer: document.getElementById("panelsContainer"),
+      resolvingOverlay: document.getElementById("resolvingOverlay"),
+      resolvingSeconds: document.getElementById("resolvingSeconds"),
       commandBarNav: document.getElementById("commandBarNav"),
     };
   }
@@ -224,8 +227,26 @@ class SLGApp {
     this.nextCast = [];
 
     await this.fetchState();
+    await this.checkInitialStatus();
     this.setScreen("main");
     this.setActiveTab("city");
+  }
+
+  async checkInitialStatus() {
+    try {
+      const resp = await fetch("/api/status");
+      if (!resp.ok) return;
+      const status = await resp.json();
+      this.status = status;
+      if (status.phase === "resolving") {
+        this.isResolving = true;
+        this.resolveStartTime = Date.now();
+        this.updateResolvingUI();
+        this.startPolling();
+      }
+    } catch (err) {
+      console.warn("Could not check initial status:", err);
+    }
   }
 
   async fetchState() {
@@ -297,10 +318,21 @@ class SLGApp {
     this.dom.mGoldCount.textContent = totalGold;
     this.dom.mFoodCount.textContent = totalFood;
 
-    // Phase Badge
+    // Phase Badge & Resolving State
+    this.updateResolvingUI();
+  }
+
+  updateResolvingUI() {
+    const elapsed = this.resolveStartTime ? Math.floor((Date.now() - this.resolveStartTime) / 1000) : 0;
+    if (this.dom.resolvingOverlay) {
+      this.dom.resolvingOverlay.style.display = this.isResolving ? "flex" : "none";
+    }
+    if (this.dom.resolvingSeconds) {
+      this.dom.resolvingSeconds.textContent = elapsed;
+    }
     if (this.isResolving) {
       this.dom.phaseBadge.className = "phase-indicator-pill phase-resolving";
-      this.dom.phaseBadge.textContent = "⏳ 全境戰略解析推演中...";
+      this.dom.phaseBadge.innerHTML = `<span class="badge-spinner" aria-hidden="true"></span>各勢力正在決策… (${elapsed}秒)`;
     } else {
       this.dom.phaseBadge.className = "phase-indicator-pill phase-awaiting";
       this.dom.phaseBadge.textContent = "● 等待軍令輸入";
@@ -464,7 +496,8 @@ class SLGApp {
 
     try {
       this.isResolving = true;
-      this.updateHeader();
+      this.resolveStartTime = Date.now();
+      this.updateResolvingUI();
 
       const resp = await fetch("/api/plan", {
         method: "POST",
@@ -480,13 +513,17 @@ class SLGApp {
     } catch (err) {
       console.error("Failed to submit plan:", err);
       this.isResolving = false;
-      this.updateHeader();
+      this.resolveStartTime = null;
+      this.updateResolvingUI();
     }
   }
 
   startPolling() {
     this.stopPolling();
     this.pollTimer = setInterval(async () => {
+      if (this.isResolving) {
+        this.updateResolvingUI();
+      }
       await this.pollStatus();
     }, 1000);
   }
@@ -509,6 +546,8 @@ class SLGApp {
       if (status.winner) {
         this.stopPolling();
         this.isResolving = false;
+        this.resolveStartTime = null;
+        this.updateResolvingUI();
         this.updateHeader();
         this.setActiveTab("game_over");
         return;
@@ -517,6 +556,8 @@ class SLGApp {
       if (status.phase === "awaiting_input") {
         this.stopPolling();
         this.isResolving = false;
+        this.resolveStartTime = null;
+        this.updateResolvingUI();
         // Turn completed: clear previous orders for new turn
         this.orders = [];
         this.updateHeader();

@@ -36,9 +36,20 @@ export const CITY_POS = {
   kuaiji: [9.8, 0.7],
 };
 
-function coordToSvg(x, y) {
-  const px = 70 + x * 82;
-  const py = 50 + (8.5 - y) * 75;
+// Visual offsets applied on frontend to ensure all city boxes do not overlap,
+// while strictly preserving backend coordinates and JSON semantics.
+export const CITY_VISUAL_OFFSETS = {
+  wujun: [0, 5],
+  kuaiji: [-10, 28],
+};
+
+function coordToSvg(x, y, cityId = null) {
+  let px = 70 + x * 82;
+  let py = 50 + (8.5 - y) * 75;
+  if (cityId && CITY_VISUAL_OFFSETS[cityId]) {
+    px += CITY_VISUAL_OFFSETS[cityId][0];
+    py += CITY_VISUAL_OFFSETS[cityId][1];
+  }
   return [px, py];
 }
 
@@ -57,11 +68,15 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
   const nodeVisMap = new Map((state.map?.nodes || []).map((n) => [n.id, n.visibility]));
   const edges = state.map?.edges || [];
 
-  // Build node pixel coordinate cache
+  // Build node pixel coordinate cache using backend state.map.nodes coordinates with fallback to CITY_POS
+  const backendNodes = state.map?.nodes || [];
+  const backendCoords = new Map(backendNodes.map((n) => [n.id, [n.x, n.y]]));
+  const nodeIds = Array.from(new Set([...Object.keys(CITY_POS), ...backendNodes.map((n) => n.id)]));
+
   const coords = {};
-  for (const cid of Object.keys(CITY_POS)) {
-    const [x, y] = CITY_POS[cid];
-    coords[cid] = coordToSvg(x, y);
+  for (const cid of nodeIds) {
+    const [x, y] = backendCoords.get(cid) || CITY_POS[cid] || [5.0, 5.0];
+    coords[cid] = coordToSvg(x, y, cid);
   }
 
   const svgNS = "http://www.w3.org/2000/svg";
@@ -138,7 +153,7 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
   const nodesGroup = document.createElementNS(svgNS, "g");
   nodesGroup.setAttribute("class", "map-nodes-layer");
 
-  Object.keys(CITY_POS).forEach((cid) => {
+  nodeIds.forEach((cid) => {
     const [cx, cy] = coords[cid];
     const vis = nodeVisMap.get(cid) || "fog";
     const isSelected = cid === selectedCityId;
