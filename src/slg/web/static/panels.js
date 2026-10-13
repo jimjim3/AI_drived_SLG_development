@@ -16,6 +16,9 @@ import { CITY_NAMES, FACTION_INFO } from "./map.js";
 
 // Comprehensive officer encyclopedia (42 officers across 3 factions)
 // Own-faction officers only, filled from /api/state `roster_info` (never hard-code other factions: fog of war).
+export const portraitUrl = (id) => `./assets/portraits/${id}.png`;
+export const portraitImg = (id, cls = "mini-portrait") =>
+  `<img class="${cls}" src="${portraitUrl(id)}" alt="" loading="lazy" onerror="this.style.display='none'">`;
 export const OFFICER_CATALOG = {};
 export const NAME_TO_ID = {};
 export function ingestRoster(state) {
@@ -106,7 +109,7 @@ export function renderCityInfo(container, state, selectedCityId, onCitySelect) {
       html += `<div class="empty-notice">此城目前無駐紮武將。</div>`;
     } else {
       castInCity.forEach((o) => {
-        html += `<span class="officer-pill cast-pill">★ ${o.name} <span class="tag-cast">[焦點]</span></span>`;
+        html += `<span class="officer-pill cast-pill">${portraitImg(o.id)} ★ ${o.name} <span class="tag-cast">[焦點]</span></span>`;
       });
       rosterInCity.forEach((name) => {
         html += `<span class="officer-pill roster-pill">${name} <span class="tag-roster">[留守/自動]</span></span>`;
@@ -372,7 +375,7 @@ export function renderDispatch(
     html += `
       <button class="officer-tab-btn ${isCurrent ? "active" : ""} ${hasOrder ? "has-order" : ""}"
               data-officer="${o.id}" role="tab" aria-selected="${isCurrent}">
-        ${hasOrder ? "✓" : "○"} ${o.name}
+        ${portraitImg(o.id)}${hasOrder ? "✓" : "○"} ${o.name}
       </button>
     `;
   });

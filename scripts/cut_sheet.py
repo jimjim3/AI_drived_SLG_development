@@ -16,6 +16,8 @@ def spans(v, n=3, th=0.6):
         if x > th and s is None: s = i
         if x <= th and s is not None: g.append((s, i)); s = None
     if s is not None: g.append((s, len(v)))
+    if len(g) == n - 1:  # outer frame missing: only inner gutters were drawn
+        g = [(0, 0)] + g + [(len(v), len(v))]
     cells = [(g[i][1], g[i + 1][0]) for i in range(len(g) - 1)]
     if len(cells) != n: raise SystemExit(f"expected {n} cells, found {len(cells)} (gutters {g})")
     return cells

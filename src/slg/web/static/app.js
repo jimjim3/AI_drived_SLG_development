@@ -296,12 +296,13 @@ class SLGApp {
 
     // Portrait image mapping
     if (fId === "faction_1") {
-      this.dom.monarchPortraitImg.src = "./assets/portrait_cao_cao.svg";
+      this.dom.monarchPortraitImg.src = "./assets/portraits/lord_cao_cao.png";
     } else if (fId === "faction_3") {
-      this.dom.monarchPortraitImg.src = "./assets/portrait_sun_quan.svg";
+      this.dom.monarchPortraitImg.src = "./assets/portraits/lord_sun_quan.png";
     } else {
-      this.dom.monarchPortraitImg.src = "./assets/portrait_liu_bei.svg";
+      this.dom.monarchPortraitImg.src = "./assets/portraits/lord_liu_bei.png";
     }
+    this.dom.monarchPortraitImg.onerror = () => { this.dom.monarchPortraitImg.onerror = null; this.dom.monarchPortraitImg.src = "./assets/portrait_default.svg"; };
 
     // Turn
     const turn = this.state.turn !== undefined ? this.state.turn : 0;
