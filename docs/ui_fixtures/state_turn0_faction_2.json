@@ -1,0 +1,666 @@
+{
+ "turn": 0,
+ "faction_id": "faction_2",
+ "faction_name": "劉備",
+ "cities": [
+  {
+   "id": "hanzhong",
+   "name": "漢中",
+   "agri": 450,
+   "commerce": 450,
+   "defense": 120,
+   "gold": 600,
+   "food": 600,
+   "troops": 700,
+   "neighbors": [
+    "wancheng:faction_2"
+   ]
+  },
+  {
+   "id": "luoyang",
+   "name": "洛陽",
+   "agri": 550,
+   "commerce": 550,
+   "defense": 120,
+   "gold": 900,
+   "food": 900,
+   "troops": 1100,
+   "neighbors": [
+    "wancheng:faction_2",
+    "xiangyang:faction_1",
+    "xuchang:faction_1"
+   ]
+  },
+  {
+   "id": "wancheng",
+   "name": "宛城",
+   "agri": 450,
+   "commerce": 450,
+   "defense": 120,
+   "gold": 600,
+   "food": 600,
+   "troops": 700,
+   "neighbors": [
+    "hanzhong:faction_2",
+    "luoyang:faction_2"
+   ]
+  }
+ ],
+ "frontier": [
+  {
+   "id": "xiangyang",
+   "name": "襄陽",
+   "owner": "faction_1",
+   "troops": 1200,
+   "defense": 150,
+   "adjacent_to": [
+    "luoyang"
+   ]
+  },
+  {
+   "id": "xuchang",
+   "name": "許昌",
+   "owner": "faction_1",
+   "troops": 1400,
+   "defense": 150,
+   "adjacent_to": [
+    "luoyang"
+   ]
+  }
+ ],
+ "cast": [
+  {
+   "id": "jiang_wei",
+   "name": "姜維",
+   "city": "hanzhong",
+   "politics": 70,
+   "war": 88,
+   "leadership": 88,
+   "loyalty": 90,
+   "ambition": 40,
+   "neglect": 0,
+   "legal": [
+    "develop_agri",
+    "develop_commerce",
+    "develop_defense",
+    "recruit troops=100..600/100",
+    "move to=[wancheng]",
+    "rest"
+   ],
+   "legal_structured": [
+    {
+     "action": "develop_agri",
+     "params": {},
+     "cost": 50,
+     "note": "agri +60"
+    },
+    {
+     "action": "develop_commerce",
+     "params": {},
+     "cost": 50,
+     "note": "commerce +60"
+    },
+    {
+     "action": "develop_defense",
+     "params": {},
+     "cost": 50,
+     "note": "defense +30"
+    },
+    {
+     "action": "recruit",
+     "params": {
+      "troops": {
+       "name": "troops",
+       "min": 100,
+       "max": 600,
+       "step": 100
+      }
+     },
+     "cost": 100,
+     "note": "max 600"
+    },
+    {
+     "action": "move",
+     "params": {
+      "to": {
+       "name": "to",
+       "choices": [
+        "wancheng"
+       ]
+      }
+     },
+     "cost": 0,
+     "note": "relocate officer to adjacent friendly city"
+    },
+    {
+     "action": "rest",
+     "params": {},
+     "cost": 0,
+     "note": "always available"
+    }
+   ]
+  },
+  {
+   "id": "guan_yu",
+   "name": "關羽",
+   "city": "luoyang",
+   "politics": 65,
+   "war": 95,
+   "leadership": 90,
+   "loyalty": 92,
+   "ambition": 30,
+   "neglect": 0,
+   "legal": [
+    "develop_agri",
+    "develop_commerce",
+    "develop_defense",
+    "recruit troops=100..900/100",
+    "move to=[wancheng]",
+    "siege to=[xiangyang,xuchang] troops=500..1000/100",
+    "rest"
+   ],
+   "siege_odds": {
+    "xiangyang": 0.51,
+    "xuchang": 0.43
+   },
+   "legal_structured": [
+    {
+     "action": "develop_agri",
+     "params": {},
+     "cost": 50,
+     "note": "agri +57"
+    },
+    {
+     "action": "develop_commerce",
+     "params": {},
+     "cost": 50,
+     "note": "commerce +57"
+    },
+    {
+     "action": "develop_defense",
+     "params": {},
+     "cost": 50,
+     "note": "defense +28"
+    },
+    {
+     "action": "recruit",
+     "params": {
+      "troops": {
+       "name": "troops",
+       "min": 100,
+       "max": 900,
+       "step": 100
+      }
+     },
+     "cost": 100,
+     "note": "max 900"
+    },
+    {
+     "action": "move",
+     "params": {
+      "to": {
+       "name": "to",
+       "choices": [
+        "wancheng"
+       ]
+      }
+     },
+     "cost": 0,
+     "note": "relocate officer to adjacent friendly city"
+    },
+    {
+     "action": "siege",
+     "params": {
+      "to": {
+       "name": "to",
+       "choices": [
+        "xiangyang",
+        "xuchang"
+       ]
+      },
+      "troops": {
+       "name": "troops",
+       "min": 500,
+       "max": 1000,
+       "step": 100
+      }
+     },
+     "cost": 0,
+     "note": "from 1100 troops, keep 100 garrison"
+    },
+    {
+     "action": "rest",
+     "params": {},
+     "cost": 0,
+     "note": "always available"
+    }
+   ]
+  },
+  {
+   "id": "zhao_yun",
+   "name": "趙雲",
+   "city": "wancheng",
+   "politics": 50,
+   "war": 93,
+   "leadership": 88,
+   "loyalty": 93,
+   "ambition": 25,
+   "neglect": 0,
+   "legal": [
+    "develop_agri",
+    "develop_commerce",
+    "develop_defense",
+    "recruit troops=100..600/100",
+    "move to=[hanzhong,luoyang]",
+    "rest"
+   ],
+   "legal_structured": [
+    {
+     "action": "develop_agri",
+     "params": {},
+     "cost": 50,
+     "note": "agri +50"
+    },
+    {
+     "action": "develop_commerce",
+     "params": {},
+     "cost": 50,
+     "note": "commerce +50"
+    },
+    {
+     "action": "develop_defense",
+     "params": {},
+     "cost": 50,
+     "note": "defense +25"
+    },
+    {
+     "action": "recruit",
+     "params": {
+      "troops": {
+       "name": "troops",
+       "min": 100,
+       "max": 600,
+       "step": 100
+      }
+     },
+     "cost": 100,
+     "note": "max 600"
+    },
+    {
+     "action": "move",
+     "params": {
+      "to": {
+       "name": "to",
+       "choices": [
+        "hanzhong",
+        "luoyang"
+       ]
+      }
+     },
+     "cost": 0,
+     "note": "relocate officer to adjacent friendly city"
+    },
+    {
+     "action": "rest",
+     "params": {},
+     "cost": 0,
+     "note": "always available"
+    }
+   ]
+  },
+  {
+   "id": "zhuge_liang",
+   "name": "諸葛亮",
+   "city": "luoyang",
+   "politics": 98,
+   "war": 60,
+   "leadership": 75,
+   "loyalty": 95,
+   "ambition": 20,
+   "neglect": 0,
+   "legal": [
+    "develop_agri",
+    "develop_commerce",
+    "develop_defense",
+    "recruit troops=100..900/100",
+    "move to=[wancheng]",
+    "siege to=[xiangyang,xuchang] troops=500..1000/100",
+    "rest"
+   ],
+   "siege_odds": {
+    "xiangyang": 0.42,
+    "xuchang": 0.36
+   },
+   "legal_structured": [
+    {
+     "action": "develop_agri",
+     "params": {},
+     "cost": 50,
+     "note": "agri +74"
+    },
+    {
+     "action": "develop_commerce",
+     "params": {},
+     "cost": 50,
+     "note": "commerce +74"
+    },
+    {
+     "action": "develop_defense",
+     "params": {},
+     "cost": 50,
+     "note": "defense +37"
+    },
+    {
+     "action": "recruit",
+     "params": {
+      "troops": {
+       "name": "troops",
+       "min": 100,
+       "max": 900,
+       "step": 100
+      }
+     },
+     "cost": 100,
+     "note": "max 900"
+    },
+    {
+     "action": "move",
+     "params": {
+      "to": {
+       "name": "to",
+       "choices": [
+        "wancheng"
+       ]
+      }
+     },
+     "cost": 0,
+     "note": "relocate officer to adjacent friendly city"
+    },
+    {
+     "action": "siege",
+     "params": {
+      "to": {
+       "name": "to",
+       "choices": [
+        "xiangyang",
+        "xuchang"
+       ]
+      },
+      "troops": {
+       "name": "troops",
+       "min": 500,
+       "max": 1000,
+       "step": 100
+      }
+     },
+     "cost": 0,
+     "note": "from 1100 troops, keep 100 garrison"
+    },
+    {
+     "action": "rest",
+     "params": {},
+     "cost": 0,
+     "note": "always available"
+    }
+   ]
+  },
+  {
+   "id": "huang_zhong",
+   "name": "黃忠",
+   "city": "wancheng",
+   "politics": 40,
+   "war": 88,
+   "leadership": 82,
+   "loyalty": 85,
+   "ambition": 35,
+   "neglect": 0,
+   "legal": [
+    "develop_agri",
+    "develop_commerce",
+    "develop_defense",
+    "recruit troops=100..600/100",
+    "move to=[hanzhong,luoyang]",
+    "rest"
+   ],
+   "legal_structured": [
+    {
+     "action": "develop_agri",
+     "params": {},
+     "cost": 50,
+     "note": "agri +45"
+    },
+    {
+     "action": "develop_commerce",
+     "params": {},
+     "cost": 50,
+     "note": "commerce +45"
+    },
+    {
+     "action": "develop_defense",
+     "params": {},
+     "cost": 50,
+     "note": "defense +22"
+    },
+    {
+     "action": "recruit",
+     "params": {
+      "troops": {
+       "name": "troops",
+       "min": 100,
+       "max": 600,
+       "step": 100
+      }
+     },
+     "cost": 100,
+     "note": "max 600"
+    },
+    {
+     "action": "move",
+     "params": {
+      "to": {
+       "name": "to",
+       "choices": [
+        "hanzhong",
+        "luoyang"
+       ]
+      }
+     },
+     "cost": 0,
+     "note": "relocate officer to adjacent friendly city"
+    },
+    {
+     "action": "rest",
+     "params": {},
+     "cost": 0,
+     "note": "always available"
+    }
+   ]
+  },
+  {
+   "id": "ma_chao",
+   "name": "馬超",
+   "city": "wancheng",
+   "politics": 30,
+   "war": 93,
+   "leadership": 85,
+   "loyalty": 80,
+   "ambition": 45,
+   "neglect": 0,
+   "legal": [
+    "develop_agri",
+    "develop_commerce",
+    "develop_defense",
+    "recruit troops=100..600/100",
+    "move to=[hanzhong,luoyang]",
+    "rest"
+   ],
+   "legal_structured": [
+    {
+     "action": "develop_agri",
+     "params": {},
+     "cost": 50,
+     "note": "agri +40"
+    },
+    {
+     "action": "develop_commerce",
+     "params": {},
+     "cost": 50,
+     "note": "commerce +40"
+    },
+    {
+     "action": "develop_defense",
+     "params": {},
+     "cost": 50,
+     "note": "defense +20"
+    },
+    {
+     "action": "recruit",
+     "params": {
+      "troops": {
+       "name": "troops",
+       "min": 100,
+       "max": 600,
+       "step": 100
+      }
+     },
+     "cost": 100,
+     "note": "max 600"
+    },
+    {
+     "action": "move",
+     "params": {
+      "to": {
+       "name": "to",
+       "choices": [
+        "hanzhong",
+        "luoyang"
+       ]
+      }
+     },
+     "cost": 0,
+     "note": "relocate officer to adjacent friendly city"
+    },
+    {
+     "action": "rest",
+     "params": {},
+     "cost": 0,
+     "note": "always available"
+    }
+   ]
+  }
+ ],
+ "roster": {
+  "hanzhong": [
+   "簡雍",
+   "馬良",
+   "孫乾",
+   "魏延"
+  ],
+  "luoyang": [
+   "張飛"
+  ],
+  "wancheng": [
+   "法正",
+   "龐統",
+   "徐庶"
+  ]
+ },
+ "events": [],
+ "feedback": [],
+ "map": {
+  "nodes": [
+   {
+    "id": "hanzhong",
+    "x": 1.4,
+    "y": 2.6,
+    "visibility": "own"
+   },
+   {
+    "id": "wancheng",
+    "x": 3.4,
+    "y": 3.8,
+    "visibility": "own"
+   },
+   {
+    "id": "luoyang",
+    "x": 4.2,
+    "y": 6.4,
+    "visibility": "own"
+   },
+   {
+    "id": "chenliu",
+    "x": 7.2,
+    "y": 7.2,
+    "visibility": "fog"
+   },
+   {
+    "id": "xuchang",
+    "x": 7.0,
+    "y": 4.8,
+    "visibility": "frontier"
+   },
+   {
+    "id": "xiangyang",
+    "x": 5.6,
+    "y": 2.2,
+    "visibility": "frontier"
+   },
+   {
+    "id": "jianye",
+    "x": 8.8,
+    "y": 3.4,
+    "visibility": "fog"
+   },
+   {
+    "id": "wujun",
+    "x": 9.8,
+    "y": 2.1,
+    "visibility": "fog"
+   },
+   {
+    "id": "kuaiji",
+    "x": 9.8,
+    "y": 0.7,
+    "visibility": "fog"
+   }
+  ],
+  "edges": [
+   [
+    "chenliu",
+    "xuchang"
+   ],
+   [
+    "hanzhong",
+    "wancheng"
+   ],
+   [
+    "jianye",
+    "wujun"
+   ],
+   [
+    "jianye",
+    "xiangyang"
+   ],
+   [
+    "kuaiji",
+    "wujun"
+   ],
+   [
+    "luoyang",
+    "wancheng"
+   ],
+   [
+    "luoyang",
+    "xiangyang"
+   ],
+   [
+    "luoyang",
+    "xuchang"
+   ],
+   [
+    "xiangyang",
+    "xuchang"
+   ]
+  ]
+ }
+}

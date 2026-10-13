@@ -15,15 +15,15 @@
 ```
 - 後端模組：`src/slg/web/server.py`（路由）、`session.py`（一場遊戲、執行緒、HumanFactionAgent）。僅用標準庫。
 - 一個 session 在背景執行緒跑 `Game.step()`；輪到玩家勢力時 `HumanFactionAgent` 發出 `awaiting_input` 事件並等待 `POST /plan`（逾時視為全員休息並記錄）。
-- 事件推送用 Server-Sent Events（`GET /api/events`），避免依賴 websocket 套件。
+- 前端以 1 秒輪詢 `GET /api/status`（v0.2 改：不用 SSE／websocket，最簡單可靠）。
 
 ### API（JSON）
 | 方法 路徑 | 說明 |
 |---|---|
 | POST `/api/new` `{scenario,seed,player_faction,ai:{faction_id:"rule"\|"qwen"\|"gemini"},turns}` | 建立遊戲，回傳 `session_id` |
-| GET `/api/state` | 玩家的 `FactionView.to_dict()`＋ `map`（城座標/鄰接/歸屬，僅可見資訊）＋ `legal`（每位 cast 武將的 `format_legal` 結構化版） |
+| GET `/api/state` | 玩家的 `FactionView.to_dict()`＋ `map`（`nodes[{id,x,y,visibility:own|frontier|fog}]`、`edges`）＋ 每位 cast 武將的 `legal_structured`（見 `src/slg/web/payload.py`；範例 `docs/ui_fixtures/state_turn0_faction_2.json`） |
 | POST `/api/plan` `{orders:[{officer,action,params}],chronicle,next_cast:[...]}` | 提交本回合計畫 |
-| GET `/api/events` (SSE) | `turn_start`、`awaiting_input`、`resolution`（本回合事件，已過迷霧）、`game_over` |
+| GET `/api/status` | `{phase:"awaiting_input"\|"resolving"\|"game_over", turn, events:[str], feedback:[str], winner}`；`events` 已過迷霧 |
 | GET `/api/replay/<id>` | 回合日誌（`TurnLog`），供回放 |
 | POST `/api/estimate` `{city,target,troops}` | 回傳 `estimate_siege_ratio` 結果（與 AI 看到的偵察資訊同源） |
 
@@ -64,7 +64,7 @@ tests/test_web_*.py
 `assets/` 先放程式產生的 SVG／佔位圖；原創頭像等待 GPU（見 memo）。
 
 ## 6. 驗收
-1. `python3 -m unittest -q` 全過，含新測試：HumanFactionAgent 阻塞／逾時／非法命令駁回；`/api/state` 不含迷霧外資訊（以非鄰接敵城兵力欄位不存在斷言）；SSE 事件順序；同 seed 同命令序列重現同結果。
+1. `python3 -m unittest -q` 全過，含新測試：HumanFactionAgent 阻塞／逾時／非法命令駁回；`/api/state` 不含迷霧外資訊（以非鄰接敵城兵力欄位不存在斷言）；`/api/status` 階段轉換順序；同 seed 同命令序列重現同結果。
 2. 玩家用「全員休息」與規則 AI 席位的對局，結果與 headless 同席位同 seed 的 `run_headless` 一致（鎖定同條件）。
 3. 一個 headless 瀏覽器腳本（playwright，若可用）走完：新遊戲→派遣→提交→看到結算→結束；截圖存檔。
 4. 靜態頁在 360px 與 1280px 寬都不水平捲動。
