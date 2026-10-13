@@ -52,6 +52,8 @@ class SessionTest(unittest.TestCase):
             self.assertNotIn(f'"{cid}"', json.dumps([c for c in st["cities"]] + st["frontier"]))
             self.assertNotIn(f"{full.cities[cid].troops}兵", blob)
         self.assertTrue(all("legal_structured" in c for c in st["cast"]))
+        ids = {o["id"] for lst in st["roster_info"].values() for o in lst}
+        self.assertTrue(ids and all(s.game.state.officers[i].faction_id == "faction_2" for i in ids))
         s.submit_plan({})
         wait_phase(s, "game_over")
 

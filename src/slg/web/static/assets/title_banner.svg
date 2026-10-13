@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" width="100%" height="auto">
+  <defs>
+    <linearGradient id="banner_bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="gold_text" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#a16207"/>
+    </linearGradient>
+    <linearGradient id="flag_red" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+    <linearGradient id="flag_blue" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="flag_green" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Border Frame -->
+  <rect x="5" y="5" width="590" height="170" rx="8" fill="url(#banner_bg)" stroke="#ca8a04" stroke-width="3"/>
+  <rect x="12" y="12" width="576" height="156" rx="5" fill="none" stroke="#ca8a04" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Left/Right Decorative Flags -->
+  <path d="M40 30 L65 50 L40 70 Z" fill="url(#flag_blue)"/>
+  <path d="M40 80 L65 100 L40 120 Z" fill="url(#flag_green)"/>
+  <path d="M40 130 L65 145 L40 160 Z" fill="url(#flag_red)"/>
+
+  <path d="M560 30 L535 50 L560 70 Z" fill="url(#flag_blue)"/>
+  <path d="M560 80 L535 100 L560 120 Z" fill="url(#flag_green)"/>
+  <path d="M560 130 L535 145 L560 160 Z" fill="url(#flag_red)"/>
+
+  <!-- Title Text -->
+  <text x="300" y="82" font-size="44" font-family="'Noto Serif TC', 'Songti TC', serif" font-weight="900" fill="url(#gold_text)" text-anchor="middle" letter-spacing="8">三國志·決策天下</text>
+
+  <!-- Subtitle -->
+  <text x="300" y="118" font-size="16" font-family="sans-serif" font-weight="600" fill="#94a3b8" text-anchor="middle" letter-spacing="4">AI 驅動策略模擬 · 回合制全境推演</text>
+
+  <!-- Placeholder Badge -->
+  <rect x="230" y="134" width="140" height="22" rx="4" fill="#0f172acc" stroke="#ca8a04" stroke-width="1"/>
+  <text x="300" y="149" font-size="12" font-family="sans-serif" font-weight="bold" fill="#facc15" text-anchor="middle">【原創標題美術 佔位】</text>
+</svg>

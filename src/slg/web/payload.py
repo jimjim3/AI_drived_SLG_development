@@ -50,5 +50,12 @@ def state_payload(state: GameState, view: FactionView) -> dict:
     d = view.to_dict()
     for c in d["cast"]:
         c["legal_structured"] = legal_structured(state, c["id"])
+    by_name = {o.name: o for o in state.officers.values() if o.faction_id == view.faction_id and o.is_alive}
+    d["roster_info"] = {
+        cid: [{"id": by_name[n].officer_id, "name": n, "city": cid, "politics": by_name[n].politics,
+               "war": by_name[n].war, "leadership": by_name[n].leadership, "loyalty": by_name[n].loyalty,
+               "neglect": by_name[n].neglect} for n in names if n in by_name]
+        for cid, names in view.roster.items()
+    }
     d["map"] = {"nodes": nodes, "edges": [list(e) for e in edges]}
     return d

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="三國志 SLG 策略網頁前端 - 純靜態、無建置工具、AI 驅動對局推演">
+  <title>三國志·決策天下 (Three Kingdoms SLG)</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="app" class="app-container">
+
+    <!-- 1. Title Screen (標題選單) -->
+    <section id="screenTitle" class="screen-view active" aria-label="標題選單">
+      <div class="title-screen-wrap">
+        <div class="title-card">
+          <div class="banner-img-wrap">
+            <img src="./assets/title_banner.svg" alt="三國志·決策天下 標題插畫 [佔位]">
+          </div>
+
+          <nav class="title-actions-menu" aria-label="主選單">
+            <button id="btnTitleNewGame" class="menu-btn" data-key="1">
+              <span class="key-badge">1</span>
+              <span>新遊戲開局 (New Game)</span>
+            </button>
+            <button id="btnTitleHelp" class="menu-btn" data-key="2">
+              <span class="key-badge">2</span>
+              <span>遊戲規則與介面說明 (Help)</span>
+            </button>
+          </nav>
+
+          <div id="titleHelpBox" class="help-box" style="display: none;">
+            <h4>【遊戲機制與介面規則簡介】</h4>
+            <ul>
+              <li><strong>同等條件：</strong>玩家與 AI 條件完全相同，受戰爭迷霧（Fog of War）限制，僅能觀察我方領地及鄰接前線城池情報。</li>
+              <li><strong>精力有限（關注名單）：</strong>每回合君主至多關注 6 名焦點武將（cast），其餘武將由規則 AI 代管。長久未關注（neglect ≥ 4）或忠誠偏低易生變故。</li>
+              <li><strong>同城預算：</strong>同城內政與徵兵共享該城金庫，多道軍令可能發生預算排擠，請注意「剩餘金錢」預估。</li>
+              <li><strong>快捷鍵操作：</strong>主畫面可使用鍵盤數字鍵 1～8 及 0 直接切換情報面板與執行軍令。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Setup Screen (新遊戲設定) -->
+    <section id="screenSetup" class="screen-view" aria-label="新遊戲設定">
+      <div class="setup-screen-wrap">
+        <div class="setup-card">
+          <h2 class="panel-title" style="margin-bottom: 20px;">【新遊戲劇本與執政勢力設定】</h2>
+
+          <form id="setupForm" class="setup-form" onsubmit="return false;">
+            <!-- Scenario -->
+            <div class="form-group">
+              <label id="scenarioLabel">戰局情勢劇本 (Scenario)：</label>
+              <div class="radio-pill-group" role="radiogroup" aria-labelledby="scenarioLabel">
+                <label class="pill-option">
+                  <input type="radio" name="setupScenario" value="default" checked>
+                  <span>標準均勢 (default) — 三國各領三城，兵馬齊備</span>
+                </label>
+                <label class="pill-option">
+                  <input type="radio" name="setupScenario" value="advantage">
+                  <span>劉備優勢 (advantage) — 漢室軍勢充沛，周邊敵軍疲憊</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Faction -->
+            <div class="form-group">
+              <label id="factionLabel">玩家親掌勢力 (Player Faction)：</label>
+              <div class="radio-pill-group" role="radiogroup" aria-labelledby="factionLabel">
+                <label class="pill-option">
+                  <input type="radio" name="setupFaction" value="faction_2" checked>
+                  <span style="color: #10b981; font-weight: bold;">[蜀] 劉備 — 洛陽、宛城、漢中 (推薦)</span>
+                </label>
+                <label class="pill-option">
+                  <input type="radio" name="setupFaction" value="faction_1">
+                  <span style="color: #3b82f6; font-weight: bold;">[魏] 曹操 — 許昌、陳留、襄陽</span>
+                </label>
+                <label class="pill-option">
+                  <input type="radio" name="setupFaction" value="faction_3">
+                  <span style="color: #ef4444; font-weight: bold;">[吳] 孫權 — 建業、吳郡、會稽</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- AI Engine -->
+            <div class="form-group">
+              <label>對手諸侯 AI 後端模式：</label>
+              <div class="radio-pill-group">
+                <label class="pill-option">
+                  <input type="radio" name="setupAI" value="rule" checked>
+                  <span>經典規則策略引擎 (rule - 離線標準)</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="setup-action-btns">
+              <button id="btnSetupBack" type="button" class="btn btn-secondary">
+                <span class="cmd-num">0</span> 取消返回
+              </button>
+              <button id="btnSetupStart" type="button" class="btn btn-primary btn-lg">
+                <span class="cmd-num">1</span> 起兵入世，推演天下
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Main Gameplay Screen (主畫面 - 經典 DOS RTK2 佈局) -->
+    <main id="screenMain" class="screen-view main-game-screen" aria-label="策略推演主畫面">
+
+      <!-- Left Column: Tactical SVG Map -->
+      <section class="map-column" aria-label="全境戰術地圖">
+        <div class="map-header-bar">
+          <h2 class="map-title">
+            <span>🗺️ 全境疆域圖</span>
+            <span class="text-muted" style="font-size: 14px;">(點擊城池節點可選中並查閱情報)</span>
+          </h2>
+          <div id="mapStatusText" class="text-muted" style="font-size: 14px;"></div>
+        </div>
+
+        <div id="mapContainer" class="tactical-map-container">
+          <!-- Dynamic SVG inserted by map.js -->
+        </div>
+      </section>
+
+      <!-- Right Column: Header + Panels + Numbered Command Bar -->
+      <section class="info-column" aria-label="軍政情報與指令">
+
+        <!-- Right Top: Header -->
+        <header id="mainHeader" class="main-header">
+          <div class="portrait-avatar-box">
+            <img id="monarchPortraitImg" src="./assets/portrait_liu_bei.svg" alt="當前執政君主頭像 [佔位]">
+          </div>
+
+          <div class="header-info-box">
+            <div class="header-top-row">
+              <h1 id="factionNameTitle" class="faction-name-title">劉備軍</h1>
+              <div id="turnBadge" class="turn-counter-badge">第 0 回合</div>
+              <div id="phaseBadge" class="phase-indicator-pill phase-awaiting">● 等待軍令輸入</div>
+            </div>
+
+            <div id="headerMetrics" class="header-metrics-bar">
+              <span class="metric-item">城池: <strong id="mCityCount">3</strong> 座</span>
+              <span class="metric-item">兵力: <strong id="mTroopCount">2500</strong></span>
+              <span class="metric-item">國庫: <strong id="mGoldCount">2100</strong> 金</span>
+              <span class="metric-item">儲糧: <strong id="mFoodCount">2100</strong> 石</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Right Middle: Dynamic Information Panel Container -->
+        <section id="panelsContainer" class="panels-main-container" aria-live="polite">
+          <!-- Swapped dynamically by panels.js -->
+        </section>
+
+        <!-- Right Bottom: Numbered Command Bar (Classic DOS RTK2 Keypad) -->
+        <nav id="commandBarNav" class="command-bar-nav" aria-label="數字軍令指令列">
+          <button class="cmd-btn active" data-tab="city" data-key="1" title="快捷鍵 1">
+            <span class="cmd-num">1</span> 城池情報
+          </button>
+          <button class="cmd-btn" data-tab="officers" data-key="2" title="快捷鍵 2">
+            <span class="cmd-num">2</span> 武將列表
+          </button>
+          <button class="cmd-btn" data-tab="dispatch" data-key="3" title="快捷鍵 3">
+            <span class="cmd-num">3</span> 派遣軍令
+          </button>
+          <button class="cmd-btn" data-tab="siege" data-key="4" title="快捷鍵 4">
+            <span class="cmd-num">4</span> 攻城估算
+          </button>
+          <button class="cmd-btn" data-tab="watchlist" data-key="5" title="快捷鍵 5">
+            <span class="cmd-num">5</span> 關注名單
+          </button>
+          <button class="cmd-btn" data-tab="chronicle" data-key="6" title="快捷鍵 6">
+            <span class="cmd-num">6</span> 奏摺起草
+          </button>
+          <button class="cmd-btn primary-action" data-action="submit" data-key="7" title="快捷鍵 7">
+            <span class="cmd-num">7</span> 提交計畫
+          </button>
+          <button class="cmd-btn" data-action="refresh" data-key="8" title="快捷鍵 8">
+            <span class="cmd-num">8</span> 重新整理
+          </button>
+          <button class="cmd-btn" data-action="menu" data-key="0" title="快捷鍵 0">
+            <span class="cmd-num">0</span> 主選單
+          </button>
+        </nav>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Entry Script (ES Module) -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

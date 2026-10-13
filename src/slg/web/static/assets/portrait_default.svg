@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" width="120" height="140">
+  <rect x="2" y="2" width="116" height="136" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+  <circle cx="60" cy="50" r="24" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M25 125 C25 85, 95 85, 95 125 Z" fill="#475569" stroke="#94a3b8" stroke-width="2"/>
+  <text x="60" y="55" font-size="14" font-family="sans-serif" font-weight="bold" fill="#f8fafc" text-anchor="middle">將領</text>
+  <rect x="20" y="112" width="80" height="20" rx="3" fill="#0f172acc" stroke="#94a3b8" stroke-width="1"/>
+  <text x="60" y="126" font-size="11" font-family="sans-serif" font-weight="bold" fill="#cbd5e1" text-anchor="middle">武將 [佔位]</text>
+</svg>
