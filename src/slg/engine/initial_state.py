@@ -202,7 +202,7 @@ def build_initial_state(scenario: str = "default") -> GameState:
             politics=85, war=75, leadership=90, loyalty=80, ambition=50,
         ),
         "lu_su": OfficerState(
-            "lu_su", "魯粛", "faction_3", "jianye",
+            "lu_su", "魯肅", "faction_3", "jianye",
             politics=80, war=40, leadership=60, loyalty=80, ambition=50,
         ),
         "taishi_ci": OfficerState(
@@ -210,7 +210,7 @@ def build_initial_state(scenario: str = "default") -> GameState:
             politics=45, war=85, leadership=78, loyalty=80, ambition=50,
         ),
         "huang_gai": OfficerState(
-            "huang_gai", "黄蓋", "faction_3", "wujun",
+            "huang_gai", "黃蓋", "faction_3", "wujun",
             politics=50, war=78, leadership=70, loyalty=80, ambition=50,
         ),
         "gan_ning": OfficerState(
