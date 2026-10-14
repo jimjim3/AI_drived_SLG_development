@@ -29,7 +29,8 @@ def load_narrative(lang: str = "zh-TW") -> dict:
 
 def opening(scenario: str, faction_id: str, lang: str = "zh-TW") -> dict:
     """Opening briefing for the chosen scenario AND lord (headline, situation, advice, tone)."""
-    key = f"{scenario}.{faction_id}"
+    kind = scenario.split(":", 1)[0]  # "advantage:faction_1" -> "advantage"; the openings are written per lord
+    key = f"{kind}.{faction_id}"
     try:
         return load_narrative(lang)["openings"][key]
     except KeyError:

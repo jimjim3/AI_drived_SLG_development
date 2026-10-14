@@ -19,6 +19,12 @@ import { CITY_NAMES, FACTION_INFO } from "./map.js";
 export const portraitUrl = (id) => `./assets/portraits/${id}.png`;
 export const portraitImg = (id, cls = "mini-portrait") =>
   `<img class="${cls}" src="${portraitUrl(id)}" alt="" loading="lazy" onerror="this.style.display='none'">`;
+export const NARRATIVE = { officers: {}, cities: {} };
+export function ingestNarrative(n) {
+  NARRATIVE.officers = (n && n.officers) || {};
+  NARRATIVE.cities = (n && n.cities) || {};
+}
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 export const OFFICER_CATALOG = {};
 export const NAME_TO_ID = {};
 export function ingestRoster(state) {
@@ -78,6 +84,8 @@ export function renderCityInfo(container, state, selectedCityId, onCitySelect) {
     <h3 class="panel-title">【城池情報】${cityName}</h3>
     <span class="city-id-badge">${selectedCityId}</span>
   </div>`;
+  const lore = NARRATIVE.cities[selectedCityId];
+  if (lore) html += `<div class="city-blurb"><span class="flavor">${esc(lore.flavor)}</span>${esc(lore.blurb)}</div>`;
 
   if (ownCity) {
     const fInfo = FACTION_INFO[state.faction_id] || FACTION_INFO.faction_2;
@@ -311,7 +319,21 @@ export function renderOfficers(container, state, orders, onGoDispatch) {
     html += `<div class="empty-notice">目前無留守代管武將。</div>`;
   }
 
-  html += `</div></div></div>`;
+  html += `</div></div>`;
+
+  // Biographies of our own officers (static history text; own faction only, so nothing leaks)
+  const ownIds = [...new Set([...(state.cast || []).map((o) => o.id), ...Object.keys(OFFICER_CATALOG)])];
+  const bios = ownIds.filter((id) => NARRATIVE.officers[id]);
+  if (bios.length) {
+    html += `<div class="section-sub-block bio-list"><h4 class="sub-block-title">【武將傳略】</h4>`;
+    bios.forEach((id) => {
+      const b = NARRATIVE.officers[id];
+      html += `<details><summary>${portraitImg(id)} ${esc(b.name)}<span class="bio-title">${esc(b.title)}</span><span class="bio-tag">${esc(b.tag)}</span></summary>
+        <p>${esc(b.bio)}</p><p class="bio-quote">「${esc(b.quote)}」</p>${b.tie ? `<p class="bio-tie">交遊：${esc(b.tie)}</p>` : ""}</details>`;
+    });
+    html += `</div>`;
+  }
+  html += `</div>`;
   container.innerHTML = html;
 
   // Jump to dispatch handlers

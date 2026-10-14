@@ -15,10 +15,28 @@ with sync_playwright() as p:
     for w, h in ((1280, 800), (360, 740)):
         pg = b.new_page(viewport={"width": w, "height": h}); pg.on("pageerror", lambda e: errs.append(str(e)))
         pg.on("console", lambda m: errs.append(m.text) if m.type == "error" else None)
-        pg.goto(base + "/"); pg.click("#btnTitleNewGame"); pg.click("#btnSetupStart")
+        pg.goto(base + "/"); pg.click("#btnTitleNewGame")
+        # story preview follows the chosen scenario + lord (attack scenario favors the chosen lord)
+        pg.check('input[name="setupScenario"][value="advantage"]'); pg.check('input[name="setupFaction"][value="faction_1"]')
+        pg.wait_for_function("document.querySelector('#setupPreview .tone-badge')?.textContent === '優勢'", timeout=5000)
+        res[f"preview_{w}"] = "曹操" in pg.inner_text("#setupPreview")
+        pg.screenshot(path=str(out / f"setup_{w}.png"))
+        pg.check('input[name="setupScenario"][value="default"]'); pg.check('input[name="setupFaction"][value="faction_2"]')
+        pg.wait_for_function("document.querySelector('#setupPreview .tone-badge')?.textContent === '劣勢'", timeout=5000)
+        pg.click("#btnSetupStart")
         t0 = time.time()
         while status().get("phase") != "awaiting_input" and time.time() - t0 < 20: time.sleep(0.2)
-        time.sleep(1.5); pg.screenshot(path=str(out / f"main_{w}.png"))
+        pg.wait_for_selector(".opening-card", timeout=5000)
+        res[f"opening_{w}"] = "洛陽" in pg.inner_text(".opening-card") and pg.locator(".opening-card li").count() == 3
+        pg.screenshot(path=str(out / f"opening_{w}.png"))
+        res[f"opening_scroll_ok_{w}"] = pg.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
+        pg.keyboard.press("Enter"); pg.wait_for_selector(".opening-card", state="detached", timeout=3000)
+        res[f"calendar_{w}"] = pg.inner_text("#turnBadge").startswith("第1年春")
+        res[f"city_blurb_{w}"] = pg.locator(".city-blurb").count() == 1
+        pg.click('[data-tab="officers"]'); time.sleep(0.4)
+        res[f"bios_{w}"] = pg.locator(".bio-list details").count() >= 10
+        pg.click('[data-tab="city"]'); time.sleep(0.2)
+        time.sleep(1.0); pg.screenshot(path=str(out / f"main_{w}.png"))
         res[f"scroll_ok_{w}"] = pg.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
         if w == 1280:
             pg.click('[data-tab="dispatch"]'); time.sleep(0.5); pg.screenshot(path=str(out / "dispatch_1280.png"))

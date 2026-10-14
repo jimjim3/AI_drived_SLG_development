@@ -1301,3 +1301,29 @@ body {
   .command-bar-nav { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .cmd-btn { min-width: 0; padding: 4px 2px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; gap: 3px; }
 }
+
+/* ---- Story text: setup preview, opening briefing, city blurb, officer biographies ---- */
+.setup-preview { margin: 12px 0 4px; padding: 10px 12px; border: 1px solid var(--border-dim); border-left: 3px solid var(--gold-border); border-radius: 6px; background: var(--bg-panel); font-size: 14px; line-height: 1.7; color: var(--text-sub); min-height: 3em; }
+.setup-preview strong { color: var(--gold-accent); }
+.tone-badge { display: inline-block; padding: 0 8px; border-radius: 10px; font-size: 14px; font-weight: bold; margin-left: 6px; border: 1px solid currentColor; }
+.tone-優勢 { color: #10b981; } .tone-均勢 { color: #facc15; } .tone-劣勢 { color: #ef4444; }
+.opening-overlay { position: fixed; inset: 0; z-index: 50; background: rgba(8, 12, 20, 0.92); display: flex; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
+.opening-card { max-width: 640px; width: 100%; background: var(--bg-card); border: 2px solid var(--gold-border); border-radius: 8px; padding: 20px 22px; box-shadow: 0 0 24px var(--gold-glow); line-height: 1.8; color: var(--text-main); }
+.opening-card h2 { margin: 0 0 4px; font-size: 22px; color: var(--gold-accent); }
+.opening-card .opening-sub { color: var(--text-muted); font-size: 14px; margin-bottom: 10px; }
+.opening-card p { margin: 8px 0; font-size: 15px; }
+.opening-card .opening-lord { border-left: 3px solid var(--border-bright); padding-left: 10px; color: var(--text-sub); font-size: 14px; }
+.opening-card ol { margin: 6px 0 12px 1.2em; padding: 0; font-size: 15px; }
+.opening-card .btn { margin-top: 6px; }
+.city-blurb { margin: 8px 0 10px; padding: 8px 10px; background: var(--bg-panel); border-left: 3px solid var(--border-bright); border-radius: 4px; font-size: 14px; line-height: 1.7; color: var(--text-sub); }
+.city-blurb .flavor { color: var(--gold-accent); font-weight: bold; margin-right: 6px; }
+.bio-list details { margin: 6px 0; background: var(--bg-panel); border: 1px solid var(--border-dim); border-radius: 6px; padding: 6px 10px; }
+.bio-list summary { cursor: pointer; font-size: 14px; color: var(--text-main); min-height: 28px; }
+.bio-list .bio-title { color: var(--text-muted); margin-left: 6px; }
+.bio-list .bio-tag { color: var(--gold-accent); margin-left: 6px; }
+.bio-list p { margin: 6px 0; font-size: 14px; line-height: 1.7; color: var(--text-sub); }
+.bio-list .bio-quote { color: var(--text-main); font-style: italic; }
+.bio-list .bio-tie { color: var(--text-muted); font-size: 14px; }
+
+/* An inactive screen must never render (the .main-game-screen rule above forces display:flex). */
+.screen-view:not(.active) { display: none !important; }

@@ -21,6 +21,7 @@ import {
   renderGameOver,
   OFFICER_CATALOG,
   ingestRoster,
+  ingestNarrative,
 } from "./panels.js";
 
 class SLGApp {
@@ -37,6 +38,7 @@ class SLGApp {
     this.nextCast = []; // Array of officer IDs, max 6
     this.chronicle = "";
 
+    this.narrative = null; // story text for the chosen scenario + lord (/api/narrative)
     this.pollTimer = null;
     this.isResolving = false;
     this.resolveStartTime = null;
@@ -59,6 +61,8 @@ class SLGApp {
       setupForm: document.getElementById("setupForm"),
       btnSetupStart: document.getElementById("btnSetupStart"),
       btnSetupBack: document.getElementById("btnSetupBack"),
+      setupPreview: document.getElementById("setupPreview"),
+      openingOverlay: document.getElementById("openingOverlay"),
 
       // Header Elements
       monarchPortraitImg: document.getElementById("monarchPortraitImg"),
@@ -110,6 +114,10 @@ class SLGApp {
     // Setup buttons
     this.dom.btnSetupBack.addEventListener("click", () => this.setScreen("title"));
     this.dom.btnSetupStart.addEventListener("click", () => this.handleStartNewGame());
+    this.dom.setupForm.addEventListener("change", (e) => {
+      if (e.target.name === "setupScenario" || e.target.name === "setupFaction") this.refreshSetupPreview();
+    });
+    this.dom.btnTitleNewGame.addEventListener("click", () => this.refreshSetupPreview());
 
     // Command Bar buttons
     this.dom.commandBarNav.addEventListener("click", (e) => {
@@ -142,6 +150,14 @@ class SLGApp {
       }
 
       const key = e.key;
+
+      if (this.isOpeningOpen()) {
+        if (["Enter", "Escape", "1", " "].includes(key)) {
+          e.preventDefault();
+          this.closeOpening();
+        }
+        return;
+      }
 
       if (this.screen === "title") {
         if (key === "1") this.setScreen("setup");
@@ -226,10 +242,88 @@ class SLGApp {
     this.chronicle = "";
     this.nextCast = [];
 
+    await this.fetchNarrative(scenario, faction);
     await this.fetchState();
     await this.checkInitialStatus();
     this.setScreen("main");
     this.setActiveTab("city");
+    this.showOpening();
+  }
+
+  // ---- Story text -------------------------------------------------------------------------
+  async loadNarrative(scenario, faction) {
+    try {
+      const resp = await fetch(`/api/narrative?scenario=${encodeURIComponent(scenario)}&faction=${encodeURIComponent(faction)}`);
+      return resp.ok ? await resp.json() : null;
+    } catch (err) {
+      console.warn("Could not load /api/narrative:", err);
+      return null;
+    }
+  }
+
+  async fetchNarrative(scenario, faction) {
+    this.narrative = await this.loadNarrative(scenario, faction);
+    ingestNarrative(this.narrative);
+  }
+
+  async refreshSetupPreview() {
+    const scenario = document.querySelector('input[name="setupScenario"]:checked')?.value || "default";
+    const faction = document.querySelector('input[name="setupFaction"]:checked')?.value || "faction_2";
+    const n = await this.loadNarrative(scenario, faction);
+    const box = this.dom.setupPreview;
+    if (!box) return;
+    box.textContent = "";
+    if (!n) return;
+    const o = n.opening;
+    const head = document.createElement("div");
+    const strong = document.createElement("strong");
+    strong.textContent = `${n.lord.name}（${n.lord.title}）・${o.headline}`;
+    const tone = document.createElement("span");
+    tone.className = `tone-badge tone-${o.tone}`;
+    tone.textContent = o.tone;
+    head.append(strong, tone);
+    const body = document.createElement("div");
+    body.textContent = o.situation;
+    box.append(head, body);
+  }
+
+  isOpeningOpen() {
+    return !!this.dom.openingOverlay && this.dom.openingOverlay.style.display !== "none";
+  }
+
+  closeOpening() {
+    this.dom.openingOverlay.style.display = "none";
+    this.dom.openingOverlay.textContent = "";
+  }
+
+  showOpening() {
+    const n = this.narrative;
+    if (!n || !this.dom.openingOverlay) return;
+    const el = (tag, cls, text) => {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text !== undefined) e.textContent = text;
+      return e;
+    };
+    const card = el("div", "opening-card");
+    const h = el("h2", "", n.opening.headline);
+    h.id = "openingTitle";
+    const tone = el("span", `tone-badge tone-${n.opening.tone}`, n.opening.tone);
+    h.append(tone);
+    card.append(h, el("div", "opening-sub", `${n.scenario.name}・${n.lord.name}（${n.lord.title}）`));
+    card.append(el("p", "opening-lord", `${n.lord.intro}　「${n.lord.opening}」`));
+    card.append(el("p", "", n.opening.situation));
+    const ol = el("ol");
+    n.opening.advice.forEach((a) => ol.append(el("li", "", a)));
+    card.append(ol);
+    const btn = el("button", "btn btn-primary btn-lg", "起兵（Enter）");
+    btn.type = "button";
+    btn.addEventListener("click", () => this.closeOpening());
+    card.append(btn);
+    this.dom.openingOverlay.textContent = "";
+    this.dom.openingOverlay.append(card);
+    this.dom.openingOverlay.style.display = "flex";
+    btn.focus();
   }
 
   async checkInitialStatus() {
@@ -306,7 +400,9 @@ class SLGApp {
 
     // Turn
     const turn = this.state.turn !== undefined ? this.state.turn : 0;
-    this.dom.turnBadge.textContent = `第 ${turn} 回合`;
+    const cal = this.state.calendar;
+    this.dom.turnBadge.textContent = cal ? `${cal.label}・第 ${turn} 回合` : `第 ${turn} 回合`;
+    this.dom.turnBadge.title = cal ? cal.flavor : "";
 
     // Metrics summary
     const cities = this.state.cities || [];

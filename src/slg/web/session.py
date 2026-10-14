@@ -7,7 +7,7 @@ import threading
 
 from ..agents.base import FactionAgent
 from ..engine.game import Game, compute_winner
-from ..engine.initial_state import build_initial_state
+from ..engine.initial_state import build_initial_state, resolve_scenario
 from ..engine.resolution import estimate_siege_ratio
 from ..schema import AgentDecision, CAST_LIMIT, FactionPlan
 from .backends import make_ai_agent
@@ -79,6 +79,8 @@ class Session:
         self.timeouts = 0
         self.winner = None
         self.error = None
+        scenario = resolve_scenario(scenario, player_faction)
+        self.scenario = scenario
         state = build_initial_state(scenario=scenario)
         if player_faction not in state.factions:
             raise ValueError(f"unknown faction {player_faction!r}")

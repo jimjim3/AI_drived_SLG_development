@@ -7,7 +7,9 @@ import sys
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 
+from .payload import narrative_payload
 from .session import PlanError, Session
 
 STATIC = Path(__file__).parent / "static"
@@ -56,6 +58,13 @@ def make_handler(app: App):
         def do_GET(self):
             p = self.path.split("?")[0]
             s = app.session
+            if p == "/api/narrative":
+                q = parse_qs(urlsplit(self.path).query)
+                try:
+                    return self._json(200, narrative_payload((q.get("scenario") or ["default"])[0],
+                                                             (q.get("faction") or ["faction_2"])[0]))
+                except ValueError as e:
+                    return self._json(400, {"error": str(e)})
             if p == "/api/status":
                 return self._json(200, s.status() if s else {"phase": "no_game"})
             if p == "/api/state":

@@ -3,6 +3,8 @@ so the player never sees more than an AI faction agent would."""
 
 from __future__ import annotations
 
+from .. import narrative
+from ..engine.initial_state import FACTION_IDS, parse_scenario, resolve_scenario
 from ..engine.legal_actions import generate_legal_actions
 from ..engine.view import FactionView
 from ..schema import GameState
@@ -58,4 +60,23 @@ def state_payload(state: GameState, view: FactionView) -> dict:
         for cid, names in view.roster.items()
     }
     d["map"] = {"nodes": nodes, "edges": [list(e) for e in edges]}
+    # the first turn a player sees is turn 1; the calendar is 0-based, so spring opens the game
+    d["calendar"] = narrative.calendar_label(max(state.turn - 1, 0))
     return d
+
+
+def narrative_payload(scenario: str, faction_id: str) -> dict:
+    """Story text for the chosen scenario and lord. Static, public history text (no game state),
+    so it can be served before a game exists (setup-screen preview)."""
+    if faction_id not in FACTION_IDS:
+        raise ValueError(f"unknown faction {faction_id!r}")
+    kind, _ = parse_scenario(scenario)  # validates the id
+    n = narrative.load_narrative()
+    return {
+        "scenario": {"id": resolve_scenario(scenario, faction_id), "kind": kind, **narrative.scenario(kind)},
+        "title": n["world"]["title"], "subtitle": n["world"]["subtitle"], "prologue": n["world"]["prologue"],
+        "lord": narrative.lord(faction_id),
+        "opening": narrative.opening(kind, faction_id),
+        "cities": n["world"]["cities"],
+        "officers": n["officers"],
+    }

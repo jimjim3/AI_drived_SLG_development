@@ -18,9 +18,38 @@ from ..schema import (
 )
 
 
+FACTION_IDS = ("faction_1", "faction_2", "faction_3")
+
+
+def parse_scenario(scenario: str) -> tuple[str, str | None]:
+    """Split a scenario id into (kind, favored_faction).
+
+    "default" -> ("default", None); "advantage" -> ("advantage", "faction_2") (the original
+    Liu Bei attack scenario, kept so old logs/evals replay unchanged);
+    "advantage:faction_N" -> the same boost given to faction N.
+    """
+    if scenario == "default":
+        return "default", None
+    if scenario == "advantage":
+        return "advantage", "faction_2"
+    kind, _, fid = scenario.partition(":")
+    if kind == "advantage" and fid in FACTION_IDS:
+        return "advantage", fid
+    raise ValueError(f"Unknown scenario: {scenario!r}")
+
+
+def resolve_scenario(scenario: str, player_faction: str) -> str:
+    """Scenario id for a human who picked `player_faction`: the attack scenario favors the player's lord."""
+    kind, _ = parse_scenario(scenario)
+    if kind == "advantage":
+        if player_faction not in FACTION_IDS:
+            raise ValueError(f"unknown faction {player_faction!r}")
+        return f"advantage:{player_faction}"
+    return scenario
+
+
 def build_initial_state(scenario: str = "default") -> GameState:
-    if scenario not in ("default", "advantage"):
-        raise ValueError(f"Unknown scenario: {scenario!r}")
+    kind, favored = parse_scenario(scenario)
 
     factions = {
         "faction_1": FactionState("faction_1", "曹操", True),
@@ -273,12 +302,12 @@ def build_initial_state(scenario: str = "default") -> GameState:
         "kuaiji": ("wujun",),
     }
 
-    if scenario == "advantage":
-        f2_city_ids = {cid for cid, c in cities.items() if c.owner == "faction_2"}
+    if kind == "advantage":
+        f2_city_ids = {cid for cid, c in cities.items() if c.owner == favored}
         f2_neighbor_enemy_ids = set()
         for f2_cid in f2_city_ids:
             for nbr in adjacency.get(f2_cid, ()):
-                if cities[nbr].owner != "faction_2":
+                if cities[nbr].owner != favored:
                     f2_neighbor_enemy_ids.add(nbr)
 
         cities = {
@@ -287,7 +316,7 @@ def build_initial_state(scenario: str = "default") -> GameState:
                 troops=int(c.troops * 2.5),
                 gold=int(c.gold * 1.5),
             )
-            if c.owner == "faction_2"
+            if c.owner == favored
             else (
                 dataclasses.replace(c, troops=int(c.troops * 0.5))
                 if cid in f2_neighbor_enemy_ids

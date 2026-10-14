@@ -3,7 +3,7 @@ import re
 import unittest
 
 from slg import narrative
-from slg.engine.initial_state import build_initial_state
+from slg.engine.initial_state import build_initial_state, resolve_scenario
 
 SCENARIOS = ("default", "advantage")
 LATIN = re.compile(r"[A-Za-z]")
@@ -87,8 +87,8 @@ class TestOpeningsMatchEngine(unittest.TestCase):
     def test_opening_matches_lord_cities_roster_and_strength(self):
         n = narrative.load_narrative()
         for sc in SCENARIOS:
-            state = build_initial_state(sc)
-            for fid in state.factions:
+            for fid in build_initial_state("default").factions:
+                state = build_initial_state(resolve_scenario(sc, fid))  # attack scenario favors the chosen lord
                 op = narrative.opening(sc, fid)
                 text = op["headline"] + op["situation"] + "".join(op["advice"])
                 own = [c.name for c in state.cities.values() if c.owner == fid]
@@ -103,11 +103,12 @@ class TestOpeningsMatchEngine(unittest.TestCase):
                 self.assertTrue(roster)  # sanity
 
     def test_scenarios_give_different_openings_for_the_same_lord(self):
-        for fid in ("faction_1", "faction_2"):
+        for fid in ("faction_1", "faction_2", "faction_3"):
             self.assertNotEqual(narrative.opening("default", fid)["situation"],
                                 narrative.opening("advantage", fid)["situation"])
-        self.assertEqual(narrative.opening("advantage", "faction_2")["tone"], "優勢")
-        self.assertEqual(narrative.opening("advantage", "faction_1")["tone"], "劣勢")
+        for fid in ("faction_1", "faction_2", "faction_3"):
+            self.assertEqual(narrative.opening("advantage", fid)["tone"], "優勢", fid)
+        self.assertEqual(narrative.opening("advantage:faction_1", "faction_1"), narrative.opening("advantage", "faction_1"))
 
 
 class TestHygiene(unittest.TestCase):

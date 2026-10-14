@@ -59,7 +59,7 @@
                 </label>
                 <label class="pill-option">
                   <input type="radio" name="setupScenario" value="advantage">
-                  <span>劉備優勢 (advantage) — 漢室軍勢充沛，周邊敵軍疲憊</span>
+                  <span>進攻局 (advantage) — 你所選君主兵力暴增，鄰接的敵城兵力被削弱</span>
                 </label>
               </div>
             </div>
@@ -112,6 +112,9 @@
               </div>
             </div>
 
+            <!-- Story preview for the chosen scenario + lord -->
+            <div id="setupPreview" class="setup-preview" aria-live="polite"></div>
+
             <!-- Buttons -->
             <div class="setup-action-btns">
               <button id="btnSetupBack" type="button" class="btn btn-secondary">
@@ -127,6 +130,8 @@
     </section>
 
     <!-- 3. Main Gameplay Screen (主畫面 - 經典 DOS RTK2 佈局) -->
+    <div id="openingOverlay" class="opening-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="openingTitle"></div>
+
     <main id="screenMain" class="screen-view main-game-screen" aria-label="策略推演主畫面">
 
       <!-- Left Column: Tactical SVG Map -->
