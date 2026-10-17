@@ -54,6 +54,9 @@ def validate_decision(state: GameState, officer: OfficerState, decision: AgentDe
             if pvalue not in ps.choices:
                 return False, f"param {pname}={pvalue!r} not in choices"
         else:
+            # AI output is untrusted: a non-numeric value (e.g. "600人", None, a list) must be rejected, not crash.
+            if isinstance(pvalue, bool) or not isinstance(pvalue, (int, float)) or pvalue != pvalue:
+                return False, f"param {pname}={pvalue!r} is not a number"
             if pvalue < ps.min or pvalue > ps.max:
                 return False, f"param {pname}={pvalue!r} out of range [{ps.min}, {ps.max}]"
             if ps.step and (pvalue - ps.min) % ps.step != 0:

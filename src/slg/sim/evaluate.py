@@ -1123,9 +1123,32 @@ def main(argv: list[str] | None = None) -> None:
     )
     parser.add_argument("--out", type=str, default=None, help="Output path for markdown report (and .json)")
     parser.add_argument("--demo", action="store_true", help="Use DemoCompleter backend")
+    parser.add_argument(
+        "--siege-verdict",
+        action="store_true",
+        help="Show the engine's verdict (不建議/冒險/可行) next to each siege_odds ratio in the LLM prompt",
+    )
     parser.add_argument("--openai-base-url", type=str, default=None, help="OpenAI-compatible base URL")
     parser.add_argument("--model", type=str, default=None, help="OpenAI model name")
     parser.add_argument("--api-key-env", type=str, default=None, help="Env var name for API key")
+    parser.add_argument(
+        "--http-retries",
+        type=int,
+        default=0,
+        help="Extra attempts after HTTP 429/502/503/504, waiting Retry-After or 2,4,8… seconds (default: 0)",
+    )
+    parser.add_argument(
+        "--http-timeout",
+        type=float,
+        default=None,
+        help="Read timeout in seconds for each LLM request (default: 120); timeouts are retried when --http-retries > 0",
+    )
+    parser.add_argument(
+        "--min-interval",
+        type=float,
+        default=0.0,
+        help="Minimum seconds between LLM request starts, for rate-limited endpoints (default: 0)",
+    )
     parser.add_argument(
         "--max-consecutive-errors",
         type=int,
@@ -1154,6 +1177,10 @@ def main(argv: list[str] | None = None) -> None:
         "--model",
         "--api-key-env",
         "--max-consecutive-errors",
+        "--http-retries",
+        "--min-interval",
+        "--http-timeout",
+        "--siege-verdict",
     }
     processed_argv = _reorder_command_args(raw_argv, known)
     args = parser.parse_args(processed_argv)
@@ -1169,7 +1196,7 @@ def main(argv: list[str] | None = None) -> None:
         print(f"Error parsing seeds: {exc}", file=sys.stderr)
         sys.exit(2)
 
-    agent_factory = lambda budget: LLMFactionAgent(budget.wrap(completer))
+    agent_factory = lambda budget: LLMFactionAgent(budget.wrap(completer), siege_verdict=args.siege_verdict)
 
     result = evaluate(
         seeds=seeds,

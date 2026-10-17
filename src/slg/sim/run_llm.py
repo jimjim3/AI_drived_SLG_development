@@ -70,6 +70,9 @@ def build_completer(args: argparse.Namespace) -> Completer | None:
             model=args.model,
             api_key_env=args.api_key_env,
             extra_body=extra_body,
+            http_retries=getattr(args, "http_retries", 0) or 0,
+            min_interval=getattr(args, "min_interval", 0.0) or 0.0,
+            **({"timeout": args.http_timeout} if getattr(args, "http_timeout", None) else {}),
         )
 
     max_errors = getattr(args, "max_consecutive_errors", 3)
@@ -106,9 +109,32 @@ def main(argv: list[str] | None = None) -> None:
         help="Faction ID(s) controlled by LLM (default: faction_2, can specify multiple)",
     )
     parser.add_argument("--demo", action="store_true", help="Use DemoCompleter backend")
+    parser.add_argument(
+        "--siege-verdict",
+        action="store_true",
+        help="Show the engine's verdict (不建議/冒險/可行) next to each siege_odds ratio in the LLM prompt",
+    )
     parser.add_argument("--openai-base-url", type=str, default=None, help="OpenAI-compatible base URL")
     parser.add_argument("--model", type=str, default=None, help="OpenAI model name")
     parser.add_argument("--api-key-env", type=str, default=None, help="Env var name for API key")
+    parser.add_argument(
+        "--http-retries",
+        type=int,
+        default=0,
+        help="Extra attempts after HTTP 429/502/503/504, waiting Retry-After or 2,4,8… seconds (default: 0)",
+    )
+    parser.add_argument(
+        "--http-timeout",
+        type=float,
+        default=None,
+        help="Read timeout in seconds for each LLM request (default: 120); timeouts are retried when --http-retries > 0",
+    )
+    parser.add_argument(
+        "--min-interval",
+        type=float,
+        default=0.0,
+        help="Minimum seconds between LLM request starts, for rate-limited endpoints (default: 0)",
+    )
     parser.add_argument(
         "--max-consecutive-errors",
         type=int,
@@ -160,7 +186,7 @@ def main(argv: list[str] | None = None) -> None:
     agents_by_faction = {}
     for fid in sorted(state.factions):
         if fid in llm_factions:
-            agents_by_faction[fid] = LLMFactionAgent(completer)
+            agents_by_faction[fid] = LLMFactionAgent(completer, siege_verdict=args.siege_verdict)
         else:
             agents_by_faction[fid] = RuleBasedAgent("balanced")
 

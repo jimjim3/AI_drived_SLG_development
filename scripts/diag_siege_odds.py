@@ -1,4 +1,5 @@
-"""Diagnostic: for each siege order the NIM model issues, record the siege_odds it was shown."""
+"""Diagnostic: for each siege order the NIM model issues, record the siege_odds it was shown.
+Usage: diag_siege_odds.py <model> <n_seeds> <turns> <out.json> [scenario]   (needs NVIDIA_API_KEY)"""
 import json, os, sys
 from slg.agents.backends import OpenAIChatCompleter
 from slg.agents.llm_agent import LLMFactionAgent
@@ -15,9 +16,11 @@ class Probe(LLMFactionAgent):
                              "troops": od.params.get("troops"), "odds_shown": shown, "memo": od.memo})
         return plan
 comp = OpenAIChatCompleter(base_url="https://integrate.api.nvidia.com/v1", model=sys.argv[1], api_key_env="NVIDIA_API_KEY",
-                           extra_body={"chat_template_kwargs": {"enable_thinking": False}})
+                           extra_body={"chat_template_kwargs": {"enable_thinking": False}},
+                           http_retries=6, min_interval=3.0)
 for SEED in range(int(sys.argv[2])):
-    run_headless(seed=SEED, turns=int(sys.argv[3]), agents_by_faction={"faction_2": Probe(comp)})
+    run_headless(seed=SEED, turns=int(sys.argv[3]), agents_by_faction={"faction_2": Probe(comp)},
+                 scenario=sys.argv[5] if len(sys.argv) > 5 else "default")
 json.dump(rows, open(sys.argv[4], "w"), ensure_ascii=False, indent=1)
 sh = [r["odds_shown"] for r in rows if r["odds_shown"] is not None]
 print("siege orders:", len(rows), "with odds:", len(sh))

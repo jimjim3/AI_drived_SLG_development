@@ -47,9 +47,34 @@ SYSTEM_PROMPT = (
 )
 
 
-def build_user_prompt(view: FactionView, error: str | None = None) -> str:
+# Optional presentation aid (off by default): the engine's own verdict next to each scouting ratio.
+SIEGE_BAD = 1.0
+SIEGE_RISKY = 1.3
+SIEGE_VERDICT_NOTE = (
+    "\n【出征判定】cast 中的 siege_verdict 是引擎依 siege_odds 給出的判定："
+    f"「不建議」＝勝算比低於 {SIEGE_BAD}，出征幾乎必敗並損失大量兵力；"
+    f"「冒險」＝{SIEGE_BAD}–{SIEGE_RISKY}；「可行」＝{SIEGE_RISKY} 以上。"
+    "判定為「不建議」的目標，請改為徵兵、開發或移動等待時機。"
+)
+
+
+def siege_verdict(ratio: float) -> str:
+    if ratio < SIEGE_BAD:
+        return "不建議"
+    if ratio < SIEGE_RISKY:
+        return "冒險"
+    return "可行"
+
+
+def build_user_prompt(view: FactionView, error: str | None = None, with_verdict: bool = False) -> str:
     """Build the per-turn user prompt from a FactionView, appending error if retrying."""
-    prompt = "狀態：" + json.dumps(view.to_dict(), ensure_ascii=False, separators=(",", ":"))
+    data = view.to_dict()
+    if with_verdict:
+        for officer in data.get("cast", []):
+            odds = officer.get("siege_odds")
+            if odds:
+                officer["siege_verdict"] = {target: siege_verdict(r) for target, r in odds.items()}
+    prompt = "狀態：" + json.dumps(data, ensure_ascii=False, separators=(",", ":"))
     if error is not None:
         prompt += f"\n上次輸出無法使用：{error}。請只輸出修正後的 JSON。"
     return prompt
@@ -216,9 +241,11 @@ class LLMFactionAgent(FactionAgent):
         completer: Completer,
         system_prompt: str = SYSTEM_PROMPT,
         max_retries: int = 1,
+        siege_verdict: bool = False,
     ) -> None:
         self._completer = completer
-        self._system_prompt = system_prompt
+        self._with_verdict = siege_verdict
+        self._system_prompt = system_prompt + (SIEGE_VERDICT_NOTE if siege_verdict else "")
         self._max_retries = max_retries
         self.usage: dict[str, int] = {
             "calls": 0,
@@ -240,7 +267,7 @@ class LLMFactionAgent(FactionAgent):
         max_attempts = 1 + self._max_retries
 
         for _ in range(max_attempts):
-            user_prompt = build_user_prompt(view, error=last_error)
+            user_prompt = build_user_prompt(view, error=last_error, with_verdict=self._with_verdict)
             prompt_chars = len(self._system_prompt) + len(user_prompt)
 
             self.usage["calls"] += 1

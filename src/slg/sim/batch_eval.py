@@ -295,6 +295,24 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--model", type=str, default=None, help="OpenAI model name")
     parser.add_argument("--api-key-env", type=str, default=None, help="Env var name for API key")
     parser.add_argument(
+        "--http-retries",
+        type=int,
+        default=0,
+        help="Extra attempts after HTTP 429/502/503/504, waiting Retry-After or 2,4,8… seconds (default: 0)",
+    )
+    parser.add_argument(
+        "--http-timeout",
+        type=float,
+        default=None,
+        help="Read timeout in seconds for each LLM request (default: 120); timeouts are retried when --http-retries > 0",
+    )
+    parser.add_argument(
+        "--min-interval",
+        type=float,
+        default=0.0,
+        help="Minimum seconds between LLM request starts, for rate-limited endpoints (default: 0)",
+    )
+    parser.add_argument(
         "--extra-body-json",
         type=_parse_extra_body_json,
         default=None,
@@ -329,6 +347,9 @@ def main(argv: list[str] | None = None) -> None:
         "--api-key-env",
         "--extra-body-json",
         "--max-consecutive-errors",
+        "--http-retries",
+        "--min-interval",
+        "--http-timeout",
     }
     processed_argv = _reorder_command_args(raw_argv, known)
     args = parser.parse_args(processed_argv)

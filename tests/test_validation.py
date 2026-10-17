@@ -130,6 +130,43 @@ class ValidationTests(unittest.TestCase):
         )
         self.assertFalse(ok)
 
+class UntrustedParamTypeTests(unittest.TestCase):
+    """Model output may carry strings/None/lists in numeric params: reject, never raise."""
+
+    def setUp(self):
+        self.state = build_initial_state()
+
+    def _check(self, value):
+        return validate_decision(self.state, self.state.officer("xun_yu"),
+                                 AgentDecision("xun_yu", "recruit", {"troops": value}))
+
+    def test_non_numeric_values_are_rejected_not_raised(self):
+        for bad in ("600人", "abc", None, [100], {"n": 100}, True, float("nan")):
+            ok, reason = self._check(bad)
+            self.assertFalse(ok, bad)
+            self.assertIn("not a number", reason)
+
+    def test_plain_numbers_still_validate(self):
+        self.assertTrue(self._check(100)[0])
+        self.assertTrue(self._check(100.0)[0])  # integral float on the step grid is fine
+
+
+class GameSurvivesBadParamTypes(unittest.TestCase):
+    def test_game_step_rejects_string_param_and_continues(self):
+        import random
+        from slg.agents.base import FactionAgent
+        from slg.engine.game import Game
+        from slg.schema import FactionPlan
+
+        class Sloppy(FactionAgent):
+            def decide(self, view):
+                return FactionPlan(orders=(AgentDecision("xun_yu", "recruit", {"troops": "600人"}),))
+
+        state = build_initial_state()
+        game = Game(state, {"faction_1": Sloppy()}, random.Random(0))
+        game.step()  # must not raise
+        self.assertGreaterEqual(game.stats["rejected"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()

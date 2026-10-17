@@ -13,11 +13,17 @@ import json
 import os
 import subprocess
 import tempfile
+import threading
+import time
 import urllib.error
 import urllib.request
 from typing import Callable, Sequence
 
 Completer = Callable[[str, str], str]
+
+# HTTP statuses worth retrying: rate limit / transient server trouble (free tiers hit these a lot).
+RETRYABLE_STATUS = (429, 502, 503, 504)
+MAX_BACKOFF_SECONDS = 60.0
 
 
 class BackendUnavailable(RuntimeError):
@@ -141,7 +147,19 @@ class OpenAIChatCompleter:
         temperature: float = 0.2,
         max_tokens: int = 900,
         extra_body: dict | None = None,
+        http_retries: int = 0,
+        min_interval: float = 0.0,
+        sleep: Callable[[float], None] = time.sleep,
+        clock: Callable[[], float] = time.monotonic,
     ) -> None:
+        """http_retries: extra attempts after a 429/502/503/504 (waits Retry-After, else 2,4,8… s, capped).
+        min_interval: minimum seconds between request starts (simple client-side pacing)."""
+        self.http_retries = max(0, int(http_retries))
+        self.min_interval = max(0.0, float(min_interval))
+        self._sleep = sleep
+        self._clock = clock
+        self._pace_lock = threading.Lock()
+        self._next_start = 0.0
         self.base_url = base_url
         self.model = model
         self.api_key_env = api_key_env
@@ -149,6 +167,27 @@ class OpenAIChatCompleter:
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.extra_body = dict(extra_body) if extra_body is not None else None
+
+    def _pace(self) -> None:
+        if self.min_interval <= 0:
+            return
+        with self._pace_lock:
+            now = self._clock()
+            wait = self._next_start - now
+            if wait > 0:
+                self._sleep(wait)
+                now = self._clock()
+            self._next_start = max(now, self._next_start) + self.min_interval
+
+    @staticmethod
+    def _backoff(exc: urllib.error.HTTPError, attempt: int) -> float:
+        retry_after = exc.headers.get("Retry-After") if exc.headers else None
+        try:
+            if retry_after is not None:
+                return min(MAX_BACKOFF_SECONDS, max(0.0, float(retry_after)))
+        except ValueError:
+            pass
+        return min(MAX_BACKOFF_SECONDS, 2.0 * (2 ** attempt))
 
     def __call__(self, system: str, user: str) -> str:
         api_key = os.environ.get(self.api_key_env) if self.api_key_env else None
@@ -185,19 +224,35 @@ class OpenAIChatCompleter:
                 return msg.replace(api_key, "[REDACTED]")
             return msg
 
-        try:
-            with urllib.request.urlopen(req, timeout=self.timeout) as resp:
-                body = resp.read().decode("utf-8")
-        except urllib.error.HTTPError as exc:
+        attempt = 0
+        while True:
+            self._pace()
             try:
-                detail = exc.read().decode("utf-8", "replace")[:300]
-            except Exception:
-                detail = ""
-            raise RuntimeError(_clean(f"HTTP error {exc.code}: {exc.reason} {detail}".strip())) from None
-        except urllib.error.URLError as exc:
-            raise RuntimeError(_clean(f"Network error: {exc.reason}")) from None
-        except Exception as exc:
-            raise RuntimeError(_clean(f"Request failed: {type(exc).__name__}: {exc}")) from None
+                with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+                    body = resp.read().decode("utf-8")
+                break
+            except urllib.error.HTTPError as exc:
+                if exc.code in RETRYABLE_STATUS and attempt < self.http_retries:
+                    self._sleep(self._backoff(exc, attempt))
+                    attempt += 1
+                    continue
+                try:
+                    detail = exc.read().decode("utf-8", "replace")[:300]
+                except Exception:
+                    detail = ""
+                raise RuntimeError(_clean(f"HTTP error {exc.code}: {exc.reason} {detail}".strip())) from None
+            except urllib.error.URLError as exc:
+                if isinstance(exc.reason, TimeoutError) and attempt < self.http_retries:
+                    self._sleep(min(MAX_BACKOFF_SECONDS, 2.0 * (2 ** attempt)))
+                    attempt += 1
+                    continue
+                raise RuntimeError(_clean(f"Network error: {exc.reason}")) from None
+            except Exception as exc:
+                if isinstance(exc, TimeoutError) and attempt < self.http_retries:
+                    self._sleep(min(MAX_BACKOFF_SECONDS, 2.0 * (2 ** attempt)))
+                    attempt += 1
+                    continue
+                raise RuntimeError(_clean(f"Request failed: {type(exc).__name__}: {exc}")) from None
 
         try:
             res_json = json.loads(body)
