@@ -23,6 +23,7 @@ from ..agents.base import FactionAgent
 from ..agents.llm_agent import Completer, LLMFactionAgent
 from ..agents.rule_based import RuleBasedAgent
 from ..engine.initial_state import build_initial_state
+from ..schema import DEFECT_BELOW, DISOBEY_BELOW, NEGLECT_PETITION
 from .headless import run_headless
 from .run_llm import _parse_extra_body_json, build_completer
 
@@ -256,6 +257,9 @@ def _compute_game_diagnostics(
         "initial_officers": init_officers,
         "final_officers": final_officers,
         "final_avg_loyalty": final_avg_loyalty,
+        # how close the least-loyal / most-neglected officer got to the defect / petition thresholds
+        "final_min_loyalty": min((o.loyalty for o in final_living), default=0),
+        "final_max_neglect": max((o.neglect for o in final_living), default=0),
     }
 
     actual_turns = res.final_state.turn
@@ -330,6 +334,10 @@ def _aggregate_diagnostics(per_seed: list[dict], total_exp_turns: int) -> dict[s
     base_final_officers_sum = 0
     exp_final_officers_sum = 0
     base_loyalty_sum = 0.0
+    base_min_loyalty = None
+    exp_min_loyalty = None
+    base_max_neglect = 0
+    exp_max_neglect = 0
     exp_loyalty_sum = 0.0
 
     base_siege = {"attempts": 0, "captured": 0, "repelled": 0}
@@ -373,6 +381,11 @@ def _aggregate_diagnostics(per_seed: list[dict], total_exp_turns: int) -> dict[s
         exp_final_officers_sum += int(e_inc.get("final_officers", 0))
         base_loyalty_sum += float(b_inc.get("final_avg_loyalty", 0.0))
         exp_loyalty_sum += float(e_inc.get("final_avg_loyalty", 0.0))
+        if "final_min_loyalty" in b_inc:
+            base_min_loyalty = b_inc["final_min_loyalty"] if base_min_loyalty is None else min(base_min_loyalty, b_inc["final_min_loyalty"])
+            exp_min_loyalty = e_inc["final_min_loyalty"] if exp_min_loyalty is None else min(exp_min_loyalty, e_inc["final_min_loyalty"])
+            base_max_neglect = max(base_max_neglect, b_inc.get("final_max_neglect", 0))
+            exp_max_neglect = max(exp_max_neglect, e_inc.get("final_max_neglect", 0))
 
         c = diag.get("officer_loss_curve", [])
         if c:
@@ -421,6 +434,8 @@ def _aggregate_diagnostics(per_seed: list[dict], total_exp_turns: int) -> dict[s
                 "initial_officers": base_init_officers,
                 "final_officers": b_final_avg,
                 "final_avg_loyalty": b_loyalty_avg,
+                "final_min_loyalty": base_min_loyalty,
+                "final_max_neglect": base_max_neglect,
             },
             "experiment": {
                 "deflections": exp_defects,
@@ -428,6 +443,8 @@ def _aggregate_diagnostics(per_seed: list[dict], total_exp_turns: int) -> dict[s
                 "initial_officers": exp_init_officers,
                 "final_officers": e_final_avg,
                 "final_avg_loyalty": e_loyalty_avg,
+                "final_min_loyalty": exp_min_loyalty,
+                "final_max_neglect": exp_max_neglect,
             },
             "deflections": exp_defects,
             "defect_count": exp_defects,
@@ -1033,6 +1050,11 @@ def render_markdown(result: dict) -> str:
     b_loyalty = base_inc.get("final_avg_loyalty", 0.0)
     e_loyalty = exp_inc.get("final_avg_loyalty", 0.0)
     lines.append(f"| 最終平均忠誠 | {b_loyalty:.1f} | {e_loyalty:.1f} | {e_loyalty - b_loyalty:+.1f} |")
+    b_min, e_min = base_inc.get("final_min_loyalty"), exp_inc.get("final_min_loyalty")
+    if b_min is not None and e_min is not None:
+        lines.append(f"| 最終最低忠誠（各種子最小值；出奔門檻 {DEFECT_BELOW}、抗旨門檻 {DISOBEY_BELOW}） | {b_min} | {e_min} | {e_min - b_min:+d} |")
+        b_ng, e_ng = base_inc.get("final_max_neglect", 0), exp_inc.get("final_max_neglect", 0)
+        lines.append(f"| 最終最高冷落值（陳情門檻 {NEGLECT_PETITION}） | {b_ng} | {e_ng} | {e_ng - b_ng:+d} |")
     lines.append("")
 
     lines.append("### 被拒指令原因前 3 名")
