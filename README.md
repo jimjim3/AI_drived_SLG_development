@@ -10,6 +10,8 @@
 
 **M0a、M0b 已完成，M1 與 M2 基礎架構已落地。** 引擎升級為規則 v2，支援 5 城、3 勢力、20 武將的鄰接地圖；決策層升級為「勢力層級決策」（`FactionAgent` / `FactionView` / `FactionPlan`），支援戰爭迷霧、出場名單聚光燈（`select_cast` 上限 6 人）、未點名武將規則 AI 委任代理；`LLMFactionAgent` 支援結構化 JSON 解析、帶錯誤反饋重試與 Token/字元用量統計，並提供離線 `--demo` 與 OpenAI 相容 API 等多後端；確定性重播模組（`replay`）可依日誌 100% 還原遊戲狀態與事件。146 個單元測試全數通過。
 
+**試玩與部署**：網頁介面可在本機、SSH 伺服器、Colab 或 Codespaces 執行，見 [deploy/README.md](deploy/README.md)；目前進度與待辦見 [HANDOFF.md](HANDOFF.md)（本檔以下內容為早期階段的紀錄，部分數字已過時）。
+
 ## 做了什麼
 
 - **劇本與地圖**：

@@ -8,14 +8,15 @@ from playwright.sync_api import sync_playwright
 out = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "/tmp/e2e_web"); out.mkdir(parents=True, exist_ok=True)
 app = App(); srv = ThreadingHTTPServer(("127.0.0.1", 0), make_handler(app)); port = srv.server_address[1]
 threading.Thread(target=srv.serve_forever, daemon=True).start(); base = f"http://127.0.0.1:{port}"
-status = lambda: json.load(urllib.request.urlopen(base + "/api/status"))
+SID = {"v": "main"}  # each browser tab plays its own game; poll the same one the page uses
+status = lambda: json.load(urllib.request.urlopen(urllib.request.Request(base + "/api/status", headers={"X-Session": SID["v"]})))
 errs = []; res = {}
 with sync_playwright() as p:
     b = p.chromium.launch()
     for w, h in ((1280, 800), (360, 740)):
         pg = b.new_page(viewport={"width": w, "height": h}); pg.on("pageerror", lambda e: errs.append(str(e)))
         pg.on("console", lambda m: errs.append(m.text) if m.type == "error" else None)
-        pg.goto(base + "/"); pg.click("#btnTitleNewGame")
+        pg.goto(base + "/"); SID["v"] = pg.evaluate("sessionStorage.getItem('slg_sid')") or "main"; pg.click("#btnTitleNewGame")
         # story preview follows the chosen scenario + lord (attack scenario favors the chosen lord)
         pg.check('input[name="setupScenario"][value="advantage"]'); pg.check('input[name="setupFaction"][value="faction_1"]')
         pg.wait_for_function("document.querySelector('#setupPreview .tone-badge')?.textContent === '優勢'", timeout=5000)

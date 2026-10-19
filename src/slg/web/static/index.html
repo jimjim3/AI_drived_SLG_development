@@ -96,9 +96,16 @@
                   <span class="pill-title">demo（示範 LLM，離線）</span>
                 </label>
                 <label class="pill-option pill-option-with-note">
+                  <input type="radio" name="setupAI" value="nim">
+                  <div class="pill-text-wrap">
+                    <span class="pill-title">nim（NVIDIA 雲端，免費額度，推薦）</span>
+                    <small class="option-note">需要伺服器端設定 NVIDIA_API_KEY；每回合約 10 到 20 秒</small>
+                  </div>
+                </label>
+                <label class="pill-option pill-option-with-note">
                   <input type="radio" name="setupAI" value="qwen">
                   <div class="pill-text-wrap">
-                    <span class="pill-title">qwen（本機 Qwen，需伺服器端已啟動）</span>
+                    <span class="pill-title">qwen（Qwen，需伺服器端設定 SLG_QWEN_URL）</span>
                     <small class="option-note">需要伺服器端設定；回合結算可能需數十秒</small>
                   </div>
                 </label>

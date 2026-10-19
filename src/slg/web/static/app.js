@@ -24,6 +24,22 @@ import {
   ingestNarrative,
 } from "./panels.js";
 
+// One game per browser tab: the server keys games by this id (see server.py).
+const SESSION_ID = (() => {
+  try {
+    let id = sessionStorage.getItem("slg_sid");
+    if (!id) {
+      id = Array.from(crypto.getRandomValues(new Uint8Array(8)), (b) => b.toString(16).padStart(2, "0")).join("");
+      sessionStorage.setItem("slg_sid", id);
+    }
+    return id;
+  } catch (err) {
+    return "main";
+  }
+})();
+const apiFetch = (url, opts = {}) =>
+  fetch(url, { ...opts, headers: { ...(opts.headers || {}), "X-Session": SESSION_ID } });
+
 class SLGApp {
   constructor() {
     this.screen = "title"; // 'title' | 'setup' | 'main'
@@ -216,7 +232,7 @@ class SLGApp {
     const aiMode = document.querySelector('input[name="setupAI"]:checked')?.value || "rule";
 
     try {
-      const resp = await fetch("/api/new", {
+      const resp = await apiFetch("/api/new", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -253,7 +269,7 @@ class SLGApp {
   // ---- Story text -------------------------------------------------------------------------
   async loadNarrative(scenario, faction) {
     try {
-      const resp = await fetch(`/api/narrative?scenario=${encodeURIComponent(scenario)}&faction=${encodeURIComponent(faction)}`);
+      const resp = await apiFetch(`/api/narrative?scenario=${encodeURIComponent(scenario)}&faction=${encodeURIComponent(faction)}`);
       return resp.ok ? await resp.json() : null;
     } catch (err) {
       console.warn("Could not load /api/narrative:", err);
@@ -328,7 +344,7 @@ class SLGApp {
 
   async checkInitialStatus() {
     try {
-      const resp = await fetch("/api/status");
+      const resp = await apiFetch("/api/status");
       if (!resp.ok) return;
       const status = await resp.json();
       this.status = status;
@@ -345,7 +361,7 @@ class SLGApp {
 
   async fetchState() {
     try {
-      const resp = await fetch("/api/state");
+      const resp = await apiFetch("/api/state");
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const data = await resp.json();
       this.state = data;
@@ -562,7 +578,7 @@ class SLGApp {
 
   async requestEstimate(city, target, troops) {
     try {
-      const resp = await fetch("/api/estimate", {
+      const resp = await apiFetch("/api/estimate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ city, target, troops }),
@@ -596,7 +612,7 @@ class SLGApp {
       this.resolveStartTime = Date.now();
       this.updateResolvingUI();
 
-      const resp = await fetch("/api/plan", {
+      const resp = await apiFetch("/api/plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -634,7 +650,7 @@ class SLGApp {
 
   async pollStatus() {
     try {
-      const resp = await fetch("/api/status");
+      const resp = await apiFetch("/api/status");
       if (!resp.ok) return;
 
       const status = await resp.json();

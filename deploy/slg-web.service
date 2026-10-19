@@ -1,0 +1,19 @@
+# systemd *user* unit for a Linux server.
+#   mkdir -p ~/.config/systemd/user && cp deploy/slg-web.service ~/.config/systemd/user/
+#   (edit WorkingDirectory below, create the env file, then:)
+#   systemctl --user daemon-reload && systemctl --user enable --now slg-web
+#   loginctl enable-linger "$USER"      # keep it running after you log out (may need an admin)
+[Unit]
+Description=AI-driven SLG web UI
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/AI_drived_SLG_development
+# One KEY=value per line, e.g. NVIDIA_API_KEY=..., SLG_QWEN_URL=..., SLG_ACCESS_TOKEN=...  (chmod 600 this file)
+EnvironmentFile=%h/.config/slg-web.env
+ExecStart=/usr/bin/env python3 -m slg.web.server 8080
+Environment=PYTHONPATH=src
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

@@ -1,4 +1,55 @@
-# HANDOFF — AI-Driven SLG（2026-10-11 暫停點）
+# HANDOFF — AI-Driven SLG（更新於 2026-10-18）
+
+## 狀態一句話
+引擎、LLM 勢力代理、評測、劇情文本、網頁介面皆可運作並已推送（分支 `claude/ai-hierarchical-slg-game-fl3ojj`，**407 個測試全過**）。目前缺的是「好玩」：還沒有真人試玩過，且對手 AI 偏被動。
+
+## 快速開始（換機器時）
+```bash
+git clone git@github.com:jimjim3/AI_drived_SLG_development.git && cd AI_drived_SLG_development
+git checkout claude/ai-hierarchical-slg-game-fl3ojj
+python3 -m unittest            # 需 Python 3.10+；教科書製圖測試另需 matplotlib（其餘僅用標準庫）
+scripts/serve.sh               # 網頁介面 http://127.0.0.1:8080/ ；部署與試玩方式見 deploy/README.md
+```
+金鑰與網址**只放環境變數**（`NVIDIA_API_KEY`、`SLG_QWEN_URL`、`SLG_ACCESS_TOKEN`…），不在 repo 內。
+
+## 先讀
+README.md（較舊）→ deploy/README.md → docs/EVALUATION.md（**第 11、12 節是最新實驗**）→ docs/narrative/README.md → 本檔。
+
+## 最近完成了什麼
+- **進攻局**：`advantage` 仍是劉備占優（舊評測不變）；`advantage:faction_N` 讓第 N 家占優，網頁選進攻局時自動讓**玩家所選君主**占優（`resolve_scenario`）。
+- **劇情文本**（`src/slg/narrative/`）：42 武將、3 君主、9 城、事件模板、6 種「劇本×君主」開場；有測試對照引擎資料。事實卡在 `docs/narrative/officer_fact_cards.json`，**尚未對照原典複核**。事件模板還沒接進結算畫面。
+- **網頁**：開局簡報、城池介紹、武將傳略、年季；對手選項 rule/demo/nim/qwen/gemini；每分頁獨立對局；`SLG_ACCESS_TOKEN` 保護。
+- **評測工具**：`--http-retries/--http-timeout/--min-interval`（免費層限速與逾時）、`--siege-verdict`（引擎判定附在勝算比旁）、最低忠誠／最高冷落診斷。
+- **修掉的 bug**：驗證器遇到非數值參數會讓整個評測崩潰（現在拒絕並回報）。
+
+## 實驗結論（細節與數字見 EVALUATION.md 第 11、12 節）
+1. **出征判定**（`--siege-verdict`）對會冒進的模型很有效：Super 長局 40 回合 N8→N9 兵力差 -8745→+2718；Ultra N4→N5 -115→+1592；對本來就守紀律的 Qwen 沒有差別。
+2. **Qwen3.8-27B**（Colab Q4 量化）最守紀律，攻城成功率高；Q4 與 Q8 表現相近。
+3. **NIM**：Super 約 6 秒／次，Ultra 品質稍好但尖峰時段常 503；都要重試。兩個 NIM 對手一回合約 27 秒（網頁實測）。
+4. **忠誠／冷落機制在 ≤40 回合的真實 LLM 對局中不會觸發**（最低忠誠 59–68，門檻 50／35）。使用者決定先不調整。
+5. **對手偏被動**：預設情境三方幾乎不出兵，勝負取決於經濟；規則 AI 的攻城邏輯在進攻局 0/7。
+
+## 待辦（依優先序）
+1. **真人試玩幾局**（目前完全沒有這方面資料），記錄哪裡無聊、卡住、看不懂。
+2. 讓對手在**有勝算時**會出兵：給 AI 進攻／防守個性，用進攻局量化出征次數與成功率；修規則 AI 的攻城邏輯。
+3. 視圖加入各城可用金幣預算：約 15–25% 指令因同城金幣被先行指令用完而被拒（Q7 接受率 79%）。
+4. 平衡座位優勢（自我對弈 faction_3 全勝）。
+5. 結算畫面套用事件奏報模板（需先把引擎事件改成結構化）。
+6. 對照原典複核事實卡（尤其「稱號」欄位）。
+7. 補評測：Q6 已補完；增加種子數與信賴區間。目前各組只有 4–10 個種子。
+
+## 已知缺陷
+rest 比例約 47%；faction_2 的宛城／漢中武將不與任何敵城相鄰故無法出奔；`evaluate` 整組結束才寫檔（中止時會寫出已完成的種子）；對局都在記憶體裡，伺服器重啟就沒了；網頁沒有存檔。
+
+## 操作知識（這台 Mac；與舊伺服器不同）
+- 沒有本機 Qwen 與 GPU：Qwen 由使用者的 Colab 提供（每天約 2 小時，網址每次不同，需使用者貼新網址；`reasoning_effort:none` 才能關閉思考）。
+- 助手 AI 順序：**NIM 優先**（免費），agy 只在 NIM 做不到時才用（會消耗 Antigravity 額度）。NIM 金鑰在 `~/.local/state/local-llm/nvidia-api-key`，**不要放進命令列或檔案**。
+- 這台 `git`、`python3` 需 `DEVELOPER_DIR=/Library/Developer/CommandLineTools`（Xcode 授權未接受）；`~/.zshenv` 已設定。推送用 SSH 位址（HTTPS 沒登入）。
+- 驗收慣例：不採信 worker 自述；重跑測試；NIM／agy 的輸出只當線索，會改變結論的宣稱要自己抽查（本專案劇情文本就抓到多處捏造的史實）。
+
+---
+# 舊交接（2026-10-11／12，保留供查；其中 Qwen 伺服器與路徑指的是舊的 Linux 機器）
+
 
 ## 狀態一句話
 引擎、LLM 勢力代理、評測、診斷、情境、批次工具皆完成並推送（分支 `claude/ai-hierarchical-slg-game-fl3ojj`，**313 個測試全過**）。進行中：Qwen 任務 M（重調忠誠／冷落常數）。

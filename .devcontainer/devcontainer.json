@@ -1,0 +1,14 @@
+{
+  "name": "AI-driven SLG",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "forwardPorts": [
+    8080
+  ],
+  "portsAttributes": {
+    "8080": {
+      "label": "SLG web UI",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postAttachCommand": "nohup bash scripts/serve.sh > /tmp/slg-web.log 2>&1 &"
+}
