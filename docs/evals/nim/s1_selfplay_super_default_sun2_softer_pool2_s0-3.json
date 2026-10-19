@@ -1,0 +1,293 @@
+{
+ "args": {
+  "demo": false,
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "extra_body_json": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  },
+  "http_retries": 5,
+  "http_timeout": 120.0,
+  "min_interval": 1.5,
+  "max_consecutive_errors": 8,
+  "siege_verdict": true,
+  "persona": null,
+  "rules": "softer_pool2",
+  "seeds": "0-3",
+  "turns": 20,
+  "scenario": "default+sun2",
+  "out": "docs/evals/nim/s1_selfplay_super_default_sun2_softer_pool2_s0-3.json",
+  "command": null
+ },
+ "games": [
+  {
+   "seed": 0,
+   "winner": "faction_2",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 0,
+     "troops": 0,
+     "sieges_llm": 9,
+     "captured_llm": 6,
+     "sieges_delegated": 0,
+     "captured_delegated": 0,
+     "min_loyalty": null,
+     "officers": 0
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 7,
+     "troops": 13375,
+     "sieges_llm": 12,
+     "captured_llm": 8,
+     "sieges_delegated": 3,
+     "captured_delegated": 3,
+     "min_loyalty": 47,
+     "officers": 28
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 2,
+     "troops": 1912,
+     "sieges_llm": 10,
+     "captured_llm": 5,
+     "sieges_delegated": 1,
+     "captured_delegated": 1,
+     "min_loyalty": 69,
+     "officers": 14
+    }
+   },
+   "rejected": 50,
+   "decisions": 851,
+   "usage": {
+    "faction_1": {
+     "calls": 10,
+     "prompt_chars": 37497,
+     "response_chars": 9429,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 20,
+     "prompt_chars": 90460,
+     "response_chars": 20512,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 20,
+     "prompt_chars": 72745,
+     "response_chars": 20595,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  },
+  {
+   "seed": 1,
+   "winner": "faction_3",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 1,
+     "troops": 1111,
+     "sieges_llm": 10,
+     "captured_llm": 4,
+     "sieges_delegated": 4,
+     "captured_delegated": 3,
+     "min_loyalty": 72,
+     "officers": 14
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 1,
+     "troops": 940,
+     "sieges_llm": 10,
+     "captured_llm": 7,
+     "sieges_delegated": 1,
+     "captured_delegated": 0,
+     "min_loyalty": 61,
+     "officers": 14
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 7,
+     "troops": 7178,
+     "sieges_llm": 19,
+     "captured_llm": 13,
+     "sieges_delegated": 2,
+     "captured_delegated": 2,
+     "min_loyalty": 76,
+     "officers": 14
+    }
+   },
+   "rejected": 78,
+   "decisions": 840,
+   "usage": {
+    "faction_1": {
+     "calls": 20,
+     "prompt_chars": 76544,
+     "response_chars": 20064,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 20,
+     "prompt_chars": 78531,
+     "response_chars": 19984,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 20,
+     "prompt_chars": 89772,
+     "response_chars": 21512,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  },
+  {
+   "seed": 2,
+   "winner": "faction_3",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 0,
+     "troops": 0,
+     "sieges_llm": 14,
+     "captured_llm": 9,
+     "sieges_delegated": 1,
+     "captured_delegated": 1,
+     "min_loyalty": null,
+     "officers": 0
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 3,
+     "troops": 2374,
+     "sieges_llm": 10,
+     "captured_llm": 5,
+     "sieges_delegated": 1,
+     "captured_delegated": 1,
+     "min_loyalty": 68,
+     "officers": 14
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 6,
+     "troops": 10200,
+     "sieges_llm": 14,
+     "captured_llm": 11,
+     "sieges_delegated": 1,
+     "captured_delegated": 1,
+     "min_loyalty": 51,
+     "officers": 28
+    }
+   },
+   "rejected": 58,
+   "decisions": 840,
+   "usage": {
+    "faction_1": {
+     "calls": 14,
+     "prompt_chars": 56585,
+     "response_chars": 13354,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 20,
+     "prompt_chars": 76900,
+     "response_chars": 20369,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 20,
+     "prompt_chars": 84150,
+     "response_chars": 20695,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  },
+  {
+   "seed": 3,
+   "winner": "faction_1",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 5,
+     "troops": 4323,
+     "sieges_llm": 22,
+     "captured_llm": 9,
+     "sieges_delegated": 3,
+     "captured_delegated": 1,
+     "min_loyalty": 64,
+     "officers": 14
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 2,
+     "troops": 2511,
+     "sieges_llm": 11,
+     "captured_llm": 7,
+     "sieges_delegated": 0,
+     "captured_delegated": 0,
+     "min_loyalty": 72,
+     "officers": 14
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 2,
+     "troops": 2250,
+     "sieges_llm": 15,
+     "captured_llm": 5,
+     "sieges_delegated": 0,
+     "captured_delegated": 0,
+     "min_loyalty": 53,
+     "officers": 14
+    }
+   },
+   "rejected": 75,
+   "decisions": 840,
+   "usage": {
+    "faction_1": {
+     "calls": 20,
+     "prompt_chars": 87490,
+     "response_chars": 20966,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 21,
+     "prompt_chars": 83679,
+     "response_chars": 23995,
+     "parse_failures": 2,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 20,
+     "prompt_chars": 79820,
+     "response_chars": 20146,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  }
+ ]
+}

@@ -48,7 +48,12 @@ def resolve_scenario(scenario: str, player_faction: str) -> str:
     return scenario
 
 
+SUN_SECOND_ENTRANCE = "+sun2"  # experiment: give 孫權 a second land entrance (吳郡—襄陽)
+
+
 def build_initial_state(scenario: str = "default") -> GameState:
+    sun2 = scenario.endswith(SUN_SECOND_ENTRANCE)
+    scenario = scenario[: -len(SUN_SECOND_ENTRANCE)] if sun2 else scenario
     kind, favored = parse_scenario(scenario)
 
     factions = {
@@ -325,5 +330,8 @@ def build_initial_state(scenario: str = "default") -> GameState:
             for cid, c in cities.items()
         }
 
+    if sun2:
+        adjacency["wujun"] = adjacency["wujun"] + ("xiangyang",)
+        adjacency["xiangyang"] = adjacency["xiangyang"] + ("wujun",)
     return GameState(turn=0, factions=factions, cities=cities, officers=officers,
                      adjacency=adjacency)
