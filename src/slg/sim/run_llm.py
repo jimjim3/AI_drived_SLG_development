@@ -110,6 +110,12 @@ def main(argv: list[str] | None = None) -> None:
     )
     parser.add_argument("--demo", action="store_true", help="Use DemoCompleter backend")
     parser.add_argument(
+        "--persona",
+        choices=("aggressive", "defensive"),
+        default=None,
+        help="Append a play-style paragraph to the LLM system prompt (default: none)",
+    )
+    parser.add_argument(
         "--siege-verdict",
         action="store_true",
         help="Show the engine's verdict (不建議/冒險/可行) next to each siege_odds ratio in the LLM prompt",
@@ -186,7 +192,7 @@ def main(argv: list[str] | None = None) -> None:
     agents_by_faction = {}
     for fid in sorted(state.factions):
         if fid in llm_factions:
-            agents_by_faction[fid] = LLMFactionAgent(completer, siege_verdict=args.siege_verdict)
+            agents_by_faction[fid] = LLMFactionAgent(completer, siege_verdict=args.siege_verdict, persona=args.persona)
         else:
             agents_by_faction[fid] = RuleBasedAgent("balanced")
 

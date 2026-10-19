@@ -1,0 +1,155 @@
+{
+ "args": {
+  "demo": false,
+  "model": "qwen3.8:27b",
+  "extra_body_json": {
+   "reasoning_effort": "none"
+  },
+  "http_retries": 4,
+  "http_timeout": 300.0,
+  "min_interval": 0.0,
+  "max_consecutive_errors": 5,
+  "siege_verdict": false,
+  "seeds": "0-1",
+  "turns": 20,
+  "scenario": "default",
+  "out": "docs/evals/qwen/q10_selfplay_noverdict_s0-1.json",
+  "command": null
+ },
+ "games": [
+  {
+   "seed": 0,
+   "winner": "faction_3",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 2,
+     "troops": 5735,
+     "sieges_llm": 2,
+     "captured_llm": 0,
+     "sieges_delegated": 0,
+     "captured_delegated": 0,
+     "min_loyalty": 62,
+     "officers": 14
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 3,
+     "troops": 8461,
+     "sieges_llm": 0,
+     "captured_llm": 0,
+     "sieges_delegated": 2,
+     "captured_delegated": 0,
+     "min_loyalty": 69,
+     "officers": 14
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 4,
+     "troops": 12434,
+     "sieges_llm": 0,
+     "captured_llm": 0,
+     "sieges_delegated": 1,
+     "captured_delegated": 1,
+     "min_loyalty": 74,
+     "officers": 14
+    }
+   },
+   "rejected": 98,
+   "decisions": 840,
+   "usage": {
+    "faction_1": {
+     "calls": 20,
+     "prompt_chars": 81921,
+     "response_chars": 17231,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 20,
+     "prompt_chars": 79363,
+     "response_chars": 17446,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 20,
+     "prompt_chars": 76745,
+     "response_chars": 17051,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  },
+  {
+   "seed": 1,
+   "winner": "faction_3",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 3,
+     "troops": 10328,
+     "sieges_llm": 0,
+     "captured_llm": 0,
+     "sieges_delegated": 2,
+     "captured_delegated": 0,
+     "min_loyalty": 74,
+     "officers": 14
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 3,
+     "troops": 10532,
+     "sieges_llm": 0,
+     "captured_llm": 0,
+     "sieges_delegated": 1,
+     "captured_delegated": 0,
+     "min_loyalty": 75,
+     "officers": 14
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 3,
+     "troops": 12028,
+     "sieges_llm": 0,
+     "captured_llm": 0,
+     "sieges_delegated": 1,
+     "captured_delegated": 0,
+     "min_loyalty": 76,
+     "officers": 14
+    }
+   },
+   "rejected": 73,
+   "decisions": 840,
+   "usage": {
+    "faction_1": {
+     "calls": 20,
+     "prompt_chars": 83728,
+     "response_chars": 18328,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 20,
+     "prompt_chars": 77587,
+     "response_chars": 16669,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 20,
+     "prompt_chars": 75687,
+     "response_chars": 16104,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  }
+ ]
+}

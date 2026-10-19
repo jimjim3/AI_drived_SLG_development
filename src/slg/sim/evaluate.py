@@ -1146,6 +1146,17 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--out", type=str, default=None, help="Output path for markdown report (and .json)")
     parser.add_argument("--demo", action="store_true", help="Use DemoCompleter backend")
     parser.add_argument(
+        "--rules",
+        default="v2",
+        help="Experimental combat rule set from engine/combat.py (default: v2, the shipped rules)",
+    )
+    parser.add_argument(
+        "--persona",
+        choices=("aggressive", "defensive"),
+        default=None,
+        help="Append a play-style paragraph to the LLM system prompt (default: none)",
+    )
+    parser.add_argument(
         "--siege-verdict",
         action="store_true",
         help="Show the engine's verdict (不建議/冒險/可行) next to each siege_odds ratio in the LLM prompt",
@@ -1203,10 +1214,17 @@ def main(argv: list[str] | None = None) -> None:
         "--min-interval",
         "--http-timeout",
         "--siege-verdict",
+        "--persona",
+        "--rules",
     }
     processed_argv = _reorder_command_args(raw_argv, known)
     args = parser.parse_args(processed_argv)
 
+    from ..engine.combat import set_rules
+    try:
+        set_rules(args.rules)
+    except ValueError as exc:
+        parser.error(str(exc))
     completer = build_completer(args)
     if completer is None:
         parser.print_usage(sys.stderr)
@@ -1218,7 +1236,7 @@ def main(argv: list[str] | None = None) -> None:
         print(f"Error parsing seeds: {exc}", file=sys.stderr)
         sys.exit(2)
 
-    agent_factory = lambda budget: LLMFactionAgent(budget.wrap(completer), siege_verdict=args.siege_verdict)
+    agent_factory = lambda budget: LLMFactionAgent(budget.wrap(completer), siege_verdict=args.siege_verdict, persona=args.persona)
 
     result = evaluate(
         seeds=seeds,

@@ -9,6 +9,7 @@ from __future__ import annotations
 import random
 from dataclasses import replace
 
+from . import combat
 from ..schema import (
     DEVELOP_COST,
     DEVELOP_AGRICULTURE_BASE,
@@ -116,8 +117,9 @@ def _siege_strengths(
     ]
     dq = (max((o.war + o.leadership) / 2 for o in defenders)
           if defenders else float(NO_OFFICER_DEFENSE_SKILL))
-    dfn_base = (def_troops * (1 + defender_city.defense / 200)
-                * (0.5 + dq / 100))
+    rules = combat.active()
+    dfn_base = (def_troops * (1 + defender_city.defense / rules.defense_divisor)
+                * (rules.dq_base + dq / rules.dq_div))
     return atk_base, dfn_base
 
 
@@ -162,7 +164,8 @@ def _resolve_siege(
         loss = int(c * min(0.5, max(0.1, 0.4 * dfn / atk)))
         survivors = c - loss
         cities[target_id] = replace(defender_city, owner=attacker_faction, troops=survivors)
-        cities[officer.city_id] = replace(attacker_city, troops=attacker_city.troops - c)
+        for cid, amount in combat.siege_contributions(state, attacker_city, c):
+            cities[cid] = replace(cities[cid], troops=cities[cid].troops - amount)
 
         captured_officers = []
         fallback_cities = sorted(
@@ -199,7 +202,11 @@ def _resolve_siege(
     # Repelled: the expedition loses a large share and returns home.
     attacker_loss = int(c * min(0.8, max(0.3, 0.5 * dfn / atk)))
     defender_loss = int(def_troops * min(0.3, 0.15 * atk / dfn))
-    cities[officer.city_id] = replace(attacker_city, troops=attacker_city.troops - attacker_loss)
+    parts = combat.siege_contributions(state, attacker_city, c)
+    shares = [(cid, attacker_loss * amount // c) for cid, amount in parts]
+    shares[0] = (shares[0][0], shares[0][1] + attacker_loss - sum(x for _, x in shares))  # rounding to the origin
+    for cid, loss in shares:
+        cities[cid] = replace(cities[cid], troops=cities[cid].troops - loss)
     cities[target_id] = replace(defender_city, troops=def_troops - defender_loss)
     new_state = replace(state, cities=cities)
     event = ResolutionEvent(

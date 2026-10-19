@@ -58,6 +58,19 @@ SIEGE_VERDICT_NOTE = (
 )
 
 
+# Optional play-style paragraph appended to the system prompt (off by default).
+PERSONAS = {
+    "aggressive": (
+        "\n【個性：進取】你是進取的君主，不滿足於守成。只要某位武將在 siege_odds 中有勝算比 ≥ 1.3 的目標"
+        "（若有 siege_verdict，即「可行」），就應優先派他出征，目標選勝算比最高者，並讓出征兵力夠大；"
+        "沒有可行目標時，把金錢用於徵兵與城防，為下一次出擊累積兵力。絕不對勝算比低於 1.0 的目標出征。"
+    ),
+    "defensive": (
+        "\n【個性：守成】你是謹慎的君主，以固守與內政為先。除非勝算比 ≥ 2.0 且本城守軍充足，否則不要出征。"
+    ),
+}
+
+
 def siege_verdict(ratio: float) -> str:
     if ratio < SIEGE_BAD:
         return "不建議"
@@ -242,10 +255,14 @@ class LLMFactionAgent(FactionAgent):
         system_prompt: str = SYSTEM_PROMPT,
         max_retries: int = 1,
         siege_verdict: bool = False,
+        persona: str | None = None,
     ) -> None:
+        if persona is not None and persona not in PERSONAS:
+            raise ValueError(f"unknown persona {persona!r}; choose from {sorted(PERSONAS)}")
         self._completer = completer
         self._with_verdict = siege_verdict
-        self._system_prompt = system_prompt + (SIEGE_VERDICT_NOTE if siege_verdict else "")
+        self._system_prompt = (system_prompt + (SIEGE_VERDICT_NOTE if siege_verdict else "")
+                               + (PERSONAS[persona] if persona else ""))
         self._max_retries = max_retries
         self.usage: dict[str, int] = {
             "calls": 0,

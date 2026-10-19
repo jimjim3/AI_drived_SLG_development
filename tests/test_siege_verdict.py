@@ -49,3 +49,28 @@ class TestSiegeVerdict(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestPersona(unittest.TestCase):
+    def test_persona_is_off_by_default_and_appended_when_set(self):
+        from slg.agents.llm_agent import PERSONAS
+        reply = '{"orders":[],"chronicle":"","next_cast":[]}'
+        view = build_faction_view(build_initial_state("default"), "faction_1", cast_ids=["xun_yu"])
+        comp = ScriptedCompleter([reply])
+        LLMFactionAgent(comp).decide(view)
+        self.assertEqual(comp.calls[0][0], SYSTEM_PROMPT)
+        for name, text in PERSONAS.items():
+            comp = ScriptedCompleter([reply])
+            LLMFactionAgent(comp, persona=name).decide(view)
+            self.assertEqual(comp.calls[0][0], SYSTEM_PROMPT + text)
+
+    def test_persona_stacks_after_the_verdict_note(self):
+        from slg.agents.llm_agent import PERSONAS
+        comp = ScriptedCompleter(['{"orders":[],"chronicle":"","next_cast":[]}'])
+        view = build_faction_view(build_initial_state("default"), "faction_1", cast_ids=["xun_yu"])
+        LLMFactionAgent(comp, siege_verdict=True, persona="aggressive").decide(view)
+        self.assertEqual(comp.calls[0][0], SYSTEM_PROMPT + SIEGE_VERDICT_NOTE + PERSONAS["aggressive"])
+
+    def test_unknown_persona_is_rejected(self):
+        with self.assertRaises(ValueError):
+            LLMFactionAgent(ScriptedCompleter([]), persona="reckless")

@@ -223,7 +223,12 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("port", nargs="?", type=int, default=int(os.environ.get("SLG_PORT", "8080")))
     ap.add_argument("--host", default=os.environ.get("SLG_HOST", "127.0.0.1"))
     ap.add_argument("--insecure", action="store_true", help="allow a non-loopback bind without SLG_ACCESS_TOKEN")
+    ap.add_argument("--rules", default=os.environ.get("SLG_RULES") or None,
+                    help="combat ruleset (default v2; e.g. softer_pool2 lets AI opponents attack)")
     args = ap.parse_args(argv)
+    if args.rules:
+        from slg.engine import combat
+        combat.set_rules(args.rules)
     token = os.environ.get("SLG_ACCESS_TOKEN") or None
     check_bind(args.host, token, args.insecure)
     srv = ThreadingHTTPServer((args.host, args.port), make_handler(App(), token))

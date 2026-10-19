@@ -6,6 +6,7 @@ engine's rules allow it right now. Agents may only choose from this list.
 
 from __future__ import annotations
 
+from . import combat
 from ..schema import (
     DEVELOP_COST,
     DEVELOP_AGRICULTURE_BASE,
@@ -70,7 +71,7 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
         if c.owner != officer.faction_id
         and state.adjacent(city.city_id, c.city_id)
     )
-    siege_max = ((city.troops - SIEGE_MIN_GARRISON) // SIEGE_TROOP_STEP) * SIEGE_TROOP_STEP
+    siege_max = (combat.siege_capacity(state, city) // SIEGE_TROOP_STEP) * SIEGE_TROOP_STEP
     if siege_max >= MIN_SIEGE_TROOPS and enemy_adjacent:
         actions.append(LegalAction(
             "siege",
@@ -80,7 +81,8 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
                                     max=siege_max, step=SIEGE_TROOP_STEP),
             },
             cost=0,
-            note=f"from {city.troops} troops, keep {SIEGE_MIN_GARRISON} garrison",
+            note=(f"from {city.troops} troops, keep {SIEGE_MIN_GARRISON} garrison"
+                  + (", may draw on adjacent friendly cities" if combat.active().pool_factor > 0 else "")),
         ))
 
     actions.append(LegalAction("rest", cost=0, note="always available"))
