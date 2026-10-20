@@ -51,7 +51,12 @@ def resolve_scenario(scenario: str, player_faction: str) -> str:
 SUN_SECOND_ENTRANCE = "+sun2"  # experiment: give 孫權 a second land entrance (吳郡—襄陽)
 
 
+SWAP13 = "+swap13"  # experiment: faction_1 and faction_3 trade cities and officers (ids/seats stay)
+
+
 def build_initial_state(scenario: str = "default") -> GameState:
+    swap13 = scenario.endswith(SWAP13)
+    scenario = scenario[: -len(SWAP13)] if swap13 else scenario
     sun2 = scenario.endswith(SUN_SECOND_ENTRANCE)
     scenario = scenario[: -len(SUN_SECOND_ENTRANCE)] if sun2 else scenario
     kind, favored = parse_scenario(scenario)
@@ -330,6 +335,11 @@ def build_initial_state(scenario: str = "default") -> GameState:
             for cid, c in cities.items()
         }
 
+    if swap13:
+        flip = {"faction_1": "faction_3", "faction_3": "faction_1"}
+        cities = {cid: dataclasses.replace(c, owner=flip.get(c.owner, c.owner)) for cid, c in cities.items()}
+        officers = {oid: dataclasses.replace(o, faction_id=flip.get(o.faction_id, o.faction_id))
+                    for oid, o in officers.items()}
     if sun2:
         adjacency["wujun"] = adjacency["wujun"] + ("xiangyang",)
         adjacency["xiangyang"] = adjacency["xiangyang"] + ("wujun",)
