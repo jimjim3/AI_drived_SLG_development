@@ -2,8 +2,8 @@
 
 Priority (per officer, in order):
   a. food is tight and develop_agri is legal -> develop_agri
-  b. strong enough officer and siege is legal: siege the weakest adjacent
-     enemy city when 70% of the garrison clears the style's ratio
+  b. strong enough officer and siege is legal: siege the adjacent enemy city
+     with the best engine-estimated odds when they clear the style's ratio
   c. politics >= war: develop the lowest of agriculture/commerce/defense
   d. war > politics: recruit while below 2.5x agriculture
   e. any legal develop_*, finally rest
@@ -11,6 +11,7 @@ Priority (per officer, in order):
 
 from __future__ import annotations
 
+from ..engine.resolution import estimate_siege_ratio
 from ..schema import AgentDecision, GameState, LegalAction, OfficerState
 from .base import Agent
 
@@ -18,14 +19,15 @@ from .base import Agent
 class RuleBasedAgent(Agent):
     name = "rule_based"
     STYLES = ("balanced", "aggressive", "turtle")
-    SIEGE_RATIO = {"aggressive": 1.0, "balanced": 1.4, "turtle": 2.0}
+    SIEGE_ODDS = {"aggressive": 1.1, "balanced": 1.3, "turtle": 1.8}  # engine siege-odds ratio to attack
+    SIEGE_RATIO = SIEGE_ODDS  # kept for callers that validate the style
     SIEGE_MIN_COMBAT = 70        # (war + leadership) / 2 threshold to attack
     SIEGE_TROOP_FRACTION = 0.7   # share of the garrison sent on a siege
     RECRUIT_FOOD_MULT = 2.5      # recruit while troops < 2.5 * agriculture
     RECRUIT_TARGET = 600         # preferred recruit size
 
     def __init__(self, style: str = "balanced"):
-        if style not in self.SIEGE_RATIO:
+        if style not in self.SIEGE_ODDS:
             raise ValueError(
                 f"unknown style {style!r}; expected one of {self.STYLES}"
             )
@@ -44,24 +46,28 @@ class RuleBasedAgent(Agent):
         if city.food < city.troops // 10 * 3 and "develop_agri" in by_action:
             return AgentDecision(officer.officer_id, "develop_agri", {}, "fix food")
 
-        # b. Attack the weakest adjacent enemy city when the odds look right.
+        # b. Attack the target with the best engine-estimated odds when they clear the style's bar.
         siege = by_action.get("siege")
         if (
             siege is not None
             and (officer.war + officer.leadership) / 2 >= self.SIEGE_MIN_COMBAT
         ):
-            targets = [state.city(tid) for tid in siege.params["to"].choices]
-            weakest = min(targets, key=lambda t: (t.troops, t.city_id))
-            ratio = self.SIEGE_RATIO[self.style]
-            if city.troops * self.SIEGE_TROOP_FRACTION >= weakest.troops * ratio:
-                spec = siege.params["troops"]
-                troops = int(city.troops * self.SIEGE_TROOP_FRACTION) // 100 * 100
-                troops = min(spec.max, max(spec.min, troops))
+            spec = siege.params["troops"]
+            step = int(spec.step or 100)
+            troops = max(int(spec.min), int(spec.max * self.SIEGE_TROOP_FRACTION) // step * step)
+            troops = min(int(spec.max), troops)
+            best = max(
+                ((estimate_siege_ratio(state, officer, tid, troops), tid)
+                 for tid in siege.params["to"].choices),
+                key=lambda rt: (rt[0], rt[1]),
+                default=None,
+            )
+            if best is not None and best[0] >= self.SIEGE_ODDS[self.style]:
                 return AgentDecision(
                     officer.officer_id,
                     "siege",
-                    {"to": weakest.city_id, "troops": troops},
-                    "siege weakest",
+                    {"to": best[1], "troops": troops},
+                    "siege best odds",
                 )
 
         # c. Politician: develop the weakest economic stat.

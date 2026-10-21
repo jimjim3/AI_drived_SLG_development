@@ -512,14 +512,12 @@ class RulesV2Tests(unittest.TestCase):
             RuleBasedAgent("foo")
 
     def test_rule_based_agent_aggressive_attacks_before_turtle(self):
-        # Craft a situation where ratio is between 1.0 (aggressive) and 2.0 (turtle).
-        # Target has 1000 troops. Aggressive needs garrison * 0.7 >= 1000 * 1.0 = 1000 (garrison >= 1429).
-        # Turtle needs garrison * 0.7 >= 1000 * 2.0 = 2000 (garrison >= 2858).
-        # With garrison = 2000: garrison * 0.7 = 1400.
-        # 1000 <= 1400 < 2000: aggressive chooses siege, turtle does not choose siege.
+        # The agent sends 70% of the legal maximum (1300 of 1900) and compares the engine's
+        # estimated siege ratio with the style bar (aggressive 1.1, balanced 1.3, turtle 1.8).
+        # With luoyang at 500 troops the estimate is ~1.54: aggressive and balanced attack, turtle does not.
         cities = dict(self.state.cities)
         cities["xuchang"] = replace(cities["xuchang"], troops=2000, food=5000)
-        cities["luoyang"] = replace(cities["luoyang"], troops=1000)
+        cities["luoyang"] = replace(cities["luoyang"], troops=500)
         state = replace(self.state, cities=cities)
 
         officer = state.officer("xiahou_dun")
@@ -531,6 +529,17 @@ class RulesV2Tests(unittest.TestCase):
         self.assertEqual(agg_decision.action, "siege")
         self.assertEqual(agg_decision.params["to"], "luoyang")
         self.assertNotEqual(turt_decision.action, "siege")
+
+    def test_rule_based_agent_uses_engine_odds_not_raw_troop_counts(self):
+        # luoyang at 800 troops: the old troop-count rule (1300 >= 800 * 1.0) would attack,
+        # but the engine estimate is ~0.96, so even the aggressive style holds back.
+        cities = dict(self.state.cities)
+        cities["xuchang"] = replace(cities["xuchang"], troops=2000, food=5000)
+        cities["luoyang"] = replace(cities["luoyang"], troops=800)
+        state = replace(self.state, cities=cities)
+        officer = state.officer("xiahou_dun")
+        legal = generate_legal_actions(state, officer)
+        self.assertNotEqual(RuleBasedAgent("aggressive").decide(state, officer, legal).action, "siege")
 
     # -------------------------------------------------------------------------
     # 14. RandomAgent validity & siege params
