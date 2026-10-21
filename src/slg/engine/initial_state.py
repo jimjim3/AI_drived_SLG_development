@@ -54,7 +54,27 @@ SUN_SECOND_ENTRANCE = "+sun2"  # experiment: give 孫權 a second land entrance 
 SWAP13 = "+swap13"  # experiment: faction_1 and faction_3 trade cities and officers (ids/seats stay)
 
 
+SWAPRES13 = "+swapres13"  # experiment: factions 1 and 3 trade city resources (ranked by troops), geography stays
+SWAPOFF13 = "+swapoff13"  # experiment: factions 1 and 3 trade officer abilities (ranked by war+leadership), geography stays
+
+
+def _swap_ranked(items, key, fields, replace_fn):
+    """Pair the two ranked lists and exchange ``fields`` between pairs."""
+    a, b = items
+    a = sorted(a, key=key, reverse=True)
+    b = sorted(b, key=key, reverse=True)
+    out = {}
+    for x, y in zip(a, b):
+        out[x[0]] = replace_fn(x[1], {f: getattr(y[1], f) for f in fields})
+        out[y[0]] = replace_fn(y[1], {f: getattr(x[1], f) for f in fields})
+    return out
+
+
 def build_initial_state(scenario: str = "default") -> GameState:
+    swapres13 = scenario.endswith(SWAPRES13)
+    scenario = scenario[: -len(SWAPRES13)] if swapres13 else scenario
+    swapoff13 = scenario.endswith(SWAPOFF13)
+    scenario = scenario[: -len(SWAPOFF13)] if swapoff13 else scenario
     swap13 = scenario.endswith(SWAP13)
     scenario = scenario[: -len(SWAP13)] if swap13 else scenario
     sun2 = scenario.endswith(SUN_SECOND_ENTRANCE)
@@ -340,6 +360,18 @@ def build_initial_state(scenario: str = "default") -> GameState:
         cities = {cid: dataclasses.replace(c, owner=flip.get(c.owner, c.owner)) for cid, c in cities.items()}
         officers = {oid: dataclasses.replace(o, faction_id=flip.get(o.faction_id, o.faction_id))
                     for oid, o in officers.items()}
+    if swapres13:
+        f1 = [(cid, c) for cid, c in cities.items() if c.owner == "faction_1"]
+        f3 = [(cid, c) for cid, c in cities.items() if c.owner == "faction_3"]
+        cities.update(_swap_ranked((f1, f3), lambda t: t[1].troops,
+                                   ("agriculture", "commerce", "defense", "gold", "food", "troops"),
+                                   lambda c, kw: dataclasses.replace(c, **kw)))
+    if swapoff13:
+        f1 = [(oid, o) for oid, o in officers.items() if o.faction_id == "faction_1"]
+        f3 = [(oid, o) for oid, o in officers.items() if o.faction_id == "faction_3"]
+        officers.update(_swap_ranked((f1, f3), lambda t: (t[1].war + t[1].leadership, t[0]),
+                                     ("politics", "war", "leadership", "loyalty", "ambition"),
+                                     lambda o, kw: dataclasses.replace(o, **kw)))
     if sun2:
         adjacency["wujun"] = adjacency["wujun"] + ("xiangyang",)
         adjacency["xiangyang"] = adjacency["xiangyang"] + ("wujun",)
