@@ -44,3 +44,11 @@ class MapVariantTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class WebRulesDefaultTests(unittest.TestCase):
+    def test_web_default_rules_exist(self):
+        from slg.engine.combat import RULESETS
+        from slg.web.server import WEB_DEFAULT_RULES
+
+        self.assertIn(WEB_DEFAULT_RULES, RULESETS)

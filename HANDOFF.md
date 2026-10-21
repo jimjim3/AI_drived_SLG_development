@@ -102,4 +102,4 @@ rest 比例約 47%；faction_2 的宛城／漢中武將不與任何敵城相鄰�
 
 
 ## 戰鬥規則變體（2026-10-19）
-`engine/combat.py` 提供可切換規則；預設 `v2` 不變。`softer_pool2` 下 Qwen 對手會真正進攻（見 docs/EVALUATION.md §14），但孫權（地形）4/4 勝，故未設為預設。試玩：`SLG_RULES=softer_pool2 scripts/serve.sh`。待辦：處理孫權地形優勢→再決定預設；規則 AI 仍不會進攻。
+`engine/combat.py` 提供可切換規則；預設 `v2` 不變。`softer_pool2` 下 Qwen 對手會真正進攻（見 docs/EVALUATION.md §14），但孫權（地形）4/4 勝，故未設為預設。**網頁伺服器預設用 `softer_pool2`**（讓 AI 對手會進攻）；要回原規則用 `SLG_RULES=v2` 或 `--rules v2`。評測腳本預設仍是 `v2`。待辦：處理孫權地形優勢→再決定預設；規則 AI 仍不會進攻。
