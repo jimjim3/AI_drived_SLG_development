@@ -1026,7 +1026,12 @@ export function renderSettlement(container, status, onProceedNextTurn) {
       <div class="events-timeline">
   `;
 
-  if (events.length === 0) {
+  const story = status.story || [];
+  story.forEach((line) => {
+    html += `<div class="event-card event-story"><span class="event-bullet">⚔</span> <span class="event-text">${line}</span></div>`;
+  });
+
+  if (events.length === 0 && story.length === 0) {
     html += `<div class="empty-notice">本回合無重大戰事事件。</div>`;
   } else {
     events.forEach((ev) => {

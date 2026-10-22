@@ -196,6 +196,7 @@ def _resolve_siege(
             f"{survivors} troops garrison)",
             captured_city=target_id,
             captured_officers=tuple(captured_officers),
+            defender_faction=defender_faction,
         )
         return new_state, event
 
@@ -213,5 +214,6 @@ def _resolve_siege(
         state.turn, officer.officer_id, attacker_faction, "siege", target_id,
         f"repelled at {defender_city.name} (atk {atk:.0f} <= def {dfn:.0f}, "
         f"lost {attacker_loss} of {c})",
+        defender_faction=defender_faction,
     )
     return new_state, event

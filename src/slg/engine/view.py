@@ -147,6 +147,28 @@ def select_cast(
     return tuple(result[:limit])
 
 
+def relevant_events(
+    events: Sequence[ResolutionEvent],
+    state: GameState,
+    faction_id: str,
+) -> list[ResolutionEvent]:
+    """Events the faction may see: its own actions, or ones touching its cities/frontier."""
+    friendly_cids = {c.city_id for c in state.cities.values() if c.owner == faction_id}
+    frontier_cids = {
+        c.city_id
+        for c in state.cities.values()
+        if c.owner != faction_id
+        and any(nid in friendly_cids for nid in state.adjacency.get(c.city_id, ()))
+    }
+    relevant_cids = friendly_cids | frontier_cids
+    return [
+        ev for ev in events
+        if ev.faction_id == faction_id
+        or ev.city_id in relevant_cids
+        or (ev.captured_city is not None and ev.captured_city in relevant_cids)
+    ]
+
+
 def describe_events(
     events: Sequence[ResolutionEvent],
     state: GameState,
@@ -158,29 +180,13 @@ def describe_events(
     Keeps events where the actor belongs to this faction, or where the target/city
     belongs to this faction or its frontier. Returns up to the last ``limit`` events.
     """
-    friendly_cids = {c.city_id for c in state.cities.values() if c.owner == faction_id}
-    frontier_cids = {
-        c.city_id
-        for c in state.cities.values()
-        if c.owner != faction_id
-        and any(nid in friendly_cids for nid in state.adjacency.get(c.city_id, ()))
-    }
-    relevant_cids = friendly_cids | frontier_cids
-
     matched: list[str] = []
-    for ev in events:
-        actor_is_faction = ev.faction_id == faction_id
-        target_in_relevant = (
-            ev.city_id in relevant_cids
-            or (ev.captured_city is not None and ev.captured_city in relevant_cids)
-        )
-        if actor_is_faction or target_in_relevant:
-            officer = state.officers.get(ev.officer_id)
-            officer_name = officer.name if officer is not None else ev.officer_id
-            city = state.cities.get(ev.city_id)
-            city_name = city.name if city is not None else ev.city_id
-            desc = f"T{ev.turn} {officer_name} {ev.action}@{city_name}: {ev.detail}"
-            matched.append(desc)
+    for ev in relevant_events(events, state, faction_id):
+        officer = state.officers.get(ev.officer_id)
+        officer_name = officer.name if officer is not None else ev.officer_id
+        city = state.cities.get(ev.city_id)
+        city_name = city.name if city is not None else ev.city_id
+        matched.append(f"T{ev.turn} {officer_name} {ev.action}@{city_name}: {ev.detail}")
 
     if limit <= 0:
         return ()

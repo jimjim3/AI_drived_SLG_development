@@ -6,7 +6,7 @@ from __future__ import annotations
 from .. import narrative
 from ..engine.initial_state import FACTION_IDS, parse_scenario, resolve_scenario
 from ..engine.legal_actions import generate_legal_actions
-from ..engine.view import FactionView
+from ..engine.view import FactionView, relevant_events
 from ..schema import GameState
 
 # Public geography (not hidden information): city -> (x, y) on an 11 x 8.5 canvas.
@@ -80,3 +80,36 @@ def narrative_payload(scenario: str, faction_id: str) -> dict:
         "cities": n["world"]["cities"],
         "officers": n["officers"],
     }
+
+
+def story_lines(events, state: GameState, faction_id: str, limit: int = 12) -> list[str]:
+    """Narrative sentences (zh-TW templates) for the sieges and incidents the player can see.
+
+    Routine develop/recruit/move lines are left to the plain event list; only turning points are told.
+    """
+    def name_of(oid):
+        o = state.officers.get(oid)
+        return o.name if o else oid
+
+    def city_name(cid):
+        c = state.cities.get(cid)
+        return c.name if c else cid
+
+    lines = []
+    for ev in relevant_events(events, state, faction_id):
+        mine = ev.faction_id == faction_id
+        if ev.action == "siege":
+            target = city_name(ev.city_id)
+            captured = ev.captured_city is not None
+            if mine:
+                key = "siege_captured" if captured else "siege_repelled"
+                lines.append(narrative.render_event(key, ev.turn, officer=name_of(ev.officer_id), target=target))
+            elif ev.defender_faction != faction_id:
+                continue  # a siege between other factions; not ours to tell
+            else:
+                key = "city_lost" if captured else "siege_defended"
+                lines.append(narrative.render_event(key, ev.turn, city=target))
+        elif ev.action == "defect" and mine:
+            fname = state.faction(ev.faction_id).name
+            lines.append(narrative.render_event("defect", ev.turn, officer=name_of(ev.officer_id), faction=fname))
+    return lines[-limit:]

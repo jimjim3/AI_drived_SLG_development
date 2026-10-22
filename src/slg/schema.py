@@ -110,6 +110,7 @@ class ResolutionEvent:
     detail: str = ""
     captured_city: str | None = None
     captured_officers: tuple = ()
+    defender_faction: str | None = None  # siege events: who owned the target city
 
 
 @dataclass(frozen=True)

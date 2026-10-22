@@ -1327,3 +1327,5 @@ body {
 
 /* An inactive screen must never render (the .main-game-screen rule above forces display:flex). */
 .screen-view:not(.active) { display: none !important; }
+
+.event-story .event-text { font-weight: 600; }
