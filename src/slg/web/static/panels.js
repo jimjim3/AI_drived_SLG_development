@@ -38,6 +38,9 @@ export function ingestRoster(state) {
   );
 }
 
+export const ACTION_ICONS = { develop_agri: "develop", develop_commerce: "develop", develop_defense: "defend", recruit: "recruit", move: "march", siege: "siege", rest: "defend" };
+export const actionIcon = (k) => ACTION_ICONS[k] ? `<img class="action-icon" src="./assets/art/icons/${ACTION_ICONS[k]}.svg" alt="">` : "";
+
 export const ACTION_NAMES = {
   develop_agri: "開墾農業",
   develop_commerce: "發展商業",
@@ -447,7 +450,7 @@ export function renderDispatch(
         <div class="action-card-header">
           <label class="action-radio-label">
             <input type="radio" name="selectedAction" value="${actKey}" ${isActSelected ? "checked" : ""}>
-            <span class="action-name">${actChinese} (${actKey})</span>
+            <span class="action-name">${actionIcon(actKey)}${actChinese} (${actKey})</span>
           </label>
           <span class="action-cost-badge">花費: ${la.cost || 0} 金</span>
         </div>
@@ -1028,7 +1031,7 @@ export function renderSettlement(container, status, onProceedNextTurn) {
 
   const scene = status.scene || {};
   if (scene.season) {
-    html += `<div class="scene-card"><div class="scene-label">${scene.label}</div>`
+    html += `<div class="scene-card">${scene.key ? `<img class="scene-art" src="./assets/art/scenes/${scene.key}.svg" alt="" onerror="this.style.display='none'">` : ""}<div class="scene-label">${scene.label}</div>`
       + (scene.new_year ? `<p>${scene.new_year}</p>` : "")
       + `<p>${scene.season}</p>`
       + (scene.quiet ? `<p class="scene-quiet">${scene.quiet}</p>` : "") + `</div>`;

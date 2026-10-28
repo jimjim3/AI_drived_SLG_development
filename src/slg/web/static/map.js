@@ -183,6 +183,7 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
     let factionColor = "#64748b";
     let factionBg = "#1e293b";
     let nodeStroke = "#475569";
+    let factionEmblem = "neutral";
     let troopText = "";
     let defText = "";
     let resText = "";
@@ -191,6 +192,7 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
     if (vis === "own") {
       const city = ownCityMap.get(cid);
       const fInfo = FACTION_INFO[state.faction_id] || FACTION_INFO.faction_2;
+      factionEmblem = state.faction_id;
       factionTag = `[${fInfo.tag}] 我方`;
       factionColor = fInfo.color;
       factionBg = fInfo.bg;
@@ -205,6 +207,7 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
       const fcity = frontierMap.get(cid);
       const owner = fcity?.owner || "unknown";
       const fInfo = FACTION_INFO[owner] || { tag: "敵", color: "#ef4444", border: "#f87171", bg: "#7f1d1d" };
+      factionEmblem = owner;
       factionTag = `[${fInfo.tag}] 前線`;
       factionColor = fInfo.color;
       factionBg = fInfo.bg;
@@ -290,6 +293,11 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
     tagText.setAttribute("font-weight", "bold");
     tagText.textContent = factionTag;
     nodeG.appendChild(tagText);
+    const emblemKey = factionEmblem;
+    const emblem = document.createElementNS(svgNS, "image");
+    emblem.setAttribute("href", `./assets/art/emblems/${["faction_1","faction_2","faction_3"].includes(emblemKey) ? emblemKey : "neutral"}.svg`);
+    emblem.setAttribute("x", "-65"); emblem.setAttribute("y", "-45"); emblem.setAttribute("width", "22"); emblem.setAttribute("height", "22");
+    nodeG.appendChild(emblem);
 
     if (vis === "fog") {
       // Large Question Mark for Fog

@@ -13,6 +13,6 @@
 
 ## 驗收紀錄(2026-10-29,總編輯目測渲染圖)
 - 通過並已放入 `web/static/assets/art/`:emblems×4、icons×15(城池 7 + 行動 8)、favicon、scenes: summer winter battle defection。
-- 打回重做(存放 `art_work/rework/`,未上線):spring autumn(畫面過空)、siege(構圖雜亂)、famine(元素不清)。
-- 已接線:僅 favicon。徽記/圖示/插圖尚未接進 UI(下一步)。
+- 打回的 4 張(spring autumn siege famine)已由 agy 重做,第二版通過並上線 `assets/art/scenes/`。
+- 已接線:favicon、地圖節點徽記、派遣面板行動圖示、回合報告的季節橫幅(`scene.key`)。尚未接線:城池地形圖示、battle/defection/siege/famine 事件插圖、行動圖示僅用在派遣面板。
 - 戰區圖改由 `scripts/build_theatre_maps.py` 依真實經緯度(agy 回報,未核對)程式繪製。

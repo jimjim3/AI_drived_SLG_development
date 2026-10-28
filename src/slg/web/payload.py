@@ -153,7 +153,7 @@ def scene_text(turn: int, has_story: bool) -> dict:
     if turn <= 1:
         return {}
     cal = narrative.calendar_label(turn - 1)
-    out = {"label": cal["label"], "season": narrative.transition("season_change", turn, season=cal["season"])}
+    out = {"key": {"春": "spring", "夏": "summer", "秋": "autumn", "冬": "winter"}.get(cal["season"]), "label": cal["label"], "season": narrative.transition("season_change", turn, season=cal["season"])}
     if cal["season"] == "春":
         out["new_year"] = narrative.transition("new_year", turn)
     if not has_story:
