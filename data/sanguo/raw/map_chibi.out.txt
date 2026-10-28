@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 850" width="100%" height="100%">
+  <defs>
+    <!-- 濾鏡效果：火攻光暈 -->
+    <filter id="fire-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 背景海洋/底色 -->
+  <rect width="1100" height="850" fill="#0b1220" />
+
+  <!-- 陸地板塊示意 -->
+  <path d="M 0,0 L 1100,0 L 1100,850 L 0,850 Z" fill="#141c2c" />
+
+  <!-- 湖泊與沼澤水體 (雲夢澤/洞庭湖及周邊湖沼示意) -->
+  <path d="M 320,620 C 370,580 430,600 480,660 C 510,720 440,780 360,770 C 300,760 280,680 320,620 Z" fill="#0e2a44" opacity="0.8" />
+  <path d="M 460,420 C 510,400 550,430 530,470 C 500,500 440,480 460,420 Z" fill="#0e2a44" opacity="0.6" />
+  <path d="M 850,680 C 920,640 980,670 960,740 C 930,790 860,780 830,730 C 820,700 835,685 850,680 Z" fill="#0e2a44" opacity="0.7" />
+
+  <!-- 山脈示意 (簡筆三角裝飾：大別山、幕阜山等) -->
+  <!-- 北部/大別山脈方向 -->
+  <g fill="#1a253a" stroke="#253550" stroke-width="1.5">
+    <polygon points="580,180 605,140 630,180" />
+    <polygon points="620,190 650,135 680,190" />
+    <polygon points="670,180 700,130 730,180" />
+    <polygon points="720,200 750,150 780,200" />
+    <polygon points="770,210 805,160 840,210" />
+    <!-- 西部/荊山方向 -->
+    <polygon points="120,280 145,230 170,280" />
+    <polygon points="155,290 185,240 215,290" />
+    <polygon points="90,360 120,310 150,360" />
+    <!-- 南部/幕阜山脈方向 -->
+    <polygon points="520,740 555,680 590,740" />
+    <polygon points="580,750 615,690 650,750" />
+    <polygon points="640,730 675,670 710,730" />
+    <polygon points="700,750 735,695 770,750" />
+  </g>
+
+  <!-- 漢水 (由西北襄陽流向東南夏口匯入長江) -->
+  <path d="M 330,130 Q 345,210 335,270 T 400,380 T 520,440 T 670,440" 
+        fill="none" stroke="#2f6fa3" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- 長江主流 (自西向東流，經江陵，在赤壁一帶轉折蜿蜒向東北) -->
+  <path d="M 40,540 C 130,550 200,530 290,560 
+           C 380,590 440,560 520,530 
+           C 570,510 590,470 650,450 
+           C 710,430 760,470 820,450 
+           C 880,430 940,400 1060,380" 
+        fill="none" stroke="#2f6fa3" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- 陣營勢力勢力範圍裝飾底色標記 -->
+  <!-- 北岸曹軍勢力區域 -->
+  <path d="M 260,260 C 450,260 650,300 700,390 C 580,410 460,420 320,440 Z" fill="#992222" opacity="0.15" />
+  <!-- 南岸孫劉聯軍勢力區域 -->
+  <path d="M 520,560 C 620,550 740,520 850,530 C 880,620 720,680 580,660 Z" fill="#1d633f" opacity="0.18" />
+
+  <!-- 陣營大標籤 -->
+  <rect x="360" y="325" width="220" height="42" rx="6" fill="#141c2c" stroke="#c94444" stroke-width="2" opacity="0.9" />
+  <text x="470" y="354" fill="#ff7b72" font-size="22" font-weight="bold" text-anchor="middle" letter-spacing="3">曹軍陣營（北岸）</text>
+
+  <rect x="630" y="585" width="260" height="42" rx="6" fill="#141c2c" stroke="#2ea043" stroke-width="2" opacity="0.9" />
+  <text x="760" y="614" fill="#7ee787" font-size="22" font-weight="bold" text-anchor="middle" letter-spacing="3">孫劉聯軍陣營（南岸）</text>
+
+  <!-- 戰略動線與火攻特效箭頭 -->
+  <g stroke-linecap="round">
+    <!-- 曹軍南下意向虛線 -->
+    <path d="M 330,150 L 330,260" fill="none" stroke="#c94444" stroke-width="3" stroke-dasharray="6,6" />
+    <path d="M 330,310 L 300,510" fill="none" stroke="#c94444" stroke-width="3" stroke-dasharray="6,6" />
+    <path d="M 340,550 Q 450,545 525,515" fill="none" stroke="#c94444" stroke-width="3" stroke-dasharray="6,6" />
+    
+    <!-- 火攻意向箭頭 (自赤壁黃蓋發動火船直指烏林) -->
+    <path d="M 580,510 Q 560,490 545,475" fill="none" stroke="#ff4500" stroke-width="5" />
+    <polygon points="538,470 552,473 546,485" fill="#ff4500" />
+    <text x="500" y="495" fill="#ffa657" font-size="16" font-weight="bold">火攻</text>
+  </g>
+
+  <!-- 地點標註群組 (小圓點 + 繁體中文標籤，fill #e8d9b0, font-size 20) -->
+  <g font-family="sans-serif" font-size="20" fill="#e8d9b0" font-weight="bold">
+    <!-- 襄陽 (西北，漢水上游) -->
+    <circle cx="330" cy="110" r="6" fill="#e8d9b0" stroke="#0b1220" stroke-width="2" />
+    <text x="330" y="90" text-anchor="middle">襄陽</text>
+
+    <!-- 長坂 (當陽長坂坡，襄陽與江陵之間) -->
+    <circle cx="310" cy="285" r="6" fill="#e8d9b0" stroke="#0b1220" stroke-width="2" />
+    <text x="290" y="292" text-anchor="end">長坂</text>
+
+    <!-- 江陵 (荊州重鎮，長江北岸) -->
+    <circle cx="280" cy="540" r="7" fill="#e8d9b0" stroke="#0b1220" stroke-width="2" />
+    <text x="260" y="546" text-anchor="end">江陵</text>
+
+    <!-- 烏林 (長江北岸，曹軍下砦處) -->
+    <circle cx="530" cy="465" r="7" fill="#ff7b72" stroke="#fff" stroke-width="2" />
+    <text x="520" y="440" text-anchor="end">烏林</text>
+    <text x="520" y="460" font-size="14" fill="#ff7b72" text-anchor="end">（曹軍水寨）</text>
+
+    <!-- 赤壁 (長江南岸，與烏林隔江相對，火攻戰場) -->
+    <circle cx="590" cy="525" r="8" fill="#ff4400" stroke="#ffd700" stroke-width="2.5" filter="url(#fire-glow)" />
+    <text x="610" y="540" text-anchor="start">赤壁</text>
+    <text x="610" y="562" font-size="14" fill="#ffa657" text-anchor="start">（火攻處）</text>
+
+    <!-- 夏口 (漢水匯入長江處，今武漢漢口/武昌一帶，劉備軍駐地) -->
+    <circle cx="680" cy="430" r="7" fill="#e8d9b0" stroke="#0b1220" stroke-width="2" />
+    <text x="695" y="415" text-anchor="start">夏口</text>
+
+    <!-- 樊口 (夏口東南沿江，劉琦、劉備進一步駐軍處) -->
+    <circle cx="780" cy="455" r="6" fill="#e8d9b0" stroke="#0b1220" stroke-width="2" />
+    <text x="795" y="475" text-anchor="start">樊口</text>
+
+    <!-- 柴桑 (東南長江南岸後方，孫權大本營，周瑜整軍出發地) -->
+    <circle cx="890" cy="580" r="7" fill="#e8d9b0" stroke="#0b1220" stroke-width="2" />
+    <text x="910" y="587" text-anchor="start">柴桑</text>
+  </g>
+
+  <!-- 河流名稱微標記 -->
+  <text x="450" y="380" fill="#2f6fa3" font-size="18" font-style="italic">漢水 →</text>
+  <text x="170" y="525" fill="#2f6fa3" font-size="18" font-style="italic">長江 →</text>
+  <text x="980" y="370" fill="#2f6fa3" font-size="18" font-style="italic">長江下游 →</text>
+
+  <!-- 左上角主標題與圖例面板 -->
+  <g>
+    <!-- 面板底色 -->
+    <rect x="40" y="40" width="250" height="150" rx="8" fill="#0b1220" stroke="#253550" stroke-width="2" opacity="0.9" />
+    
+    <!-- 主標題「赤壁之戰」 -->
+    <text x="65" y="90" fill="#e8d9b0" font-size="36" font-family="sans-serif" font-weight="bold" letter-spacing="4">赤壁之戰</text>
+    <text x="65" y="118" fill="#8b949e" font-size="14" font-family="sans-serif">公元208年 戰區形勢示意圖</text>
+    
+    <!-- 圖例線條 -->
+    <line x1="65" y1="135" x2="265" y2="135" stroke="#253550" stroke-width="1" />
+    <circle cx="75" cy="155" r="5" fill="#ff7b72" />
+    <text x="90" y="160" fill="#8b949e" font-size="14">曹操軍水陸駐屯</text>
+    <circle cx="175" cy="155" r="5" fill="#7ee787" />
+    <text x="190" y="160" fill="#8b949e" font-size="14">孫劉聯軍陣線</text>
+  </g>
+
+  <!-- 指北針 (北方在上) -->
+  <g transform="translate(1020, 80)">
+    <circle cx="0" cy="0" r="28" fill="#141c2c" stroke="#253550" stroke-width="2" />
+    <polygon points="0,-22 7,-2 0,-7" fill="#c94444" />
+    <polygon points="0,-22 -7,-2 0,-7" fill="#ff7b72" />
+    <polygon points="0,22 7,2 0,7" fill="#8b949e" />
+    <polygon points="0,22 -7,2 0,7" fill="#484f58" />
+    <text x="0" y="-26" fill="#e8d9b0" font-size="14" font-weight="bold" text-anchor="middle">北</text>
+  </g>
+</svg>
