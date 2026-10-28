@@ -1,0 +1,313 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 850">
+  <defs>
+    <!-- 陸地與水體漸層 -->
+    <radialGradient id="landGrad" cx="45%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#141c2c" />
+      <stop offset="60%" stop-color="#0f1724" />
+      <stop offset="100%" stop-color="#090f19" />
+    </radialGradient>
+    <linearGradient id="seaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070c14" />
+      <stop offset="100%" stop-color="#04070c" />
+    </linearGradient>
+    <linearGradient id="riverHuangHe" x1="0%" y1="0%" x2="100%" y2="20%">
+      <stop offset="0%" stop-color="#1a2736" stop-opacity="0.6" />
+      <stop offset="50%" stop-color="#24374b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#1e2d3d" stop-opacity="0.5" />
+    </linearGradient>
+    <linearGradient id="riverChangJiang" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#182535" stop-opacity="0.6" />
+      <stop offset="60%" stop-color="#263b52" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#1f3042" stop-opacity="0.7" />
+    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="70%" stop-color="#000000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#03060a" stop-opacity="0.75" />
+    </radialGradient>
+
+    <!-- 地形陰影淡暈 -->
+    <radialGradient id="mountainShade" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0a1019" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0a1019" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- 水墨山體符號 -->
+    <!-- 大山峰 (高約 28, 底寬 36) -->
+    <g id="mtn-lg">
+      <path d="M -18,12 L 0,-14 L 18,12 Z" fill="#090f17" opacity="0.6" />
+      <!-- 背光陰影 -->
+      <path d="M 0,-14 L -18,12 L 0,9 Z" fill="#060a10" opacity="0.8" />
+      <!-- 水墨稜線與脊線 -->
+      <path d="M -18,12 Q -8,-2 0,-14 Q 4,-4 8,4" fill="none" stroke="#1c2b3c" stroke-width="1.2" stroke-linecap="round" opacity="0.7" />
+      <path d="M 0,-14 Q 1,0 0,9" fill="none" stroke="#22354a" stroke-width="1" opacity="0.5" />
+    </g>
+    <!-- 中山峰 (高約 20, 底寬 26) -->
+    <g id="mtn-md">
+      <path d="M -13,9 L 0,-10 L 13,9 Z" fill="#090f17" opacity="0.55" />
+      <path d="M 0,-10 L -13,9 L 0,6 Z" fill="#06090e" opacity="0.75" />
+      <path d="M -13,9 Q -5,-1 0,-10 Q 5,0 13,9" fill="none" stroke="#1c2b3c" stroke-width="1" stroke-linecap="round" opacity="0.6" />
+      <path d="M 0,-10 L 0,6" fill="none" stroke="#22354a" stroke-width="0.8" opacity="0.45" />
+    </g>
+    <!-- 小山峰/丘陵 (高約 13, 底寬 18) -->
+    <g id="mtn-sm">
+      <path d="M -9,6 Q 0,-7 9,6 Z" fill="#0a111a" opacity="0.5" />
+      <path d="M -9,6 Q -3,-4 0,-7 Q 3,-3 9,6" fill="none" stroke="#1a2736" stroke-width="0.8" opacity="0.5" />
+    </g>
+    <!-- 丘陵微弧線 -->
+    <g id="hill">
+      <path d="M -14,3 Q 0,-5 14,3" fill="none" stroke="#182330" stroke-width="1" opacity="0.45" />
+      <path d="M -8,1 Q 0,-3 8,1" fill="none" stroke="#1c2a3b" stroke-width="0.7" opacity="0.3" />
+    </g>
+  </defs>
+
+  <!-- 背景：海洋水域底色 -->
+  <rect width="1100" height="850" fill="url(#seaGrad)" />
+
+  <!-- 大陸地塊（海岸線勾勒：東部及東南部外海） -->
+  <path d="M 0,0 L 980,0 
+           Q 960,80 940,110 
+           Q 980,180 1020,260 
+           Q 1050,330 1030,420 
+           Q 1000,470 990,520 
+           Q 1030,550 1050,620 
+           Q 1060,680 1030,730 
+           Q 1010,790 950,830 
+           Q 920,850 890,850 
+           L 0,850 Z" 
+        fill="url(#landGrad)" />
+
+  <!-- 海岸水波淺暈與水線 -->
+  <path d="M 980,0 Q 960,80 940,110 Q 980,180 1020,260 Q 1050,330 1030,420 Q 1000,470 990,520 Q 1030,550 1050,620 Q 1060,680 1030,730 Q 1010,790 950,830 Q 920,850 890,850" 
+        fill="none" stroke="#162332" stroke-width="5" opacity="0.4" />
+  <path d="M 985,0 Q 965,80 945,110 Q 985,180 1025,260 Q 1055,330 1035,420 Q 1005,470 995,520 Q 1035,550 1055,620 Q 1065,680 1035,730 Q 1015,790 955,830 Q 925,850 895,850" 
+        fill="none" stroke="#0e1722" stroke-width="2" opacity="0.6" />
+
+  <!-- 中原與江淮微地形暈彩（低調深色層次） -->
+  <path d="M 380,240 Q 550,220 740,260 Q 650,440 450,420 Z" fill="#131b28" opacity="0.4" />
+  <path d="M 600,420 Q 750,400 880,470 Q 780,620 620,580 Z" fill="#111824" opacity="0.4" />
+  <path d="M 70,520 Q 150,480 230,540 Q 200,680 80,670 Z" fill="#0d141f" opacity="0.5" />
+
+  <!-- 山區大底色暈（秦嶺、大巴山、伏牛山、大別山、東南丘陵） -->
+  <ellipse cx="140" cy="420" rx="140" ry="80" fill="url(#mountainShade)" />
+  <ellipse cx="150" cy="740" rx="150" ry="100" fill="url(#mountainShade)" />
+  <ellipse cx="260" cy="300" rx="130" ry="70" fill="url(#mountainShade)" />
+  <ellipse cx="440" cy="340" rx="90" ry="50" fill="url(#mountainShade)" />
+  <ellipse cx="710" cy="500" rx="110" ry="45" fill="url(#mountainShade)" />
+  <ellipse cx="800" cy="750" rx="130" ry="90" fill="url(#mountainShade)" />
+
+  <!-- ==================== 河流系統 ==================== -->
+
+  <!-- 1. 黃河幹流 (洛陽 y:210, 陳留 y:130 之北，在 y<150 處曲折向東入海) -->
+  <path d="M 0,75 
+           Q 80,70 140,85 
+           T 260,80 
+           Q 340,95 400,105 
+           T 530,90 
+           Q 620,70 710,75 
+           T 830,65 
+           Q 900,60 950,55 
+           L 965,55" 
+        fill="none" stroke="url(#riverHuangHe)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 0,75 Q 80,70 140,85 T 260,80 Q 340,95 400,105 T 530,90 Q 620,70 710,75 T 830,65 Q 900,60 950,55 L 965,55" 
+        fill="none" stroke="#2e4359" stroke-width="2.5" opacity="0.6" />
+  <!-- 黃河支流（渭水：經關中注入黃河） -->
+  <path d="M 0,140 Q 100,135 180,120 Q 230,110 270,82" 
+        fill="none" stroke="#1d2c3c" stroke-width="2.5" opacity="0.5" />
+  <!-- 濟水/黃河分流 -->
+  <path d="M 620,73 Q 690,95 780,105 Q 860,110 930,95" 
+        fill="none" stroke="#182535" stroke-width="1.8" opacity="0.4" />
+
+  <!-- 2. 淮水系統 (位於許昌、陳留之南，長江之北，經淮南東注洪澤入海) -->
+  <path d="M 430,370 
+           Q 490,390 560,400 
+           T 710,420 
+           Q 780,430 840,435 
+           Q 910,445 970,435 
+           Q 1000,432 1025,430" 
+        fill="none" stroke="#1a2838" stroke-width="3" opacity="0.65" stroke-linecap="round" />
+  <!-- 汝水/潁水支流 (過許昌東側匯入淮水) -->
+  <path d="M 640,320 Q 670,350 720,380 Q 750,405 765,425" 
+        fill="none" stroke="#172330" stroke-width="1.8" opacity="0.5" />
+  <!-- 泗水支流 (從東北南流匯入淮水) -->
+  <path d="M 830,220 Q 820,290 835,360 Q 840,400 845,435" 
+        fill="none" stroke="#162230" stroke-width="1.5" opacity="0.45" />
+
+  <!-- 3. 長江幹流 (西來經三峽南側，過襄陽(560,630)之南約 y:690，過夏口、柴桑，至建業(880,510)折向東偏北出海) -->
+  <path d="M 0,720 
+           Q 90,705 170,725 
+           T 320,710 
+           Q 420,685 500,695 
+           T 620,700 
+           Q 710,670 760,630 
+           T 840,550 
+           Q 870,528 895,523 
+           Q 930,520 960,540 
+           Q 985,555 1010,550" 
+        fill="none" stroke="url(#riverChangJiang)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 0,720 Q 90,705 170,725 T 320,710 Q 420,685 500,695 T 620,700 Q 710,670 760,630 T 840,550 Q 870,528 895,523 Q 930,520 960,540 Q 985,555 1010,550" 
+        fill="none" stroke="#324961" stroke-width="3" opacity="0.7" />
+
+  <!-- 4. 漢水支流 (由漢中(140,590)北方秦嶺南麓發源，經宛城(340,470)西南、過襄陽(560,630)城北南折入長江) -->
+  <path d="M 120,540 
+           Q 170,535 240,520 
+           Q 300,505 370,525 
+           T 470,575 
+           Q 525,605 550,615 
+           Q 580,625 615,690" 
+        fill="none" stroke="#1e2d3d" stroke-width="3.5" opacity="0.6" stroke-linecap="round" />
+
+  <!-- 5. 江東水網 (太湖、錢塘江，位於吳郡(980,640)、會稽(980,780)周邊) -->
+  <!-- 太湖輪廓水影 (在建業與吳郡之間) -->
+  <path d="M 920,600 Q 945,585 960,600 Q 970,620 950,630 Q 925,625 920,600 Z" 
+        fill="#14212e" stroke="#192736" stroke-width="1.5" opacity="0.7" />
+  <!-- 錢塘江 (經杭州灣入海，過會稽之北 y:740) -->
+  <path d="M 870,730 Q 910,735 940,740 Q 970,745 1000,735 Q 1025,720 1045,715" 
+        fill="none" stroke="#1c2b3c" stroke-width="4.5" opacity="0.65" stroke-linecap="round" />
+  <!-- 湘江/贛江注入長江 (南方支流) -->
+  <path d="M 580,850 Q 610,790 625,705" fill="none" stroke="#15212d" stroke-width="2.5" opacity="0.45" />
+  <path d="M 720,850 Q 730,790 740,740 Q 755,690 758,660" fill="none" stroke="#15212d" stroke-width="2.2" opacity="0.45" />
+
+  <!-- ==================== 山脈地形配置 ==================== -->
+  <g id="mountain-ranges">
+    <!-- 【西北與北部屏障】秦嶺北麓、中條山、太行山脈 (洛陽之北、漢中之北) -->
+    <!-- 西北連綿秦嶺/隴西群山 -->
+    <use href="#mtn-lg" x="40" y="320" />
+    <use href="#mtn-lg" x="70" y="305" />
+    <use href="#mtn-md" x="105" y="330" />
+    <use href="#mtn-lg" x="135" y="295" />
+    <use href="#mtn-lg" x="175" y="280" />
+    <use href="#mtn-md" x="210" y="300" />
+    <use href="#mtn-lg" x="245" y="275" />
+    <use href="#mtn-md" x="280" y="260" />
+    <use href="#mtn-lg" x="315" y="240" />
+    <use href="#mtn-sm" x="345" y="255" />
+
+    <!-- 漢中(140,590) 北方秦嶺主脊 (y:470~520) 漢中坐落在漢水谷地，周圍為大山環抱但城池周邊留空 -->
+    <use href="#mtn-lg" x="60" y="470" />
+    <use href="#mtn-lg" x="95" y="460" />
+    <use href="#mtn-md" x="135" y="475" />
+    <use href="#mtn-lg" x="180" y="450" />
+    <use href="#mtn-md" x="220" y="465" />
+    
+    <!-- 漢中西南及南方（米倉山、大巴山、巴蜀險道） -->
+    <use href="#mtn-lg" x="45" y="580" />
+    <use href="#mtn-lg" x="65" y="630" />
+    <use href="#mtn-md" x="105" y="650" />
+    <use href="#mtn-lg" x="145" y="670" />
+    <use href="#mtn-lg" x="190" y="660" />
+    <use href="#mtn-md" x="235" y="635" />
+    <use href="#mtn-lg" x="270" y="610" />
+    <use href="#mtn-md" x="295" y="570" />
+    <!-- 漢中深山腹地微群峰 -->
+    <use href="#mtn-sm" x="40" y="525" />
+    <use href="#mtn-sm" x="80" y="555" />
+    <use href="#mtn-sm" x="160" y="640" />
+
+    <!-- 西南巴山蜀水連脈 (y:700~840) -->
+    <use href="#mtn-lg" x="50" y="730" />
+    <use href="#mtn-lg" x="90" y="760" />
+    <use href="#mtn-md" x="130" y="790" />
+    <use href="#mtn-lg" x="70" y="820" />
+    <use href="#mtn-md" x="120" y="835" />
+    <use href="#mtn-lg" x="175" y="770" />
+    <use href="#mtn-lg" x="225" y="750" />
+    <use href="#mtn-md" x="270" y="730" />
+    <use href="#mtn-sm" x="310" y="760" />
+    <use href="#mtn-lg" x="260" y="800" />
+    <use href="#mtn-md" x="330" y="810" />
+
+    <!-- 北方太行山系 (黃河以北，洛陽、陳留北方邊界 y:30~60) -->
+    <use href="#mtn-md" x="360" y="45" />
+    <use href="#mtn-lg" x="400" y="35" />
+    <use href="#mtn-md" x="445" y="40" />
+    <use href="#mtn-lg" x="490" y="30" />
+    <use href="#mtn-md" x="535" y="45" />
+    <use href="#mtn-lg" x="580" y="35" />
+    <use href="#mtn-md" x="630" y="45" />
+    <use href="#mtn-lg" x="680" y="30" />
+    <use href="#mtn-md" x="740" y="40" />
+
+    <!-- 崤函古道與熊耳山、伏牛山 (洛陽(420,210)南面與西面屏障，宛城(340,470)以北) -->
+    <use href="#mtn-md" x="375" y="160" />
+    <use href="#mtn-sm" x="350" y="180" />
+    <use href="#mtn-lg" x="390" y="270" />
+    <use href="#mtn-lg" x="425" y="290" />
+    <use href="#mtn-md" x="465" y="310" />
+    <use href="#mtn-sm" x="495" y="330" />
+    <!-- 伏牛山餘脈（宛城東北側） -->
+    <use href="#mtn-md" x="370" y="390" />
+    <use href="#mtn-lg" x="410" y="410" />
+    <use href="#mtn-md" x="450" y="435" />
+
+    <!-- 桐柏山、大別山脈 (宛城與襄陽以東，阻隔淮南與江漢平原，長江之北) -->
+    <use href="#mtn-md" x="490" y="490" />
+    <use href="#mtn-lg" x="525" y="520" />
+    <use href="#mtn-md" x="565" y="540" />
+    <use href="#mtn-lg" x="615" y="530" />
+    <use href="#mtn-lg" x="660" y="520" />
+    <use href="#mtn-md" x="710" y="535" />
+    <use href="#mtn-lg" x="755" y="550" />
+    <use href="#mtn-md" x="795" y="570" />
+
+    <!-- 荊山、武當山脈 (襄陽(560,630)以西、漢水以南山嶺) -->
+    <use href="#mtn-lg" x="420" y="640" />
+    <use href="#mtn-md" x="460" y="665" />
+    <use href="#mtn-lg" x="485" y="700" />
+    <use href="#mtn-md" x="500" y="745" />
+    <use href="#mtn-sm" x="460" y="760" />
+
+    <!-- 幕阜山、廬山、黃山、九華山等江南山嶺 (長江之南，由九江延伸至浙江) -->
+    <use href="#mtn-md" x="680" y="710" />
+    <use href="#mtn-lg" x="720" y="730" />
+    <use href="#mtn-lg" x="770" y="710" />
+    <use href="#mtn-md" x="815" y="670" />
+    <use href="#mtn-lg" x="850" y="640" />
+    <use href="#mtn-md" x="895" y="660" />
+
+    <!-- 東南會稽南側仙霞嶺、括蒼山脈 (會稽(980,780)以西與以南) -->
+    <use href="#mtn-lg" x="880" y="760" />
+    <use href="#mtn-lg" x="915" y="790" />
+    <use href="#mtn-md" x="900" y="830" />
+    <use href="#mtn-lg" x="945" y="825" />
+    <use href="#mtn-md" x="980" y="840" />
+    <use href="#mtn-lg" x="1030" y="800" />
+    <use href="#mtn-md" x="1040" y="760" />
+
+    <!-- 山東丘陵與泰山山系 (陳留(720,130)以東，遠離城市) -->
+    <use href="#mtn-lg" x="840" y="140" />
+    <use href="#mtn-md" x="880" y="130" />
+    <use href="#mtn-lg" x="920" y="160" />
+    <use href="#mtn-md" x="955" y="175" />
+    <use href="#mtn-sm" x="885" y="170" />
+  </g>
+
+  <!-- ==================== 緩坡、丘陵與水墨波痕 (點綴於平原外圍) ==================== -->
+  <g id="plains-hills">
+    <!-- 許昌(700,370) 東南淮北丘陵 -->
+    <use href="#hill" x="760" y="340" />
+    <use href="#hill" x="785" y="375" />
+    <use href="#hill" x="635" y="430" />
+
+    <!-- 洛陽、陳留與許昌之間的低丘陵 -->
+    <use href="#hill" x="570" y="240" />
+    <use href="#hill" x="610" y="220" />
+    <use href="#hill" x="530" y="280" />
+
+    <!-- 襄陽以東微丘 -->
+    <use href="#hill" x="630" y="625" />
+    <use href="#hill" x="600" y="650" />
+
+    <!-- 建業(880,510)周邊寧鎮丘陵 -->
+    <use href="#hill" x="830" y="475" />
+    <use href="#hill" x="920" y="470" />
+    <use href="#hill" x="850" y="530" />
+
+    <!-- 吳郡與會稽之間的太湖水鄉微丘 -->
+    <use href="#hill" x="1010" y="600" />
+    <use href="#hill" x="940" y="690" />
+    <use href="#hill" x="1020" y="710" />
+  </g>
+
+  <!-- 地圖外框暗角暈影 (營造古樸低調水墨圖卷質感) -->
+  <rect width="1100" height="850" fill="url(#vignette)" pointer-events="none" />
+</svg>

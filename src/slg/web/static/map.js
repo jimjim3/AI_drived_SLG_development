@@ -118,6 +118,17 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
   bg.setAttribute("fill", "#0b1120");
   svg.appendChild(bg);
 
+  // Terrain illustration, aligned to the city coordinate system (px = 70 + 82x, py = 50 + 75(8.5 - y)).
+  const terrain = document.createElementNS(svgNS, "image");
+  terrain.setAttribute("href", "./assets/art/map_terrain.svg");
+  terrain.setAttribute("x", "70");
+  terrain.setAttribute("y", "50");
+  terrain.setAttribute("width", "902");
+  terrain.setAttribute("height", "637.5");
+  terrain.setAttribute("preserveAspectRatio", "none");
+  terrain.setAttribute("style", "filter: brightness(1.3)");
+  svg.appendChild(terrain);
+
   const gridRect = document.createElementNS(svgNS, "rect");
   gridRect.setAttribute("width", "960");
   gridRect.setAttribute("height", "720");

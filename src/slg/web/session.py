@@ -11,7 +11,7 @@ from ..engine.initial_state import build_initial_state, resolve_scenario
 from ..engine.resolution import estimate_siege_ratio
 from ..schema import AgentDecision, CAST_LIMIT, FactionPlan
 from .backends import make_ai_agent
-from .payload import report_lines, state_payload, story_lines
+from .payload import report_lines, scene_text, state_payload, story_lines
 
 
 class PlanError(ValueError):
@@ -121,6 +121,7 @@ class Session:
                 report = report_lines(prev, self.game.state, self.player_faction)
             return {"phase": self.phase, "turn": self.game.state.turn, "events": list(v.events) if v else [],
                     "story": story, "report": report,
+                    "scene": scene_text(self.game.state.turn, bool(story)) if v else {},
                     "feedback": list(v.feedback) if v else [], "winner": self.winner, "error": self.error,
                     "timeouts": self.timeouts}
 

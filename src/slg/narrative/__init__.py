@@ -22,7 +22,7 @@ def load_narrative(lang: str = "zh-TW") -> dict:
     if not folder.is_dir():
         raise ValueError(f"No narrative data for language {lang!r}")
     out = {}
-    for name in ("world", "officers", "events", "openings"):
+    for name in ("world", "officers", "events", "openings", "transitions"):
         out[name] = json.loads((folder / f"{name}.json").read_text(encoding="utf-8"))
     return out
 
@@ -73,3 +73,11 @@ def render_event(key: str, variant: int = 0, lang: str = "zh-TW", **fields) -> s
     if missing:
         raise KeyError(f"Event {key!r} needs fields {sorted(missing)}")
     return _PLACEHOLDER.sub(lambda m: str(fields[m.group(1)]), text)
+
+
+def transition(key: str, variant: int = 0, season: str | None = None, lang: str = "zh-TW") -> str:
+    """Scene-change flavour text (season change, new year, march, quiet turn...). `variant` picks deterministically."""
+    pool = load_narrative(lang)["transitions"][key]
+    if isinstance(pool, dict):
+        pool = pool[season]
+    return pool[variant % len(pool)]

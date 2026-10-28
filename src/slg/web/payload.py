@@ -146,3 +146,16 @@ def report_lines(events, state: GameState, faction_id: str) -> list[str]:
     for fid, cities in sorted(others.items()):
         lines.append(f"{state.faction(fid).name}在{'、'.join(sorted(cities))}整軍經武、興修內政。")
     return lines
+
+
+def scene_text(turn: int, has_story: bool) -> dict:
+    """Presentation-only scene-change text for the report that opens ``turn`` (turn 1 is the opening, so none)."""
+    if turn <= 1:
+        return {}
+    cal = narrative.calendar_label(turn - 1)
+    out = {"label": cal["label"], "season": narrative.transition("season_change", turn, season=cal["season"])}
+    if cal["season"] == "春":
+        out["new_year"] = narrative.transition("new_year", turn)
+    if not has_story:
+        out["quiet"] = narrative.transition("quiet_turn", turn)
+    return out

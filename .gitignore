@@ -12,3 +12,4 @@ venv/
 .coverage
 *.log
 videos/
+.agy-staff/

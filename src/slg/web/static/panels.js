@@ -1026,6 +1026,13 @@ export function renderSettlement(container, status, onProceedNextTurn) {
       <div class="events-timeline">
   `;
 
+  const scene = status.scene || {};
+  if (scene.season) {
+    html += `<div class="scene-card"><div class="scene-label">${scene.label}</div>`
+      + (scene.new_year ? `<p>${scene.new_year}</p>` : "")
+      + `<p>${scene.season}</p>`
+      + (scene.quiet ? `<p class="scene-quiet">${scene.quiet}</p>` : "") + `</div>`;
+  }
   const story = status.story || [];
   story.forEach((line) => {
     html += `<div class="event-card event-story"><span class="event-bullet">⚔</span> <span class="event-text">${line}</span></div>`;
