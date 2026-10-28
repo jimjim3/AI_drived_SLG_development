@@ -113,3 +113,36 @@ def story_lines(events, state: GameState, faction_id: str, limit: int = 12) -> l
             fname = state.faction(ev.faction_id).name
             lines.append(narrative.render_event("defect", ev.turn, officer=name_of(ev.officer_id), faction=fname))
     return lines[-limit:]
+
+
+_ROUTINE = {"develop_agri": "開墾農田", "develop_commerce": "擴建商市", "develop_defense": "加固城防",
+            "recruit": "徵兵", "move": "移駐", "rest": "休整"}
+
+
+def report_lines(events, state: GameState, faction_id: str) -> list[str]:
+    """Plain-Chinese lines for routine actions: the player's own one by one, other factions as one summary each."""
+    import re
+
+    def name_of(oid):
+        o = state.officers.get(oid)
+        return o.name if o else oid
+
+    def city_name(cid):
+        c = state.cities.get(cid)
+        return c.name if c else cid
+
+    own, others = [], {}
+    for ev in relevant_events(events, state, faction_id):
+        label = _ROUTINE.get(ev.action)
+        if label is None:
+            continue
+        if ev.faction_id == faction_id:
+            num = re.search(r"[+-]?\d+", ev.detail or "")
+            extra = f"（{num.group()}）" if num and ev.action != "rest" else ""
+            own.append(f"{name_of(ev.officer_id)}於{city_name(ev.city_id)}{label}{extra}")
+        else:
+            others.setdefault(ev.faction_id, set()).add(city_name(ev.city_id))
+    lines = list(own)
+    for fid, cities in sorted(others.items()):
+        lines.append(f"{state.faction(fid).name}在{'、'.join(sorted(cities))}整軍經武、興修內政。")
+    return lines

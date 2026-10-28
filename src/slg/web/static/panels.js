@@ -1019,7 +1019,7 @@ export function renderSettlement(container, status, onProceedNextTurn) {
   }
 
   // Events (事件逐條顯示)
-  const events = status.events || [];
+  const events = status.report || status.events || [];
   html += `
     <div class="section-sub-block">
       <h4 class="sub-block-title">【天下戰報與各方動態】</h4>
