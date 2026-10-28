@@ -1,0 +1,734 @@
+{
+ "model": "nvidia/nemotron-3-ultra-550b-a55b",
+ "verification": "llm_flagged_unconfirmed",
+ "flags": [
+  {
+   "id": "cao_cao",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣(今安徽亳州),許昌是後期都城非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "cao_pi",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,洛陽是即位後都城非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "cao_rui",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,洛陽是即位後都城非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "cao_ren",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,許昌非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "cao_hong",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,許昌非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "xiahou_dun",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,許昌非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "xiahou_yuan",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,長安非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "cao_chun",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,許昌非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "cao_zhen",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,洛陽非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "cao_xiu",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,壽春非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "xiahou_ba",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,長安非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "xiahou_shang",
+   "field": "home_city",
+   "problem": "籍貫應為沛國譙縣,襄陽非籍貫",
+   "suggest": "沛國譙縣"
+  },
+  {
+   "id": "zhang_liao",
+   "field": "home_city",
+   "problem": "籍貫錯誤：張遼為雁門馬邑人（今山西朔州），非合肥人。合肥為其屯守重鎮。",
+   "suggest": "馬邑"
+  },
+  {
+   "id": "yue_jin",
+   "field": "home_city",
+   "problem": "籍貫錯誤：樂進為沛國相人（今安徽宿州），非許昌人。",
+   "suggest": "相"
+  },
+  {
+   "id": "yu_jin",
+   "field": "home_city",
+   "problem": "籍貫錯誤：于禁為泰山鉅平人（今山東泰安），非宛人（宛在南陽）。",
+   "suggest": "鉅平"
+  },
+  {
+   "id": "zhang_he",
+   "field": "home_city",
+   "problem": "籍貫錯誤：張郃為河間鄚人（今河北任丘），非鄴人。鄴為魏國都城。",
+   "suggest": "鄚"
+  },
+  {
+   "id": "xu_huang",
+   "field": "home_city",
+   "problem": "籍貫錯誤：徐晃為河東楊人（今山西洪洞），非洛陽人。",
+   "suggest": "楊"
+  },
+  {
+   "id": "dian_wei",
+   "field": "home_city",
+   "problem": "籍貫錯誤：典韋為陳留己吾人（今河南開封），陳留為郡名非縣級城池，應標註具體縣份。",
+   "suggest": "己吾"
+  },
+  {
+   "id": "xu_chu",
+   "field": "home_city",
+   "problem": "籍貫錯誤：許褚為譙國銍人（今安徽亳州），非許昌人。",
+   "suggest": "銍"
+  },
+  {
+   "id": "li_dian",
+   "field": "home_city",
+   "problem": "籍貫錯誤：李典為樂安高苑人（今山東淄博），非濮陽人。",
+   "suggest": "高苑"
+  },
+  {
+   "id": "pang_de",
+   "field": "home_city",
+   "problem": "籍貫錯誤：龐德為北地義居人（今甘肅慶陽），非天水人。",
+   "suggest": "義居"
+  },
+  {
+   "id": "zang_ba",
+   "field": "home_city",
+   "problem": "籍貫錯誤：臧霸為泰山華人（今山東泰安），非下邳人。下邳為其割據基地。",
+   "suggest": "華"
+  },
+  {
+   "id": "man_chong",
+   "field": "home_city",
+   "problem": "籍貫錯誤：滿寵為魯國賁人（今山東曲阜），非汝南人。",
+   "suggest": "賁"
+  },
+  {
+   "id": "tian_yu",
+   "field": "home_city",
+   "problem": "籍貫錯誤：田豫為魯國薛人（今山東滕州），非北平人。",
+   "suggest": "薛"
+  },
+  {
+   "id": "qian_zhao",
+   "field": "courtesy",
+   "problem": "字應為「子經」或「子敬」,史書記載不一,但「子經」較常見,此處存疑",
+   "suggest": "子經/子敬"
+  },
+  {
+   "id": "hao_zhao",
+   "field": "home_city",
+   "problem": "籍貫為太原郡祁縣(今山西祁縣),非晉陽(太原郡治)",
+   "suggest": "祁"
+  },
+  {
+   "id": "wang_shuang",
+   "field": "home_city",
+   "problem": "籍貫為南陽郡,非長安",
+   "suggest": "南陽"
+  },
+  {
+   "id": "zhuge_dan",
+   "field": "home_city",
+   "problem": "籍貫為琅琊郡陽都縣(今山東沂南),非壽春(僅為後期鎮守地)",
+   "suggest": "陽都"
+  },
+  {
+   "id": "guanqiu_jian",
+   "field": "home_city",
+   "problem": "籍貫為河內郡溫縣(今河南溫縣),非洛陽",
+   "suggest": "溫"
+  },
+  {
+   "id": "wen_yang",
+   "field": "home_city",
+   "problem": "籍貫為河內郡溫縣(今河南溫縣),非壽春(父文欽後期駐守地)",
+   "suggest": "溫"
+  },
+  {
+   "id": "xun_yu",
+   "field": "faction_path",
+   "problem": "未曾歸屬袁紹,早年辟司空府、州郡命皆在漢朝體系,後直接投曹操",
+   "suggest": [
+    "漢朝",
+    "曹操"
+   ]
+  },
+  {
+   "id": "xun_you",
+   "field": "faction_path",
+   "problem": "未曾歸屬何進、董卓,早年為朗陵令屬漢朝,後舉茂才入曹操幕府",
+   "suggest": [
+    "漢朝",
+    "曹操"
+   ]
+  },
+  {
+   "id": "guo_jia",
+   "field": "home_city",
+   "problem": "籍貫錯誤：郭嘉為穎川陽翟人（今河南禹州），非許昌人。許昌為曹操建都地，非其出生地。",
+   "suggest": "陽翟"
+  },
+  {
+   "id": "cheng_yu",
+   "field": "home_city",
+   "problem": "籍貫錯誤：程昱為東郡壽張人（今山東東阿），非洛陽人。",
+   "suggest": "壽張"
+  },
+  {
+   "id": "liu_ye",
+   "field": "home_city",
+   "problem": "籍貫錯誤：劉曄為魯國薛人（今山東滕州），非壽春人。壽春為淮南重鎮，非其籍貫。",
+   "suggest": "薛"
+  },
+  {
+   "id": "jiang_ji",
+   "field": "home_city",
+   "problem": "籍貫錯誤：蔣濟為九江壽春人（今安徽壽縣），非合肥人。合肥為廬江郡治，與九江郡不同。",
+   "suggest": "壽春"
+  },
+  {
+   "id": "sima_yi",
+   "field": "home_city",
+   "problem": "籍貫錯誤：司馬懿為河內溫人（今河南溫縣），非洛陽人。洛陽為河南尹治所，河內郡獨立。",
+   "suggest": "溫"
+  },
+  {
+   "id": "sima_shi",
+   "field": "home_city",
+   "problem": "籍貫錯誤：司馬師籍貫同父司馬懿，為河內溫人，非洛陽人。",
+   "suggest": "溫"
+  },
+  {
+   "id": "sima_zhao",
+   "field": "home_city",
+   "problem": "籍貫錯誤：司馬昭籍貫同父司馬懿，為河內溫人，非洛陽人。",
+   "suggest": "溫"
+  },
+  {
+   "id": "chen_qun",
+   "field": "faction_path",
+   "problem": "陣營歸屬錯誤：陳羣早年依劉表，後歸曹操，從未屬劉備。劉備同期在荊州、益州，與陳羣無從屬關係。",
+   "suggest": "劉表, 曹操, 曹魏"
+  },
+  {
+   "id": "zhong_yao",
+   "field": "faction_path",
+   "problem": "陣營歸屬表述不準確：鍾繇早年仕漢為司隸校尉等職，非單純屬「漢室」；後歸曹操。建議細化為具體職位或勢力。",
+   "suggest": "漢朝, 曹操, 曹魏"
+  },
+  {
+   "id": "hua_xin",
+   "field": "faction_path",
+   "problem": "陣營順序錯誤：華歆早年避亂江東，先後屬孫策、孫權，後歸曹操。資料順序正確，但「孫策、孫權」應屬同一江東勢力脈絡，無誤。此欄位無明顯錯誤。",
+   "suggest": ""
+  },
+  {
+   "id": "cui_yan",
+   "field": "home_city",
+   "problem": "籍貫表述模糊：崔琰為清河東武城人（今河北故城），「鄴」為魏郡治所及曹操建都，非其籍貫郡縣。",
+   "suggest": "東武城"
+  },
+  {
+   "id": "liu_bei",
+   "field": "home_city",
+   "problem": "籍貫應為涿郡涿縣(今河北保定),非成都(成都為入蜀後根據地)",
+   "suggest": "涿郡涿縣"
+  },
+  {
+   "id": "guan_yu",
+   "field": "home_city",
+   "problem": "籍貫應為河東郡解縣(今山西運城),非江陵(江陵為鎮守地)",
+   "suggest": "河東郡解縣"
+  },
+  {
+   "id": "zhang_fei",
+   "field": "home_city",
+   "problem": "籍貫應為涿郡涿縣(今河北保定),非成都",
+   "suggest": "涿郡涿縣"
+  },
+  {
+   "id": "zhuge_liang",
+   "field": "home_city",
+   "problem": "籍貫應為琅琊郡陽都縣(今山東沂南),非成都(成都為入蜀後居住地)",
+   "suggest": "琅琊郡陽都縣"
+  },
+  {
+   "id": "zhao_yun",
+   "field": "home_city",
+   "problem": "籍貫應為常山郡真定縣(今河北正定),非成都",
+   "suggest": "常山郡真定縣"
+  },
+  {
+   "id": "ma_chao",
+   "field": "home_city",
+   "problem": "籍貫應為扶風郡茂陵縣(今陝西興平),非武威(武威為馬騰據守地)",
+   "suggest": "扶風郡茂陵縣"
+  },
+  {
+   "id": "pang_tong",
+   "field": "home_city",
+   "problem": "籍貫應為襄陽郡(今湖北襄陽),非襄陽城(襄陽為郡名,非城池名)",
+   "suggest": "襄陽郡"
+  },
+  {
+   "id": "fa_zheng",
+   "field": "home_city",
+   "problem": "法正籍貫為扶風郿（今陝西眉縣），非成都。",
+   "suggest": "扶風郿"
+  },
+  {
+   "id": "wei_yan",
+   "field": "faction_path",
+   "problem": "魏延未曾事劉表、韓玄，建興元年（223）隨劉備入蜀後始見於史。",
+   "suggest": "蜀漢"
+  },
+  {
+   "id": "xu_shu",
+   "field": "faction_path",
+   "problem": "徐庶先事劉備，後歸曹操，順序應為[\"蜀漢\",\"曹操\"]。",
+   "suggest": "[\"蜀漢\",\"曹操\"]"
+  },
+  {
+   "id": "zhou_cang",
+   "field": "faction_path",
+   "problem": "周倉為小說《三國演義》虛構人物，史書無載，不屬黃巾或蜀漢實體陣營。",
+   "suggest": "虛構人物"
+  },
+  {
+   "id": "guan_ping",
+   "field": "home_city",
+   "problem": "關平隨父關羽本籍解良（今山西運城），非江陵。",
+   "suggest": "解良"
+  },
+  {
+   "id": "guan_ping",
+   "field": "death",
+   "problem": "關平於建安二十四年（219）隨關羽被吳軍俘殺，非220年。",
+   "suggest": 219
+  },
+  {
+   "id": "liao_hua",
+   "field": "courtesy",
+   "problem": "字應為『元儉』而非『元儉』，正確寫法為『元儉』",
+   "suggest": "元儉"
+  },
+  {
+   "id": "li_yan",
+   "field": "courtesy",
+   "problem": "字應為『正方』，但史書記載為『正方』無誤，惟部分版本誤作『正方』，實際應確認",
+   "suggest": "正方"
+  },
+  {
+   "id": "jiang_wan",
+   "field": "home_city",
+   "problem": "籍貫為義陽鄳縣（今河南信陽），非成都",
+   "suggest": "義陽鄳縣"
+  },
+  {
+   "id": "fei_yi",
+   "field": "home_city",
+   "problem": "籍貫為江夏鄳縣（今湖北潛江），非成都",
+   "suggest": "江夏鄳縣"
+  },
+  {
+   "id": "dong_yun",
+   "field": "home_city",
+   "problem": "籍貫為南郡枝江（今湖北枝江），非成都",
+   "suggest": "南郡枝江"
+  },
+  {
+   "id": "yi_ji",
+   "field": "faction_path",
+   "problem": "未曾事奉劉表，直接投奔劉備",
+   "suggest": "['蜀漢']"
+  },
+  {
+   "id": "batch84",
+   "field": "parse",
+   "problem": "[\n  {\"id\": \"ma_zhong_shuhan\", \"field\": \"courtesy\", \"problem\": \"字應為「德信」? 史書《三國志·馬忠傳》未載其字，「德信」疑為小說或後世訛傳\", \"suggest\": \"字不詳\"},\n  {\"id\": \"zhang_yi\", \"field\": \"courtesy\", \"problem\": \"字應為「伯岐」? 《三國志·張嶷傳》未載其字，「伯岐」疑為誤傳\", \"suggest\": \"字不詳\"},\n  {\"id\": \"yang_yi\", \"field\": \"courtesy\", \"problem\": \"字為「威公」錯誤，正確應為「威公」"
+  },
+  {
+   "id": "lu_su",
+   "field": "birth",
+   "problem": "生年應為 172 年（史載建安二十二年卒，年四十六，逆推為 172），資料 172 無誤，但 death 217 錯，應為 217 年（建安二十二年）無誤，惟 birth 172 導致享年 45 歲，與史載「年四十六」虛歲差 1，非明顯錯誤，故不標註"
+  },
+  {
+   "id": "lu_meng",
+   "field": "death",
+   "problem": "卒年應為 220 年（建安二十五年），資料 220 正確，但 birth 178 導致享年 42 歲，史載「年四十二」虛歲吻合，無誤"
+  },
+  {
+   "id": "lu_xun",
+   "field": "courtesy",
+   "problem": "字應為「伯言」，資料正確"
+  },
+  {
+   "id": "lu_kang",
+   "field": "faction_path",
+   "problem": "陣營路徑含「東吳」屬政權名非君主，史實僅事奉孫權、孫亮、孫休、孫皓，建議改為 [\"孫權\", \"孫亮\", \"孫休\", \"孫皓\"]"
+  },
+  {
+   "id": "cheng_pu",
+   "field": "home_city",
+   "problem": "籍貫應為「右北平土垠」（今河北盧龍），非「吳郡」，明顯錯誤"
+  },
+  {
+   "id": "huang_gai",
+   "field": "home_city",
+   "problem": "籍貫應為「零陵郡泉陵」（今湖南永州），資料「零陵」為郡名非縣，屬模糊但非明顯錯誤，不標註"
+  },
+  {
+   "id": "han_dang",
+   "field": "home_city",
+   "problem": "籍貫應為「遼西令支」（今河北昌黎），非「吳郡」，明顯錯誤"
+  },
+  {
+   "id": "zu_mao",
+   "field": "courtesy",
+   "problem": "字「大榮」疑誤，史書未載其字，或為小說創作，屬明顯錯誤"
+  },
+  {
+   "id": "gan_ning",
+   "field": "home_city",
+   "problem": "籍貫應為「巴郡臨江」（今重慶忠縣），非「柴桑」（柴桑為後屯駐地），明顯錯誤"
+  },
+  {
+   "id": "ling_tong",
+   "field": "birth",
+   "problem": "生年 189 導致卒年 217 僅 28 歲，史載「年三十七」虛歲，生年應為 181，差距 8 年，明顯錯誤"
+  },
+  {
+   "id": "ling_cao",
+   "field": "courtesy",
+   "problem": "字史書未載，資料 null 正確"
+  },
+  {
+   "id": "zhou_tai",
+   "field": "home_city",
+   "problem": "籍貫應為「九江下蔡」（今安徽鳳台），非「廬江」（廬江為郡名），明顯錯誤"
+  },
+  {
+   "id": "jiang_qin",
+   "field": "courtesy",
+   "problem": "字應為「公奕」? 史書《三國志·吳書》載蔣欽字「公奕」,但《江表傳》作「公奕」,《吳錄》作「公奕」,主流版本一致為「公奕」,此處無誤。實際錯誤在 home_city:蔣欽本為九江壽春人,但壽春屬淮南郡,非九江郡;《三國志》注引《吳錄》云「欽字公奕,九江壽春人」,九江郡治在壽春,故「壽春」作籍貫城池無誤。再檢查:蔣欽卒年 219 年,《三國志》呂蒙傳注引《江表傳》:「欽卒,權素服哭之」,在關羽敗走麥城(219 年)前後,卒年 219 可信。此條目無明顯錯誤。"
+  },
+  {
+   "id": "chen_wu",
+   "field": "birth",
+   "problem": "生年 178 年存疑。《三國志·陳武傳》未載生年,僅知建安 20 年(215 年)卒,時年 38 歲(虛歲),推算生年約 178 年,但非正史明文,屬推測值,不宜標為確定生年。"
+  },
+  {
+   "id": "dong_xi",
+   "field": "courtesy",
+   "problem": "字「元代」錯誤。《三國志·董襲傳》載「襲字元代」,但《吳書》及裴松之注引《吳錄》作「襲字元代」,主流版本一致為「元代」,此處無誤。實際錯誤在 home_city:董襲為會稽吳縣人,《三國志》作「會稽吳人」,home_city 填「會稽」屬郡名非縣名,但資料結構似以郡為單位,可接受。無明顯錯誤。"
+  },
+  {
+   "id": "pan_zhang",
+   "field": "courtesy",
+   "problem": "字「文珪」錯誤。《三國志·潘璋傳》載「璋字文珪」,正確。但《吳書》及《江表傳》同。無誤。home_city「廣陵」:潘璋為東郡發干人,非廣陵郡人。《三國志》原文:「璋字文珪,東郡發干人也。」東郡屬兗州,廣陵屬徐州,籍貫明顯錯誤。",
+   "suggest": "home_city 應為「東郡」或「發干」"
+  },
+  {
+   "id": "xu_sheng",
+   "field": "home_city",
+   "problem": "籍貫「下邳」錯誤。《三國志·徐盛傳》載「盛字文嚮,琅邪郯人也。」郯縣屬琅邪郡,下邳屬東海郡/下邳國,兩地相距甚遠。",
+   "suggest": "home_city 應為「琅邪」或「郯」"
+  },
+  {
+   "id": "ding_feng",
+   "field": "faction_path",
+   "problem": "陣營包含「東吳」屬冗餘/時代錯置。丁奉仕孫權、孫亮、孫休、孫皓四朝,皆屬孫吳政權,「東吳」非君主名,且 faction_path 其餘項皆為君主名,混入國號不一致。",
+   "suggest": "faction_path 應為 [\"孫權\", \"孫亮\", \"孫休\", \"孫皓\"] 或僅保留 [\"孫權\"]"
+  },
+  {
+   "id": "zhu_huan",
+   "field": "birth",
+   "problem": "生年 177 年存疑。《三國志·朱桓傳》未載生年,僅知赤烏元年(238 年)卒,時年 62 歲(虛歲),推算生年約 177 年,屬推測值。"
+  },
+  {
+   "id": "zhu_ran",
+   "field": "home_city",
+   "problem": "籍貫「廣陵」錯誤。《三國志·朱然傳》載「然字義封,丹楊故鄣人也。」故鄣縣屬丹楊郡,非廣陵郡。",
+   "suggest": "home_city 應為「丹楊」或「故鄣」"
+  },
+  {
+   "id": "he_qi",
+   "field": "courtesy",
+   "problem": "字「公苗」錯誤。《三國志·賀齊傳》載「齊字公苗」,正確。但《吳書》作「公苗」,《江表傳》同。無誤。home_city「會稽」:賀齊為會稽山陰人,《三國志》作「會稽山陰人」,填郡名可接受。無明顯錯誤。"
+  },
+  {
+   "id": "quan_cong",
+   "field": "home_city",
+   "problem": "籍貫「吳郡」存疑。《三國志·全琮傳》載「琮字子璜,吳郡錢唐人也。」錢唐縣屬吳郡,填郡名可接受。無明顯錯誤。"
+  },
+  {
+   "id": "zhang_zhao",
+   "field": "home_city",
+   "problem": "籍貫「廣陵」錯誤。《三國志·張昭傳》載「昭字子布,彭城人也。」彭城國屬徐州,非廣陵郡。",
+   "suggest": "home_city 應為「彭城」"
+  },
+  {
+   "id": "zhang_hong",
+   "field": "home_city",
+   "problem": "籍貫「廣陵」錯誤。《三國志·張紘傳》載「紘字子綱,廣陵人也。」此處正確。但張紘與張昭同為廣陵人?張昭為彭城人,張紘為廣陵人,兩人不同郡。此條目無誤。"
+  },
+  {
+   "id": "zhu_ge_jin",
+   "field": "home_city",
+   "problem": "籍貫錯誤，諸葛瑾籍貫為琅琊陽都（今山東沂南），非廣陵。",
+   "suggest": "琅琊"
+  },
+  {
+   "id": "zhu_ge_ke",
+   "field": "home_city",
+   "problem": "籍貫錯誤，諸葛恪籍貫隨父為琅琊陽都，建業為出生/活動地非籍貫。",
+   "suggest": "琅琊"
+  },
+  {
+   "id": "lu_ji",
+   "field": "death",
+   "problem": "卒年錯誤，陸績卒於黃武三年（224年），非219年。",
+   "suggest": 224
+  },
+  {
+   "id": "cheng_bing",
+   "field": "faction_path",
+   "problem": "陣營歸屬錯誤，「交州」非政權勢力名，程秉歷仕孫權、孫亮朝。",
+   "suggest": [
+    "孫權",
+    "孫亮"
+   ]
+  },
+  {
+   "id": "xue_zong",
+   "field": "faction_path",
+   "problem": "陣營歸屬錯誤，「交州」非政權勢力名，薛綜歷仕孫權、孫亮、孫休、孫皓四朝。",
+   "suggest": [
+    "孫權",
+    "孫亮",
+    "孫休",
+    "孫皓"
+   ]
+  },
+  {
+   "id": "sun_jing",
+   "field": "faction_path",
+   "problem": "孫靜是孫堅長兄,從未歸屬孫策麾下,應為孫堅/孫權陣營",
+   "suggest": "[\"孫堅\", \"孫權\"]"
+  },
+  {
+   "id": "li_ru",
+   "field": "home_city",
+   "problem": "李儒本籍南陽郡,非長安",
+   "suggest": "南陽郡"
+  },
+  {
+   "id": "hua_xiong",
+   "field": "home_city",
+   "problem": "華雄本籍河內郡,非洛陽",
+   "suggest": "河內郡"
+  },
+  {
+   "id": "li_jue",
+   "field": "home_city",
+   "problem": "李傕本籍北地郡義渠,非長安",
+   "suggest": "北地郡"
+  },
+  {
+   "id": "guo_si",
+   "field": "home_city",
+   "problem": "郭汜本籍張掖郡,非長安",
+   "suggest": "張掖郡"
+  },
+  {
+   "id": "niu_fu",
+   "field": "home_city",
+   "problem": "牛輔本籍隴西郡,非長安",
+   "suggest": "隴西郡"
+  },
+  {
+   "id": "xu_rong",
+   "field": "home_city",
+   "problem": "徐榮本籍隴西郡,非洛陽",
+   "suggest": "隴西郡"
+  },
+  {
+   "id": "duan_wei",
+   "field": "home_city",
+   "problem": "段煨本籍陳留郡,非潼關",
+   "suggest": "陳留郡"
+  },
+  {
+   "id": "chen_gong",
+   "field": "home_city",
+   "problem": "陳宮本籍東郡壽張,非濮陽",
+   "suggest": "東郡"
+  },
+  {
+   "id": "tian_feng",
+   "field": "courtesy",
+   "problem": "字應為「元皓」,資料為「元皓」,「皓」字錯誤",
+   "suggest": "元皓"
+  },
+  {
+   "id": "ju_shou",
+   "field": "courtesy",
+   "problem": "字「元圖」缺失",
+   "suggest": "元圖"
+  },
+  {
+   "id": "guo_tu",
+   "field": "courtesy",
+   "problem": "字應為「公則」,資料為「公則」,但史書多作「公則」,此處無誤;惟《三國志》袁紹傳注引《英雄記》作「公則」,與資料一致,故不列為錯誤",
+   "suggest": ""
+  },
+  {
+   "id": "xin_ping",
+   "field": "courtesy",
+   "problem": "字應為「仲治」,資料為「仲治」,無誤",
+   "suggest": ""
+  },
+  {
+   "id": "chunyu_qiong",
+   "field": "courtesy",
+   "problem": "字應為「仲簡」,資料為「仲簡」,無誤",
+   "suggest": ""
+  },
+  {
+   "id": "feng_ji",
+   "field": "home_city",
+   "problem": "籍貫應為渤海郡(今河北景縣),非「南皮」(南皮為勃海郡治所,但非其出生地),明顯不符",
+   "suggest": "渤海郡"
+  },
+  {
+   "id": "guo_tu",
+   "field": "home_city",
+   "problem": "籍貫應為潁川陽翟(今河南禹州),非「鄴」,明顯不符",
+   "suggest": "潁川陽翟"
+  },
+  {
+   "id": "xin_ping",
+   "field": "home_city",
+   "problem": "籍貫應為潁川陽翟(今河南禹州),非「鄴」,明顯不符",
+   "suggest": "潁川陽翟"
+  },
+  {
+   "id": "chunyu_qiong",
+   "field": "home_city",
+   "problem": "籍貫不詳,僅知為袁紹將,非「鄴」,明顯不符",
+   "suggest": "不詳"
+  },
+  {
+   "id": "yan_liang",
+   "field": "home_city",
+   "problem": "籍貫不詳,僅知為袁紹將,非「鄴」,明顯不符",
+   "suggest": "不詳"
+  },
+  {
+   "id": "kui_yue",
+   "field": "courtesy",
+   "problem": "字應為「正嗣」,非「異度」",
+   "suggest": "正嗣"
+  },
+  {
+   "id": "cai_mao",
+   "field": "courtesy",
+   "problem": "字應為「子孝」,非「德珪」",
+   "suggest": "子孝"
+  },
+  {
+   "id": "zhang_ren",
+   "field": "home_city",
+   "problem": "籍貫為巴西郡閬中,非成都",
+   "suggest": "閬中"
+  },
+  {
+   "id": "yan_yan",
+   "field": "home_city",
+   "problem": "籍貫為巴西郡閬中,非永安",
+   "suggest": "閬中"
+  },
+  {
+   "id": "batch168",
+   "field": "parse",
+   "problem": "[\n  {\"id\": \"meng_da\", \"field\": \"home_city\", \"problem\": \"籍貫錯誤：孟達本為扶風郿人，非上庸人。上庸為其曾鎮守之地。\", \"suggest\": \"郿\"},\n  {\"id\": \"liu_ba\", \"field\": \"faction_path\", \"problem\": \"陣營歸屬錯誤：劉巴早年依劉表，後歸劉備，從未屬劉璋。\", \"suggest\": \"[\"劉表\", \"蜀漢\"]\"},\n  {\"id\": \"gongsun_yue\", \"field\": \"home_city\", \"problem\": \"籍貫錯誤：公孫越為遼西令支人，非北平人。\", \""
+  },
+  {
+   "id": "liu_yao",
+   "field": "home_city",
+   "problem": "籍貫錯誤：劉繇本籍東萊牟平（今山東牟平），非建業。建業為其後期割據治所。",
+   "suggest": "東萊牟平"
+  },
+  {
+   "id": "taishi_ci",
+   "field": "home_city",
+   "problem": "籍貫錯誤：太史慈本籍東萊黃縣（今山東龍口），非北海。北海為太史慈曾任北海相，非籍貫。",
+   "suggest": "東萊黃縣"
+  },
+  {
+   "id": "wang_lang",
+   "field": "home_city",
+   "problem": "籍貫錯誤：王朗本籍東萊牟平（今山東牟平），非會稽。會稽為其任內郡。",
+   "suggest": "東萊牟平"
+  },
+  {
+   "id": "yan_baihu",
+   "field": "home_city",
+   "problem": "籍貫錯誤：嚴白虎本籍會稽烏傷（今浙江義烏），非吳郡。吳郡為其活動區域。",
+   "suggest": "會稽烏傷"
+  }
+ ],
+ "triage": {
+  "by_field": {
+   "courtesy": 17,
+   "birth": 4,
+   "parse": 2,
+   "faction_path": 14,
+   "home_city": 80,
+   "death": 3
+  },
+  "note": "Nemotron Ultra, temp 0, no ground truth. Many flags self-contradict (says 'no error') or treat home_city as birthplace. Treat as review hints only; none applied.",
+  "concrete_candidates": [
+   "guan_ping",
+   "lu_ji"
+  ]
+ }
+}
