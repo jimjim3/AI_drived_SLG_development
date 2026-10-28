@@ -1,0 +1,1301 @@
+[
+ {
+  "id": "cao_cao",
+  "name": "曹操",
+  "courtesy": "孟德",
+  "faction_path": [
+   "漢室",
+   "曹操"
+  ],
+  "tags": [
+   "統帥",
+   "謀士",
+   "政務"
+  ],
+  "home_city": "xuchang",
+  "birth": 155,
+  "death": 220,
+  "summary": "魏武帝，東漢末年傑出的政治家、軍事家、文學家。",
+  "stats_estimate": {
+   "leadership": 99,
+   "war": 72,
+   "intellect": 91,
+   "politics": 94
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "cao_pi",
+  "name": "曹丕",
+  "courtesy": "子桓",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "luoyang",
+  "birth": 187,
+  "death": 226,
+  "summary": "魏文帝，曹魏開國皇帝，推行九品中正制與提倡文藝。",
+  "stats_estimate": {
+   "leadership": 73,
+   "war": 70,
+   "intellect": 83,
+   "politics": 86
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "cao_rui",
+  "name": "曹叡",
+  "courtesy": "元仲",
+  "faction_path": [
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "luoyang",
+  "birth": 204,
+  "death": 239,
+  "summary": "魏明帝，指揮防禦蜀漢與東吳多次北伐，沉著有斷。",
+  "stats_estimate": {
+   "leadership": 72,
+   "war": 52,
+   "intellect": 82,
+   "politics": 82
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "cao_ren",
+  "name": "曹仁",
+  "courtesy": "子孝",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "xuchang",
+  "birth": 168,
+  "death": 223,
+  "summary": "曹魏宗室名將，長於防守，曾死守江陵與樊城。",
+  "stats_estimate": {
+   "leadership": 89,
+   "war": 86,
+   "intellect": 62,
+   "politics": 46
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "cao_hong",
+  "name": "曹洪",
+  "courtesy": "子廉",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "xuchang",
+  "birth": 169,
+  "death": 232,
+  "summary": "曹魏宗室名將，多次獻馬救主，作戰勇猛。",
+  "stats_estimate": {
+   "leadership": 79,
+   "war": 81,
+   "intellect": 44,
+   "politics": 42
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "xiahou_dun",
+  "name": "夏侯惇",
+  "courtesy": "元讓",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "xuchang",
+  "birth": null,
+  "death": 220,
+  "summary": "曹操起兵元勛，深受信任，性格剛烈且清儉。",
+  "stats_estimate": {
+   "leadership": 89,
+   "war": 90,
+   "intellect": 60,
+   "politics": 70
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "xiahou_yuan",
+  "name": "夏侯淵",
+  "courtesy": "妙才",
+  "faction_path": [
+   "曹操"
+  ],
+  "tags": [
+   "統帥",
+   "猛將",
+   "騎兵"
+  ],
+  "home_city": "changan",
+  "birth": null,
+  "death": 219,
+  "summary": "善於千里奔襲，曾平定隴右，後戰死於定軍山。",
+  "stats_estimate": {
+   "leadership": 87,
+   "war": 91,
+   "intellect": 55,
+   "politics": 61
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "cao_chun",
+  "name": "曹純",
+  "courtesy": "子和",
+  "faction_path": [
+   "曹操"
+  ],
+  "tags": [
+   "騎兵",
+   "統帥"
+  ],
+  "home_city": "xuchang",
+  "birth": 170,
+  "death": 210,
+  "summary": "曹操精銳虎豹騎統帥，南征北戰立有大功。",
+  "stats_estimate": {
+   "leadership": 79,
+   "war": 74,
+   "intellect": 65,
+   "politics": 68
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "cao_zhen",
+  "name": "曹真",
+  "courtesy": "子丹",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥"
+  ],
+  "home_city": "luoyang",
+  "birth": null,
+  "death": 231,
+  "summary": "曹魏名將，大將軍，曾成功抵禦諸葛亮北伐。",
+  "stats_estimate": {
+   "leadership": 88,
+   "war": 75,
+   "intellect": 70,
+   "politics": 74
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "cao_xiu",
+  "name": "曹休",
+  "courtesy": "文烈",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "騎兵"
+  ],
+  "home_city": "shouchun",
+  "birth": null,
+  "death": 228,
+  "summary": "曹家千里駒，長期總督對吳東南戰事。",
+  "stats_estimate": {
+   "leadership": 76,
+   "war": 75,
+   "intellect": 62,
+   "politics": 56
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "xiahou_ba",
+  "name": "夏侯霸",
+  "courtesy": "仲權",
+  "faction_path": [
+   "曹魏",
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將",
+   "騎兵"
+  ],
+  "home_city": "changan",
+  "birth": null,
+  "death": null,
+  "summary": "夏侯淵之子，高平陵之變後投奔蜀漢。",
+  "stats_estimate": {
+   "leadership": 77,
+   "war": 84,
+   "intellect": 70,
+   "politics": 55
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "xiahou_shang",
+  "name": "夏侯尚",
+  "courtesy": "伯仁",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "謀士"
+  ],
+  "home_city": "xiangyang",
+  "birth": null,
+  "death": 225,
+  "summary": "魏初將領，長於策劃，曾攻拔蜀漢上庸三郡。",
+  "stats_estimate": {
+   "leadership": 78,
+   "war": 72,
+   "intellect": 76,
+   "politics": 63
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhang_liao",
+  "name": "張遼",
+  "courtesy": "文遠",
+  "faction_path": [
+   "丁原",
+   "董卓",
+   "呂布",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "猛將",
+   "騎兵"
+  ],
+  "home_city": "hefei",
+  "birth": 169,
+  "death": 222,
+  "summary": "五子良將之首，威震逍遙津，以八百破十萬。",
+  "stats_estimate": {
+   "leadership": 94,
+   "war": 92,
+   "intellect": 78,
+   "politics": 58
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "yue_jin",
+  "name": "樂進",
+  "courtesy": "文謙",
+  "faction_path": [
+   "曹操"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "xuchang",
+  "birth": null,
+  "death": 218,
+  "summary": "五子良將之一，每戰必先登陷陣，勇猛果敢。",
+  "stats_estimate": {
+   "leadership": 80,
+   "war": 84,
+   "intellect": 52,
+   "politics": 51
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "yu_jin",
+  "name": "于禁",
+  "courtesy": "文則",
+  "faction_path": [
+   "鮑信",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥"
+  ],
+  "home_city": "wan",
+  "birth": null,
+  "death": 221,
+  "summary": "五子良將之一，治軍嚴整，晚年於樊城之戰降關羽。",
+  "stats_estimate": {
+   "leadership": 83,
+   "war": 78,
+   "intellect": 70,
+   "politics": 57
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "zhang_he",
+  "name": "張郃",
+  "courtesy": "儁乂",
+  "faction_path": [
+   "韓馥",
+   "袁紹",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "謀士"
+  ],
+  "home_city": "ye",
+  "birth": null,
+  "death": 231,
+  "summary": "五子良將之一，善處營陣與料敵，街亭敗馬謖。",
+  "stats_estimate": {
+   "leadership": 90,
+   "war": 89,
+   "intellect": 74,
+   "politics": 57
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "xu_huang",
+  "name": "徐晃",
+  "courtesy": "公明",
+  "faction_path": [
+   "楊奉",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "luoyang",
+  "birth": null,
+  "death": 227,
+  "summary": "五子良將之一，治軍有周亞夫之風，解樊城之圍。",
+  "stats_estimate": {
+   "leadership": 88,
+   "war": 90,
+   "intellect": 74,
+   "politics": 48
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "dian_wei",
+  "name": "典韋",
+  "courtesy": null,
+  "faction_path": [
+   "張邈",
+   "曹操"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "chenliu",
+  "birth": null,
+  "death": 197,
+  "summary": "古之惡來，力大過人，宛城之戰捨命護衛曹操。",
+  "stats_estimate": {
+   "leadership": 61,
+   "war": 95,
+   "intellect": 35,
+   "politics": 29
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "xu_chu",
+  "name": "許褚",
+  "courtesy": "仲康",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "xuchang",
+  "birth": null,
+  "death": null,
+  "summary": "虎癡，曹操宿衛統領，勇猛善戰且忠心耿耿。",
+  "stats_estimate": {
+   "leadership": 66,
+   "war": 96,
+   "intellect": 36,
+   "politics": 20
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "li_dian",
+  "name": "李典",
+  "courtesy": "曼成",
+  "faction_path": [
+   "曹操"
+  ],
+  "tags": [
+   "統帥",
+   "謀士"
+  ],
+  "home_city": "puyang",
+  "birth": null,
+  "death": 215,
+  "summary": "魏初將領，深明大義，崇尚儒學，不與諸將爭功。",
+  "stats_estimate": {
+   "leadership": 82,
+   "war": 77,
+   "intellect": 79,
+   "politics": 74
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "pang_de",
+  "name": "龐德",
+  "courtesy": "令明",
+  "faction_path": [
+   "馬騰",
+   "張魯",
+   "曹操"
+  ],
+  "tags": [
+   "猛將",
+   "騎兵"
+  ],
+  "home_city": "tianshui",
+  "birth": null,
+  "death": 219,
+  "summary": "白馬將軍，勇冠三軍，樊城抬櫬死戰關羽不降。",
+  "stats_estimate": {
+   "leadership": 80,
+   "war": 94,
+   "intellect": 60,
+   "politics": 44
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zang_ba",
+  "name": "臧霸",
+  "courtesy": "宣高",
+  "faction_path": [
+   "陶謙",
+   "呂布",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "xiapi",
+  "birth": null,
+  "death": null,
+  "summary": "泰山軍閥出身，歸降曹操後鎮守徐青二州立功。",
+  "stats_estimate": {
+   "leadership": 78,
+   "war": 82,
+   "intellect": 68,
+   "politics": 65
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "man_chong",
+  "name": "滿寵",
+  "courtesy": "伯寧",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "謀士",
+   "政務"
+  ],
+  "home_city": "runan",
+  "birth": null,
+  "death": 242,
+  "summary": "執法剛嚴，後期築合肥新城抗吳，防守名將。",
+  "stats_estimate": {
+   "leadership": 85,
+   "war": 64,
+   "intellect": 84,
+   "politics": 84
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "tian_yu",
+  "name": "田豫",
+  "courtesy": "國讓",
+  "faction_path": [
+   "公孫瓚",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "謀士",
+   "外交"
+  ],
+  "home_city": "beiping",
+  "birth": 171,
+  "death": 252,
+  "summary": "鎮守北方邊陲名將，多次平定烏桓與鮮卑叛亂。",
+  "stats_estimate": {
+   "leadership": 82,
+   "war": 73,
+   "intellect": 80,
+   "politics": 77
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "qian_zhao",
+  "name": "牽招",
+  "courtesy": "子經",
+  "faction_path": [
+   "袁紹",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "外交"
+  ],
+  "home_city": "ye",
+  "birth": null,
+  "death": 231,
+  "summary": "長期經略北方邊境，威震邊外，夷夏畏服。",
+  "stats_estimate": {
+   "leadership": 80,
+   "war": 74,
+   "intellect": 76,
+   "politics": 74
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "gu_huai",
+  "name": "郭淮",
+  "courtesy": "伯濟",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "謀士"
+  ],
+  "home_city": "jinyang",
+  "birth": null,
+  "death": 255,
+  "summary": "長期經略隴右，多次策劃抵禦姜維等人北伐。",
+  "stats_estimate": {
+   "leadership": 84,
+   "war": 78,
+   "intellect": 81,
+   "politics": 75
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sun_li",
+  "name": "孫禮",
+  "courtesy": "德達",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "ye",
+  "birth": null,
+  "death": 250,
+  "summary": "為人剛毅方正，身經百戰，多次抗擊蜀吳兩路。",
+  "stats_estimate": {
+   "leadership": 77,
+   "war": 79,
+   "intellect": 69,
+   "politics": 71
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "hao_zhao",
+  "name": "郝昭",
+  "courtesy": "伯道",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥"
+  ],
+  "home_city": "jinyang",
+  "birth": null,
+  "death": 229,
+  "summary": "陳倉守將，以千餘兵力堅守二十多天擋住諸葛亮。",
+  "stats_estimate": {
+   "leadership": 89,
+   "war": 79,
+   "intellect": 78,
+   "politics": 60
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "wang_shuang",
+  "name": "王雙",
+  "courtesy": "子全",
+  "faction_path": [
+   "曹魏"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "changan",
+  "birth": null,
+  "death": 228,
+  "summary": "曹魏驍將，使流星錘，後在追擊諸葛亮退兵時陣亡。",
+  "stats_estimate": {
+   "leadership": 58,
+   "war": 88,
+   "intellect": 20,
+   "politics": 23
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "deng_ai",
+  "name": "鄧艾",
+  "courtesy": "士載",
+  "faction_path": [
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "謀士",
+   "政務"
+  ],
+  "home_city": "runan",
+  "birth": 197,
+  "death": 264,
+  "summary": "魏末名將，偷渡陰平滅亡蜀漢，善於屯田與用兵。",
+  "stats_estimate": {
+   "leadership": 94,
+   "war": 87,
+   "intellect": 89,
+   "politics": 81
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhong_hui",
+  "name": "鍾會",
+  "courtesy": "士季",
+  "faction_path": [
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "謀士"
+  ],
+  "home_city": "xuchang",
+  "birth": 225,
+  "death": 264,
+  "summary": "鍾繇幼子，才策精練，主力伐蜀破劍閣後作亂被殺。",
+  "stats_estimate": {
+   "leadership": 82,
+   "war": 51,
+   "intellect": 91,
+   "politics": 79
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhuge_dan",
+  "name": "諸葛誕",
+  "courtesy": "公休",
+  "faction_path": [
+   "曹魏"
+  ],
+  "tags": [
+   "統帥"
+  ],
+  "home_city": "shouchun",
+  "birth": null,
+  "death": 258,
+  "summary": "淮南三叛發起者之一，諸葛氏狗，守壽春力戰死。",
+  "stats_estimate": {
+   "leadership": 77,
+   "war": 74,
+   "intellect": 73,
+   "politics": 70
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "guanqiu_jian",
+  "name": "毌丘儉",
+  "courtesy": "仲恭",
+  "faction_path": [
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "luoyang",
+  "birth": null,
+  "death": 255,
+  "summary": "曾出征高句麗勒石記功，後起兵反對司馬師被殺。",
+  "stats_estimate": {
+   "leadership": 79,
+   "war": 76,
+   "intellect": 70,
+   "politics": 68
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "wen_yang",
+  "name": "文鴦",
+  "courtesy": "次騫",
+  "faction_path": [
+   "曹魏",
+   "東吳",
+   "西晉"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "shouchun",
+  "birth": 238,
+  "death": 291,
+  "summary": "三國後期勇將，樂嘉城單騎退雄兵，勇冠三軍。",
+  "stats_estimate": {
+   "leadership": 76,
+   "war": 91,
+   "intellect": 60,
+   "politics": 35
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "xun_yu",
+  "name": "荀彧",
+  "courtesy": "文若",
+  "faction_path": [
+   "袁紹",
+   "曹操"
+  ],
+  "tags": [
+   "謀士",
+   "政務",
+   "外交"
+  ],
+  "home_city": "xuchang",
+  "birth": 163,
+  "death": 212,
+  "summary": "王佐之才，曹操首席謀臣與戰略家，主持後方大局。",
+  "stats_estimate": {
+   "leadership": 52,
+   "war": 14,
+   "intellect": 95,
+   "politics": 99
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "xun_you",
+  "name": "荀攸",
+  "courtesy": "公達",
+  "faction_path": [
+   "何進",
+   "董卓",
+   "曹操"
+  ],
+  "tags": [
+   "謀士"
+  ],
+  "home_city": "xuchang",
+  "birth": 157,
+  "death": 214,
+  "summary": "曹操軍師，精通戰術，畫奇策十二，隨軍克敵。",
+  "stats_estimate": {
+   "leadership": 73,
+   "war": 26,
+   "intellect": 94,
+   "politics": 88
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "guo_jia",
+  "name": "郭嘉",
+  "courtesy": "奉孝",
+  "faction_path": [
+   "袁紹",
+   "曹操"
+  ],
+  "tags": [
+   "謀士"
+  ],
+  "home_city": "xuchang",
+  "birth": 170,
+  "death": 207,
+  "summary": "曹操核心謀臣，善料敵機先、算無遺策，英年早逝。",
+  "stats_estimate": {
+   "leadership": 51,
+   "war": 15,
+   "intellect": 98,
+   "politics": 84
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "jia_xu",
+  "name": "賈詡",
+  "courtesy": "文和",
+  "faction_path": [
+   "董卓",
+   "李傕",
+   "張繡",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "謀士",
+   "外交"
+  ],
+  "home_city": "wuwei",
+  "birth": 147,
+  "death": 223,
+  "summary": "毒士，計謀百發百中，擅長審時度勢與明哲保身。",
+  "stats_estimate": {
+   "leadership": 86,
+   "war": 48,
+   "intellect": 97,
+   "politics": 85
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "cheng_yu",
+  "name": "程昱",
+  "courtesy": "仲德",
+  "faction_path": [
+   "曹操"
+  ],
+  "tags": [
+   "謀士",
+   "統帥"
+  ],
+  "home_city": "luoyang",
+  "birth": 141,
+  "death": 220,
+  "summary": "性格剛戾，曾堅守甄城保全兗州，善於籌策與治兵。",
+  "stats_estimate": {
+   "leadership": 70,
+   "war": 49,
+   "intellect": 90,
+   "politics": 79
+  },
+  "verification": "unverified",
+  "in_game": true,
+  "home_city_note": "original value 'dongjun' not in cities.json"
+ },
+ {
+  "id": "liu_ye",
+  "name": "劉曄",
+  "courtesy": "子揚",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "謀士"
+  ],
+  "home_city": "shouchun",
+  "birth": null,
+  "death": 234,
+  "summary": "漢室宗親，善料敵且精通器械，曾造霹靂車破袁。",
+  "stats_estimate": {
+   "leadership": 42,
+   "war": 24,
+   "intellect": 92,
+   "politics": 78
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "jiang_ji",
+  "name": "蔣濟",
+  "courtesy": "子通",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "謀士",
+   "政務"
+  ],
+  "home_city": "hefei",
+  "birth": 188,
+  "death": 249,
+  "summary": "魏四朝重臣，精通兵謀，曾獻計利用孫權解樊城之圍。",
+  "stats_estimate": {
+   "leadership": 78,
+   "war": 51,
+   "intellect": 86,
+   "politics": 84
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sima_yi",
+  "name": "司馬懿",
+  "courtesy": "仲達",
+  "faction_path": [
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "謀士",
+   "政務"
+  ],
+  "home_city": "luoyang",
+  "birth": 179,
+  "death": 251,
+  "summary": "曹魏托孤重臣，平定遼東，多次抵禦蜀漢並奠定晉基。",
+  "stats_estimate": {
+   "leadership": 99,
+   "war": 63,
+   "intellect": 96,
+   "politics": 93
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sima_shi",
+  "name": "司馬師",
+  "courtesy": "子元",
+  "faction_path": [
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "luoyang",
+  "birth": 208,
+  "death": 255,
+  "summary": "司馬懿長子，沉著果斷，掌魏國大權並廢曹芳。",
+  "stats_estimate": {
+   "leadership": 86,
+   "war": 64,
+   "intellect": 88,
+   "politics": 86
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sima_zhao",
+  "name": "司馬昭",
+  "courtesy": "子上",
+  "faction_path": [
+   "曹魏"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "luoyang",
+  "birth": 211,
+  "death": 265,
+  "summary": "司馬懿次子，專擅魏政，主持並完成伐蜀大業。",
+  "stats_estimate": {
+   "leadership": 82,
+   "war": 59,
+   "intellect": 89,
+   "politics": 89
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "chen_qun",
+  "name": "陳羣",
+  "courtesy": "長文",
+  "faction_path": [
+   "劉備",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "xuchang",
+  "birth": null,
+  "death": 237,
+  "summary": "曹魏重臣，創制九品官人法並制定《魏律》。",
+  "stats_estimate": {
+   "leadership": 30,
+   "war": 14,
+   "intellect": 75,
+   "politics": 96
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhong_yao",
+  "name": "鍾繇",
+  "courtesy": "元常",
+  "faction_path": [
+   "漢室",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "xuchang",
+  "birth": 151,
+  "death": 230,
+  "summary": "書法大家，曾鎮撫關中保後方糧餉，歷任魏相太傅。",
+  "stats_estimate": {
+   "leadership": 65,
+   "war": 24,
+   "intellect": 79,
+   "politics": 92
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "hua_xin",
+  "name": "華歆",
+  "courtesy": "子魚",
+  "faction_path": [
+   "孫策",
+   "孫權",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "guangling",
+  "birth": 157,
+  "death": 232,
+  "summary": "漢魏名士，官至太尉，清貧寡欲且政績斐然。",
+  "stats_estimate": {
+   "leadership": 33,
+   "war": 14,
+   "intellect": 70,
+   "politics": 83
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "cui_yan",
+  "name": "崔琰",
+  "courtesy": "季珪",
+  "faction_path": [
+   "袁紹",
+   "曹操"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "ye",
+  "birth": 163,
+  "death": 216,
+  "summary": "聲姿高爽，為人清正剛直，曹操時期總攬官員選拔。",
+  "stats_estimate": {
+   "leadership": 52,
+   "war": 38,
+   "intellect": 72,
+   "politics": 84
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "mao_jie",
+  "name": "毛玠",
+  "courtesy": "孝先",
+  "faction_path": [
+   "曹操"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "chenliu",
+  "birth": null,
+  "death": 216,
+  "summary": "提出奉天子以令不臣及務農積穀，選才清廉崇儉。",
+  "stats_estimate": {
+   "leadership": 54,
+   "war": 32,
+   "intellect": 76,
+   "politics": 85
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "dong_zhao",
+  "name": "董昭",
+  "courtesy": "公仁",
+  "faction_path": [
+   "袁紹",
+   "張楊",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "謀士",
+   "政務"
+  ],
+  "home_city": "dingtao",
+  "birth": 156,
+  "death": 236,
+  "summary": "策劃曹操迎天子遷都許昌，後首倡曹操進爵魏公。",
+  "stats_estimate": {
+   "leadership": 58,
+   "war": 26,
+   "intellect": 86,
+   "politics": 81
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "xin_pi",
+  "name": "辛毗",
+  "courtesy": "佐治",
+  "faction_path": [
+   "袁紹",
+   "曹操",
+   "曹魏"
+  ],
+  "tags": [
+   "政務",
+   "謀士"
+  ],
+  "home_city": "ye",
+  "birth": null,
+  "death": 235,
+  "summary": "原袁紹部下，入魏後剛直敢諫，五丈原持節制止出戰。",
+  "stats_estimate": {
+   "leadership": 69,
+   "war": 31,
+   "intellect": 81,
+   "politics": 85
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "yang_xiu",
+  "name": "楊修",
+  "courtesy": "德祖",
+  "faction_path": [
+   "曹操"
+  ],
+  "tags": [
+   "謀士"
+  ],
+  "home_city": "changan",
+  "birth": 175,
+  "death": 219,
+  "summary": "弘農楊氏出身，才思敏捷，因捲入曹植奪嫡被殺。",
+  "stats_estimate": {
+   "leadership": 12,
+   "war": 8,
+   "intellect": 83,
+   "politics": 69
+  },
+  "verification": "unverified",
+  "in_game": false
+ }
+]

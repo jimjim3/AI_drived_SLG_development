@@ -1,0 +1,402 @@
+[
+  {
+    "id": "wuwei",
+    "name": "武威",
+    "region": "涼州",
+    "x": 1.0,
+    "y": 6.8,
+    "terrain": ["平原", "關隘"],
+    "role": "河西走廊咽喉，西北絲路與防務重鎮",
+    "neighbors": ["jincheng"]
+  },
+  {
+    "id": "jincheng",
+    "name": "金城",
+    "region": "涼州",
+    "x": 1.5,
+    "y": 6.0,
+    "terrain": ["山地", "臨江"],
+    "role": "臨黃河要衝，控制涼州與西羌前沿",
+    "neighbors": ["wuwei", "tianshui"]
+  },
+  {
+    "id": "tianshui",
+    "name": "天水",
+    "region": "涼州",
+    "x": 2.2,
+    "y": 5.5,
+    "terrain": ["山地", "盆地"],
+    "role": "隴右樞紐，魏蜀爭鋒與進出關中要道",
+    "neighbors": ["jincheng", "changan", "hanzhong"]
+  },
+  {
+    "id": "changan",
+    "name": "長安",
+    "region": "司隸",
+    "x": 3.4,
+    "y": 5.5,
+    "terrain": ["平原", "關隘"],
+    "role": "關中核心西京，扼守崤函與隴右進退",
+    "neighbors": ["tianshui", "tongguan", "hanzhong"]
+  },
+  {
+    "id": "tongguan",
+    "name": "潼關",
+    "region": "司隸",
+    "x": 4.1,
+    "y": 5.5,
+    "terrain": ["關隘", "山地"],
+    "role": "三秦鎖鑰，扼守關中與中原交通咽喉",
+    "neighbors": ["changan", "luoyang", "wan"]
+  },
+  {
+    "id": "luoyang",
+    "name": "洛陽",
+    "region": "司隸",
+    "x": 4.8,
+    "y": 5.6,
+    "terrain": ["盆地", "關隘"],
+    "role": "東漢故都，天下之中與四戰必爭之地",
+    "neighbors": ["tongguan", "xuchang", "jinyang", "wan"]
+  },
+  {
+    "id": "jinyang",
+    "name": "晉陽",
+    "region": "并州",
+    "x": 4.5,
+    "y": 7.0,
+    "terrain": ["山地", "盆地"],
+    "role": "并州核心治所，抵禦北方遊牧屏障",
+    "neighbors": ["luoyang", "ye", "beiping"]
+  },
+  {
+    "id": "ye",
+    "name": "鄴",
+    "region": "冀州",
+    "x": 5.4,
+    "y": 6.3,
+    "terrain": ["平原"],
+    "role": "河北政治中樞，兼控太行與黃河北岸",
+    "neighbors": ["jinyang", "beiping", "nanpi", "chenliu"]
+  },
+  {
+    "id": "nanpi",
+    "name": "南皮",
+    "region": "冀州",
+    "x": 6.2,
+    "y": 6.6,
+    "terrain": ["平原"],
+    "role": "渤海郡治，河北東部門戶與糧倉",
+    "neighbors": ["ye", "beiping", "pingyuan"]
+  },
+  {
+    "id": "beiping",
+    "name": "北平",
+    "region": "幽州",
+    "x": 6.8,
+    "y": 7.6,
+    "terrain": ["平原", "關隘"],
+    "role": "幽州邊防重鎮，防範烏桓與東北要衝",
+    "neighbors": ["jinyang", "ye", "nanpi", "xiangping"]
+  },
+  {
+    "id": "xiangping",
+    "name": "襄平",
+    "region": "幽州",
+    "x": 8.5,
+    "y": 7.8,
+    "terrain": ["平原", "臨海"],
+    "role": "遼東中樞，孤懸東北且控扼高句麗",
+    "neighbors": ["beiping"]
+  },
+  {
+    "id": "pingyuan",
+    "name": "平原",
+    "region": "青州",
+    "x": 6.0,
+    "y": 5.8,
+    "terrain": ["平原", "臨江"],
+    "role": "黃河下游渡口，連通冀州與青州要道",
+    "neighbors": ["nanpi", "linzi", "puyang"]
+  },
+  {
+    "id": "linzi",
+    "name": "臨淄",
+    "region": "青州",
+    "x": 7.2,
+    "y": 5.8,
+    "terrain": ["平原", "臨海"],
+    "role": "齊魯富庶核心，青州治所兼東方壁壘",
+    "neighbors": ["pingyuan", "beihai", "xiapi"]
+  },
+  {
+    "id": "beihai",
+    "name": "北海",
+    "region": "青州",
+    "x": 7.9,
+    "y": 5.7,
+    "terrain": ["平原", "臨海"],
+    "role": "膠東半島門戶，海岱防務要衝",
+    "neighbors": ["linzi", "xiapi"]
+  },
+  {
+    "id": "puyang",
+    "name": "濮陽",
+    "region": "兗州",
+    "x": 5.6,
+    "y": 5.5,
+    "terrain": ["平原", "臨江"],
+    "role": "兗州黃河渡口，兵家逐鹿中原前沿",
+    "neighbors": ["pingyuan", "chenliu", "dingtao"]
+  },
+  {
+    "id": "chenliu",
+    "name": "陳留",
+    "region": "兗州",
+    "x": 5.2,
+    "y": 5.2,
+    "terrain": ["平原"],
+    "role": "中原水陸通衢，曹操起兵與後勤樞紐",
+    "neighbors": ["ye", "puyang", "xuchang", "dingtao"]
+  },
+  {
+    "id": "dingtao",
+    "name": "定陶",
+    "region": "兗州",
+    "x": 5.8,
+    "y": 5.1,
+    "terrain": ["平原"],
+    "role": "兗州商業與戰略重心，四方平川交會",
+    "neighbors": ["puyang", "chenliu", "xiapi"]
+  },
+  {
+    "id": "xuchang",
+    "name": "許昌",
+    "region": "豫州",
+    "x": 5.0,
+    "y": 4.8,
+    "terrain": ["平原"],
+    "role": "曹魏迎帝行都，中原糧秣軍政核心",
+    "neighbors": ["luoyang", "chenliu", "wan", "runan"]
+  },
+  {
+    "id": "runan",
+    "name": "汝南",
+    "region": "豫州",
+    "x": 5.5,
+    "y": 4.2,
+    "terrain": ["平原"],
+    "role": "豫南人口重鎮，銜接淮河流域要地",
+    "neighbors": ["xuchang", "shouchun", "wan"]
+  },
+  {
+    "id": "xiapi",
+    "name": "下邳",
+    "region": "徐州",
+    "x": 6.8,
+    "y": 4.8,
+    "terrain": ["平原", "臨江"],
+    "role": "徐州中樞，控扼泗水兼淮泗防禦門戶",
+    "neighbors": ["linzi", "beihai", "dingtao", "guangling", "shouchun"]
+  },
+  {
+    "id": "guangling",
+    "name": "廣陵",
+    "region": "徐州",
+    "x": 7.2,
+    "y": 3.8,
+    "terrain": ["平原", "臨江"],
+    "role": "江淮交匯要道，魏吳隔長江對峙江防前線",
+    "neighbors": ["xiapi", "jianye", "shouchun"]
+  },
+  {
+    "id": "shouchun",
+    "name": "壽春",
+    "region": "揚州",
+    "x": 6.0,
+    "y": 3.9,
+    "terrain": ["平原", "臨江"],
+    "role": "淮南重鎮，淮南三叛與魏吳爭奪核心",
+    "neighbors": ["runan", "xiapi", "guangling", "hefei"]
+  },
+  {
+    "id": "hefei",
+    "name": "合肥",
+    "region": "揚州",
+    "x": 6.2,
+    "y": 3.3,
+    "terrain": ["平原", "臨江"],
+    "role": "曹魏阻絕孫吳北伐之淮南鐵壁鎖鑰",
+    "neighbors": ["shouchun", "lujiang", "jianye"]
+  },
+  {
+    "id": "lujiang",
+    "name": "廬江",
+    "region": "揚州",
+    "x": 5.8,
+    "y": 3.0,
+    "terrain": ["山地", "臨江"],
+    "role": "皖西長江北岸，江淮防線要塞",
+    "neighbors": ["hefei", "chaisang", "xiangyang"]
+  },
+  {
+    "id": "jianye",
+    "name": "建業",
+    "region": "揚州",
+    "x": 7.0,
+    "y": 3.1,
+    "terrain": ["山地", "臨江"],
+    "role": "東吳帝都，憑長江天險鎮守江東",
+    "neighbors": ["guangling", "hefei", "wujun", "chaisang"]
+  },
+  {
+    "id": "wujun",
+    "name": "吳郡",
+    "region": "揚州",
+    "x": 7.8,
+    "y": 2.8,
+    "terrain": ["平原", "臨海"],
+    "role": "孫吳發祥立基之所，太湖平原糧倉",
+    "neighbors": ["jianye", "kuaiji"]
+  },
+  {
+    "id": "kuaiji",
+    "name": "會稽",
+    "region": "揚州",
+    "x": 8.0,
+    "y": 2.2,
+    "terrain": ["山地", "臨海"],
+    "role": "東吳東南後方基石，平定山越依託",
+    "neighbors": ["wujun"]
+  },
+  {
+    "id": "wan",
+    "name": "宛",
+    "region": "荊州",
+    "x": 4.6,
+    "y": 4.4,
+    "terrain": ["盆地"],
+    "role": "南陽盆地中樞，中原進窺荊襄首要門戶",
+    "neighbors": ["tongguan", "luoyang", "xuchang", "runan", "xiangyang"]
+  },
+  {
+    "id": "xiangyang",
+    "name": "襄陽",
+    "region": "荊州",
+    "x": 4.6,
+    "y": 3.6,
+    "terrain": ["山地", "臨江"],
+    "role": "漢江鎖鑰，南北對峙攻守極致戰略支點",
+    "neighbors": ["wan", "lujiang", "jiangling", "shangyong"]
+  },
+  {
+    "id": "shangyong",
+    "name": "上庸",
+    "region": "荊州",
+    "x": 3.9,
+    "y": 3.8,
+    "terrain": ["山地"],
+    "role": "秦巴山區要地，連繫荊襄與漢中偏廂",
+    "neighbors": ["xiangyang", "hanzhong"]
+  },
+  {
+    "id": "jiangling",
+    "name": "江陵",
+    "region": "荊州",
+    "x": 4.5,
+    "y": 2.7,
+    "terrain": ["平原", "臨江"],
+    "role": "南郡治所，長江中游水陸交通命脈",
+    "neighbors": ["xiangyang", "yongan", "chaisang", "changsha"]
+  },
+  {
+    "id": "chaisang",
+    "name": "柴桑",
+    "region": "揚州",
+    "x": 5.6,
+    "y": 2.5,
+    "terrain": ["山地", "臨江"],
+    "role": "扼守長江與鄱陽湖口，東吳水師基地",
+    "neighbors": ["lujiang", "jianye", "jiangling", "changsha"]
+  },
+  {
+    "id": "changsha",
+    "name": "長沙",
+    "region": "荊州",
+    "x": 5.0,
+    "y": 1.8,
+    "terrain": ["盆地", "臨江"],
+    "role": "湘江流域樞紐，荊南糧倉與戰略縱深",
+    "neighbors": ["jiangling", "chaisang", "lingling"]
+  },
+  {
+    "id": "lingling",
+    "name": "零陵",
+    "region": "荊州",
+    "x": 4.4,
+    "y": 1.1,
+    "terrain": ["山地", "盆地"],
+    "role": "湘桂走廊北口，聯通嶺南與中原隘口",
+    "neighbors": ["changsha", "panyu"]
+  },
+  {
+    "id": "hanzhong",
+    "name": "漢中",
+    "region": "益州",
+    "x": 2.8,
+    "y": 4.4,
+    "terrain": ["盆地", "關隘"],
+    "role": "益州北方門戶，蜀漢北伐基地與屏障",
+    "neighbors": ["tianshui", "changan", "shangyong", "nanzheng"]
+  },
+  {
+    "id": "nanzheng",
+    "name": "南鄭",
+    "region": "益州",
+    "x": 2.7,
+    "y": 4.2,
+    "terrain": ["盆地"],
+    "role": "漢中郡治所與糧秣大營，扼米倉棧道",
+    "neighbors": ["hanzhong", "zitong"]
+  },
+  {
+    "id": "zitong",
+    "name": "梓潼",
+    "region": "益州",
+    "x": 2.4,
+    "y": 3.4,
+    "terrain": ["山地", "關隘"],
+    "role": "扼劍閣與金牛道，出入川蜀腹地咽喉",
+    "neighbors": ["nanzheng", "chengtu"]
+  },
+  {
+    "id": "chengtu",
+    "name": "成都",
+    "region": "益州",
+    "x": 2.0,
+    "y": 2.7,
+    "terrain": ["平原", "盆地"],
+    "role": "蜀漢天府帝都，西南政經中樞與退守底線",
+    "neighbors": ["zitong", "yongan"]
+  },
+  {
+    "id": "yongan",
+    "name": "永安",
+    "region": "益州",
+    "x": 3.5,
+    "y": 2.9,
+    "terrain": ["山地", "臨江", "關隘"],
+    "role": "白帝城扼三峽西陵口，巴蜀東門門戶",
+    "neighbors": ["chengtu", "jiangling"]
+  },
+  {
+    "id": "panyu",
+    "name": "番禺",
+    "region": "交州",
+    "x": 5.2,
+    "y": 0.3,
+    "terrain": ["平原", "臨海"],
+    "role": "交州東部治所，嶺南政經中心與南海門戶",
+    "neighbors": ["lingling"]
+  }
+]

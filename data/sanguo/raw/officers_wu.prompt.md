@@ -1,0 +1,4 @@
+請只輸出一份 JSON 陣列（不要 markdown 圍欄、不要解說），列出孫吳陣營（含孫堅、孫策、孫權時期）的武將與謀臣，共約 45 位（含該陣營主要謀士、文官、水軍與名將；不要重複）。
+每個元素欄位：
+{"id": "小寫拼音蛇形且全域唯一，如 zhou_yu", "name": "繁體中文名", "courtesy": "字（不確定寫 null）", "faction_path": ["依時間順序的所屬勢力，如 [\"袁紹\", \"曹操\"]"], "tags": ["猛將"|"統帥"|"謀士"|"政務"|"水軍"|"騎兵"|"外交"|"醫匠" 等，1–3 個], "home_city": "籍貫或主要活動城，須取自下列 id 之一：wuwei,jincheng,tianshui,changan,tongguan,luoyang,jinyang,ye,nanpi,beiping,xiangping,pingyuan,linzi,beihai,puyang,chenliu,dingtao,xuchang,runan,xiapi,guangling,shouchun,hefei,lujiang,jianye,wujun,kuaiji,wan,xiangyang,shangyong,jiangling,chaisang,changsha,lingling,hanzhong,nanzheng,zitong,chengtu,yongan,panyu", "birth": 年份整數或 null, "death": 年份整數或 null, "summary": "一句話定位（≤30字，只寫廣為人知、無爭議的事實，不確定就寫較保守的說法）", "stats_estimate": {"leadership": 0-100, "war": 0-100, "intellect": 0-100, "politics": 0-100}}
+能力值是你依光榮《三國志》系列一般印象的估計，不確定就保守取中間值。只輸出 JSON。

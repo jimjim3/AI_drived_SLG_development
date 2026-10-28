@@ -1,0 +1,982 @@
+[
+ {
+  "id": "liu_bei",
+  "name": "劉備",
+  "courtesy": "玄德",
+  "faction_path": [
+   "公孫瓚",
+   "陶謙",
+   "曹操",
+   "袁紹",
+   "劉表",
+   "蜀漢"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "chengtu",
+  "birth": 161,
+  "death": 223,
+  "summary": "蜀漢開國皇帝，以仁德著稱，白手起家創立蜀漢。",
+  "stats_estimate": {
+   "leadership": 82,
+   "war": 75,
+   "intellect": 74,
+   "politics": 80
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "guan_yu",
+  "name": "關羽",
+  "courtesy": "雲長",
+  "faction_path": [
+   "蜀漢",
+   "曹操",
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將",
+   "統帥",
+   "水軍"
+  ],
+  "home_city": "jiangling",
+  "birth": 160,
+  "death": 220,
+  "summary": "五虎大將之首，威震華夏，兼領水陸大軍鎮守荊州。",
+  "stats_estimate": {
+   "leadership": 95,
+   "war": 97,
+   "intellect": 75,
+   "politics": 62
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "zhang_fei",
+  "name": "張飛",
+  "courtesy": "益德",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將",
+   "統帥",
+   "騎兵"
+  ],
+  "home_city": "chengtu",
+  "birth": 167,
+  "death": 221,
+  "summary": "五虎大將之一，勇冠三軍，長坂坡據水斷橋退曹軍。",
+  "stats_estimate": {
+   "leadership": 86,
+   "war": 98,
+   "intellect": 33,
+   "politics": 22
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "zhuge_liang",
+  "name": "諸葛亮",
+  "courtesy": "孔明",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "謀士",
+   "政務",
+   "統帥"
+  ],
+  "home_city": "chengtu",
+  "birth": 181,
+  "death": 234,
+  "summary": "蜀漢丞相，傑出的政治家與軍事家，提出隆中對。",
+  "stats_estimate": {
+   "leadership": 93,
+   "war": 38,
+   "intellect": 100,
+   "politics": 98
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "zhao_yun",
+  "name": "趙雲",
+  "courtesy": "子龍",
+  "faction_path": [
+   "公孫瓚",
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將",
+   "統帥",
+   "騎兵"
+  ],
+  "home_city": "chengtu",
+  "birth": 168,
+  "death": 229,
+  "summary": "五虎大將之一，長坂坡單騎救主，漢水展現一身是膽。",
+  "stats_estimate": {
+   "leadership": 91,
+   "war": 96,
+   "intellect": 76,
+   "politics": 65
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "ma_chao",
+  "name": "馬超",
+  "courtesy": "孟起",
+  "faction_path": [
+   "馬騰",
+   "張魯",
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將",
+   "騎兵"
+  ],
+  "home_city": "wuwei",
+  "birth": 176,
+  "death": 222,
+  "summary": "五虎大將之一，西涼名將，曾起兵抗曹逼得曹操割鬚棄袍。",
+  "stats_estimate": {
+   "leadership": 88,
+   "war": 97,
+   "intellect": 45,
+   "politics": 26
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "huang_zhong",
+  "name": "黃忠",
+  "courtesy": "漢升",
+  "faction_path": [
+   "劉表",
+   "韓玄",
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "changsha",
+  "birth": 147,
+  "death": 220,
+  "summary": "五虎大將之一，定軍山陣斬曹操名將夏侯淵。",
+  "stats_estimate": {
+   "leadership": 86,
+   "war": 93,
+   "intellect": 60,
+   "politics": 52
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "pang_tong",
+  "name": "龐統",
+  "courtesy": "士元",
+  "faction_path": [
+   "周瑜",
+   "蜀漢"
+  ],
+  "tags": [
+   "謀士"
+  ],
+  "home_city": "xiangyang",
+  "birth": 179,
+  "death": 214,
+  "summary": "號鳳雛，劉備重要謀士，獻上中下三策助取益州。",
+  "stats_estimate": {
+   "leadership": 51,
+   "war": 34,
+   "intellect": 97,
+   "politics": 85
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "fa_zheng",
+  "name": "法正",
+  "courtesy": "孝直",
+  "faction_path": [
+   "劉璋",
+   "蜀漢"
+  ],
+  "tags": [
+   "謀士"
+  ],
+  "home_city": "chengtu",
+  "birth": 176,
+  "death": 220,
+  "summary": "深得劉備信賴之謀士，定軍山之戰奇謀助勝斬夏侯淵。",
+  "stats_estimate": {
+   "leadership": 82,
+   "war": 47,
+   "intellect": 94,
+   "politics": 78
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "wei_yan",
+  "name": "魏延",
+  "courtesy": "文長",
+  "faction_path": [
+   "劉表",
+   "韓玄",
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將",
+   "統帥"
+  ],
+  "home_city": "hanzhong",
+  "birth": null,
+  "death": 234,
+  "summary": "蜀漢名將，長年鎮守漢中，勇猛善戰且精通兵略。",
+  "stats_estimate": {
+   "leadership": 85,
+   "war": 92,
+   "intellect": 69,
+   "politics": 45
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "jiang_wei",
+  "name": "姜維",
+  "courtesy": "伯約",
+  "faction_path": [
+   "曹魏",
+   "蜀漢"
+  ],
+  "tags": [
+   "統帥",
+   "謀士",
+   "猛將"
+  ],
+  "home_city": "tianshui",
+  "birth": 202,
+  "death": 264,
+  "summary": "諸葛亮繼承者，蜀漢大將軍，數次組織北伐曹魏。",
+  "stats_estimate": {
+   "leadership": 90,
+   "war": 89,
+   "intellect": 90,
+   "politics": 67
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "xu_shu",
+  "name": "徐庶",
+  "courtesy": "元直",
+  "faction_path": [
+   "蜀漢",
+   "曹操"
+  ],
+  "tags": [
+   "謀士"
+  ],
+  "home_city": "xiangyang",
+  "birth": null,
+  "death": null,
+  "summary": "劉備早期謀臣，後因母受制入曹營，臨別推薦諸葛亮。",
+  "stats_estimate": {
+   "leadership": 64,
+   "war": 64,
+   "intellect": 93,
+   "politics": 80
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "mi_zhu",
+  "name": "麋竺",
+  "courtesy": "子仲",
+  "faction_path": [
+   "陶謙",
+   "蜀漢"
+  ],
+  "tags": [
+   "政務",
+   "外交"
+  ],
+  "home_city": "xiapi",
+  "birth": null,
+  "death": 221,
+  "summary": "徐州富商，資助劉備起家，位在諸葛亮之上備受禮遇。",
+  "stats_estimate": {
+   "leadership": 32,
+   "war": 35,
+   "intellect": 66,
+   "politics": 80
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "mi_fang",
+  "name": "麋芳",
+  "courtesy": "子方",
+  "faction_path": [
+   "陶謙",
+   "蜀漢",
+   "東吳"
+  ],
+  "tags": [
+   "統帥",
+   "水軍"
+  ],
+  "home_city": "xiapi",
+  "birth": null,
+  "death": null,
+  "summary": "麋竺之弟，守南郡時獻城降吳，致關羽失荊州敗亡。",
+  "stats_estimate": {
+   "leadership": 58,
+   "war": 60,
+   "intellect": 40,
+   "politics": 55
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sun_qian",
+  "name": "孫乾",
+  "courtesy": "公祐",
+  "faction_path": [
+   "陶謙",
+   "蜀漢"
+  ],
+  "tags": [
+   "外交",
+   "政務"
+  ],
+  "home_city": "beihai",
+  "birth": null,
+  "death": 215,
+  "summary": "劉備早期重臣，常充當使者出使各路諸侯善於言辭。",
+  "stats_estimate": {
+   "leadership": 34,
+   "war": 33,
+   "intellect": 74,
+   "politics": 78
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "jian_yong",
+  "name": "簡雍",
+  "courtesy": "憲和",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "外交"
+  ],
+  "home_city": "chengtu",
+  "birth": null,
+  "death": null,
+  "summary": "劉備同鄉老友，性格從容詼諧，曾說降劉璋開城。",
+  "stats_estimate": {
+   "leadership": 20,
+   "war": 30,
+   "intellect": 75,
+   "politics": 72
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "chen_dao",
+  "name": "陳到",
+  "courtesy": "叔至",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將",
+   "統帥"
+  ],
+  "home_city": "runan",
+  "birth": null,
+  "death": null,
+  "summary": "統領精銳白毦兵，名位亞於趙雲，以忠勇著稱。",
+  "stats_estimate": {
+   "leadership": 77,
+   "war": 82,
+   "intellect": 66,
+   "politics": 60
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhou_cang",
+  "name": "周倉",
+  "courtesy": null,
+  "faction_path": [
+   "黃巾",
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將",
+   "水軍"
+  ],
+  "home_city": "jiangling",
+  "birth": null,
+  "death": 219,
+  "summary": "關羽貼身護衛與部將，長於水戰，曾於水中生擒龐德。",
+  "stats_estimate": {
+   "leadership": 63,
+   "war": 84,
+   "intellect": 42,
+   "politics": 35
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "guan_ping",
+  "name": "關平",
+  "courtesy": null,
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將",
+   "統帥"
+  ],
+  "home_city": "jiangling",
+  "birth": null,
+  "death": 220,
+  "summary": "關羽長子，常年隨父征戰，荊州失陷後與關羽同殉節。",
+  "stats_estimate": {
+   "leadership": 76,
+   "war": 82,
+   "intellect": 68,
+   "politics": 60
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "guan_xing",
+  "name": "關興",
+  "courtesy": "安國",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "chengtu",
+  "birth": null,
+  "death": null,
+  "summary": "關羽次子，少有令名，深得諸葛亮器重可惜早逝。",
+  "stats_estimate": {
+   "leadership": 76,
+   "war": 86,
+   "intellect": 68,
+   "politics": 58
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhang_bao",
+  "name": "張苞",
+  "courtesy": null,
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "chengtu",
+  "birth": null,
+  "death": null,
+  "summary": "張飛長子，蜀漢後期青年勇將，英年早逝。",
+  "stats_estimate": {
+   "leadership": 77,
+   "war": 87,
+   "intellect": 48,
+   "politics": 45
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "liao_hua",
+  "name": "廖化",
+  "courtesy": "元儉",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "xiangyang",
+  "birth": null,
+  "death": 264,
+  "summary": "蜀漢歷經三朝之元老老將，官至右車騎將軍。",
+  "stats_estimate": {
+   "leadership": 76,
+   "war": 76,
+   "intellect": 66,
+   "politics": 63
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhao_lei",
+  "name": "趙累",
+  "courtesy": null,
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "jiangling",
+  "birth": null,
+  "death": 220,
+  "summary": "關羽麾下都督，為人忠直，荊州之變時隨關羽盡忠殉難。",
+  "stats_estimate": {
+   "leadership": 58,
+   "war": 55,
+   "intellect": 64,
+   "politics": 67
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "ma_liang",
+  "name": "馬良",
+  "courtesy": "季常",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "政務",
+   "外交"
+  ],
+  "home_city": "xiangyang",
+  "birth": 187,
+  "death": 222,
+  "summary": "馬氏五常白眉最良，深通政務與外交，夷陵之戰陣亡。",
+  "stats_estimate": {
+   "leadership": 45,
+   "war": 23,
+   "intellect": 81,
+   "politics": 88
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "ma_su",
+  "name": "馬謖",
+  "courtesy": "幼常",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "謀士"
+  ],
+  "home_city": "xiangyang",
+  "birth": 190,
+  "death": 228,
+  "summary": "才氣過人好論軍計，街亭之戰違背指令失守遭處死。",
+  "stats_estimate": {
+   "leadership": 63,
+   "war": 65,
+   "intellect": 87,
+   "politics": 68
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "yi_ji",
+  "name": "伊籍",
+  "courtesy": "伯機",
+  "faction_path": [
+   "劉表",
+   "蜀漢"
+  ],
+  "tags": [
+   "外交",
+   "政務"
+  ],
+  "home_city": "xiangyang",
+  "birth": null,
+  "death": null,
+  "summary": "早年效力劉表，後歸劉備，辯才卓越，參與制定蜀科。",
+  "stats_estimate": {
+   "leadership": 28,
+   "war": 24,
+   "intellect": 79,
+   "politics": 80
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "liu_feng",
+  "name": "劉封",
+  "courtesy": null,
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "shangyong",
+  "birth": null,
+  "death": 220,
+  "summary": "劉備養子，有武勇，因不援關羽及失守上庸被賜死。",
+  "stats_estimate": {
+   "leadership": 73,
+   "war": 79,
+   "intellect": 55,
+   "politics": 51
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "li_yan",
+  "name": "李嚴",
+  "courtesy": "正方",
+  "faction_path": [
+   "劉表",
+   "劉璋",
+   "蜀漢"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "yongan",
+  "birth": null,
+  "death": 234,
+  "summary": "劉備臨終託孤大臣之一，長於文武，後因督運糧草不力被廢。",
+  "stats_estimate": {
+   "leadership": 82,
+   "war": 80,
+   "intellect": 81,
+   "politics": 74
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "jiang_wan",
+  "name": "蔣琬",
+  "courtesy": "公琰",
+  "faction_path": [
+   "劉表",
+   "蜀漢"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "chengtu",
+  "birth": null,
+  "death": 246,
+  "summary": "蜀漢四相之一，諸葛亮身後主持朝政，穩定大局。",
+  "stats_estimate": {
+   "leadership": 78,
+   "war": 34,
+   "intellect": 84,
+   "politics": 93
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "fei_yi",
+  "name": "費禕",
+  "courtesy": "文偉",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "政務",
+   "外交"
+  ],
+  "home_city": "chengtu",
+  "birth": null,
+  "death": 253,
+  "summary": "蜀漢四相之一，長於外交與博聞強記，繼蔣琬後掌政。",
+  "stats_estimate": {
+   "leadership": 79,
+   "war": 30,
+   "intellect": 83,
+   "politics": 92
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "dong_yun",
+  "name": "董允",
+  "courtesy": "休昭",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "chengtu",
+  "birth": null,
+  "death": 246,
+  "summary": "蜀漢四相之一，為人剛正不阿，深得諸葛亮信任。",
+  "stats_estimate": {
+   "leadership": 25,
+   "war": 26,
+   "intellect": 75,
+   "politics": 86
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "wang_ping",
+  "name": "王平",
+  "courtesy": "子均",
+  "faction_path": [
+   "曹操",
+   "蜀漢"
+  ],
+  "tags": [
+   "統帥"
+  ],
+  "home_city": "hanzhong",
+  "birth": null,
+  "death": 248,
+  "summary": "統領無當飛軍，善治軍與防守，興勢之戰擊退曹爽。",
+  "stats_estimate": {
+   "leadership": 83,
+   "war": 79,
+   "intellect": 76,
+   "politics": 58
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "ma_zhong_shuhan",
+  "name": "馬忠",
+  "courtesy": "德信",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "chengtu",
+  "birth": null,
+  "death": 249,
+  "summary": "蜀漢名將，長年平定並鎮撫南中，深受部族敬戴。",
+  "stats_estimate": {
+   "leadership": 78,
+   "war": 71,
+   "intellect": 74,
+   "politics": 76
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhang_yi",
+  "name": "張嶷",
+  "courtesy": "伯岐",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "猛將",
+   "統帥"
+  ],
+  "home_city": "chengtu",
+  "birth": null,
+  "death": 254,
+  "summary": "安撫平定南中少數部族，作戰驍勇，北伐時戰死沙場。",
+  "stats_estimate": {
+   "leadership": 79,
+   "war": 81,
+   "intellect": 73,
+   "politics": 74
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhang_yi_junsi",
+  "name": "張翼",
+  "courtesy": "伯恭",
+  "faction_path": [
+   "劉璋",
+   "蜀漢"
+  ],
+  "tags": [
+   "統帥"
+  ],
+  "home_city": "chengtu",
+  "birth": null,
+  "death": 264,
+  "summary": "治軍嚴整，反對姜維過度窮兵黷武，官至左車騎將軍。",
+  "stats_estimate": {
+   "leadership": 75,
+   "war": 74,
+   "intellect": 68,
+   "politics": 65
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "deng_zhi",
+  "name": "鄧芝",
+  "courtesy": "伯苗",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "外交",
+   "統帥"
+  ],
+  "home_city": "chengtu",
+  "birth": 178,
+  "death": 251,
+  "summary": "著名外交家與將領，出使孫權成功重修吳蜀同盟。",
+  "stats_estimate": {
+   "leadership": 73,
+   "war": 52,
+   "intellect": 81,
+   "politics": 85
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "yang_yi",
+  "name": "楊儀",
+  "courtesy": "威公",
+  "faction_path": [
+   "曹操",
+   "蜀漢"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "xiangyang",
+  "birth": null,
+  "death": 235,
+  "summary": "丞相長史，精於籌畫軍需與行軍，諸葛亮死後統軍退回。",
+  "stats_estimate": {
+   "leadership": 66,
+   "war": 38,
+   "intellect": 78,
+   "politics": 79
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhuge_zhan",
+  "name": "諸葛瞻",
+  "courtesy": "思遠",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "chengtu",
+  "birth": 227,
+  "death": 263,
+  "summary": "諸葛亮之子，鄧艾偷渡陰平時率軍守綿竹戰死殉國。",
+  "stats_estimate": {
+   "leadership": 68,
+   "war": 60,
+   "intellect": 67,
+   "politics": 70
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "qiao_zhou",
+  "name": "譙周",
+  "courtesy": "允南",
+  "faction_path": [
+   "蜀漢"
+  ],
+  "tags": [
+   "謀士",
+   "政務"
+  ],
+  "home_city": "chengtu",
+  "birth": 201,
+  "death": 270,
+  "summary": "著名經學家，鄧艾兵臨成都時勸劉禪投降以保全城池。",
+  "stats_estimate": {
+   "leadership": 20,
+   "war": 15,
+   "intellect": 82,
+   "politics": 77
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "huo_jun",
+  "name": "霍峻",
+  "courtesy": "仲邈",
+  "faction_path": [
+   "劉表",
+   "蜀漢"
+  ],
+  "tags": [
+   "統帥"
+  ],
+  "home_city": "zitong",
+  "birth": 178,
+  "death": 217,
+  "summary": "以數百孤軍堅守葭萌城一年，擊潰劉璋萬餘敵軍。",
+  "stats_estimate": {
+   "leadership": 81,
+   "war": 69,
+   "intellect": 66,
+   "politics": 55
+  },
+  "verification": "unverified",
+  "in_game": false
+ }
+]

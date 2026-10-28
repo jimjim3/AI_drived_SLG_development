@@ -1,0 +1,1094 @@
+[
+ {
+  "id": "sun_jian",
+  "name": "孫堅",
+  "courtesy": "文臺",
+  "faction_path": [
+   "東漢",
+   "孫堅"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "wujun",
+  "birth": 155,
+  "death": 191,
+  "summary": "長沙太守，勇猛剛毅，討董先鋒，奠定孫吳基業。",
+  "stats_estimate": {
+   "leadership": 94,
+   "war": 90,
+   "intellect": 74,
+   "politics": 72
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sun_ce",
+  "name": "孫策",
+  "courtesy": "伯符",
+  "faction_path": [
+   "袁術",
+   "孫策"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "wujun",
+  "birth": 175,
+  "death": 200,
+  "summary": "綽號小霸王，轉戰江東開拓六郡，為東吳奠基者。",
+  "stats_estimate": {
+   "leadership": 92,
+   "war": 92,
+   "intellect": 70,
+   "politics": 70
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sun_quan",
+  "name": "孫權",
+  "courtesy": "仲謀",
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "政務",
+   "外交"
+  ],
+  "home_city": "wujun",
+  "birth": 182,
+  "death": 252,
+  "summary": "東吳開國皇帝，善於用人，赤壁之戰抗擊曹操建立帝業。",
+  "stats_estimate": {
+   "leadership": 86,
+   "war": 68,
+   "intellect": 80,
+   "politics": 89
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhou_yu",
+  "name": "周瑜",
+  "courtesy": "公瑾",
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "謀士",
+   "水軍"
+  ],
+  "home_city": "lujiang",
+  "birth": 175,
+  "death": 210,
+  "summary": "東吳名將，總督水軍於赤壁大破曹操軍，才智過人。",
+  "stats_estimate": {
+   "leadership": 97,
+   "war": 71,
+   "intellect": 96,
+   "politics": 86
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "lu_su",
+  "name": "魯肅",
+  "courtesy": "子敬",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "謀士",
+   "政務",
+   "外交"
+  ],
+  "home_city": "lujiang",
+  "birth": 172,
+  "death": 217,
+  "summary": "提出榻上策，力主聯劉抗曹，接替周瑜掌軍撫綏百姓。",
+  "stats_estimate": {
+   "leadership": 85,
+   "war": 56,
+   "intellect": 92,
+   "politics": 92
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "lu_meng",
+  "name": "呂蒙",
+  "courtesy": "子明",
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "謀士",
+   "水軍"
+  ],
+  "home_city": "shouchun",
+  "birth": 178,
+  "death": 220,
+  "summary": "勤學篤行之典範，白衣渡江襲取荊州擒殺關羽。",
+  "stats_estimate": {
+   "leadership": 91,
+   "war": 81,
+   "intellect": 89,
+   "politics": 78
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "lu_xun",
+  "name": "陸遜",
+  "courtesy": "伯言",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "謀士",
+   "政務"
+  ],
+  "home_city": "wujun",
+  "birth": 183,
+  "death": 245,
+  "summary": "出任大都督，夷陵之戰火燒連營擊潰劉備，出將入相。",
+  "stats_estimate": {
+   "leadership": 96,
+   "war": 69,
+   "intellect": 95,
+   "politics": 87
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "lu_kang",
+  "name": "陸抗",
+  "courtesy": "幼節",
+  "faction_path": [
+   "孫權",
+   "東吳"
+  ],
+  "tags": [
+   "統帥",
+   "謀士"
+  ],
+  "home_city": "wujun",
+  "birth": 226,
+  "death": 274,
+  "summary": "陸遜次子，東吳後期名將，與羊祜對峙互有敬意。",
+  "stats_estimate": {
+   "leadership": 91,
+   "war": 63,
+   "intellect": 87,
+   "politics": 85
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "cheng_pu",
+  "name": "程普",
+  "courtesy": "德謀",
+  "faction_path": [
+   "孫堅",
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "水軍"
+  ],
+  "home_city": "wujun",
+  "birth": null,
+  "death": 215,
+  "summary": "歷仕孫家三代的老將，資歷最深，隨周瑜抗曹。",
+  "stats_estimate": {
+   "leadership": 84,
+   "war": 79,
+   "intellect": 79,
+   "politics": 74
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "huang_gai",
+  "name": "黃蓋",
+  "courtesy": "公覆",
+  "faction_path": [
+   "孫堅",
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "猛將",
+   "水軍"
+  ],
+  "home_city": "lingling",
+  "birth": null,
+  "death": null,
+  "summary": "三朝宿將，赤壁之戰獻火攻之計並親率蒙衝詐降建功。",
+  "stats_estimate": {
+   "leadership": 79,
+   "war": 83,
+   "intellect": 70,
+   "politics": 65
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "han_dang",
+  "name": "韓當",
+  "courtesy": "義公",
+  "faction_path": [
+   "孫堅",
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "猛將",
+   "水軍"
+  ],
+  "home_city": "wujun",
+  "birth": null,
+  "death": 226,
+  "summary": "早年隨孫堅征伐，擅長弓馬，身經百戰之江東老將。",
+  "stats_estimate": {
+   "leadership": 76,
+   "war": 77,
+   "intellect": 61,
+   "politics": 51
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "zu_mao",
+  "name": "祖茂",
+  "courtesy": "大榮",
+  "faction_path": [
+   "孫堅"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "wujun",
+  "birth": null,
+  "death": 190,
+  "summary": "討董戰役中戴紅頭巾引開追兵救孫堅脫險的忠烈之士。",
+  "stats_estimate": {
+   "leadership": 66,
+   "war": 74,
+   "intellect": 50,
+   "politics": 48
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "gan_ning",
+  "name": "甘寧",
+  "courtesy": "興霸",
+  "faction_path": [
+   "劉表",
+   "黃祖",
+   "孫權"
+  ],
+  "tags": [
+   "猛將",
+   "水軍"
+  ],
+  "home_city": "chaisang",
+  "birth": null,
+  "death": 220,
+  "summary": "錦帆賊出身，勇悍無匹，曾率百騎夜襲曹營大獲全勝。",
+  "stats_estimate": {
+   "leadership": 86,
+   "war": 94,
+   "intellect": 76,
+   "politics": 18
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "ling_tong",
+  "name": "凌統",
+  "courtesy": "公績",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "猛將",
+   "水軍"
+  ],
+  "home_city": "wujun",
+  "birth": 189,
+  "death": 217,
+  "summary": "凌操之子，作戰勇冠三軍，合肥之戰拚死掩護孫權突圍。",
+  "stats_estimate": {
+   "leadership": 77,
+   "war": 89,
+   "intellect": 60,
+   "politics": 40
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "ling_cao",
+  "name": "凌操",
+  "courtesy": null,
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "wujun",
+  "birth": null,
+  "death": 203,
+  "summary": "隨孫策平定江東，作戰常居先鋒，征黃祖時戰死。",
+  "stats_estimate": {
+   "leadership": 70,
+   "war": 81,
+   "intellect": 45,
+   "politics": 42
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhou_tai",
+  "name": "周泰",
+  "courtesy": "幼平",
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "猛將",
+   "水軍"
+  ],
+  "home_city": "lujiang",
+  "birth": null,
+  "death": null,
+  "summary": "東吳悍將，多次冒死救出孫權，身受數十處創傷。",
+  "stats_estimate": {
+   "leadership": 76,
+   "war": 91,
+   "intellect": 48,
+   "politics": 38
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "jiang_qin",
+  "name": "蔣欽",
+  "courtesy": "公奕",
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "水軍",
+   "猛將"
+  ],
+  "home_city": "shouchun",
+  "birth": null,
+  "death": 219,
+  "summary": "早年隨孫策渡江，貴守約檢，善治水軍，討荊州病卒。",
+  "stats_estimate": {
+   "leadership": 78,
+   "war": 84,
+   "intellect": 51,
+   "politics": 42
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "chen_wu",
+  "name": "陳武",
+  "courtesy": "子烈",
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "lujiang",
+  "birth": 178,
+  "death": 215,
+  "summary": "統領廬江精銳部隊，仁厚得人心，合肥之戰奮戰陣亡。",
+  "stats_estimate": {
+   "leadership": 75,
+   "war": 87,
+   "intellect": 52,
+   "politics": 45
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "dong_xi",
+  "name": "董襲",
+  "courtesy": "元代",
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "猛將",
+   "水軍"
+  ],
+  "home_city": "kuaiji",
+  "birth": null,
+  "death": 213,
+  "summary": "高大威猛，隨策破敵有功，濡須口之役督樓船覆沒溺死。",
+  "stats_estimate": {
+   "leadership": 74,
+   "war": 86,
+   "intellect": 43,
+   "politics": 35
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "pan_zhang",
+  "name": "潘璋",
+  "courtesy": "文珪",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "猛將"
+  ],
+  "home_city": "guangling",
+  "birth": null,
+  "death": 234,
+  "summary": "作戰勇猛果斷，襲殺關羽部將臨沮俘獲關羽。",
+  "stats_estimate": {
+   "leadership": 77,
+   "war": 82,
+   "intellect": 62,
+   "politics": 41
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "xu_sheng",
+  "name": "徐盛",
+  "courtesy": "文嚮",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "水軍"
+  ],
+  "home_city": "xiapi",
+  "birth": 177,
+  "death": 228,
+  "summary": "勇烈善戰，築疑城退魏文帝曹丕大軍，東吳防禦柱石。",
+  "stats_estimate": {
+   "leadership": 86,
+   "war": 85,
+   "intellect": 78,
+   "politics": 66
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "ding_feng",
+  "name": "丁奉",
+  "courtesy": "承淵",
+  "faction_path": [
+   "孫權",
+   "東吳"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "lujiang",
+  "birth": null,
+  "death": 271,
+  "summary": "歷仕東吳四世，東興之戰雪中奮短兵大破魏軍。",
+  "stats_estimate": {
+   "leadership": 83,
+   "war": 81,
+   "intellect": 71,
+   "politics": 55
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhu_huan",
+  "name": "朱桓",
+  "courtesy": "休穆",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "wujun",
+  "birth": 177,
+  "death": 238,
+  "summary": "吳郡大族出身，濡須口之戰以少勝多破魏將曹仁。",
+  "stats_estimate": {
+   "leadership": 84,
+   "war": 82,
+   "intellect": 74,
+   "politics": 58
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhu_ran",
+  "name": "朱然",
+  "courtesy": "義封",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "水軍"
+  ],
+  "home_city": "guangling",
+  "birth": 182,
+  "death": 249,
+  "summary": "江陵防衛戰力抗曹真夏侯尚等圍攻半載，威名震於敵國。",
+  "stats_estimate": {
+   "leadership": 89,
+   "war": 78,
+   "intellect": 75,
+   "politics": 64
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "he_qi",
+  "name": "賀齊",
+  "courtesy": "公苗",
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "平叛"
+  ],
+  "home_city": "kuaiji",
+  "birth": null,
+  "death": 227,
+  "summary": "長期討平山越諸叛，部隊兵器精良，合肥之役救孫權。",
+  "stats_estimate": {
+   "leadership": 83,
+   "war": 76,
+   "intellect": 73,
+   "politics": 68
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "quan_cong",
+  "name": "全琮",
+  "courtesy": "子璜",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "wujun",
+  "birth": 198,
+  "death": 249,
+  "summary": "尚孫權長女，為吳名門領袖，屢立戰功官至大司馬。",
+  "stats_estimate": {
+   "leadership": 78,
+   "war": 74,
+   "intellect": 73,
+   "politics": 72
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhang_zhao",
+  "name": "張昭",
+  "courtesy": "子布",
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "政務",
+   "謀士"
+  ],
+  "home_city": "guangling",
+  "birth": 156,
+  "death": 236,
+  "summary": "文臣領袖，孫策託孤之臣，掌管幕府內政，性格剛直。",
+  "stats_estimate": {
+   "leadership": 51,
+   "war": 33,
+   "intellect": 84,
+   "politics": 97
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "zhang_hong",
+  "name": "張紘",
+  "courtesy": "子綱",
+  "faction_path": [
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "政務",
+   "謀士",
+   "外交"
+  ],
+  "home_city": "guangling",
+  "birth": 153,
+  "death": 212,
+  "summary": "與張昭並稱二張，文辭雅麗，曾勸孫權遷都秣陵建業。",
+  "stats_estimate": {
+   "leadership": 42,
+   "war": 24,
+   "intellect": 86,
+   "politics": 95
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "gu_yong",
+  "name": "顧雍",
+  "courtesy": "元歎",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "wujun",
+  "birth": 168,
+  "death": 243,
+  "summary": "吳國名相，為相十九年慎思明斷，處事持重有威儀。",
+  "stats_estimate": {
+   "leadership": 52,
+   "war": 27,
+   "intellect": 80,
+   "politics": 94
+  },
+  "verification": "unverified",
+  "in_game": true
+ },
+ {
+  "id": "zhu_zhi",
+  "name": "朱治",
+  "courtesy": "君理",
+  "faction_path": [
+   "孫堅",
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "guangling",
+  "birth": 156,
+  "death": 224,
+  "summary": "孫氏三世元勳，曾勸孫策脫離袁術自立，治吳郡多年。",
+  "stats_estimate": {
+   "leadership": 76,
+   "war": 58,
+   "intellect": 71,
+   "politics": 80
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "bu_zhi",
+  "name": "步騭",
+  "courtesy": "子山",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "政務",
+   "謀士",
+   "統帥"
+  ],
+  "home_city": "xiapi",
+  "birth": null,
+  "death": 247,
+  "summary": "平定交州拓展東吳南部版圖，為人寬厚，後拜丞相。",
+  "stats_estimate": {
+   "leadership": 79,
+   "war": 54,
+   "intellect": 83,
+   "politics": 88
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "yu_fan",
+  "name": "虞翻",
+  "courtesy": "仲翔",
+  "faction_path": [
+   "王朗",
+   "孫策",
+   "孫權"
+  ],
+  "tags": [
+   "謀士",
+   "政務",
+   "醫匠"
+  ],
+  "home_city": "kuaiji",
+  "birth": 164,
+  "death": 233,
+  "summary": "經學名家兼精易學，性情狂放屢犯直諫，被流放交州。",
+  "stats_estimate": {
+   "leadership": 45,
+   "war": 42,
+   "intellect": 87,
+   "politics": 79
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhu_ge_jin",
+  "name": "諸葛瑾",
+  "courtesy": "子瑜",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "外交",
+   "政務",
+   "統帥"
+  ],
+  "home_city": "guangling",
+  "birth": 174,
+  "death": 241,
+  "summary": "諸葛亮之兄，溫厚信義，深得孫權器重，多負外交溝通。",
+  "stats_estimate": {
+   "leadership": 76,
+   "war": 34,
+   "intellect": 81,
+   "politics": 89
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "zhu_ge_ke",
+  "name": "諸葛恪",
+  "courtesy": "元遜",
+  "faction_path": [
+   "孫權",
+   "東吳"
+  ],
+  "tags": [
+   "謀士",
+   "統帥",
+   "政務"
+  ],
+  "home_city": "jianye",
+  "birth": 203,
+  "death": 253,
+  "summary": "諸葛瑾長子，才思敏捷，平定山越，後輔政專權被誅。",
+  "stats_estimate": {
+   "leadership": 82,
+   "war": 48,
+   "intellect": 90,
+   "politics": 78
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "kan_ze",
+  "name": "闞澤",
+  "courtesy": "德潤",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "謀士",
+   "政務"
+  ],
+  "home_city": "kuaiji",
+  "birth": 170,
+  "death": 243,
+  "summary": "東吳大儒，通曉曆法，赤壁之戰時為黃蓋下詐降書。",
+  "stats_estimate": {
+   "leadership": 58,
+   "war": 30,
+   "intellect": 85,
+   "politics": 82
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "lu_ji",
+  "name": "陸績",
+  "courtesy": "公紀",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "謀士",
+   "政務"
+  ],
+  "home_city": "wujun",
+  "birth": 188,
+  "death": 219,
+  "summary": "二十四孝懷橘遺親主角，博學多才，精研天文歷算。",
+  "stats_estimate": {
+   "leadership": 36,
+   "war": 22,
+   "intellect": 78,
+   "politics": 76
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "yan_jun",
+  "name": "嚴畯",
+  "courtesy": "曼才",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "政務",
+   "謀士"
+  ],
+  "home_city": "guangling",
+  "birth": null,
+  "death": null,
+  "summary": "性情淳厚，精通經史，曾堅辭大都督之職自知短長。",
+  "stats_estimate": {
+   "leadership": 35,
+   "war": 18,
+   "intellect": 73,
+   "politics": 81
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "cheng_bing",
+  "name": "程秉",
+  "courtesy": "德樞",
+  "faction_path": [
+   "交州",
+   "孫權"
+  ],
+  "tags": [
+   "政務"
+  ],
+  "home_city": "runan",
+  "birth": null,
+  "death": null,
+  "summary": "知名經學學者，鄭玄弟子，入吳為太子太傅。",
+  "stats_estimate": {
+   "leadership": 28,
+   "war": 15,
+   "intellect": 74,
+   "politics": 77
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "xue_zong",
+  "name": "薛綜",
+  "courtesy": "敬文",
+  "faction_path": [
+   "交州",
+   "孫權"
+  ],
+  "tags": [
+   "政務",
+   "外交"
+  ],
+  "home_city": "puyang",
+  "birth": null,
+  "death": 243,
+  "summary": "文才橫溢，善於辭令，長年為孫權起草詔書表章。",
+  "stats_estimate": {
+   "leadership": 32,
+   "war": 20,
+   "intellect": 76,
+   "politics": 80
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "wu_jing",
+  "name": "吳景",
+  "courtesy": null,
+  "faction_path": [
+   "孫堅",
+   "孫策"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "wujun",
+  "birth": null,
+  "death": 203,
+  "summary": "孫策之舅，丹陽太守，屢次出兵接應支援孫策起家。",
+  "stats_estimate": {
+   "leadership": 74,
+   "war": 71,
+   "intellect": 62,
+   "politics": 65
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sun_jing",
+  "name": "孫靜",
+  "courtesy": "幼臺",
+  "faction_path": [
+   "孫堅",
+   "孫策"
+  ],
+  "tags": [
+   "謀士",
+   "政務"
+  ],
+  "home_city": "wujun",
+  "birth": null,
+  "death": null,
+  "summary": "孫堅之弟，策定計破王朗取會稽，後留守後方宗族。",
+  "stats_estimate": {
+   "leadership": 63,
+   "war": 58,
+   "intellect": 73,
+   "politics": 75
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sun_yu",
+  "name": "孫瑜",
+  "courtesy": "仲異",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "政務"
+  ],
+  "home_city": "wujun",
+  "birth": 177,
+  "death": 215,
+  "summary": "孫靜次子，愛好儒術，治軍清肅，曾參與攻拔皖城。",
+  "stats_estimate": {
+   "leadership": 72,
+   "war": 65,
+   "intellect": 68,
+   "politics": 71
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sun_jiao",
+  "name": "孫皎",
+  "courtesy": "叔朗",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "wujun",
+  "birth": null,
+  "death": 219,
+  "summary": "孫靜三子，為人輕財重義，隨呂蒙破關羽定荊州。",
+  "stats_estimate": {
+   "leadership": 75,
+   "war": 75,
+   "intellect": 64,
+   "politics": 62
+  },
+  "verification": "unverified",
+  "in_game": false
+ },
+ {
+  "id": "sun_huan",
+  "name": "孫桓",
+  "courtesy": "叔武",
+  "faction_path": [
+   "孫權"
+  ],
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "home_city": "wujun",
+  "birth": 198,
+  "death": 223,
+  "summary": "宗室年輕將領，夷陵之戰中據守夷道牽制蜀漢大軍。",
+  "stats_estimate": {
+   "leadership": 78,
+   "war": 77,
+   "intellect": 69,
+   "politics": 60
+  },
+  "verification": "unverified",
+  "in_game": false
+ }
+]
