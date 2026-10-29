@@ -82,8 +82,18 @@ def narrative_payload(scenario: str, faction_id: str) -> dict:
     }
 
 
+STORY_ART = {"siege_captured": "siege", "city_lost": "siege", "siege_repelled": "battle",
+             "siege_defended": "battle", "defect": "defection"}
+
+
 def story_lines(events, state: GameState, faction_id: str, limit: int = 12) -> list[str]:
-    """Narrative sentences (zh-TW templates) for the sieges and incidents the player can see.
+    return [t for _, t in story_items(events, state, faction_id, limit)]
+
+
+def story_items(events, state: GameState, faction_id: str, limit: int = 12) -> list[tuple[str, str]]:
+    """(template key, sentence) pairs; the key picks the illustration. See story_lines for the rules.
+
+    Narrative sentences (zh-TW templates) for the sieges and incidents the player can see.
 
     Routine develop/recruit/move lines are left to the plain event list; only turning points are told.
     """
@@ -103,15 +113,15 @@ def story_lines(events, state: GameState, faction_id: str, limit: int = 12) -> l
             captured = ev.captured_city is not None
             if mine:
                 key = "siege_captured" if captured else "siege_repelled"
-                lines.append(narrative.render_event(key, ev.turn, officer=name_of(ev.officer_id), target=target))
+                lines.append((key, narrative.render_event(key, ev.turn, officer=name_of(ev.officer_id), target=target)))
             elif ev.defender_faction != faction_id:
                 continue  # a siege between other factions; not ours to tell
             else:
                 key = "city_lost" if captured else "siege_defended"
-                lines.append(narrative.render_event(key, ev.turn, city=target))
+                lines.append((key, narrative.render_event(key, ev.turn, city=target)))
         elif ev.action == "defect" and mine:
             fname = state.faction(ev.faction_id).name
-            lines.append(narrative.render_event("defect", ev.turn, officer=name_of(ev.officer_id), faction=fname))
+            lines.append(("defect", narrative.render_event("defect", ev.turn, officer=name_of(ev.officer_id), faction=fname)))
     return lines[-limit:]
 
 

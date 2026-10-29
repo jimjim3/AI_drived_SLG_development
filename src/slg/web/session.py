@@ -11,7 +11,7 @@ from ..engine.initial_state import build_initial_state, resolve_scenario
 from ..engine.resolution import estimate_siege_ratio
 from ..schema import AgentDecision, CAST_LIMIT, FactionPlan
 from .backends import make_ai_agent
-from .payload import report_lines, scene_text, state_payload, story_lines
+from .payload import STORY_ART, report_lines, scene_text, state_payload, story_items
 
 
 class PlanError(ValueError):
@@ -112,15 +112,17 @@ class Session:
     def status(self) -> dict:
         with self.lock:
             v = self.view if self.phase == "awaiting_input" else None
-            story, report = [], []
+            story, report, story_art = [], [], []
             if v:
                 turn = self.game.state.turn
                 prev = [e for e in self.game.events if e.turn == turn - 1] + [
                     i for i in self.game.incidents if i.turn == turn - 1]
-                story = story_lines(prev, self.game.state, self.player_faction)
+                items = story_items(prev, self.game.state, self.player_faction)
+                story = [t for _, t in items]
+                story_art = [STORY_ART.get(k) for k, _ in items]
                 report = report_lines(prev, self.game.state, self.player_faction)
             return {"phase": self.phase, "turn": self.game.state.turn, "events": list(v.events) if v else [],
-                    "story": story, "report": report,
+                    "story": story, "story_art": story_art, "report": report,
                     "scene": scene_text(self.game.state.turn, bool(story)) if v else {},
                     "feedback": list(v.feedback) if v else [], "winner": self.winner, "error": self.error,
                     "timeouts": self.timeouts}

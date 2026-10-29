@@ -1037,7 +1037,9 @@ export function renderSettlement(container, status, onProceedNextTurn) {
       + (scene.quiet ? `<p class="scene-quiet">${scene.quiet}</p>` : "") + `</div>`;
   }
   const story = status.story || [];
-  story.forEach((line) => {
+  story.forEach((line, i) => {
+    const art = (status.story_art || [])[i];
+    if (art) html += `<img class="story-art" src="./assets/art/scenes/${art}.svg" alt="" onerror="this.style.display='none'">`;
     html += `<div class="event-card event-story"><span class="event-bullet">⚔</span> <span class="event-text">${line}</span></div>`;
   });
 

@@ -36,6 +36,9 @@ export const CITY_POS = {
   kuaiji: [9.8, 0.7],
 };
 
+const CITY_TERRAIN_ICON = { hanzhong: "basin", wancheng: "plain", luoyang: "pass", chenliu: "plain", xuchang: "plain",
+  xiangyang: "river", jianye: "river", wujun: "sea", kuaiji: "sea" };
+
 // Visual offsets applied on frontend to ensure all city boxes do not overlap,
 // while strictly preserving backend coordinates and JSON semantics.
 export const CITY_VISUAL_OFFSETS = {
@@ -298,6 +301,13 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
     emblem.setAttribute("href", `./assets/art/emblems/${["faction_1","faction_2","faction_3"].includes(emblemKey) ? emblemKey : "neutral"}.svg`);
     emblem.setAttribute("x", "-65"); emblem.setAttribute("y", "-45"); emblem.setAttribute("width", "22"); emblem.setAttribute("height", "22");
     nodeG.appendChild(emblem);
+    if (CITY_TERRAIN_ICON[cid] && vis !== "fog") {
+      const ti = document.createElementNS(svgNS, "image");
+      ti.setAttribute("href", `./assets/art/icons/${CITY_TERRAIN_ICON[cid]}.svg`);
+      ti.setAttribute("x", "46"); ti.setAttribute("y", "-22"); ti.setAttribute("width", "20"); ti.setAttribute("height", "20");
+      ti.setAttribute("opacity", "0.85");
+      nodeG.appendChild(ti);
+    }
 
     if (vis === "fog") {
       // Large Question Mark for Fog
