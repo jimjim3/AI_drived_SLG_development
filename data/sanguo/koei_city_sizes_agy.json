@@ -1,0 +1,83 @@
+```json
+{
+  "cities": {
+    "陳留": {
+      "size": "中",
+      "pop_or_troop_cap": 100000,
+      "agri": null,
+      "commerce": null,
+      "source_title": "三國志11",
+      "confidence": "high"
+    },
+    "許昌": {
+      "size": "大",
+      "pop_or_troop_cap": 150000,
+      "agri": null,
+      "commerce": null,
+      "source_title": "三國志11",
+      "confidence": "high"
+    },
+    "洛陽": {
+      "size": "特大",
+      "pop_or_troop_cap": 150000,
+      "agri": null,
+      "commerce": null,
+      "source_title": "三國志11",
+      "confidence": "high"
+    },
+    "宛": {
+      "size": "中",
+      "pop_or_troop_cap": 100000,
+      "agri": null,
+      "commerce": null,
+      "source_title": "三國志11",
+      "confidence": "high"
+    },
+    "襄陽": {
+      "size": "大",
+      "pop_or_troop_cap": 150000,
+      "agri": null,
+      "commerce": null,
+      "source_title": "三國志11",
+      "confidence": "high"
+    },
+    "建業": {
+      "size": "大",
+      "pop_or_troop_cap": 150000,
+      "agri": null,
+      "commerce": null,
+      "source_title": "三國志11",
+      "confidence": "high"
+    },
+    "吳郡": {
+      "size": "中",
+      "pop_or_troop_cap": 100000,
+      "agri": null,
+      "commerce": null,
+      "source_title": "三國志11",
+      "confidence": "high"
+    },
+    "會稽": {
+      "size": "小",
+      "pop_or_troop_cap": 100000,
+      "agri": null,
+      "commerce": null,
+      "source_title": "三國志11",
+      "confidence": "high"
+    },
+    "漢中": {
+      "size": "中",
+      "pop_or_troop_cap": 100000,
+      "agri": null,
+      "commerce": null,
+      "source_title": "三國志11",
+      "confidence": "high"
+    }
+  },
+  "mechanics": [
+    "城市規模決定建築地格與兵力上限：以《三國志11》為例，城市規模分為小、中、大、特大，直接決定可建造內政設施的用地格數（如小城10格、中城12格、大城15格、特大城如洛陽/長安22格），同時規模決定容納兵力上限（小/中城上限為100,000，大城及特大城上限為150,000；建造造幣廠/穀倉及市場/農場的數量直接受地格限制）。",
+    "開發上限與糧食產出機制：在傳統數值作（如《三國志IV/V》）中，城市規模固定農業與商業的最大數值上限（通常依小/中/大城定為500/800/999等階梯），每年7月（秋季）收成時依當前農業值乘以民忠與太守能力等係數結算糧食增量；在格子建造作（如《三國志11》）中，糧食產量取決於城市周圍建造的農場數量、等級（Lv1-3）以及是否相鄰穀倉加成，每年每季（1/4/7/10月）定期產出糧食。",
+    "出征遠近與糧食消耗機制：部隊出征時需隨身攜帶軍糧（每旬依部隊兵力規模固定消耗定額糧食），距離目標越遠、移動回合（旬）越多，單次需攜帶或消耗的總糧食量越高；在《三國志14》等大地圖塗色作中，軍糧直接由所屬出發基地經由補給線（塗色佔領府的通道）持續輸送並消耗，距離出發地越遠或地形越崎嶇（消耗移動力多），補給線維護成本越高，若補給線被敵軍截斷（兵站切斷），部隊會立即陷入斷糧、士氣每回合崩潰且混亂的狀態。"
+  ]
+}
+```
