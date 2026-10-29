@@ -1,0 +1,2 @@
+[agy-staff] mode=ask profile=restricted model=gemini-3.8-flash-low agy_status=SUCCESS agy_exit=0 duration=29.368202s turns=1 tokens(in 7376, out 4051)
+conversation: 4fbbf9c1-0a84-4fec-95b3-5fd491a40951 (follow up with --continue)
