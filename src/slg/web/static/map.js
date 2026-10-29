@@ -313,7 +313,7 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
     nodeG.appendChild(tagText);
     const emblemKey = factionEmblem;
     const emblem = document.createElementNS(svgNS, "image");
-    emblem.setAttribute("href", `./assets/art/emblems/${["faction_1","faction_2","faction_3"].includes(emblemKey) ? emblemKey : "neutral"}.svg`);
+    emblem.setAttribute("href", `./assets/art/emblems/${["faction_1","faction_2","faction_3"].includes(emblemKey) ? emblemKey : "neutral"}.png`);
     emblem.setAttribute("x", "-65"); emblem.setAttribute("y", "-45"); emblem.setAttribute("width", "22"); emblem.setAttribute("height", "22");
     nodeG.appendChild(emblem);
     if (CITY_TERRAIN_ICON[cid] && vis !== "fog") {

@@ -13,3 +13,5 @@ venv/
 *.log
 videos/
 .agy-staff/
+art_work/img/
+art_work/img_pilot/

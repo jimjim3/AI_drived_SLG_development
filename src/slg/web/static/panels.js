@@ -87,7 +87,7 @@ export function renderCityInfo(container, state, selectedCityId, onCitySelect) {
     <h3 class="panel-title">【城池情報】${cityName}</h3>
     <span class="city-id-badge">${selectedCityId}</span>
   </div>`;
-  html += `<img class="city-art" src="./assets/art/cities/${selectedCityId}.svg" alt="" onerror="this.style.display='none'">`;
+  html += `<img class="city-art" src="./assets/art/cities/${selectedCityId}.jpg" alt="" onerror="this.onerror=function(){this.style.display='none'};this.src='./assets/art/cities/${selectedCityId}.svg'">`;
   const lore = NARRATIVE.cities[selectedCityId];
   if (lore) html += `<div class="city-blurb"><span class="flavor">${esc(lore.flavor)}</span>${esc(lore.blurb)}</div>`;
 
@@ -1082,7 +1082,7 @@ export function renderGameOver(container, status, state, onRestart) {
 
   let html = `<div class="panel-content game-over-panel">`;
   const endArt = !status.winner ? "draw" : (isWinner ? "victory" : "defeat");
-  html += `<img class="ending-art" src="./assets/art/endings/${endArt}.svg" alt="" onerror="this.style.display='none'">`;
+  html += `<img class="ending-art" src="./assets/art/endings/${endArt}.${endArt === 'victory' ? 'jpg' : 'svg'}" alt="" onerror="this.style.display='none'">`;
   html += `
     <div class="game-over-banner ${isWinner ? "victory" : "defeat"}">
       <h2 class="game-over-title">${isWinner ? "【大獲全勝 · 天下歸一】" : "【勢力覆滅 · 抱憾終局】"}</h2>

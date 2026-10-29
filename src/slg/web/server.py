@@ -32,7 +32,7 @@ MAX_SESSIONS = 8
 SID_RE = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
 STATIC = Path(__file__).parent / "static"
 MIME = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8",
-        ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png", ".json": "application/json"}
+        ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".json": "application/json"}
 
 
 class App:
