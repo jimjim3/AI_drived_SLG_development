@@ -29,6 +29,7 @@ class CombatRules:
     dq_div: float = 100.0
     pool_factor: float = 0.0
     pool_depth: int = 1  # how many friendly-city hops away troops can be drawn from
+    far_march_factor: float = 1.0  # attacker strength multiplier on a far (long-march) edge; 1.0 = distance ignored
 
 
 RULESETS: dict[str, CombatRules] = {
@@ -45,7 +46,23 @@ RULESETS: dict[str, CombatRules] = {
     "pool2": CombatRules("pool2", pool_factor=0.5, pool_depth=2),
     "soft_pool2": CombatRules("soft_pool2", defense_divisor=300.0, dq_base=0.65, dq_div=150.0, pool_factor=0.5, pool_depth=2),
     "softer_pool2": CombatRules("softer_pool2", defense_divisor=400.0, dq_base=0.75, dq_div=200.0, pool_factor=0.5, pool_depth=2),
+    # distance matters: a siege over a far edge (see FAR_EDGES) is weakened by marching attrition
+    "softer_pool2_far": CombatRules("softer_pool2_far", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
+                                    pool_factor=0.5, pool_depth=2, far_march_factor=0.75),
 }
+
+# Real great-circle distances (km, from agy-reported coordinates in data/sanguo/maps/geo_agy.json; unverified).
+# Edges of 500 km or more count as "far": the route crosses mountains or a great river and takes more than a season.
+FAR_EDGES: dict[frozenset, int] = {
+    frozenset(("xiangyang", "jianye")): 628,
+    frozenset(("wancheng", "hanzhong")): 513,
+    frozenset(("wujun", "xiangyang")): 800,  # only exists in the +sun2 experiment
+}
+
+
+def far_march_factor(origin_id: str, target_id: str) -> float:
+    return active().far_march_factor if frozenset((origin_id, target_id)) in FAR_EDGES else 1.0
+
 
 _active: CombatRules = RULESETS["v2"]
 

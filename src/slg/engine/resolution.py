@@ -110,7 +110,7 @@ def _siege_strengths(
     defender_faction = defender_city.owner
     def_troops = defender_city.troops
 
-    atk_base = c * (0.5 + (officer.war + officer.leadership) / 200)
+    atk_base = c * (0.5 + (officer.war + officer.leadership) / 200) * combat.far_march_factor(officer.city_id, target_id)
     defenders = [
         o for o in state.officers.values()
         if o.faction_id == defender_faction and o.city_id == target_id and o.is_alive

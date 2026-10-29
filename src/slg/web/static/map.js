@@ -152,7 +152,10 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
   const edgesGroup = document.createElementNS(svgNS, "g");
   edgesGroup.setAttribute("class", "map-edges-layer");
 
+  const farLabels = [];
+  const FAR = { "xiangyang|jianye": 628, "hanzhong|wancheng": 513 };
   edges.forEach(([fromId, toId]) => {
+    const farKm = FAR[[fromId, toId].sort().join("|")];
     const fromCoord = coords[fromId];
     const toCoord = coords[toId];
     if (!fromCoord || !toCoord) return;
@@ -166,9 +169,21 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
     line.setAttribute("y2", toCoord[1]);
     line.setAttribute("stroke", isConnectedToSelected ? "#facc15" : "#334155");
     line.setAttribute("stroke-width", isConnectedToSelected ? "4" : "3");
-    line.setAttribute("stroke-dasharray", isConnectedToSelected ? "6,4" : "none");
+    line.setAttribute("stroke-dasharray", isConnectedToSelected ? "6,4" : (farKm ? "2,9" : "none"));
     line.setAttribute("stroke-linecap", "round");
     edgesGroup.appendChild(line);
+    if (farKm) {
+      const mx = (fromCoord[0] + toCoord[0]) / 2, my = (fromCoord[1] + toCoord[1]) / 2;
+      const g = document.createElementNS(svgNS, "g");
+      const bg = document.createElementNS(svgNS, "rect");
+      bg.setAttribute("x", mx - 38); bg.setAttribute("y", my - 10); bg.setAttribute("width", 76); bg.setAttribute("height", 20);
+      bg.setAttribute("rx", 10); bg.setAttribute("fill", "#0b1220"); bg.setAttribute("stroke", "#fbbf24"); bg.setAttribute("stroke-width", 1);
+      const lab = document.createElementNS(svgNS, "text");
+      lab.setAttribute("x", mx); lab.setAttribute("y", my + 5);
+      lab.setAttribute("text-anchor", "middle"); lab.setAttribute("fill", "#fbbf24"); lab.setAttribute("font-size", "13");
+      lab.textContent = `道遠 ${farKm}km`;
+      g.appendChild(bg); g.appendChild(lab); farLabels.push(g);
+    }
   });
   svg.appendChild(edgesGroup);
 
@@ -379,6 +394,7 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
     nodesGroup.appendChild(nodeG);
   });
   svg.appendChild(nodesGroup);
+  farLabels.forEach((g) => svg.appendChild(g));
 
   // Legend at bottom left
   const legend = document.createElementNS(svgNS, "g");

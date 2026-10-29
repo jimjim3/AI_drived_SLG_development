@@ -219,7 +219,7 @@ def make_handler(app: App, token: str | None = None):
 
 
 # Playable default: under the original v2 rules no siege is ever favourable, so AI opponents sit still.
-WEB_DEFAULT_RULES = "softer_pool2"
+WEB_DEFAULT_RULES = "softer_pool2_far"
 
 
 def main(argv: list[str] | None = None) -> None:
