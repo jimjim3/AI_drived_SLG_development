@@ -31,18 +31,21 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
     city = state.city(officer.city_id)
     actions: list[LegalAction] = []
 
+    agri_cap, commerce_cap, troop_cap = combat.city_caps(city.city_id)
     if city.gold >= DEVELOP_COST:
         agri_gain = develop_gain(DEVELOP_AGRICULTURE_BASE, officer.politics)
         commerce_gain = develop_gain(DEVELOP_COMMERCE_BASE, officer.politics)
         defense_gain = develop_gain(DEVELOP_DEFENSE_BASE, officer.politics)
-        actions.append(LegalAction("develop_agri", cost=DEVELOP_COST,
-                                   note=f"agri +{agri_gain}"))
-        actions.append(LegalAction("develop_commerce", cost=DEVELOP_COST,
-                                   note=f"commerce +{commerce_gain}"))
+        if city.agriculture < agri_cap:
+            actions.append(LegalAction("develop_agri", cost=DEVELOP_COST,
+                                       note=f"agri +{agri_gain}"))
+        if city.commerce < commerce_cap:
+            actions.append(LegalAction("develop_commerce", cost=DEVELOP_COST,
+                                       note=f"commerce +{commerce_gain}"))
         actions.append(LegalAction("develop_defense", cost=DEVELOP_COST,
                                    note=f"defense +{defense_gain}"))
 
-    max_troops = min(MAX_RECRUIT, city.gold // GOLD_PER_TROOP)
+    max_troops = min(MAX_RECRUIT, city.gold // GOLD_PER_TROOP, max(0, troop_cap - city.troops))
     max_troops = (max_troops // RECRUIT_STEP) * RECRUIT_STEP
     if max_troops >= MIN_RECRUIT:
         actions.append(LegalAction(
@@ -82,6 +85,9 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
             },
             cost=0,
             note=(f"from {city.troops} troops, keep {SIEGE_MIN_GARRISON} garrison"
+                  + (f"; march food = troops*km/1000, you have {city.food}: "
+                     + ", ".join(f"{t}={combat.edge_km(city.city_id, t)}km" for t in enemy_adjacent)
+                     if combat.active().march_food_rate > 0 else "")
                   + (", may draw on adjacent friendly cities" if combat.active().pool_factor > 0 else "")),
         ))
 

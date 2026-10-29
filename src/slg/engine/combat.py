@@ -30,6 +30,8 @@ class CombatRules:
     pool_factor: float = 0.0
     pool_depth: int = 1  # how many friendly-city hops away troops can be drawn from
     far_march_factor: float = 1.0  # attacker strength multiplier on a far (long-march) edge; 1.0 = distance ignored
+    city_caps: bool = False  # per-city development / population ceilings (CITY_CAPS); off = unlimited, as shipped
+    march_food_rate: float = 0.0  # a siege eats troops * km / 1000 * rate food at launch; 0 = free, as shipped
 
 
 RULESETS: dict[str, CombatRules] = {
@@ -49,19 +51,55 @@ RULESETS: dict[str, CombatRules] = {
     # distance matters: a siege over a far edge (see FAR_EDGES) is weakened by marching attrition
     "softer_pool2_far": CombatRules("softer_pool2_far", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
                                     pool_factor=0.5, pool_depth=2, far_march_factor=0.75),
+    # economy: city size/population ceilings and a food bill that grows with march distance (no strength penalty)
+    "softer_pool2_econ": CombatRules("softer_pool2_econ", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
+                                     pool_factor=0.5, pool_depth=2, city_caps=True, march_food_rate=1.0),
 }
 
-# Real great-circle distances (km, from agy-reported coordinates in data/sanguo/maps/geo_agy.json; unverified).
-# Edges of 500 km or more count as "far": the route crosses mountains or a great river and takes more than a season.
-FAR_EDGES: dict[frozenset, int] = {
+# Real great-circle distances in km between neighbouring cities (from agy-reported coordinates in
+# data/sanguo/maps/geo_agy.json; unverified). Edges of 500 km or more count as "far": the route crosses mountains
+# or a great river and takes more than a season.
+EDGE_KM: dict[frozenset, int] = {
+    frozenset(("chenliu", "xuchang")): 102,
+    frozenset(("xuchang", "luoyang")): 144,
+    frozenset(("xuchang", "xiangyang")): 276,
+    frozenset(("luoyang", "xiangyang")): 292,
+    frozenset(("luoyang", "wancheng")): 180,
     frozenset(("xiangyang", "jianye")): 628,
+    frozenset(("jianye", "wujun")): 192,
     frozenset(("wancheng", "hanzhong")): 513,
+    frozenset(("wujun", "kuaiji")): 146,
     frozenset(("wujun", "xiangyang")): 800,  # only exists in the +sun2 experiment
 }
+FAR_KM = 500
+DEFAULT_KM = 250
+
+# City size: (agriculture cap, commerce cap, troop cap = population). Only used when rules.city_caps is on.
+# Caps sit well above the starting values, so they bite only after sustained development / recruiting.
+CITY_CAPS: dict[str, tuple[int, int, int]] = {
+    "xuchang": (900, 900, 2400), "luoyang": (900, 900, 2200), "jianye": (800, 800, 2000),
+    "xiangyang": (750, 750, 1800), "chenliu": (700, 700, 1600), "wancheng": (700, 700, 1600),
+    "wujun": (650, 650, 1500), "hanzhong": (600, 600, 1400), "kuaiji": (550, 550, 1100),
+}
+UNCAPPED = 10 ** 9
+
+
+def edge_km(a: str, b: str) -> int:
+    return EDGE_KM.get(frozenset((a, b)), DEFAULT_KM)
+
+
+def city_caps(city_id: str) -> tuple[int, int, int]:
+    return CITY_CAPS.get(city_id, (UNCAPPED,) * 3) if active().city_caps else (UNCAPPED,) * 3
+
+
+def march_food(origin_id: str, target_id: str, troops: int) -> int:
+    """Food a siege of ``troops`` eats on the way (0 under the shipped rules)."""
+    rate = active().march_food_rate
+    return int(troops * edge_km(origin_id, target_id) / 1000 * rate) if rate > 0 else 0
 
 
 def far_march_factor(origin_id: str, target_id: str) -> float:
-    return active().far_march_factor if frozenset((origin_id, target_id)) in FAR_EDGES else 1.0
+    return active().far_march_factor if edge_km(origin_id, target_id) >= FAR_KM else 1.0
 
 
 _active: CombatRules = RULESETS["v2"]

@@ -11,6 +11,7 @@ Priority (per officer, in order):
 
 from __future__ import annotations
 
+from ..engine import combat
 from ..engine.resolution import estimate_siege_ratio
 from ..schema import AgentDecision, GameState, LegalAction, OfficerState
 from .base import Agent
@@ -58,7 +59,8 @@ class RuleBasedAgent(Agent):
             troops = min(int(spec.max), troops)
             best = max(
                 ((estimate_siege_ratio(state, officer, tid, troops), tid)
-                 for tid in siege.params["to"].choices),
+                 for tid in siege.params["to"].choices
+                 if combat.march_food(city.city_id, tid, troops) <= city.food),
                 key=lambda rt: (rt[0], rt[1]),
                 default=None,
             )

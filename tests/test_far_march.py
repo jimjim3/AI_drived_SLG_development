@@ -41,3 +41,45 @@ class FarMarch(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EconomyRules(unittest.TestCase):
+    def tearDown(self):
+        combat.set_rules("v2")
+
+    def test_default_has_no_caps_or_march_food(self):
+        self.assertEqual(combat.march_food("xiangyang", "jianye", 800), 0)
+        self.assertEqual(combat.city_caps("kuaiji")[2], combat.UNCAPPED)
+
+    def test_march_food_grows_with_distance(self):
+        combat.set_rules("softer_pool2_econ")
+        near = combat.march_food("chenliu", "xuchang", 800)
+        far = combat.march_food("xiangyang", "jianye", 800)
+        self.assertEqual(near, 81)
+        self.assertEqual(far, 502)
+
+    def test_recruit_and_develop_respect_caps(self):
+        from slg.engine.legal_actions import generate_legal_actions
+        combat.set_rules("softer_pool2_econ")
+        s = build_initial_state("default")
+        c = dict(s.cities)
+        c["kuaiji"] = replace(c["kuaiji"], troops=1100, agriculture=550, gold=5000)
+        s = replace(s, cities=c)
+        o = next(o for o in s.officers.values() if o.city_id == "kuaiji" and o.faction_id == "faction_3")
+        acts = {a.action for a in generate_legal_actions(s, o)}
+        self.assertNotIn("recruit", acts)
+        self.assertNotIn("develop_agri", acts)
+        self.assertIn("develop_commerce", acts)
+
+    def test_siege_rejected_without_food(self):
+        from slg.engine.validation import validate_decision
+        from slg.schema import AgentDecision
+        combat.set_rules("softer_pool2_econ")
+        s = build_initial_state("default")
+        c = dict(s.cities)
+        c["xiangyang"] = replace(c["xiangyang"], troops=3000, food=100)
+        s = replace(s, cities=c)
+        o = next(o for o in s.officers.values() if o.city_id == "xiangyang" and o.faction_id == "faction_1")
+        ok, why = validate_decision(s, o, AgentDecision(o.officer_id, "siege", {"to": "jianye", "troops": 1000}, ""))
+        self.assertFalse(ok)
+        self.assertIn("food", why)

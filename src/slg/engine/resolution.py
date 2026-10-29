@@ -157,6 +157,9 @@ def _resolve_siege(
 
     cities = dict(state.cities)
     officers = dict(state.officers)
+    bill = combat.march_food(attacker_city.city_id, target_id, c)
+    if bill:
+        cities[attacker_city.city_id] = replace(attacker_city, food=attacker_city.food - bill)
 
     if atk > dfn:
         # Victory: survivors garrison the captured city; the origin city keeps

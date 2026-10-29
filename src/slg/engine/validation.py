@@ -14,6 +14,7 @@ from ..schema import (
     GameState,
     OfficerState,
 )
+from . import combat
 from .legal_actions import generate_legal_actions
 
 KNOWN_ACTIONS = {
@@ -61,6 +62,10 @@ def validate_decision(state: GameState, officer: OfficerState, decision: AgentDe
                 return False, f"param {pname}={pvalue!r} out of range [{ps.min}, {ps.max}]"
             if ps.step and (pvalue - ps.min) % ps.step != 0:
                 return False, f"param {pname}={pvalue!r} not on step {ps.step}"
+    if action == "siege":
+        need = combat.march_food(officer.city_id, decision.params["to"], int(decision.params["troops"]))
+        if city.food < need:
+            return False, f"insufficient food for the march: need {need}, have {city.food}"
     cost = _action_cost(action, decision.params)
     if city.gold < cost:
         return False, f"insufficient gold: need {cost}, have {city.gold}"
