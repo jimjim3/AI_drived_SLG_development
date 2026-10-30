@@ -1032,7 +1032,7 @@ export function renderSettlement(container, status, onProceedNextTurn) {
 
   const scene = status.scene || {};
   if (scene.season) {
-    html += `<div class="scene-card">${scene.key ? `<img class="scene-art" src="./assets/art/scenes/${scene.key}.svg" alt="" onerror="this.style.display='none'">` : ""}<div class="scene-label">${scene.label}</div>`
+    html += `<div class="scene-card">${scene.key ? `<img class="scene-art" src="./assets/art/scenes/${scene.key}.jpg" alt="" onerror="this.onerror=function(){this.style.display='none'};this.src='./assets/art/scenes/${scene.key}.svg'">` : ""}<div class="scene-label">${scene.label}</div>`
       + (scene.new_year ? `<p>${scene.new_year}</p>` : "")
       + `<p>${scene.season}</p>`
       + (scene.quiet ? `<p class="scene-quiet">${scene.quiet}</p>` : "") + `</div>`;
