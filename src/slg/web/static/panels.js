@@ -16,6 +16,10 @@ import { CITY_NAMES, FACTION_INFO } from "./map.js";
 
 // Comprehensive officer encyclopedia (42 officers across 3 factions)
 // Own-faction officers only, filled from /api/state `roster_info` (never hard-code other factions: fog of war).
+window.__artNext = (img) => {
+  const rest = (img.dataset.fb || "").split("|").filter(Boolean);
+  if (rest.length) { img.dataset.fb = rest.slice(1).join("|"); img.src = rest[0]; } else img.style.display = "none";
+};
 export const portraitUrl = (id) => `./assets/portraits/${id}.png`;
 export const portraitImg = (id, cls = "mini-portrait") =>
   `<img class="${cls}" src="${portraitUrl(id)}" alt="" loading="lazy" onerror="this.style.display='none'">`;
@@ -1082,7 +1086,9 @@ export function renderGameOver(container, status, state, onRestart) {
 
   let html = `<div class="panel-content game-over-panel">`;
   const endArt = !status.winner ? "draw" : (isWinner ? "victory" : "defeat");
-  html += `<img class="ending-art" src="./assets/art/endings/${endArt}.jpg" alt="" onerror="this.onerror=function(){this.style.display='none'};this.src='./assets/art/endings/${endArt}.svg'">`;
+  const fsuf = { faction_1: "wei", faction_2: "shu", faction_3: "wu" }[state.faction_id];
+  const endSrc = (endArt !== "draw" && fsuf) ? `${endArt}_${fsuf}` : endArt;
+  html += `<img class="ending-art" src="./assets/art/endings/${endSrc}.jpg" alt="" data-fb="./assets/art/endings/${endArt}.jpg|./assets/art/endings/${endArt}.svg" onerror="__artNext(this)">`;
   html += `
     <div class="game-over-banner ${isWinner ? "victory" : "defeat"}">
       <h2 class="game-over-title">${isWinner ? "【大獲全勝 · 天下歸一】" : "【勢力覆滅 · 抱憾終局】"}</h2>
