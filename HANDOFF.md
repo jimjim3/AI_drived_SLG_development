@@ -1,7 +1,7 @@
 # HANDOFF — AI-Driven SLG（更新於 2026-10-26）
 
 ## 狀態一句話
-引擎、LLM 勢力代理、評測、劇情文本、網頁介面皆可運作並已推送（分支 `claude/ai-hierarchical-slg-game-fl3ojj`，HEAD `5623303`，**435 個測試全過**，工作區乾淨）。網頁預設規則 `softer_pool2_econ3`（遠路攻城 ×0.75），AI 對手會進攻、戰報有敘事句。**仍然沒有真人試玩過、沒有在真實瀏覽器驗證畫面**。
+引擎、LLM 勢力代理、評測、劇情文本、網頁介面皆可運作並已推送（分支 `claude/ai-hierarchical-slg-game-fl3ojj`，HEAD `5623303`，**435 個測試全過**，工作區乾淨）。網頁預設規則 `softer_pool2_econ3`（光榮規模城池上限、行軍糧耗係數 0.5，見 docs/EVALUATION.md §21），AI 對手會進攻、戰報有敘事句。**仍然沒有真人試玩過、沒有在真實瀏覽器驗證畫面**。
 
 ## 快速開始（換機器時）
 ```bash
