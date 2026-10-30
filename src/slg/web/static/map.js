@@ -123,13 +123,18 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
 
   // Terrain illustration, aligned to the city coordinate system (px = 70 + 82x, py = 50 + 75(8.5 - y)).
   const terrain = document.createElementNS(svgNS, "image");
-  terrain.setAttribute("href", "./assets/art/map_terrain.svg");
+  terrain.setAttribute("href", "./assets/art/map_painted.jpg");
+  terrain.addEventListener("error", () => {
+    terrain.setAttribute("href", "./assets/art/map_terrain.svg");
+    terrain.setAttribute("width", "902");
+    terrain.setAttribute("style", "filter: brightness(1.3)");
+  });
   terrain.setAttribute("x", "70");
   terrain.setAttribute("y", "50");
-  terrain.setAttribute("width", "902");
+  terrain.setAttribute("width", "974");  // painted coast is stretched east so Wujun / Kuaiji sit on the shore
   terrain.setAttribute("height", "637.5");
   terrain.setAttribute("preserveAspectRatio", "none");
-  terrain.setAttribute("style", "filter: brightness(1.3)");
+  terrain.setAttribute("style", "filter: brightness(0.72) saturate(0.9)");
   svg.appendChild(terrain);
 
   const gridRect = document.createElementNS(svgNS, "rect");
