@@ -75,6 +75,7 @@ def narrative_payload(scenario: str, faction_id: str) -> dict:
     return {
         "scenario": {"id": resolve_scenario(scenario, faction_id), "kind": kind, **narrative.scenario(kind)},
         "title": n["world"]["title"], "subtitle": n["world"]["subtitle"], "prologue": n["world"]["prologue"],
+        "faction": faction_id,
         "lord": narrative.lord(faction_id),
         "opening": narrative.opening(kind, faction_id),
         "cities": n["world"]["cities"],

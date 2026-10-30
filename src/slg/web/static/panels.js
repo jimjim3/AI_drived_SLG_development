@@ -1040,7 +1040,7 @@ export function renderSettlement(container, status, onProceedNextTurn) {
   const story = status.story || [];
   story.forEach((line, i) => {
     const art = (status.story_art || [])[i];
-    if (art) html += `<img class="story-art" src="./assets/art/scenes/${art}.${['battle','defection'].includes(art) ? 'jpg' : 'svg'}" alt="" onerror="this.style.display='none'">`;
+    if (art) html += `<img class="story-art" src="./assets/art/scenes/${art}.${['battle','defection','siege','famine','chibi_fire','guandu_raid'].includes(art) ? 'jpg' : 'svg'}" alt="" onerror="this.style.display='none'">`;
     html += `<div class="event-card event-story"><span class="event-bullet">⚔</span> <span class="event-text">${line}</span></div>`;
   });
 

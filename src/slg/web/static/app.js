@@ -322,6 +322,13 @@ class SLGApp {
       return e;
     };
     const card = el("div", "opening-card");
+    const art = { faction_1: "opening_wei", faction_2: "opening_shu", faction_3: "opening_wu" }[n.faction];
+    if (art) {
+      const img = el("img", "opening-art");
+      img.src = `./assets/art/scenes/${art}.jpg`; img.alt = "";
+      img.onerror = () => { img.style.display = "none"; };
+      card.append(img);
+    }
     const h = el("h2", "", n.opening.headline);
     h.id = "openingTitle";
     const tone = el("span", `tone-badge tone-${n.opening.tone}`, n.opening.tone);
