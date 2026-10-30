@@ -1,0 +1,1214 @@
+{
+  "variant": "econ_sweep_flat_r1.0_far1.0",
+  "rules": {
+    "name": "econ_sweep_flat_r1.0_far1.0",
+    "cap_tiers": "flat",
+    "march_food_rate": 1.0,
+    "far_march_factor": 1.0,
+    "city_caps": true,
+    "pool_factor": 0.5,
+    "pool_depth": 2,
+    "defense_divisor": 400.0,
+    "dq_base": 0.75,
+    "dq_div": 200.0
+  },
+  "seeds_count": 40,
+  "turns": 30,
+  "scenario": "default",
+  "games_with_any_siege": 40,
+  "games_with_any_siege_share": 1.0,
+  "total_sieges": 76,
+  "total_captures": 76,
+  "factions": {
+    "faction_1": {
+      "name": "曹操",
+      "wins": 40,
+      "win_share": 1.0,
+      "sieges": 57,
+      "captures": 57,
+      "games_with_siege": 40,
+      "games_with_siege_share": 1.0
+    },
+    "faction_2": {
+      "name": "劉備",
+      "wins": 0,
+      "win_share": 0.0,
+      "sieges": 19,
+      "captures": 19,
+      "games_with_siege": 19,
+      "games_with_siege_share": 0.475
+    },
+    "faction_3": {
+      "name": "孫權",
+      "wins": 0,
+      "win_share": 0.0,
+      "sieges": 0,
+      "captures": 0,
+      "games_with_siege": 0,
+      "games_with_siege_share": 0.0
+    }
+  },
+  "ties": 0,
+  "games": [
+    {
+      "seed": 0,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6470,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6174,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "winner": "faction_1",
+      "total_sieges": 1,
+      "total_captures": 1,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 4,
+          "troops": 8762,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 2,
+          "troops": 4000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "winner": "faction_1",
+      "total_sieges": 1,
+      "total_captures": 1,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 4,
+          "troops": 8781,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 2,
+          "troops": 4000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8461,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8430,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 5,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8440,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 6,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8583,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 7,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8351,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 8,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8518,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 9,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6108,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 10,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8543,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 11,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6470,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6114,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 12,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6129,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 13,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6157,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 14,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6155,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 15,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8378,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 16,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6470,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6125,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 17,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6138,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 18,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8476,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 19,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6173,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 20,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8376,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 21,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8660,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 22,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6169,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 23,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8547,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 24,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8432,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 25,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6470,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6146,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 26,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6470,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6160,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 27,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6195,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 28,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6107,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 29,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6152,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 30,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8430,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 31,
+      "winner": "faction_1",
+      "total_sieges": 1,
+      "total_captures": 1,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 4,
+          "troops": 8754,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 2,
+          "troops": 4000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 32,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6157,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 33,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8522,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 34,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8455,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 35,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 5,
+          "troops": 8431,
+          "sieges": 2,
+          "captures": 2
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 1,
+          "troops": 2000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 36,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6470,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6184,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 37,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6570,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6125,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 38,
+      "winner": "faction_1",
+      "total_sieges": 2,
+      "total_captures": 2,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 3,
+          "troops": 6470,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 3,
+          "troops": 6132,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    },
+    {
+      "seed": 39,
+      "winner": "faction_1",
+      "total_sieges": 1,
+      "total_captures": 1,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "cities": 4,
+          "troops": 8711,
+          "sieges": 1,
+          "captures": 1
+        },
+        "faction_2": {
+          "name": "劉備",
+          "cities": 2,
+          "troops": 4000,
+          "sieges": 0,
+          "captures": 0
+        },
+        "faction_3": {
+          "name": "孫權",
+          "cities": 3,
+          "troops": 5900,
+          "sieges": 0,
+          "captures": 0
+        }
+      }
+    }
+  ]
+}

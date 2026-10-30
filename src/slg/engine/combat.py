@@ -31,7 +31,7 @@ class CombatRules:
     pool_depth: int = 1  # how many friendly-city hops away troops can be drawn from
     far_march_factor: float = 1.0  # attacker strength multiplier on a far (long-march) edge; 1.0 = distance ignored
     city_caps: bool = False  # per-city development / population ceilings (CITY_CAPS); off = unlimited, as shipped
-    cap_tiers: bool = False  # with city_caps: use the Koei size tiers (KOEI_TIER_CAPS) instead of the provisional CITY_CAPS
+    cap_tiers: bool | str = False  # with city_caps: use Koei size tiers (True for KOEI_TIER_CAPS, "flat" for KOEI_FLAT_TIER_CAPS)
     march_food_rate: float = 0.0  # a siege eats troops * km / 1000 * rate food at launch; 0 = free, as shipped
 
 
@@ -58,6 +58,9 @@ RULESETS: dict[str, CombatRules] = {
     # same economy, but city sizes follow Koei's Sangokushi 11 tiers (agy-reported, unverified)
     "softer_pool2_econ2": CombatRules("softer_pool2_econ2", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
                                       pool_factor=0.5, pool_depth=2, city_caps=True, cap_tiers=True, march_food_rate=1.0),
+    # tuned economy (docs/EVALUATION.md §21.2): march_food_rate=0.5 keeps Sun active while preventing edge dominance
+    "softer_pool2_econ3": CombatRules("softer_pool2_econ3", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
+                                      pool_factor=0.5, pool_depth=2, city_caps=True, cap_tiers=True, march_food_rate=0.5),
 }
 
 # Real great-circle distances in km between neighbouring cities (from agy-reported coordinates in
@@ -89,6 +92,8 @@ CITY_CAPS: dict[str, tuple[int, int, int]] = {
 KOEI_SIZE = {"luoyang": "xl", "xuchang": "l", "xiangyang": "l", "jianye": "l",
              "chenliu": "m", "wancheng": "m", "wujun": "m", "hanzhong": "m", "kuaiji": "s"}
 KOEI_TIER_CAPS = {"xl": (900, 900, 2400), "l": (800, 800, 2000), "m": (700, 700, 1600), "s": (550, 550, 1100)}
+# Flattened version: tier gaps halved (50, 50, 75 for agri/comm; 200, 200, 250 for troops)
+KOEI_FLAT_TIER_CAPS = {"xl": (900, 900, 2400), "l": (850, 850, 2200), "m": (800, 800, 2000), "s": (725, 725, 1750)}
 UNCAPPED = 10 ** 9
 
 
@@ -100,6 +105,10 @@ def city_caps(city_id: str) -> tuple[int, int, int]:
     rules = active()
     if not rules.city_caps:
         return (UNCAPPED,) * 3
+    if rules.cap_tiers == "flat":
+        return KOEI_FLAT_TIER_CAPS.get(KOEI_SIZE.get(city_id, ""), (UNCAPPED,) * 3)
+    if isinstance(rules.cap_tiers, dict):
+        return rules.cap_tiers.get(KOEI_SIZE.get(city_id, ""), (UNCAPPED,) * 3)
     if rules.cap_tiers:
         return KOEI_TIER_CAPS.get(KOEI_SIZE.get(city_id, ""), (UNCAPPED,) * 3)
     return CITY_CAPS.get(city_id, (UNCAPPED,) * 3)

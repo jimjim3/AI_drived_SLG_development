@@ -1,0 +1,588 @@
+{
+  "seeds": "0-39",
+  "seeds_count": 40,
+  "turns": 30,
+  "scenario": "default",
+  "best_two_variants": [
+    "econ_sweep_koei_r0.25_far1.0",
+    "econ_sweep_flat_r0.25_far1.0"
+  ],
+  "variants": [
+    {
+      "variant": "econ_sweep_koei_r0.0_far1.0",
+      "rules": {
+        "name": "econ_sweep_koei_r0.0_far1.0",
+        "cap_tiers": true,
+        "march_food_rate": 0.0,
+        "far_march_factor": 1.0,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 0.2517,
+      "games_with_any_siege": 40,
+      "total_sieges": 160,
+      "total_captures": 160,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 27,
+          "win_share": 0.675,
+          "sieges": 85,
+          "captures": 85,
+          "games_with_siege": 38,
+          "games_with_siege_share": 0.95
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 3,
+          "win_share": 0.075,
+          "sieges": 44,
+          "captures": 44,
+          "games_with_siege": 24,
+          "games_with_siege_share": 0.6
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 10,
+          "win_share": 0.25,
+          "sieges": 31,
+          "captures": 31,
+          "games_with_siege": 21,
+          "games_with_siege_share": 0.525
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_koei_r0.25_far1.0",
+      "rules": {
+        "name": "econ_sweep_koei_r0.25_far1.0",
+        "cap_tiers": true,
+        "march_food_rate": 0.25,
+        "far_march_factor": 1.0,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 0.2517,
+      "games_with_any_siege": 40,
+      "total_sieges": 160,
+      "total_captures": 160,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 27,
+          "win_share": 0.675,
+          "sieges": 85,
+          "captures": 85,
+          "games_with_siege": 38,
+          "games_with_siege_share": 0.95
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 3,
+          "win_share": 0.075,
+          "sieges": 44,
+          "captures": 44,
+          "games_with_siege": 24,
+          "games_with_siege_share": 0.6
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 10,
+          "win_share": 0.25,
+          "sieges": 31,
+          "captures": 31,
+          "games_with_siege": 21,
+          "games_with_siege_share": 0.525
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_koei_r0.5_far1.0",
+      "rules": {
+        "name": "econ_sweep_koei_r0.5_far1.0",
+        "cap_tiers": true,
+        "march_food_rate": 0.5,
+        "far_march_factor": 1.0,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 0.3017,
+      "games_with_any_siege": 40,
+      "total_sieges": 157,
+      "total_captures": 157,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 28,
+          "win_share": 0.7,
+          "sieges": 84,
+          "captures": 84,
+          "games_with_siege": 38,
+          "games_with_siege_share": 0.95
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 2,
+          "win_share": 0.05,
+          "sieges": 42,
+          "captures": 42,
+          "games_with_siege": 24,
+          "games_with_siege_share": 0.6
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 10,
+          "win_share": 0.25,
+          "sieges": 31,
+          "captures": 31,
+          "games_with_siege": 21,
+          "games_with_siege_share": 0.525
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_koei_r0.75_far1.0",
+      "rules": {
+        "name": "econ_sweep_koei_r0.75_far1.0",
+        "cap_tiers": true,
+        "march_food_rate": 0.75,
+        "far_march_factor": 1.0,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 0.6454,
+      "games_with_any_siege": 40,
+      "total_sieges": 112,
+      "total_captures": 112,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 34,
+          "win_share": 0.85,
+          "sieges": 60,
+          "captures": 60,
+          "games_with_siege": 38,
+          "games_with_siege_share": 0.95
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 3,
+          "win_share": 0.075,
+          "sieges": 37,
+          "captures": 37,
+          "games_with_siege": 23,
+          "games_with_siege_share": 0.575
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 3,
+          "win_share": 0.075,
+          "sieges": 15,
+          "captures": 15,
+          "games_with_siege": 12,
+          "games_with_siege_share": 0.3
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_koei_r1.0_far1.0",
+      "rules": {
+        "name": "econ_sweep_koei_r1.0_far1.0",
+        "cap_tiers": true,
+        "march_food_rate": 1.0,
+        "far_march_factor": 1.0,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 999.0,
+      "games_with_any_siege": 40,
+      "total_sieges": 76,
+      "total_captures": 76,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 40,
+          "win_share": 1.0,
+          "sieges": 57,
+          "captures": 57,
+          "games_with_siege": 40,
+          "games_with_siege_share": 1.0
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 19,
+          "captures": 19,
+          "games_with_siege": 19,
+          "games_with_siege_share": 0.475
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 0,
+          "captures": 0,
+          "games_with_siege": 0,
+          "games_with_siege_share": 0.0
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_flat_r0.0_far1.0",
+      "rules": {
+        "name": "econ_sweep_flat_r0.0_far1.0",
+        "cap_tiers": "flat",
+        "march_food_rate": 0.0,
+        "far_march_factor": 1.0,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 0.3067,
+      "games_with_any_siege": 40,
+      "total_sieges": 144,
+      "total_captures": 144,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 16,
+          "win_share": 0.4,
+          "sieges": 80,
+          "captures": 80,
+          "games_with_siege": 27,
+          "games_with_siege_share": 0.675
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 24,
+          "captures": 24,
+          "games_with_siege": 13,
+          "games_with_siege_share": 0.325
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 24,
+          "win_share": 0.6,
+          "sieges": 40,
+          "captures": 40,
+          "games_with_siege": 26,
+          "games_with_siege_share": 0.65
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_flat_r0.25_far1.0",
+      "rules": {
+        "name": "econ_sweep_flat_r0.25_far1.0",
+        "cap_tiers": "flat",
+        "march_food_rate": 0.25,
+        "far_march_factor": 1.0,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 0.3067,
+      "games_with_any_siege": 40,
+      "total_sieges": 154,
+      "total_captures": 154,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 16,
+          "win_share": 0.4,
+          "sieges": 85,
+          "captures": 85,
+          "games_with_siege": 27,
+          "games_with_siege_share": 0.675
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 26,
+          "captures": 26,
+          "games_with_siege": 13,
+          "games_with_siege_share": 0.325
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 24,
+          "win_share": 0.6,
+          "sieges": 43,
+          "captures": 43,
+          "games_with_siege": 26,
+          "games_with_siege_share": 0.65
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_flat_r0.5_far1.0",
+      "rules": {
+        "name": "econ_sweep_flat_r0.5_far1.0",
+        "cap_tiers": "flat",
+        "march_food_rate": 0.5,
+        "far_march_factor": 1.0,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 0.3067,
+      "games_with_any_siege": 40,
+      "total_sieges": 141,
+      "total_captures": 141,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 16,
+          "win_share": 0.4,
+          "sieges": 79,
+          "captures": 79,
+          "games_with_siege": 27,
+          "games_with_siege_share": 0.675
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 23,
+          "captures": 23,
+          "games_with_siege": 13,
+          "games_with_siege_share": 0.325
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 24,
+          "win_share": 0.6,
+          "sieges": 39,
+          "captures": 39,
+          "games_with_siege": 26,
+          "games_with_siege_share": 0.65
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_flat_r0.75_far1.0",
+      "rules": {
+        "name": "econ_sweep_flat_r0.75_far1.0",
+        "cap_tiers": "flat",
+        "march_food_rate": 0.75,
+        "far_march_factor": 1.0,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 999.0,
+      "games_with_any_siege": 40,
+      "total_sieges": 82,
+      "total_captures": 82,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 40,
+          "win_share": 1.0,
+          "sieges": 60,
+          "captures": 60,
+          "games_with_siege": 40,
+          "games_with_siege_share": 1.0
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 22,
+          "captures": 22,
+          "games_with_siege": 19,
+          "games_with_siege_share": 0.475
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 0,
+          "captures": 0,
+          "games_with_siege": 0,
+          "games_with_siege_share": 0.0
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_flat_r1.0_far1.0",
+      "rules": {
+        "name": "econ_sweep_flat_r1.0_far1.0",
+        "cap_tiers": "flat",
+        "march_food_rate": 1.0,
+        "far_march_factor": 1.0,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 999.0,
+      "games_with_any_siege": 40,
+      "total_sieges": 76,
+      "total_captures": 76,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 40,
+          "win_share": 1.0,
+          "sieges": 57,
+          "captures": 57,
+          "games_with_siege": 40,
+          "games_with_siege_share": 1.0
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 19,
+          "captures": 19,
+          "games_with_siege": 19,
+          "games_with_siege_share": 0.475
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 0,
+          "captures": 0,
+          "games_with_siege": 0,
+          "games_with_siege_share": 0.0
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_koei_r0.25_far0.75",
+      "rules": {
+        "name": "econ_sweep_koei_r0.25_far0.75",
+        "cap_tiers": true,
+        "march_food_rate": 0.25,
+        "far_march_factor": 0.75,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 0.7567,
+      "games_with_any_siege": 40,
+      "total_sieges": 128,
+      "total_captures": 128,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 34,
+          "win_share": 0.85,
+          "sieges": 79,
+          "captures": 79,
+          "games_with_siege": 40,
+          "games_with_siege_share": 1.0
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 29,
+          "captures": 29,
+          "games_with_siege": 19,
+          "games_with_siege_share": 0.475
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 6,
+          "win_share": 0.15,
+          "sieges": 20,
+          "captures": 20,
+          "games_with_siege": 7,
+          "games_with_siege_share": 0.175
+        }
+      }
+    },
+    {
+      "variant": "econ_sweep_flat_r0.25_far0.75",
+      "rules": {
+        "name": "econ_sweep_flat_r0.25_far0.75",
+        "cap_tiers": "flat",
+        "march_food_rate": 0.25,
+        "far_march_factor": 0.75,
+        "city_caps": true,
+        "pool_factor": 0.5,
+        "pool_depth": 2,
+        "defense_divisor": 400.0,
+        "dq_base": 0.75,
+        "dq_div": 200.0
+      },
+      "balance_score": 0.8292,
+      "games_with_any_siege": 40,
+      "total_sieges": 143,
+      "total_captures": 143,
+      "factions": {
+        "faction_1": {
+          "name": "曹操",
+          "wins": 35,
+          "win_share": 0.875,
+          "sieges": 88,
+          "captures": 88,
+          "games_with_siege": 40,
+          "games_with_siege_share": 1.0
+        },
+        "faction_2": {
+          "name": "劉備",
+          "wins": 0,
+          "win_share": 0.0,
+          "sieges": 33,
+          "captures": 33,
+          "games_with_siege": 19,
+          "games_with_siege_share": 0.475
+        },
+        "faction_3": {
+          "name": "孫權",
+          "wins": 5,
+          "win_share": 0.125,
+          "sieges": 22,
+          "captures": 22,
+          "games_with_siege": 7,
+          "games_with_siege_share": 0.175
+        }
+      }
+    }
+  ]
+}

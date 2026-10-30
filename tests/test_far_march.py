@@ -83,3 +83,20 @@ class EconomyRules(unittest.TestCase):
         ok, why = validate_decision(s, o, AgentDecision(o.officer_id, "siege", {"to": "jianye", "troops": 1000}, ""))
         self.assertFalse(ok)
         self.assertIn("food", why)
+
+    def test_econ3_ruleset(self):
+        combat.set_rules("softer_pool2_econ3")
+        self.assertEqual(combat.active().march_food_rate, 0.5)
+        self.assertEqual(combat.march_food("xiangyang", "jianye", 800), 251)
+        self.assertEqual(combat.city_caps("kuaiji")[2], 1100)
+
+    def test_flat_tier_caps(self):
+        rule = replace(combat.RULESETS["softer_pool2_econ2"], cap_tiers="flat")
+        combat.RULESETS["_test_flat"] = rule
+        try:
+            combat.set_rules("_test_flat")
+            self.assertEqual(combat.city_caps("kuaiji")[2], 1750)
+            self.assertEqual(combat.city_caps("jianye")[2], 2200)
+        finally:
+            combat.set_rules("v2")
+            del combat.RULESETS["_test_flat"]
