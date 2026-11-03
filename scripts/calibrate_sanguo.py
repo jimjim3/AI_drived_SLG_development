@@ -19,9 +19,47 @@ ROOT = Path(__file__).resolve().parent.parent
 D = ROOT / "data/sanguo"
 MIN_GAMES = 3
 DISPUTE = 25
-TOP_CANDIDATES = 200
+TOP_CANDIDATES = 10**6  # keep all
+CAND_MIN_GAMES = 3
 ALIAS = {"陳羣": "陳群", "楊修": "楊脩", "麋竺": "糜竺", "麋芳": "糜芳", "馬忠": "馬忠(蜀)"}
 M = {"leadership": "統率", "war": "武力", "intellect": "智力", "politics": "政治", "charm": "魅力"}
+
+
+def clamp(v):
+    return max(1, min(100, round(v)))
+
+
+def fit_engine_scale(calibrated, sheet):
+    """Least-squares engine_stat = a * koei_mean + b for war / leadership / politics, using the in-game officers.
+    Prints slope, intercept, correlation and residual spread. The engine is only read, never changed."""
+    import sys
+    sys.path.insert(0, str(ROOT / "src"))
+    from slg.engine.initial_state import build_initial_state
+    st = build_initial_state("default")
+    fit = {}
+    for key in ("war", "leadership", "politics"):
+        xs, ys = [], []
+        for o in st.officers.values():
+            row = calibrated.get(o.officer_id)
+            if not row or not row.get("koei_name"):
+                continue
+            mean = sheet[row["koei_name"]]["mean"].get(M[key])
+            if mean is None:
+                continue
+            xs.append(mean)
+            ys.append(getattr(o, key))
+        n = len(xs)
+        mx, my = sum(xs) / n, sum(ys) / n
+        sxx = sum((x - mx) ** 2 for x in xs)
+        a = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sxx
+        b = my - a * mx
+        res = [y - (a * x + b) for x, y in zip(xs, ys)]
+        syy = sum((y - my) ** 2 for y in ys)
+        r = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / (sxx * syy) ** 0.5
+        sd = (sum(e * e for e in res) / n) ** 0.5
+        print(f"fit {key}: engine = {a:.3f} * koei + {b:.1f}  (n={n}, r={r:.2f}, residual sd={sd:.1f})")
+        fit[key] = (a, b)
+    return fit
 
 
 def main():
@@ -66,7 +104,7 @@ def main():
 
     cands = []
     for name, o in sheet.items():
-        if name in used or o["n_games"] < 6 or not o["mean"] or max(o["mean"].values()) > 100:
+        if name in used or o["n_games"] < CAND_MIN_GAMES or not o["mean"] or max(o["mean"].values()) > 100:
             continue  # the sheet also has summary rows (e.g. 每代武將數) whose values exceed 100
         m = o["mean"]
         cands.append({
@@ -77,8 +115,13 @@ def main():
             "faction": None, "home_city": None, "verification": "unverified",
         })
     cands.sort(key=lambda c: (-c["koei_n_games"], -c["score"]))
+    fit = fit_engine_scale(calibrated, sheet)
+    for c in cands:
+        m = sheet[c["name"]]["mean"]
+        c["stats_engine"] = {k: clamp(fit[k][0] * m[M[k]] + fit[k][1]) for k in fit if M[k] in m}
+        c["stats_engine_basis"] = "linear fit engine~koei_mean on the in-game officers; see data/sanguo/README.md"
     json.dump(cands[:TOP_CANDIDATES], open(D / "candidates_officers.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    print(f"candidates: {len(cands)} with >=6 games and not in the database; wrote top {min(TOP_CANDIDATES, len(cands))}")
+    print(f"candidates: {len(cands)} with >={CAND_MIN_GAMES} games and not in the database; wrote {min(TOP_CANDIDATES, len(cands))}")
 
     # engine comparison (engine untouched)
     import sys
