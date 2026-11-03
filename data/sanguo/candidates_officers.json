@@ -1,0 +1,3602 @@
+[
+ {
+  "name": "袁紹",
+  "courtesy": "本初",
+  "sex": "男",
+  "bio": "反董卓聯軍的盟主。後與曹操對立，曾經收留被曹操擊敗的劉備。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 81,
+   "war": 72,
+   "intellect": 73,
+   "politics": 69,
+   "charm": 89
+  },
+  "score": 76.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "馬騰",
+  "courtesy": "壽成",
+  "sex": "男",
+  "bio": "西涼太守，參加了反董卓聯軍。日後協助獻帝的密謀敗露，被曹操處斬。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 82,
+   "war": 84,
+   "intellect": 56,
+   "politics": 57,
+   "charm": 87
+  },
+  "score": 73.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "賈逵",
+  "courtesy": "梁道",
+  "sex": "男",
+  "bio": "魏國文官。對於曹操有意伐吳的舉動加以規諫，以致身繫牢獄。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 72,
+   "war": 62,
+   "intellect": 79,
+   "politics": 81,
+   "charm": 73
+  },
+  "score": 73.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "公孫瓚",
+  "courtesy": "伯珪",
+  "sex": "男",
+  "bio": "北平太守，有「白馬將軍」之稱。和袁紹交戰接連戰敗，竟坐視部下危急於不顧。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 78,
+   "war": 84,
+   "intellect": 69,
+   "politics": 55,
+   "charm": 71
+  },
+  "score": 71.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "陳登",
+  "courtesy": "元龍",
+  "sex": "男",
+  "bio": "陶謙部將。曾將徐州交付劉備治理，呂布竊取後與其父奪回徐州，並獻與曹操。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 73,
+   "war": 59,
+   "intellect": 77,
+   "politics": 79,
+   "charm": 68
+  },
+  "score": 71.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "向寵",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "蜀國武將，向朗之侄。在關羽復仇戰中遭到陸遜的火攻，不過損傷極少。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 76,
+   "war": 59,
+   "intellect": 76,
+   "politics": 66,
+   "charm": 73
+  },
+  "score": 69.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張魯",
+  "courtesy": "公祺",
+  "sex": "男",
+  "bio": "五斗米教的教祖，漢寧太守。原本覬覦益州，後來遭到曹操攻打遂投降。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 56,
+   "war": 40,
+   "intellect": 75,
+   "politics": 78,
+   "charm": 89
+  },
+  "score": 67.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉焉",
+  "courtesy": "君郎",
+  "sex": "男",
+  "bio": "幽州太守，西漢魯恭王後裔。黃巾之亂時張貼告示募集義軍。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 52,
+   "war": 40,
+   "intellect": 77,
+   "politics": 82,
+   "charm": 86
+  },
+  "score": 67.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "呂範",
+  "courtesy": "子衡",
+  "sex": "男",
+  "bio": "本為袁術的幕僚，後來投靠孫策，擔任使者促成劉備與孫夫人的姻緣。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 64,
+   "war": 55,
+   "intellect": 72,
+   "politics": 74,
+   "charm": 70
+  },
+  "score": 66.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "關索",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "關羽的三子，荊州被奪時負傷，靜養一段時日後，參加了諸葛亮的南征。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 73,
+   "war": 84,
+   "intellect": 57,
+   "politics": 46,
+   "charm": 70
+  },
+  "score": 66.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張繡",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "張濟侄兒，投降曹操之後叛變。最後在賈詡的建議下，再次歸順曹操。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 78,
+   "war": 74,
+   "intellect": 63,
+   "politics": 47,
+   "charm": 66
+  },
+  "score": 65.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "曹昂",
+  "courtesy": "子脩",
+  "sex": "男",
+  "bio": "曹操的長子，於宛城之亂中將自己的馬讓給失去座騎的曹操，結果自己卻戰死。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 68,
+   "war": 64,
+   "intellect": 62,
+   "politics": 60,
+   "charm": 74
+  },
+  "score": 65.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉表",
+  "courtesy": "景升",
+  "sex": "男",
+  "bio": "荊州刺史，曾經為荊州帶來一時的安定，收容了許多逃避戰禍而來的難民。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 54,
+   "war": 40,
+   "intellect": 71,
+   "politics": 80,
+   "charm": 81
+  },
+  "score": 65.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "袁熙",
+  "courtesy": "顯奕",
+  "sex": "男",
+  "bio": "袁紹的次子。於激烈的繼承爭奪戰中，遭到部將謀反而被殺。妻子也被曹丕所奪。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 67,
+   "war": 54,
+   "intellect": 65,
+   "politics": 66,
+   "charm": 66
+  },
+  "score": 63.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "孟獲",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "南蠻王，於諸葛亮征討南蠻的戰事中被七擒七縱，最後終於歸順。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 80,
+   "war": 85,
+   "intellect": 42,
+   "politics": 36,
+   "charm": 74
+  },
+  "score": 63.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "高覽",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "袁紹麾下武將。於官渡之戰中，曾與許褚單挑不分勝負，後與張郃一起投降曹操。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 74,
+   "war": 77,
+   "intellect": 58,
+   "politics": 48,
+   "charm": 60
+  },
+  "score": 63.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張濟",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "董卓部將，張繡叔父。董卓死後擔任驃騎將軍駐屯弘農，後於南陽進行掠奪。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 70,
+   "war": 67,
+   "intellect": 56,
+   "politics": 56,
+   "charm": 64
+  },
+  "score": 62.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "董卓",
+  "courtesy": "仲穎",
+  "sex": "男",
+  "bio": "任河東郡太守鎮壓黃巾之亂有功，趁宦官被屠殺之際入京，掌握了權力。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 81,
+   "war": 86,
+   "intellect": 64,
+   "politics": 32,
+   "charm": 47
+  },
+  "score": 62.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "吳班",
+  "courtesy": "元雄",
+  "sex": "男",
+  "bio": "劉備部將，吳懿的堂弟。入蜀後輔佐張飛鎮守閬中，征討吳國時也隨軍出征。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 73,
+   "war": 72,
+   "intellect": 52,
+   "politics": 47,
+   "charm": 64
+  },
+  "score": 61.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "呂凱",
+  "courtesy": "季平",
+  "sex": "男",
+  "bio": "永昌郡的功曹，據城死守來自孟獲的攻擊，並擔任諸葛亮征討南蠻的嚮導。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 51,
+   "war": 34,
+   "intellect": 68,
+   "politics": 77,
+   "charm": 70
+  },
+  "score": 60.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張邈",
+  "courtesy": "孟卓",
+  "sex": "男",
+  "bio": "陳留太守，趁曹操出征之際唆使呂布攻下了兗州，結果陳留反而遭到攻擊。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 55,
+   "war": 55,
+   "intellect": 60,
+   "politics": 59,
+   "charm": 71
+  },
+  "score": 59.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "袁尚",
+  "courtesy": "顯甫",
+  "sex": "男",
+  "bio": "袁紹的三子。與袁譚爭奪繼承人之位，後與袁熙逃往幽州遼東，但被斬殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 62,
+   "war": 70,
+   "intellect": 49,
+   "politics": 42,
+   "charm": 74
+  },
+  "score": 59.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "陳矯",
+  "courtesy": "季弼",
+  "sex": "男",
+  "bio": "魏國大臣，曹操死後為了讓曹丕繼任王位，斬斷袖袍後向文官斥喝。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 48,
+   "war": 26,
+   "intellect": 73,
+   "politics": 82,
+   "charm": 67
+  },
+  "score": 59.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "雍闓",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "建寧太守，與孟獲聯手向蜀國發動叛亂，後因諸葛亮的離間計，遭鄂煥所殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 70,
+   "war": 72,
+   "intellect": 52,
+   "politics": 44,
+   "charm": 53
+  },
+  "score": 58.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "呂虔",
+  "courtesy": "子恪",
+  "sex": "男",
+  "bio": "曹操部將，兗州之戰活躍一時，曾經射殺了呂布的部將薛蘭。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 53,
+   "war": 70,
+   "intellect": 49,
+   "politics": 60,
+   "charm": 57
+  },
+  "score": 57.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "楊懷",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉璋部將，原本企圖暗殺劉備，結果被龐統擒獲遭到斬首。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 63,
+   "war": 69,
+   "intellect": 56,
+   "politics": 50,
+   "charm": 49
+  },
+  "score": 57.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張允",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉表部下，篡改劉表遺書，改立劉琮繼承，曹操南征時被其任為水軍副都督。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 69,
+   "war": 65,
+   "intellect": 48,
+   "politics": 56,
+   "charm": 48
+  },
+  "score": 57.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "陶謙",
+  "courtesy": "恭祖",
+  "sex": "男",
+  "bio": "徐州刺史，參加過反董卓聯軍。將徐州託付給劉備後，隨即病死。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 51,
+   "war": 38,
+   "intellect": 62,
+   "politics": 63,
+   "charm": 73
+  },
+  "score": 57.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王累",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉璋的從事。曾伏地規勸劉璋，反對劉備入蜀，在未被採納之下自盡。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 29,
+   "war": 29,
+   "intellect": 76,
+   "politics": 80,
+   "charm": 71
+  },
+  "score": 57.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "馬鐵",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "馬騰的三子，密謀敗露後遭到曹軍圍困，雖然守護父親死戰，最後仍被射殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 69,
+   "war": 64,
+   "intellect": 50,
+   "politics": 45,
+   "charm": 58
+  },
+  "score": 57.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "朱靈",
+  "courtesy": "文博",
+  "sex": "男",
+  "bio": "曹操部將，奉命與劉備隨行，擔任前往討伐袁術的劉備監軍。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 70,
+   "war": 71,
+   "intellect": 55,
+   "politics": 46,
+   "charm": 42
+  },
+  "score": 56.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "曹植",
+  "courtesy": "子建",
+  "sex": "男",
+  "bio": "曹操的四男，聰明睿智，曾經期望成為曹操的後繼者，但事與願違。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 23,
+   "war": 22,
+   "intellect": 85,
+   "politics": 70,
+   "charm": 82
+  },
+  "score": 56.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "馬休",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "馬騰的次子，由於殺害曹操的密謀被察覺，與父親一起被補處斬。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 66,
+   "war": 69,
+   "intellect": 45,
+   "politics": 40,
+   "charm": 61
+  },
+  "score": 56.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "雷銅",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉璋部將，劉備進軍成都之際，追擊魏延失敗，遂投降。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 70,
+   "war": 78,
+   "intellect": 46,
+   "politics": 36,
+   "charm": 52
+  },
+  "score": 56.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "鄧賢",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉璋部下，龐統企圖暗殺劉璋時，挺身而出阻止魏延。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 63,
+   "war": 69,
+   "intellect": 49,
+   "politics": 44,
+   "charm": 54
+  },
+  "score": 55.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "高沛",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉璋麾下武將，懷疑劉備入蜀的動機，企圖加以暗殺，反而被劉備殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 64,
+   "war": 62,
+   "intellect": 56,
+   "politics": 50,
+   "charm": 46
+  },
+  "score": 55.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "吳蘭",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉璋部將，與雷銅共同投降後，成為劉備的武將，後與曹軍對戰。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 68,
+   "war": 79,
+   "intellect": 38,
+   "politics": 40,
+   "charm": 51
+  },
+  "score": 55.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張勳",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "身為袁術軍的大將與呂布交戰，卻因為楊奉臨陣倒戈而大敗。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 71,
+   "war": 67,
+   "intellect": 46,
+   "politics": 40,
+   "charm": 54
+  },
+  "score": 55.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "呂布",
+  "courtesy": "奉先",
+  "sex": "男",
+  "bio": "先後為丁原和董卓的義子，生性反覆無常，履次背叛他人，最後因部下背叛而死。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 89,
+   "war": 100,
+   "intellect": 27,
+   "politics": 14,
+   "charm": 46
+  },
+  "score": 55.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "孔融",
+  "courtesy": "文舉",
+  "sex": "男",
+  "bio": "北海太守，曾參加反董卓連軍，為孔子後裔。日後招來曹操反感，遂被處刑。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 38,
+   "war": 24,
+   "intellect": 76,
+   "politics": 74,
+   "charm": 64
+  },
+  "score": 55.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "夏侯德",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "夏侯尚之兄，鎮守漢中的糧倉天蕩山。因為輕侮黃忠，結果中了嚴顏火計燒死。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 65,
+   "war": 68,
+   "intellect": 40,
+   "politics": 44,
+   "charm": 56
+  },
+  "score": 54.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "牛金",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "曹仁的部下。鎮守南郡與吳國的蔣欽交戰，並挑釁負傷中的周瑜。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 71,
+   "war": 77,
+   "intellect": 38,
+   "politics": 36,
+   "charm": 47
+  },
+  "score": 53.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "成宜",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "韓遂部將，參加了馬超的復仇戰。於前往偵察曹軍敵情之際被殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 67,
+   "war": 68,
+   "intellect": 39,
+   "politics": 43,
+   "charm": 51
+  },
+  "score": 53.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "鞏志",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "金旋的部下。金旋迎擊張飛時，擅自作主投降了張飛，日後任為武陵太守。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 45,
+   "war": 50,
+   "intellect": 62,
+   "politics": 61,
+   "charm": 48
+  },
+  "score": 53.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉循",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉璋的長子，其父投降劉備後，遂被移居至荊州南郡的公安。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 61,
+   "war": 54,
+   "intellect": 44,
+   "politics": 46,
+   "charm": 61
+  },
+  "score": 53.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉琦",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉表的長子，母親為陳氏。與後母蔡夫人有嫌隙，遂逃往江夏，日後奉迎劉備。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 50,
+   "war": 13,
+   "intellect": 62,
+   "politics": 69,
+   "charm": 72
+  },
+  "score": 53.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "袁譚",
+  "courtesy": "顯思",
+  "sex": "男",
+  "bio": "袁紹的長子。與其弟袁尚爭奪繼承人寶座，遂歸降曹操擊敗其弟，後被曹操消滅。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 61,
+   "war": 66,
+   "intellect": 36,
+   "politics": 40,
+   "charm": 62
+  },
+  "score": 52.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "袁術",
+  "courtesy": "公路",
+  "sex": "男",
+  "bio": "袁紹之弟。以持有孫策寄放的玉璽為名義自行稱帝，與劉備交戰大敗後憤死。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 54,
+   "war": 65,
+   "intellect": 67,
+   "politics": 23,
+   "charm": 55
+  },
+  "score": 52.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "楊秋",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "韓遂部將，韓遂決心背叛馬超時，擔任使者前往曹營。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 63,
+   "war": 66,
+   "intellect": 43,
+   "politics": 47,
+   "charm": 39
+  },
+  "score": 51.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "孫翊",
+  "courtesy": "叔弼",
+  "sex": "男",
+  "bio": "孫堅的三男。日後成為丹陽太守，卻被部下暗殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 68,
+   "war": 76,
+   "intellect": 36,
+   "politics": 25,
+   "charm": 50
+  },
+  "score": 50.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張松",
+  "courtesy": "永年",
+  "sex": "男",
+  "bio": "劉璋部下，擔任使者出使魏國時，被曹操冷落輕視，憤而邀請劉備入蜀。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 24,
+   "war": 15,
+   "intellect": 88,
+   "politics": 85,
+   "charm": 40
+  },
+  "score": 50.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "高定",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "蜀漢越嶲郡太守，響應南蠻王孟獲，與雍闓發動叛亂，後來再度降於蜀漢。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 57,
+   "war": 64,
+   "intellect": 40,
+   "politics": 40,
+   "charm": 50
+  },
+  "score": 50.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王粲",
+  "courtesy": "仲宣",
+  "sex": "男",
+  "bio": "劉表的食客，是建安七子之一。劉表死後，遊說劉琮勸他歸降曹操。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 14,
+   "war": 12,
+   "intellect": 81,
+   "politics": 83,
+   "charm": 60
+  },
+  "score": 49.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "郭攸之",
+  "courtesy": "演長",
+  "sex": "男",
+  "bio": "蜀國侍中。諸葛亮在「出師表」中以其為人忠實，建議劉禪善加重用。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 24,
+   "war": 18,
+   "intellect": 68,
+   "politics": 78,
+   "charm": 62
+  },
+  "score": 49.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "許靖",
+  "courtesy": "文休",
+  "sex": "男",
+  "bio": "本為劉璋之臣，劉璋投降之前，便有意歸降劉備。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 15,
+   "war": 15,
+   "intellect": 71,
+   "politics": 79,
+   "charm": 66
+  },
+  "score": 49.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "李肅",
+  "courtesy": "偉恭",
+  "sex": "男",
+  "bio": "為了讓呂布歸順董卓，贈與「赤兔馬」說服呂布，在李傕和郭汜之亂被呂布殺害。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 43,
+   "war": 60,
+   "intellect": 60,
+   "politics": 42,
+   "charm": 38
+  },
+  "score": 48.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉琮",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉表次子，在蔡夫人與蔡瑁的陰謀下，被冊立為劉表繼承人，日後投降曹操被殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 25,
+   "war": 26,
+   "intellect": 62,
+   "politics": 62,
+   "charm": 66
+  },
+  "score": 48.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "韓暹",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "黃巾賊餘黨，本為白波賊首領。李傕等人作亂時，加入獻帝軍，後成為征東將軍。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 63,
+   "war": 65,
+   "intellect": 36,
+   "politics": 26,
+   "charm": 46
+  },
+  "score": 47.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "沙摩柯",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "武陵蠻王，參加劉備進行的關羽復仇戰，前往討伐東吳，斬殺了抱病上陣的甘寧。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 65,
+   "war": 83,
+   "intellect": 24,
+   "politics": 16,
+   "charm": 45
+  },
+  "score": 46.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "樊稠",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "原為董卓部將，出仕李傕時，坐失追擊西涼韓遂軍的機會，以致被李傕問斬。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 68,
+   "war": 75,
+   "intellect": 30,
+   "politics": 24,
+   "charm": 36
+  },
+  "score": 46.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "許攸",
+  "courtesy": "子遠",
+  "sex": "男",
+  "bio": "本為袁紹幕僚，於官渡之戰投降曹操，引導曹軍邁向了勝利之途。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 37,
+   "war": 26,
+   "intellect": 76,
+   "politics": 60,
+   "charm": 29
+  },
+  "score": 45.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "鮑隆",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "趙範部將，曾經射殺兩頭老虎的猛將，企圖向趙雲詐降，結果被識破而遭到斬首。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 58,
+   "war": 72,
+   "intellect": 41,
+   "politics": 25,
+   "charm": 30
+  },
+  "score": 45.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "邢道榮",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "零陵太守劉度的部下。曾經一度答應劉備軍的勸降，後來因為失信而被殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 61,
+   "war": 78,
+   "intellect": 34,
+   "politics": 20,
+   "charm": 29
+  },
+  "score": 44.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張橫",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "韓遂部將，協助馬超復仇而借兵出戰。卻於渭水之戰掉落陷馬坑戰死。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 59,
+   "war": 66,
+   "intellect": 28,
+   "politics": 26,
+   "charm": 39
+  },
+  "score": 43.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "趙範",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "桂陽太守，桂陽遭劉備軍攻陷後，向趙雲投降。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 32,
+   "war": 31,
+   "intellect": 41,
+   "politics": 59,
+   "charm": 52
+  },
+  "score": 42.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "馬玩",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "韓遂部將，出兵援助馬超為父報仇的戰事，卻中了曹操的離間計而被殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 65,
+   "war": 68,
+   "intellect": 22,
+   "politics": 24,
+   "charm": 31
+  },
+  "score": 42.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉度",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "零陵太守，與其子劉賢迎戰劉備，被補後投降。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 27,
+   "war": 33,
+   "intellect": 38,
+   "politics": 52,
+   "charm": 58
+  },
+  "score": 41.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "金旋",
+  "courtesy": "元機",
+  "sex": "男",
+  "bio": "武陵太守，遭到張飛攻擊，欲抗戰到底，被部下鞏志斬殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 49,
+   "war": 59,
+   "intellect": 24,
+   "politics": 34,
+   "charm": 43
+  },
+  "score": 41.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "梁興",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "韓遂部將，因為中了曹操軍的離間計，以致被馬超親手斬殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 60,
+   "war": 65,
+   "intellect": 19,
+   "politics": 22,
+   "charm": 40
+  },
+  "score": 41.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "呂曠",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "袁尚部將，後成為曹操部下。與其弟呂翔一起攻打新野的劉備，卻被趙雲斬殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 58,
+   "war": 67,
+   "intellect": 20,
+   "politics": 26,
+   "charm": 32
+  },
+  "score": 40.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "孟優",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "孟獲之弟，向諸葛亮詐降，結果飲酒入醉，與孟獲一起被擒。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 56,
+   "war": 70,
+   "intellect": 21,
+   "politics": 17,
+   "charm": 36
+  },
+  "score": 40.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "呂翔",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "袁尚部將，後成為曹操部下。與其兄呂曠一起攻打新野的劉備，卻被張飛斬殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 58,
+   "war": 69,
+   "intellect": 17,
+   "politics": 22,
+   "charm": 29
+  },
+  "score": 38.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉璋",
+  "courtesy": "季玉",
+  "sex": "男",
+  "bio": "益州牧。張魯前來攻打時，邀請劉備入蜀，日後歸降劉備。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 25,
+   "war": 18,
+   "intellect": 33,
+   "politics": 44,
+   "charm": 75
+  },
+  "score": 38.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "袁胤",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "袁術的族人。與孫策的部將徐琨角逐丹陽太守的寶座，但落敗。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 28,
+   "war": 21,
+   "intellect": 46,
+   "politics": 47,
+   "charm": 52
+  },
+  "score": 38.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "董旻",
+  "courtesy": "叔穎",
+  "sex": "男",
+  "bio": "董卓之弟，董卓強行遷都長安後，被封為左將軍。董卓死後也被殺害。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 50,
+   "war": 59,
+   "intellect": 34,
+   "politics": 20,
+   "charm": 30
+  },
+  "score": 38.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "曹豹",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "陶謙部將，由於違逆交付鎮守徐州之責的張飛所頒布的禁酒令，而被斬殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 48,
+   "war": 69,
+   "intellect": 27,
+   "politics": 21,
+   "charm": 22
+  },
+  "score": 37.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "蔡和",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "蔡瑁之弟，與兄弟一起歸順曹操。詐降孫權軍後，偵察期間遭周瑜斬殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 42,
+   "war": 50,
+   "intellect": 16,
+   "politics": 28,
+   "charm": 35
+  },
+  "score": 34.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "蔡中",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "蔡瑁之弟，赤壁之戰前夕，與兄弟蔡和詐降東吳，反而被周瑜利用。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 42,
+   "war": 50,
+   "intellect": 17,
+   "politics": 25,
+   "charm": 35
+  },
+  "score": 33.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉禪",
+  "courtesy": "公嗣",
+  "sex": "男",
+  "bio": "劉備的長子，蜀漢第二代皇帝。諸葛亮死後沉溺酒色，後來向魏國投降。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 12,
+   "war": 10,
+   "intellect": 18,
+   "politics": 19,
+   "charm": 69
+  },
+  "score": 25.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "楊松",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "張魯部下，對於賄賂貪得無厭，曾向黃權、諸葛亮、曹操等人收賄。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 11,
+   "war": 16,
+   "intellect": 34,
+   "politics": 45,
+   "charm": 14
+  },
+  "score": 23.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "夏侯楙",
+  "courtesy": "子林",
+  "sex": "男",
+  "bio": "夏侯淵之子，送給夏侯惇做義子。與曹操之女清河公主結為夫妻。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 23,
+   "war": 21,
+   "intellect": 19,
+   "politics": 28,
+   "charm": 22
+  },
+  "score": 22.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "韓玄",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "長沙太守，劉備攻打荊南四郡之際，遭關羽率軍來犯，卻被部下魏延所殺。",
+  "koei_n_games": 14,
+  "stats_calibrated": {
+   "leadership": 24,
+   "war": 44,
+   "intellect": 16,
+   "politics": 12,
+   "charm": 12
+  },
+  "score": 21.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "陳泰",
+  "courtesy": "玄伯",
+  "sex": "男",
+  "bio": "魏國尚書令。與郭淮共同活躍於討伐夏侯霸之亂與伐蜀等戰役。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 82,
+   "war": 77,
+   "intellect": 83,
+   "politics": 74,
+   "charm": 73
+  },
+  "score": 77.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "朱儁",
+  "courtesy": "公偉",
+  "sex": "男",
+  "bio": "因討伐黃巾賊有功，被任命為河南尹。後因李傕等人作亂，被補而死。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 83,
+   "war": 66,
+   "intellect": 68,
+   "politics": 72,
+   "charm": 78
+  },
+  "score": 73.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "李恢",
+  "courtesy": "德昂",
+  "sex": "男",
+  "bio": "本為劉璋之臣，後來離開劉璋歸降劉備陣營，並說服馬超歸順。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 76,
+   "war": 62,
+   "intellect": 77,
+   "politics": 76,
+   "charm": 75
+  },
+  "score": 73.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "韓浩",
+  "courtesy": "元嗣",
+  "sex": "男",
+  "bio": "曹操的部將，韓玄之弟。跟隨夏侯惇攻打新野的劉備軍，卻中了諸葛亮之計大敗。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 67,
+   "war": 70,
+   "intellect": 64,
+   "politics": 84,
+   "charm": 65
+  },
+  "score": 70.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "夏侯和",
+  "courtesy": "義權",
+  "sex": "男",
+  "bio": "夏侯淵四子，曾參加討伐諸葛亮的戰役。任行軍司馬，後累官至晉朝。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 57,
+   "war": 55,
+   "intellect": 75,
+   "politics": 74,
+   "charm": 68
+  },
+  "score": 65.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "夏侯惠",
+  "courtesy": "稚權",
+  "sex": "男",
+  "bio": "夏侯淵三子，與夏侯霸等兄弟參與討伐諸葛亮的戰役，於五丈原之戰活躍。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 58,
+   "war": 52,
+   "intellect": 76,
+   "politics": 74,
+   "charm": 69
+  },
+  "score": 65.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "孫登",
+  "courtesy": "子高",
+  "sex": "男",
+  "bio": "原本被冊立為太子，繼任為天子的前夕卻突然病死。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 58,
+   "war": 35,
+   "intellect": 73,
+   "politics": 76,
+   "charm": 85
+  },
+  "score": 65.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "夏侯威",
+  "courtesy": "季權",
+  "sex": "男",
+  "bio": "夏侯淵次子，曾參加討伐諸葛亮與公孫淵的戰役。受司馬懿薦舉，擔任先鋒之職。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 71,
+   "war": 73,
+   "intellect": 56,
+   "politics": 59,
+   "charm": 66
+  },
+  "score": 65.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "曹彰",
+  "courtesy": "子文",
+  "sex": "男",
+  "bio": "曹操的三男，平定了烏丸的叛亂之後，又趕往漢中大敗了劉封等人。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 82,
+   "war": 90,
+   "intellect": 39,
+   "politics": 32,
+   "charm": 73
+  },
+  "score": 63.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "周魴",
+  "courtesy": "子魚",
+  "sex": "男",
+  "bio": "吳國鄱陽太守，向曹休遞送詐降的偽書，引誘魏軍前來。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 54,
+   "war": 44,
+   "intellect": 80,
+   "politics": 76,
+   "charm": 62
+  },
+  "score": 63.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "董和",
+  "courtesy": "幼宰",
+  "sex": "男",
+  "bio": "劉璋部下，任益州太守。阻止有意向逼近成都的劉備投降的劉璋。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 56,
+   "war": 44,
+   "intellect": 68,
+   "politics": 81,
+   "charm": 64
+  },
+  "score": 62.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "公孫淵",
+  "courtesy": "文懿",
+  "sex": "男",
+  "bio": "公孫度之孫，自稱燕王。日後敗給前來征討的魏軍，被斬首。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 68,
+   "war": 74,
+   "intellect": 59,
+   "politics": 44,
+   "charm": 64
+  },
+  "score": 61.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王脩",
+  "courtesy": "叔治",
+  "sex": "男",
+  "bio": "袁譚的部下，因為諍諫招禍而被解職。後來被曹操挖掘出來，成為司金中郎將。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 48,
+   "war": 36,
+   "intellect": 72,
+   "politics": 75,
+   "charm": 66
+  },
+  "score": 59.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "陳震",
+  "courtesy": "孝起",
+  "sex": "男",
+  "bio": "袁紹的部下，將劉備的親筆信交給曹操旗下的關羽，日後成為劉備的部下。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 46,
+   "war": 45,
+   "intellect": 65,
+   "politics": 75,
+   "charm": 63
+  },
+  "score": 59.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "龐羲",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "本為劉璋部下，任巴西太守監視張魯的舉動，日後出仕劉備。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 52,
+   "war": 40,
+   "intellect": 64,
+   "politics": 72,
+   "charm": 63
+  },
+  "score": 58.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "朵思大王",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "南蠻禿龍洞的洞主。與諸葛亮決戰之際，因部將楊鋒與諸葛亮串通，遂被補。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 63,
+   "war": 64,
+   "intellect": 66,
+   "politics": 50,
+   "charm": 46
+  },
+  "score": 58.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "夏侯恩",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "曹操的近衛武將，負責保管「青釭」寶劍。後被趙雲斬殺寶劍亦被奪走。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 58,
+   "war": 63,
+   "intellect": 50,
+   "politics": 49,
+   "charm": 62
+  },
+  "score": 56.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "蔣義渠",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "袁紹部將，援救了大敗於官渡之戰，逃往黎陽郡的袁紹。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 69,
+   "war": 61,
+   "intellect": 48,
+   "politics": 47,
+   "charm": 56
+  },
+  "score": 56.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "文欽",
+  "courtesy": "仲若",
+  "sex": "男",
+  "bio": "揚州刺史，氣憤司馬昭越權專橫，與毌丘儉、諸葛誕等二度造反，最後敗北。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 74,
+   "war": 81,
+   "intellect": 46,
+   "politics": 36,
+   "charm": 34
+  },
+  "score": 54.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張英",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉繇的部將，劉繇置太史慈於不顧，令張英迎擊孫策，結果大敗而還。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 70,
+   "war": 72,
+   "intellect": 39,
+   "politics": 38,
+   "charm": 50
+  },
+  "score": 53.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉賢",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "攻打劉備軍時，向諸葛亮詐降，結果卻失敗。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 50,
+   "war": 62,
+   "intellect": 54,
+   "politics": 48,
+   "charm": 54
+  },
+  "score": 53.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "陳珪",
+  "courtesy": "漢瑜",
+  "sex": "男",
+  "bio": "與其子陳登共謀由呂布手中奪回徐州，並交給曹操。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 22,
+   "war": 10,
+   "intellect": 78,
+   "politics": 79,
+   "charm": 75
+  },
+  "score": 52.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "陳琳",
+  "courtesy": "孔璋",
+  "sex": "男",
+  "bio": "原本擔任何進的主簿，後出仕袁紹，日後擔任曹操的侍從。是建安七子之一。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 24,
+   "war": 15,
+   "intellect": 76,
+   "politics": 78,
+   "charm": 66
+  },
+  "score": 51.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張溫(吳)",
+  "courtesy": "惠恕",
+  "sex": "男",
+  "bio": "東吳孫權的幕僚，劉備死後出使蜀國，由於辯駁不過秦宓，遂遭降職。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 22,
+   "war": 16,
+   "intellect": 66,
+   "politics": 75,
+   "charm": 72
+  },
+  "score": 50.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "韓嵩",
+  "courtesy": "德高",
+  "sex": "男",
+  "bio": "劉表部下，任從事中郎將。提出「曹操較袁紹有利於結盟」的主張。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 26,
+   "war": 20,
+   "intellect": 71,
+   "politics": 77,
+   "charm": 54
+  },
+  "score": 49.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "董荼那",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "南蠻王孟獲的部下，由於懷恨遭到處罰，押解孟獲獻給諸葛亮軍。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 65,
+   "war": 72,
+   "intellect": 34,
+   "politics": 34,
+   "charm": 40
+  },
+  "score": 48.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉岱",
+  "courtesy": "公山",
+  "sex": "男",
+  "bio": "兗州刺史，參加了反董卓聯軍。向橋瑁借糧遭拒，遂加以殺害。後成為曹操部將。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 55,
+   "war": 63,
+   "intellect": 40,
+   "politics": 43,
+   "charm": 37
+  },
+  "score": 47.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "尹默",
+  "courtesy": "思潛",
+  "sex": "男",
+  "bio": "司馬徽的弟子，負責蜀國的內政事務，對劉備的即位也有功勞。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 18,
+   "war": 19,
+   "intellect": 68,
+   "politics": 78,
+   "charm": 53
+  },
+  "score": 47.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "阿會喃",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "南蠻王孟獲的部下。為了回報諸葛亮不殺之恩而背叛孟獲，結果被孟獲殺。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 62,
+   "war": 73,
+   "intellect": 29,
+   "politics": 33,
+   "charm": 35
+  },
+  "score": 46.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "武安國",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "北海太守孔融的部將，於虎牢關之戰中，與呂布展開激戰但落敗。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 62,
+   "war": 77,
+   "intellect": 28,
+   "politics": 26,
+   "charm": 25
+  },
+  "score": 43.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "金環三結",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "孟獲部下，是第一洞的洞主，攻打諸葛亮時被趙雲斬殺。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 61,
+   "war": 74,
+   "intellect": 22,
+   "politics": 23,
+   "charm": 35
+  },
+  "score": 43.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "李異",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "吳國武將，與蜀國的張苞交戰，就在給予致命一擊之前，遭到關興斬殺。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 62,
+   "war": 76,
+   "intellect": 22,
+   "politics": 20,
+   "charm": 27
+  },
+  "score": 41.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "譚雄",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "吳國孫桓部將，曾一箭射中蜀將張苞的座騎，日後被關興斬殺。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 59,
+   "war": 74,
+   "intellect": 18,
+   "politics": 22,
+   "charm": 30
+  },
+  "score": 40.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "韓馥",
+  "courtesy": "文節",
+  "sex": "男",
+  "bio": "冀州牧，參加了反董卓聯軍。領地日後遭到袁紹用計騙取，最後自盡。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 31,
+   "war": 26,
+   "intellect": 34,
+   "politics": 56,
+   "charm": 56
+  },
+  "score": 40.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "潘鳳",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "韓馥麾下武將，聯軍與董卓交戰時，經韓馥推薦後，向華雄挑戰卻遭到斬殺。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 58,
+   "war": 76,
+   "intellect": 10,
+   "politics": 20,
+   "charm": 30
+  },
+  "score": 38.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "傅士仁",
+  "courtesy": "君義",
+  "sex": "男",
+  "bio": "關羽在荊州時的部下。和糜芳向呂蒙倒戈後，有意返回蜀國，結果都遭到處死。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 45,
+   "war": 60,
+   "intellect": 38,
+   "politics": 29,
+   "charm": 17
+  },
+  "score": 37.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "蔣幹",
+  "courtesy": "子翼",
+  "sex": "男",
+  "bio": "曹操部下，赤壁之戰時擔任勸降周瑜的使者，結果徒勞無功。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 15,
+   "war": 12,
+   "intellect": 67,
+   "politics": 54,
+   "charm": 41
+  },
+  "score": 37.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "貂蟬",
+  "courtesy": null,
+  "sex": "女",
+  "bio": "王允家中的歌妓，利用「連環計」唆使呂布殺害董卓。",
+  "koei_n_games": 13,
+  "stats_calibrated": {
+   "leadership": 18,
+   "war": 22,
+   "intellect": 44,
+   "politics": 35,
+   "charm": 36
+  },
+  "score": 31.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "羊祜",
+  "courtesy": "叔子",
+  "sex": "男",
+  "bio": "晉國都督，與吳國的陸抗對峙於國境，雙方還結為好友。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 89,
+   "war": 70,
+   "intellect": 83,
+   "politics": 83,
+   "charm": 87
+  },
+  "score": 82.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "盧植",
+  "courtesy": "子幹",
+  "sex": "男",
+  "bio": "劉備與公孫瓚的老師。黃巾之亂時，因未向宦官賄賂，以致被免官。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 86,
+   "war": 61,
+   "intellect": 82,
+   "politics": 82,
+   "charm": 84
+  },
+  "score": 79.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王濬",
+  "courtesy": "士治",
+  "sex": "男",
+  "bio": "晉國的益州刺史，上奏司馬炎伐吳。後攻陷石頭城平定了吳國。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 82,
+   "war": 76,
+   "intellect": 78,
+   "politics": 70,
+   "charm": 78
+  },
+  "score": 76.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "杜預",
+  "courtesy": "元凱",
+  "sex": "男",
+  "bio": "因羊祜遺言的推薦，成為鎮南將軍、任荊州都督，是一位老成練達勤勉為學的人。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 86,
+   "war": 56,
+   "intellect": 84,
+   "politics": 79,
+   "charm": 79
+  },
+  "score": 76.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "司馬炎",
+  "courtesy": "安世",
+  "sex": "男",
+  "bio": "司馬昭長子，司馬懿之孫。逼迫曹奐禪讓，即位成為晉朝初代皇帝，即為武帝。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 76,
+   "war": 68,
+   "intellect": 77,
+   "politics": 70,
+   "charm": 79
+  },
+  "score": 73.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "皇甫嵩",
+  "courtesy": "義真",
+  "sex": "男",
+  "bio": "後漢名將，曾以火攻大破黃巾賊，官拜車騎將軍，任冀州牧。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 86,
+   "war": 65,
+   "intellect": 72,
+   "politics": 60,
+   "charm": 77
+  },
+  "score": 71.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "孫韶",
+  "courtesy": "公禮",
+  "sex": "男",
+  "bio": "本姓俞，後成為孫堅養子，由於攻打吳郡時違逆主帥徐盛之故，以致觸怒孫權。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 78,
+   "war": 77,
+   "intellect": 67,
+   "politics": 62,
+   "charm": 73
+  },
+  "score": 71.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張悌",
+  "courtesy": "巨先",
+  "sex": "男",
+  "bio": "出仕孫晧的吳國丞相。與晉國捨身交戰，最後戰死於亂軍之中。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 72,
+   "war": 51,
+   "intellect": 73,
+   "politics": 78,
+   "charm": 78
+  },
+  "score": 70.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王昶",
+  "courtesy": "文舒",
+  "sex": "男",
+  "bio": "魏國文官。著有關於法政的「治論」，與關於兵法的「兵書」。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 74,
+   "war": 66,
+   "intellect": 69,
+   "politics": 70,
+   "charm": 68
+  },
+  "score": 69.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "司馬孚",
+  "courtesy": "叔達",
+  "sex": "男",
+  "bio": "司馬懿之弟，兄弟八人合稱「八達」，建議司馬師讓曹髦繼曹芳之後即位為帝。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 67,
+   "war": 43,
+   "intellect": 74,
+   "politics": 79,
+   "charm": 82
+  },
+  "score": 69.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "田疇",
+  "courtesy": "子泰",
+  "sex": "男",
+  "bio": "本為袁紹舊臣，受曹操延攬後，於征討烏丸之際擔任嚮導。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 68,
+   "war": 68,
+   "intellect": 66,
+   "politics": 70,
+   "charm": 74
+  },
+  "score": 69.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "霍弋",
+  "courtesy": "紹先",
+  "sex": "男",
+  "bio": "蜀之將，蜀國降魏後，在荊州朝著成都的方向痛哭了三天三夜。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 71,
+   "war": 69,
+   "intellect": 67,
+   "politics": 66,
+   "charm": 69
+  },
+  "score": 68.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "劉諶",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉禪的五子，強烈反對劉禪向鄧艾投降，蜀國歸降後遂自盡。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 60,
+   "war": 59,
+   "intellect": 65,
+   "politics": 65,
+   "charm": 79
+  },
+  "score": 65.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王甫",
+  "courtesy": "國山",
+  "sex": "男",
+  "bio": "本為劉璋的部下，後成為劉備的臣子，輔佐當時鎮守荊州的關羽。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 59,
+   "war": 41,
+   "intellect": 77,
+   "politics": 75,
+   "charm": 75
+  },
+  "score": 65.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "夏侯玄",
+  "courtesy": "太初",
+  "sex": "男",
+  "bio": "效忠曹芳而意圖謀殺司馬師，後來事跡敗露，遭到處死。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 52,
+   "war": 39,
+   "intellect": 76,
+   "politics": 91,
+   "charm": 69
+  },
+  "score": 65.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "董承",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "車騎將軍，也是國舅。與獻帝同甘共苦，日後圖謀誅殺曹操但失敗。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 61,
+   "war": 60,
+   "intellect": 66,
+   "politics": 60,
+   "charm": 76
+  },
+  "score": 64.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張燕",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "黑山賊首領，與公孫瓚勾結聯手對付袁紹，日後歸順曹操。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 79,
+   "war": 78,
+   "intellect": 52,
+   "politics": 46,
+   "charm": 64
+  },
+  "score": 63.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "公孫康",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "公孫恭之兄，任遼東太守。將前來投靠的袁熙和袁尚首級送給曹操。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 70,
+   "war": 67,
+   "intellect": 62,
+   "politics": 56,
+   "charm": 62
+  },
+  "score": 63.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張休",
+  "courtesy": "叔嗣",
+  "sex": "男",
+  "bio": "張昭的么兒，擔任太子孫登的太傅，為其講義「漢書」。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 53,
+   "war": 35,
+   "intellect": 72,
+   "politics": 80,
+   "charm": 73
+  },
+  "score": 62.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "傅僉",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "姜維部將，鎮守陽平關，由於同僚蔣舒向魏國投降，遂力戰而死。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 71,
+   "war": 81,
+   "intellect": 61,
+   "politics": 44,
+   "charm": 56
+  },
+  "score": 62.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王伉",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "蜀漢永昌郡太守，拒絕南蠻孟獲、雍闓謀反的唆使，堅守城池拒敵。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 70,
+   "war": 57,
+   "intellect": 58,
+   "politics": 63,
+   "charm": 64
+  },
+  "score": 62.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "公孫度",
+  "courtesy": "升濟",
+  "sex": "男",
+  "bio": "公孫康之父，官拜武威將軍，任遼東太守，討伐異族而立下大功。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 68,
+   "war": 71,
+   "intellect": 61,
+   "politics": 54,
+   "charm": 49
+  },
+  "score": 60.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "趙統",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "趙雲的長子，向劉禪與諸葛亮父親的死訊，繼趙雲之後統括軍事。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 65,
+   "war": 66,
+   "intellect": 58,
+   "politics": 52,
+   "charm": 60
+  },
+  "score": 60.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "高幹",
+  "courtesy": "元才",
+  "sex": "男",
+  "bio": "袁紹外甥，任并州太守。前去救援官渡之戰落敗的袁紹。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 72,
+   "war": 61,
+   "intellect": 53,
+   "politics": 52,
+   "charm": 63
+  },
+  "score": 60.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "趙廣",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "趙雲的次子，與兄長趙統一同報告諸葛亮父親的死訊，此後一直守護其墳墓。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 66,
+   "war": 68,
+   "intellect": 52,
+   "politics": 49,
+   "charm": 62
+  },
+  "score": 59.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "傅彤",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "蜀國武將，善於使槍，為大敗於夷陵的劉備擔任殿軍抵禦追擊。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 64,
+   "war": 70,
+   "intellect": 52,
+   "politics": 48,
+   "charm": 61
+  },
+  "score": 59.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "周昕",
+  "courtesy": "大明",
+  "sex": "男",
+  "bio": "會稽太守王朗的部下，當王朗與孫策交戰時，被孫策所殺。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 62,
+   "war": 65,
+   "intellect": 60,
+   "politics": 54,
+   "charm": 51
+  },
+  "score": 58.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張虎",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "魏國武將，與諸葛亮交戰，卻受到連戰連敗的屈辱。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 69,
+   "war": 71,
+   "intellect": 47,
+   "politics": 43,
+   "charm": 58
+  },
+  "score": 57.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "程武",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "因夏侯楙與趙雲交戰而敗逃，便向夏侯楙指出只要加以圍困趙雲便可取勝。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 56,
+   "war": 35,
+   "intellect": 74,
+   "politics": 69,
+   "charm": 51
+  },
+  "score": 57.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "賈充",
+  "courtesy": "公閭",
+  "sex": "男",
+  "bio": "司馬昭的心腹。為覬覦帝位的司馬昭前往各地查探民意。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 48,
+   "war": 30,
+   "intellect": 89,
+   "politics": 86,
+   "charm": 32
+  },
+  "score": 57.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "倫直",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "公孫淵的參軍，公孫淵企圖殺害賈範時予以制止，因此一起被斬首。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 46,
+   "war": 48,
+   "intellect": 69,
+   "politics": 62,
+   "charm": 59
+  },
+  "score": 56.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "胡班",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "曾經出仕滎陽太守王植，後放走欲闖關的關羽，並成為關羽的近侍。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 57,
+   "war": 58,
+   "intellect": 56,
+   "politics": 50,
+   "charm": 60
+  },
+  "score": 56.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "司馬朗",
+  "courtesy": "伯達",
+  "sex": "男",
+  "bio": "司馬懿之兄，在曹操麾下歷任地方官職。後來從軍討伐時，病死於陣中。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 21,
+   "war": 29,
+   "intellect": 68,
+   "politics": 84,
+   "charm": 78
+  },
+  "score": 55.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王允",
+  "courtesy": "子師",
+  "sex": "男",
+  "bio": "東漢司徒，利用貂蟬演出「連環計」，唆使呂布謀殺董卓，後被李傕和郭汜所殺。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 28,
+   "war": 17,
+   "intellect": 70,
+   "politics": 84,
+   "charm": 77
+  },
+  "score": 55.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "高翔",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "蜀國武將，任右將軍，拜玄都侯。第一次北伐之際，救援趙雲有功。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 64,
+   "war": 64,
+   "intellect": 50,
+   "politics": 44,
+   "charm": 52
+  },
+  "score": 55.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "馮習",
+  "courtesy": "休元",
+  "sex": "男",
+  "bio": "蜀國伐吳時的副將，夷陵之戰時，以兵員疲憊為由轉移陣地，結果遭陸遜火攻。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 66,
+   "war": 69,
+   "intellect": 43,
+   "politics": 39,
+   "charm": 59
+  },
+  "score": 55.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "申耽",
+  "courtesy": "義舉",
+  "sex": "男",
+  "bio": "魏國的上庸太守，由於曹操自漢中引軍撤退，遂向劉備軍投降。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 57,
+   "war": 63,
+   "intellect": 54,
+   "politics": 46,
+   "charm": 51
+  },
+  "score": 54.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "嚴綱",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "公孫瓚部下，任冀州刺史。後來遭到袁紹的部將麴義斬殺。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 66,
+   "war": 68,
+   "intellect": 42,
+   "politics": 46,
+   "charm": 45
+  },
+  "score": 53.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "馬忠(吳)",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "吳國大將潘璋的部下，擒獲了由麥城敗走的關羽及關平父子。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 64,
+   "war": 70,
+   "intellect": 55,
+   "politics": 39,
+   "charm": 39
+  },
+  "score": 53.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "孫和",
+  "courtesy": "子孝",
+  "sex": "男",
+  "bio": "孫權的次子。由於其姐孫魯班進讒，以致被孫權疏遠。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 31,
+   "war": 33,
+   "intellect": 64,
+   "politics": 66,
+   "charm": 72
+  },
+  "score": 53.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "周旨",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "晉國杜預的部將，杜預攻打吳國時，於孫歆軍混亂之中斬殺了孫歆。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 63,
+   "war": 82,
+   "intellect": 43,
+   "politics": 31,
+   "charm": 45
+  },
+  "score": 52.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "祝融",
+  "courtesy": null,
+  "sex": "女",
+  "bio": "孟獲之妻，曾經生擒張嶷與馬忠，後來跟隨孟獲一起歸順了蜀國。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 68,
+   "war": 82,
+   "intellect": 27,
+   "politics": 23,
+   "charm": 63
+  },
+  "score": 52.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "孫亮",
+  "courtesy": "子明",
+  "sex": "男",
+  "bio": "吳國的二代皇帝。由於誅殺孫綝失敗，以致遭到廢立。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 25,
+   "war": 18,
+   "intellect": 71,
+   "politics": 72,
+   "charm": 76
+  },
+  "score": 52.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "潘濬",
+  "courtesy": "承明",
+  "sex": "男",
+  "bio": "於荊州出仕關羽。關羽被殺後，由孫權取得荊州，本人則依然留任當地。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 60,
+   "war": 24,
+   "intellect": 66,
+   "politics": 81,
+   "charm": 32
+  },
+  "score": 52.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "卑衍",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "公孫淵的部將，公孫淵向曹叡舉兵叛亂時，被任命為主帥。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 64,
+   "war": 66,
+   "intellect": 34,
+   "politics": 38,
+   "charm": 54
+  },
+  "score": 51.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "秦宓",
+  "courtesy": "子郲",
+  "sex": "男",
+  "bio": "劉璋部下，促成劉備登基為帝。後來因為反對進行關羽復仇戰而下獄。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 24,
+   "war": 14,
+   "intellect": 72,
+   "politics": 71,
+   "charm": 72
+  },
+  "score": 50.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "公孫恭",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "公孫康之弟，其兄死後，繼任其職，日後被公孫淵奪權。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 47,
+   "war": 31,
+   "intellect": 66,
+   "politics": 54,
+   "charm": 54
+  },
+  "score": 50.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "楊奉",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "李傕部將，與宋果造反的計劃被察覺後，遂逃至袁術處安身，日後跟隨了呂布。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 65,
+   "war": 67,
+   "intellect": 38,
+   "politics": 21,
+   "charm": 60
+  },
+  "score": 50.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "曹爽",
+  "courtesy": "昭伯",
+  "sex": "男",
+  "bio": "曹真長子，曹叡託孤之臣，因此掌握一時大權，輕忽司馬懿而被殺。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 45,
+   "war": 46,
+   "intellect": 33,
+   "politics": 62,
+   "charm": 59
+  },
+  "score": 49.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "郭奕",
+  "courtesy": "伯益",
+  "sex": "男",
+  "bio": "其父郭嘉死後，曹操於凱旋班師許都之際，收養了他。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 27,
+   "war": 27,
+   "intellect": 73,
+   "politics": 76,
+   "charm": 38
+  },
+  "score": 48.3,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "馬遵",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "魏國的天水太守，中了諸葛亮的計謀，以致部下姜維投降蜀國。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 40,
+   "war": 55,
+   "intellect": 40,
+   "politics": 52,
+   "charm": 53
+  },
+  "score": 47.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "帶來洞主",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "孟獲之妻祝融夫人之弟，建議向木鹿大王請求援軍。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 50,
+   "war": 58,
+   "intellect": 44,
+   "politics": 39,
+   "charm": 48
+  },
+  "score": 47.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "費詩",
+  "courtesy": "公舉",
+  "sex": "男",
+  "bio": "本為劉璋的部下，任綿竹縣令。日後親自開城獻降於劉備。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 16,
+   "war": 29,
+   "intellect": 61,
+   "politics": 70,
+   "charm": 62
+  },
+  "score": 47.4,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "傅巽",
+  "courtesy": "公梯",
+  "sex": "男",
+  "bio": "劉表部下，曹操攻打荊州而來時，勸諫劉琮向曹操投降。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 22,
+   "war": 23,
+   "intellect": 69,
+   "politics": 72,
+   "charm": 50
+  },
+  "score": 47.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "楊祚",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "公孫淵部將，擔任先鋒與魏國交戰，卻遭到司馬懿的計謀愚弄。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 58,
+   "war": 61,
+   "intellect": 41,
+   "politics": 36,
+   "charm": 40
+  },
+  "score": 47.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "陳橫",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "劉繇的部將，駐屯揚州。由於不肯投降孫策，出城應戰時反遭蔣欽射殺。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 60,
+   "war": 63,
+   "intellect": 33,
+   "politics": 34,
+   "charm": 46
+  },
+  "score": 47.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "謝旌",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "吳國將軍，關羽復仇戰之際，攻打蜀軍遭張苞殺害。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 66,
+   "war": 71,
+   "intellect": 29,
+   "politics": 31,
+   "charm": 35
+  },
+  "score": 46.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "呂威璜",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "袁紹部將，跟隨淳于瓊鎮守烏巢。由於怠忽職守，以致遭曹軍火攻戰死。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 57,
+   "war": 62,
+   "intellect": 36,
+   "politics": 36,
+   "charm": 39
+  },
+  "score": 46.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "木鹿大王",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "南蠻八納洞的洞主，善於驅使猛獸。幫助孟獲與諸葛亮的大軍對陣。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 62,
+   "war": 72,
+   "intellect": 38,
+   "politics": 14,
+   "charm": 37
+  },
+  "score": 44.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "陳式",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "蜀國將領，本為黃忠部下，北伐時無視諸葛亮的命令出戰，以致大敗。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 68,
+   "war": 69,
+   "intellect": 31,
+   "politics": 30,
+   "charm": 24
+  },
+  "score": 44.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "笮融",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "下邳相，為劉繇部下。逃過孫策的攻擊後，為了守護劉繇而前去求助劉表。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 60,
+   "war": 64,
+   "intellect": 37,
+   "politics": 32,
+   "charm": 23
+  },
+  "score": 43.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "兀突骨",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "烏戈國國王，受孟獲邀請攻打諸葛亮，結果在盤蛇谷中火計被活活燒死。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 75,
+   "war": 85,
+   "intellect": 6,
+   "politics": 8,
+   "charm": 29
+  },
+  "score": 40.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "忙牙長",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "孟獲部將，擔任先鋒與王平交戰，最後與孟獲一起被擒獲。",
+  "koei_n_games": 12,
+  "stats_calibrated": {
+   "leadership": 47,
+   "war": 74,
+   "intellect": 10,
+   "politics": 12,
+   "charm": 15
+  },
+  "score": 31.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張角",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "創立太平道，並得到許多民眾支持，發動了黃巾之亂，自稱大賢良師、天公將軍。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 89,
+   "war": 34,
+   "intellect": 87,
+   "politics": 82,
+   "charm": 97
+  },
+  "score": 77.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張寶",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "張角之弟，黃巾之亂時自稱地公將軍，用其兄長傳授的妖術對抗官兵。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 82,
+   "war": 73,
+   "intellect": 79,
+   "politics": 62,
+   "charm": 85
+  },
+  "score": 76.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王基",
+  "courtesy": "伯輿",
+  "sex": "男",
+  "bio": "魏將，歷任地方與中央的官吏。毌丘儉之亂發生時，鎮壓有功。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 77,
+   "war": 74,
+   "intellect": 74,
+   "politics": 67,
+   "charm": 67
+  },
+  "score": 71.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "司馬攸",
+  "courtesy": "大猷",
+  "sex": "男",
+  "bio": "司馬炎之弟。後來成為司馬師養子，成為晉國的齊王。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 69,
+   "war": 58,
+   "intellect": 77,
+   "politics": 71,
+   "charm": 82
+  },
+  "score": 71.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "張梁",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "張角、張寶之弟，黃巾之亂時，自稱人公將軍，與官兵於曲陽作戰，但卻戰死。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 77,
+   "war": 80,
+   "intellect": 67,
+   "politics": 50,
+   "charm": 82
+  },
+  "score": 71.2,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王渾",
+  "courtesy": "玄沖",
+  "sex": "男",
+  "bio": "魏國司空，累官至晉國侍中。奉司馬炎之命任安東大將軍以討伐吳國。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 74,
+   "war": 67,
+   "intellect": 68,
+   "politics": 75,
+   "charm": 66
+  },
+  "score": 70.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "陸凱",
+  "courtesy": "敬風",
+  "sex": "男",
+  "bio": "吳國左丞相，陸遜的族人。曾經規諫暴君孫晧，但是徒勞無功。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 63,
+   "war": 51,
+   "intellect": 74,
+   "politics": 86,
+   "charm": 74
+  },
+  "score": 69.6,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "王經",
+  "courtesy": "彥緯",
+  "sex": "男",
+  "bio": "魏國尚書，因奉曹髦之命誅殺司馬昭失敗，反而被殺。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 64,
+   "war": 60,
+   "intellect": 69,
+   "politics": 73,
+   "charm": 75
+  },
+  "score": 68.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "董厥",
+  "courtesy": "龔襲",
+  "sex": "男",
+  "bio": "蜀國文官，參加過南征與北伐。雖然守住來自鄧艾的攻勢，得知劉禪出降後遂降。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 67,
+   "war": 61,
+   "intellect": 72,
+   "politics": 75,
+   "charm": 63
+  },
+  "score": 67.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "駱統",
+  "courtesy": "公緒",
+  "sex": "男",
+  "bio": "孫權部下，反駁企圖與吳國結盟的諸葛亮，結果被黃蓋攔阻。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 67,
+   "war": 58,
+   "intellect": 69,
+   "politics": 74,
+   "charm": 67
+  },
+  "score": 66.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "司馬望",
+  "courtesy": "子初",
+  "sex": "男",
+  "bio": "司馬孚之子，後來成為司馬朗養子，與鄧艾共同對抗姜維。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 72,
+   "war": 62,
+   "intellect": 75,
+   "politics": 70,
+   "charm": 50
+  },
+  "score": 65.8,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "吾彥",
+  "courtesy": "子則",
+  "sex": "男",
+  "bio": "吳國建平太守，據城死守與晉國交戰至最後，吳國滅亡後遂降。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 72,
+   "war": 69,
+   "intellect": 68,
+   "politics": 55,
+   "charm": 66
+  },
+  "score": 65.7,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "鄧忠",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "魏將，與諸葛瞻交戰一度敗逃而返，再次挑戰後終於獲勝。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 71,
+   "war": 81,
+   "intellect": 62,
+   "politics": 49,
+   "charm": 63
+  },
+  "score": 65.1,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "孫休",
+  "courtesy": "子烈",
+  "sex": "男",
+  "bio": "孫權的六男，雖然受孫綝擁立即位為吳帝，日後卻誅殺了孫綝。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 58,
+   "war": 40,
+   "intellect": 71,
+   "politics": 74,
+   "charm": 81
+  },
+  "score": 64.9,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "州泰",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "魏國武將，歷任各地刺史。曾經參加討伐諸葛誕叛亂與吳國的戰事。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 68,
+   "war": 66,
+   "intellect": 67,
+   "politics": 60,
+   "charm": 60
+  },
+  "score": 64.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "賈範",
+  "courtesy": null,
+  "sex": "男",
+  "bio": "公孫淵的部將。規諫有意發動叛變的公孫淵，但遭到斬首。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 60,
+   "war": 58,
+   "intellect": 72,
+   "politics": 59,
+   "charm": 66
+  },
+  "score": 63.0,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ },
+ {
+  "name": "諸葛靚",
+  "courtesy": "仲思",
+  "sex": "男",
+  "bio": "身為與吳國結盟的人質，其父死後成為吳國之將與晉軍作戰。",
+  "koei_n_games": 11,
+  "stats_calibrated": {
+   "leadership": 60,
+   "war": 65,
+   "intellect": 63,
+   "politics": 58,
+   "charm": 67
+  },
+  "score": 62.5,
+  "faction": null,
+  "home_city": null,
+  "verification": "unverified"
+ }
+]

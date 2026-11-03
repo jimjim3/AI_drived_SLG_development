@@ -22,7 +22,24 @@
    "politics": 72
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "孫堅",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 95.0,
+   "war": 91.0,
+   "intellect": 77.5,
+   "politics": 68.2,
+   "charm": 91.9
+  },
+  "stats_calibrated": {
+   "leadership": 95,
+   "war": 91,
+   "intellect": 78,
+   "politics": 68,
+   "charm": 92
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "sun_ce",
@@ -47,7 +64,24 @@
    "politics": 70
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "孫策",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 94.8,
+   "war": 92.4,
+   "intellect": 75.1,
+   "politics": 67.2,
+   "charm": 93.1
+  },
+  "stats_calibrated": {
+   "leadership": 95,
+   "war": 92,
+   "intellect": 75,
+   "politics": 67,
+   "charm": 93
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "sun_quan",
@@ -73,7 +107,24 @@
    "politics": 89
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "孫權",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 79.8,
+   "war": 71.4,
+   "intellect": 82.5,
+   "politics": 84.8,
+   "charm": 93.9
+  },
+  "stats_calibrated": {
+   "leadership": 80,
+   "war": 71,
+   "intellect": 82,
+   "politics": 85,
+   "charm": 94
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "zhou_yu",
@@ -99,7 +150,24 @@
    "politics": 86
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "周瑜",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 96.8,
+   "war": 74.0,
+   "intellect": 96.8,
+   "politics": 85.9,
+   "charm": 94.0
+  },
+  "stats_calibrated": {
+   "leadership": 97,
+   "war": 74,
+   "intellect": 97,
+   "politics": 86,
+   "charm": 94
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "lu_su",
@@ -124,7 +192,24 @@
    "politics": 92
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "魯肅",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 83.5,
+   "war": 55.6,
+   "intellect": 92.7,
+   "politics": 92.5,
+   "charm": 89.0
+  },
+  "stats_calibrated": {
+   "leadership": 84,
+   "war": 56,
+   "intellect": 93,
+   "politics": 92,
+   "charm": 89
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "lu_meng",
@@ -150,7 +235,24 @@
    "politics": 78
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "呂蒙",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 90.9,
+   "war": 81.2,
+   "intellect": 86.0,
+   "politics": 73.4,
+   "charm": 81.6
+  },
+  "stats_calibrated": {
+   "leadership": 91,
+   "war": 81,
+   "intellect": 86,
+   "politics": 73,
+   "charm": 82
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "lu_xun",
@@ -175,7 +277,24 @@
    "politics": 87
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "陸遜",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 96.1,
+   "war": 71.8,
+   "intellect": 95.8,
+   "politics": 89.0,
+   "charm": 92.0
+  },
+  "stats_calibrated": {
+   "leadership": 96,
+   "war": 72,
+   "intellect": 96,
+   "politics": 89,
+   "charm": 92
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "lu_kang",
@@ -200,7 +319,24 @@
    "politics": 85
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "陸抗",
+  "koei_n_games": 12,
+  "stats_koei": {
+   "leadership": 91.8,
+   "war": 67.3,
+   "intellect": 88.3,
+   "politics": 81.8,
+   "charm": 84.4
+  },
+  "stats_calibrated": {
+   "leadership": 92,
+   "war": 67,
+   "intellect": 88,
+   "politics": 82,
+   "charm": 84
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "cheng_pu",
@@ -226,7 +362,24 @@
    "politics": 74
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "程普",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 83.9,
+   "war": 78.6,
+   "intellect": 77.9,
+   "politics": 73.7,
+   "charm": 84.6
+  },
+  "stats_calibrated": {
+   "leadership": 84,
+   "war": 79,
+   "intellect": 78,
+   "politics": 74,
+   "charm": 85
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "huang_gai",
@@ -252,7 +405,24 @@
    "politics": 65
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "黃蓋",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 80.0,
+   "war": 83.8,
+   "intellect": 66.4,
+   "politics": 62.7,
+   "charm": 80.2
+  },
+  "stats_calibrated": {
+   "leadership": 80,
+   "war": 84,
+   "intellect": 66,
+   "politics": 63,
+   "charm": 80
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "han_dang",
@@ -278,7 +448,24 @@
    "politics": 51
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "韓當",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 74.6,
+   "war": 80.4,
+   "intellect": 60.0,
+   "politics": 50.5,
+   "charm": 65.5
+  },
+  "stats_calibrated": {
+   "leadership": 75,
+   "war": 80,
+   "intellect": 60,
+   "politics": 50,
+   "charm": 66
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "zu_mao",
@@ -301,7 +488,24 @@
    "politics": 48
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "祖茂",
+  "koei_n_games": 12,
+  "stats_koei": {
+   "leadership": 69.1,
+   "war": 70.3,
+   "intellect": 61.7,
+   "politics": 53.5,
+   "charm": 68.5
+  },
+  "stats_calibrated": {
+   "leadership": 69,
+   "war": 70,
+   "intellect": 62,
+   "politics": 54,
+   "charm": 68
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "gan_ning",
@@ -327,7 +531,24 @@
    "politics": 18
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "甘寧",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 87.1,
+   "war": 93.5,
+   "intellect": 71.8,
+   "politics": 28.8,
+   "charm": 61.0
+  },
+  "stats_calibrated": {
+   "leadership": 87,
+   "war": 94,
+   "intellect": 72,
+   "politics": 29,
+   "charm": 61
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "ling_tong",
@@ -351,7 +572,24 @@
    "politics": 40
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "凌統",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 75.5,
+   "war": 85.2,
+   "intellect": 58.5,
+   "politics": 46.4,
+   "charm": 67.0
+  },
+  "stats_calibrated": {
+   "leadership": 76,
+   "war": 85,
+   "intellect": 58,
+   "politics": 46,
+   "charm": 67
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "ling_cao",
@@ -375,7 +613,24 @@
    "politics": 42
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "凌操",
+  "koei_n_games": 13,
+  "stats_koei": {
+   "leadership": 73.8,
+   "war": 80.3,
+   "intellect": 41.9,
+   "politics": 37.8,
+   "charm": 53.2
+  },
+  "stats_calibrated": {
+   "leadership": 74,
+   "war": 80,
+   "intellect": 42,
+   "politics": 38,
+   "charm": 53
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "zhou_tai",
@@ -400,7 +655,24 @@
    "politics": 38
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "周泰",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 78.5,
+   "war": 89.9,
+   "intellect": 51.9,
+   "politics": 42.9,
+   "charm": 62.8
+  },
+  "stats_calibrated": {
+   "leadership": 78,
+   "war": 90,
+   "intellect": 52,
+   "politics": 43,
+   "charm": 63
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "jiang_qin",
@@ -425,7 +697,24 @@
    "politics": 42
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "蔣欽",
+  "koei_n_games": 13,
+  "stats_koei": {
+   "leadership": 74.1,
+   "war": 81.8,
+   "intellect": 56.2,
+   "politics": 44.7,
+   "charm": 71.9
+  },
+  "stats_calibrated": {
+   "leadership": 74,
+   "war": 82,
+   "intellect": 56,
+   "politics": 45,
+   "charm": 72
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "chen_wu",
@@ -449,7 +738,24 @@
    "politics": 45
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "陳武",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 70.4,
+   "war": 81.1,
+   "intellect": 47.7,
+   "politics": 42.6,
+   "charm": 59.8
+  },
+  "stats_calibrated": {
+   "leadership": 70,
+   "war": 81,
+   "intellect": 48,
+   "politics": 43,
+   "charm": 60
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "dong_xi",
@@ -474,7 +780,24 @@
    "politics": 35
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "董襲",
+  "koei_n_games": 13,
+  "stats_koei": {
+   "leadership": 68.8,
+   "war": 77.9,
+   "intellect": 47.4,
+   "politics": 42.3,
+   "charm": 54.4
+  },
+  "stats_calibrated": {
+   "leadership": 69,
+   "war": 78,
+   "intellect": 47,
+   "politics": 42,
+   "charm": 54
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "pan_zhang",
@@ -497,7 +820,24 @@
    "politics": 41
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "潘璋",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 74.2,
+   "war": 78.5,
+   "intellect": 57.5,
+   "politics": 30.0,
+   "charm": 28.1
+  },
+  "stats_calibrated": {
+   "leadership": 74,
+   "war": 78,
+   "intellect": 58,
+   "politics": 30,
+   "charm": 28
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "xu_sheng",
@@ -521,7 +861,24 @@
    "politics": 66
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "徐盛",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 85.8,
+   "war": 81.6,
+   "intellect": 80.5,
+   "politics": 66.3,
+   "charm": 74.1
+  },
+  "stats_calibrated": {
+   "leadership": 86,
+   "war": 82,
+   "intellect": 80,
+   "politics": 66,
+   "charm": 74
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "ding_feng",
@@ -546,7 +903,24 @@
    "politics": 55
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "丁奉",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 77.9,
+   "war": 80.8,
+   "intellect": 70.9,
+   "politics": 59.0,
+   "charm": 65.1
+  },
+  "stats_calibrated": {
+   "leadership": 78,
+   "war": 81,
+   "intellect": 71,
+   "politics": 59,
+   "charm": 65
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "zhu_huan",
@@ -570,7 +944,24 @@
    "politics": 58
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "朱桓",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 84.2,
+   "war": 83.5,
+   "intellect": 76.2,
+   "politics": 59.5,
+   "charm": 69.9
+  },
+  "stats_calibrated": {
+   "leadership": 84,
+   "war": 84,
+   "intellect": 76,
+   "politics": 60,
+   "charm": 70
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "zhu_ran",
@@ -594,7 +985,24 @@
    "politics": 64
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "朱然",
+  "koei_n_games": 13,
+  "stats_koei": {
+   "leadership": 78.0,
+   "war": 72.1,
+   "intellect": 62.2,
+   "politics": 50.5,
+   "charm": 70.0
+  },
+  "stats_calibrated": {
+   "leadership": 78,
+   "war": 72,
+   "intellect": 62,
+   "politics": 50,
+   "charm": 70
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "he_qi",
@@ -619,7 +1027,24 @@
    "politics": 68
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "賀齊",
+  "koei_n_games": 9,
+  "stats_koei": {
+   "leadership": 80.2,
+   "war": 73.6,
+   "intellect": 69.9,
+   "politics": 59.5,
+   "charm": 66.5
+  },
+  "stats_calibrated": {
+   "leadership": 80,
+   "war": 74,
+   "intellect": 70,
+   "politics": 60,
+   "charm": 66
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "quan_cong",
@@ -643,7 +1068,24 @@
    "politics": 72
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "全琮",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 77.6,
+   "war": 75.1,
+   "intellect": 71.3,
+   "politics": 61.1,
+   "charm": 71.6
+  },
+  "stats_calibrated": {
+   "leadership": 78,
+   "war": 75,
+   "intellect": 71,
+   "politics": 61,
+   "charm": 72
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "zhang_zhao",
@@ -668,7 +1110,24 @@
    "politics": 97
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "張昭",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 35.9,
+   "war": 11.4,
+   "intellect": 86.3,
+   "politics": 97.3,
+   "charm": 80.9
+  },
+  "stats_calibrated": {
+   "leadership": 36,
+   "war": 11,
+   "intellect": 86,
+   "politics": 97,
+   "charm": 81
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "zhang_hong",
@@ -694,7 +1153,24 @@
    "politics": 95
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "張紘",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 25.4,
+   "war": 18.9,
+   "intellect": 86.6,
+   "politics": 95.5,
+   "charm": 83.5
+  },
+  "stats_calibrated": {
+   "leadership": 25,
+   "war": 19,
+   "intellect": 87,
+   "politics": 96,
+   "charm": 84
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "gu_yong",
@@ -717,7 +1193,24 @@
    "politics": 94
   },
   "verification": "unverified",
-  "in_game": true
+  "in_game": true,
+  "koei_name": "顧雍",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 39.1,
+   "war": 24.5,
+   "intellect": 79.0,
+   "politics": 87.3,
+   "charm": 76.2
+  },
+  "stats_calibrated": {
+   "leadership": 39,
+   "war": 24,
+   "intellect": 79,
+   "politics": 87,
+   "charm": 76
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "zhu_zhi",
@@ -743,7 +1236,24 @@
    "politics": 80
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "朱治",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 65.4,
+   "war": 60.1,
+   "intellect": 66.6,
+   "politics": 63.2,
+   "charm": 66.9
+  },
+  "stats_calibrated": {
+   "leadership": 65,
+   "war": 60,
+   "intellect": 67,
+   "politics": 63,
+   "charm": 67
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "bu_zhi",
@@ -768,7 +1278,24 @@
    "politics": 88
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "步騭",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 66.4,
+   "war": 46.5,
+   "intellect": 82.4,
+   "politics": 82.4,
+   "charm": 70.2
+  },
+  "stats_calibrated": {
+   "leadership": 66,
+   "war": 46,
+   "intellect": 82,
+   "politics": 82,
+   "charm": 70
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "yu_fan",
@@ -795,7 +1322,24 @@
    "politics": 79
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "虞翻",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 37.0,
+   "war": 47.8,
+   "intellect": 81.9,
+   "politics": 81.0,
+   "charm": 55.8
+  },
+  "stats_calibrated": {
+   "leadership": 37,
+   "war": 48,
+   "intellect": 82,
+   "politics": 81,
+   "charm": 56
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "zhu_ge_jin",
@@ -820,7 +1364,24 @@
    "politics": 89
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "諸葛瑾",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 70.6,
+   "war": 40.5,
+   "intellect": 83.6,
+   "politics": 90.7,
+   "charm": 90.2
+  },
+  "stats_calibrated": {
+   "leadership": 71,
+   "war": 40,
+   "intellect": 84,
+   "politics": 91,
+   "charm": 90
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "zhu_ge_ke",
@@ -846,7 +1407,24 @@
    "politics": 78
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "諸葛恪",
+  "koei_n_games": 13,
+  "stats_koei": {
+   "leadership": 68.8,
+   "war": 48.4,
+   "intellect": 90.5,
+   "politics": 80.5,
+   "charm": 65.6
+  },
+  "stats_calibrated": {
+   "leadership": 69,
+   "war": 48,
+   "intellect": 90,
+   "politics": 80,
+   "charm": 66
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "kan_ze",
@@ -870,7 +1448,24 @@
    "politics": 82
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "闞澤",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 45.9,
+   "war": 48.0,
+   "intellect": 82.0,
+   "politics": 85.1,
+   "charm": 72.2
+  },
+  "stats_calibrated": {
+   "leadership": 46,
+   "war": 48,
+   "intellect": 82,
+   "politics": 85,
+   "charm": 72
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "lu_ji",
@@ -894,7 +1489,24 @@
    "politics": 76
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "陸績",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 22.2,
+   "war": 14.5,
+   "intellect": 68.9,
+   "politics": 68.7,
+   "charm": 50.9
+  },
+  "stats_calibrated": {
+   "leadership": 22,
+   "war": 14,
+   "intellect": 69,
+   "politics": 69,
+   "charm": 51
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "yan_jun",
@@ -918,7 +1530,24 @@
    "politics": 81
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "嚴畯",
+  "koei_n_games": 13,
+  "stats_koei": {
+   "leadership": 23.0,
+   "war": 7.4,
+   "intellect": 71.6,
+   "politics": 81.3,
+   "charm": 74.0
+  },
+  "stats_calibrated": {
+   "leadership": 23,
+   "war": 7,
+   "intellect": 72,
+   "politics": 81,
+   "charm": 74
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "cheng_bing",
@@ -942,7 +1571,24 @@
    "politics": 77
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "程秉",
+  "koei_n_games": 12,
+  "stats_koei": {
+   "leadership": 17.4,
+   "war": 18.2,
+   "intellect": 67.4,
+   "politics": 70.9,
+   "charm": 69.0
+  },
+  "stats_calibrated": {
+   "leadership": 17,
+   "war": 18,
+   "intellect": 67,
+   "politics": 71,
+   "charm": 69
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "xue_zong",
@@ -967,7 +1613,24 @@
    "politics": 80
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "薛綜",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 33.2,
+   "war": 22.0,
+   "intellect": 70.4,
+   "politics": 79.4,
+   "charm": 65.8
+  },
+  "stats_calibrated": {
+   "leadership": 33,
+   "war": 22,
+   "intellect": 70,
+   "politics": 79,
+   "charm": 66
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "wu_jing",
@@ -992,7 +1655,24 @@
    "politics": 65
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "吳景",
+  "koei_n_games": 6,
+  "stats_koei": {
+   "leadership": 69.6,
+   "war": 64.6,
+   "intellect": 53.2,
+   "politics": 65.4,
+   "charm": 67.0
+  },
+  "stats_calibrated": {
+   "leadership": 70,
+   "war": 65,
+   "intellect": 53,
+   "politics": 65,
+   "charm": 67
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "sun_jing",
@@ -1017,7 +1697,24 @@
    "politics": 75
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "孫靜",
+  "koei_n_games": 12,
+  "stats_koei": {
+   "leadership": 64.1,
+   "war": 53.9,
+   "intellect": 67.5,
+   "politics": 66.3,
+   "charm": 68.4
+  },
+  "stats_calibrated": {
+   "leadership": 64,
+   "war": 54,
+   "intellect": 68,
+   "politics": 66,
+   "charm": 68
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "sun_yu",
@@ -1041,7 +1738,24 @@
    "politics": 71
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "孫瑜",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 76.1,
+   "war": 68.5,
+   "intellect": 65.7,
+   "politics": 64.8,
+   "charm": 75.4
+  },
+  "stats_calibrated": {
+   "leadership": 76,
+   "war": 68,
+   "intellect": 66,
+   "politics": 65,
+   "charm": 75
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "sun_jiao",
@@ -1065,7 +1779,24 @@
    "politics": 62
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "孫皎",
+  "koei_n_games": 6,
+  "stats_koei": {
+   "leadership": 77.0,
+   "war": 68.6,
+   "intellect": 66.8,
+   "politics": 71.0,
+   "charm": 73.3
+  },
+  "stats_calibrated": {
+   "leadership": 77,
+   "war": 69,
+   "intellect": 67,
+   "politics": 71,
+   "charm": 73
+  },
+  "calibration": "koei_mean"
  },
  {
   "id": "sun_huan",
@@ -1089,6 +1820,23 @@
    "politics": 60
   },
   "verification": "unverified",
-  "in_game": false
+  "in_game": false,
+  "koei_name": "孫桓",
+  "koei_n_games": 14,
+  "stats_koei": {
+   "leadership": 80.9,
+   "war": 72.3,
+   "intellect": 72.2,
+   "politics": 64.6,
+   "charm": 75.9
+  },
+  "stats_calibrated": {
+   "leadership": 81,
+   "war": 72,
+   "intellect": 72,
+   "politics": 65,
+   "charm": 76
+  },
+  "calibration": "koei_mean"
  }
 ]
