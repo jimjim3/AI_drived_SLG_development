@@ -29,6 +29,7 @@ from ..schema import (
     LogEntry,
     ResolutionEvent,
 )
+from . import alliance
 from .legal_actions import generate_legal_actions
 from .resolution import resolve_decision
 from .validation import validate_decision
@@ -122,7 +123,12 @@ class Game:
 
     # -- apply / step / run ------------------------------------------------
     def apply(self, officer, decision: AgentDecision):
-        new_state, event = resolve_decision(self.state, officer, decision, self.rng)
+        accept = None
+        if decision.action == "propose_alliance":
+            responder = getattr(self.agents.get(decision.params["to"]), "respond_alliance", None)
+            if responder is not None:
+                accept = bool(responder(self.state, officer.faction_id, decision.params["to"]))
+        new_state, event = resolve_decision(self.state, officer, decision, self.rng, alliance_accept=accept)
         self.state = new_state
         self.events.append(event)
         return event
@@ -134,6 +140,8 @@ class Game:
         that the seed influences who moves first.
         """
         self.state = apply_income(self.state, self.rng)
+        if alliance.enabled():
+            self.state = alliance.tick(self.state)
         order = sorted(self.state.factions)
         self.rng.shuffle(order)
         self.state = replace(self.state, turn=self.state.turn + 1)

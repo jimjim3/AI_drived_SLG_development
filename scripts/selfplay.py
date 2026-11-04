@@ -39,6 +39,12 @@ def summarize(res, seed):
             "min_loyalty": min((o.loyalty for o in living), default=None),
             "officers": len(living),
         }
+    props = [e for e in res.events if e.action == "propose_alliance"]
+    out["alliance"] = {
+        "proposals": len(props), "accepted": sum(1 for e in props if "accepted" in e.detail),
+        "breaks": sum(1 for e in res.events if e.action == "break_alliance"),
+        "final": sorted(st.diplomacy.alliances),
+    }
     out["rejected"] = res.stats.get("rejected", 0)
     out["decisions"] = res.stats.get("decisions", 0)
     out["usage"] = {k: v for k, v in res.usage.items()}

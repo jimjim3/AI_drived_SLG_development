@@ -6,7 +6,7 @@ engine's rules allow it right now. Agents may only choose from this list.
 
 from __future__ import annotations
 
-from . import combat
+from . import alliance, combat
 from ..schema import (
     DEVELOP_COST,
     DEVELOP_AGRICULTURE_BASE,
@@ -73,6 +73,7 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
         c.city_id for c in state.cities.values()
         if c.owner != officer.faction_id
         and state.adjacent(city.city_id, c.city_id)
+        and not alliance.allied(state, officer.faction_id, c.owner)
     )
     siege_max = (combat.siege_capacity(state, city) // SIEGE_TROOP_STEP) * SIEGE_TROOP_STEP
     if siege_max >= MIN_SIEGE_TROOPS and enemy_adjacent:
@@ -90,6 +91,26 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
                      if combat.active().march_food_rate > 0 else "")
                   + (", may draw on adjacent friendly cities" if combat.active().pool_factor > 0 else "")),
         ))
+
+    if alliance.enabled() and alliance.envoy_id(state, officer.faction_id) == officer.officer_id:
+        proposable = sorted(f for f in state.factions
+                            if alliance.can_propose(state, officer.faction_id, f))
+        if proposable:
+            actions.append(LegalAction(
+                "propose_alliance",
+                params={"to": ParamSpec("to", choices=tuple(proposable))},
+                cost=0,
+                note="friendship: " + ", ".join(
+                    f"{f}={alliance.friendship(state, officer.faction_id, f)}" for f in proposable),
+            ))
+        allies = alliance.allies_of(state, officer.faction_id)
+        if allies:
+            actions.append(LegalAction(
+                "break_alliance",
+                params={"with": ParamSpec("with", choices=tuple(allies))},
+                cost=0,
+                note="betrayal: friendship with all your allies drops sharply",
+            ))
 
     actions.append(LegalAction("rest", cost=0, note="always available"))
     return actions

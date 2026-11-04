@@ -9,7 +9,7 @@ from __future__ import annotations
 import random
 from dataclasses import replace
 
-from . import combat
+from . import alliance, combat
 from ..schema import (
     DEVELOP_COST,
     DEVELOP_AGRICULTURE_BASE,
@@ -45,9 +45,27 @@ def resolve_decision(
     officer: OfficerState,
     decision: AgentDecision,
     rng: random.Random,
+    alliance_accept: bool | None = None,
 ) -> tuple[GameState, ResolutionEvent]:
+    """``alliance_accept``: the target's decision on a proposal (None = the rule-AI default)."""
     city = state.city(officer.city_id)
     action = decision.action
+
+    if action == "propose_alliance":
+        target = decision.params["to"]
+        accept = alliance.default_accept(state, officer.faction_id, target) if alliance_accept is None else alliance_accept
+        new_state = alliance.propose(state, officer.faction_id, target, accept)
+        event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id, action, city.city_id,
+                                f"{target} {'accepted' if accept else 'refused'} the alliance",
+                                defender_faction=target)
+        return new_state, event
+
+    if action == "break_alliance":
+        victim = decision.params["with"]
+        new_state = alliance.break_alliance(state, officer.faction_id, victim)
+        event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id, action, city.city_id,
+                                f"broke the alliance with {victim}", defender_faction=victim)
+        return new_state, event
 
     if action == "develop_agri":
         gain = develop_gain(DEVELOP_AGRICULTURE_BASE, officer.politics)
@@ -94,7 +112,10 @@ def resolve_decision(
         return state, event
 
     if action == "siege":
-        return _resolve_siege(state, officer, decision, rng)
+        new_state, event = _resolve_siege(state, officer, decision, rng)
+        if alliance.enabled() and event.defender_faction:
+            new_state = alliance.on_siege(new_state, officer.faction_id, event.defender_faction)
+        return new_state, event
 
     raise ValueError(f"unknown action: {action!r}")
 

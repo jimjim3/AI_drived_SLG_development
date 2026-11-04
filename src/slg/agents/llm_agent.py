@@ -7,6 +7,7 @@ Uses structured JSON output to produce orders, chronicle, and next_cast spotligh
 from __future__ import annotations
 
 import json
+import re
 from typing import TYPE_CHECKING, Callable, ClassVar
 
 from ..schema import (
@@ -15,6 +16,7 @@ from ..schema import (
     AgentDecision,
     FactionPlan,
 )
+from ..engine import combat
 from .backends import ConfigError
 from .base import AgentError, FactionAgent
 
@@ -57,6 +59,26 @@ SIEGE_VERDICT_NOTE = (
     f"「不建議」＝勝算比低於 {SIEGE_BAD}，出征幾乎必敗並損失大量兵力；"
     f"「冒險」＝{SIEGE_BAD}–{SIEGE_RISKY}；「可行」＝{SIEGE_RISKY} 以上。"
     "判定為「不建議」的目標，請改為徵兵、開發或移動等待時機。"
+)
+
+
+ALLIANCE_NOTE = (
+    "\n【天下之志】你的最終目標是吞併他人、統一天下：回合結束時城池最多者獲勝（同數比兵力），"
+    "和平共存並不算贏。同盟只是手段，用來穩住一側、集中兵力吞併另一方，或換取時機；"
+    "當盟友成為統一的阻礙、或有機會取其城池時，應考慮背盟（但要承擔友好值下降的代價）。"
+    "全員互盟會使所有人無法攻城、陷入僵局，那對想贏的你沒有好處。\n"
+    "【同盟】本局可結盟。diplomacy 列出各勢力與你的友好值（0–100）與是否同盟。"
+    "名單中職位最高（政治最高）的武將 legal 內才有 propose_alliance（to=勢力）與 break_alliance（with=勢力）。"
+    "同盟國不能互相攻城，且會共享視野（frontier 中標 via_ally 的城是盟友看到的）。"
+    "提議同盟後由對方決定；友好值高者較易接受。攻擊他國會降低雙方友好值。"
+    "背盟（break_alliance）會使你與所有盟友的友好值大幅下降，請謹慎。"
+)
+
+ALLIANCE_REPLY_SYSTEM = (
+    "你是勢力的謀主，最終目標是吞併他人、統一天下（回合結束時城池最多者勝）。"
+    "要決定是否接受他國的同盟提議：結盟只在對你統一天下有利時才接受（例如穩住強敵、換取時機），"
+    "不要為和平而結盟。只輸出一個 JSON 物件："
+    '{"accept":true|false,"reason":"≤20字"}。'
 )
 
 
@@ -276,6 +298,32 @@ class LLMFactionAgent(FactionAgent):
         }
         self.errors_seen: list[str] = []
 
+    def respond_alliance(self, state, proposer: str, target: str) -> bool:
+        """The target faction's own judgement of an alliance proposal; falls back to the rule on any failure."""
+        from ..engine import alliance as al
+        fallback = al.default_accept(state, proposer, target)
+        mine = [c for c in state.cities_of(target)]
+        theirs = [c for c in state.cities_of(proposer)]
+        info = {
+            "proposer": proposer, "you": target, "turn": state.turn,
+            "friendship": al.friendship(state, proposer, target),
+            "your_cities": len(mine), "your_troops": sum(c.troops for c in mine),
+            "their_cities": len(theirs), "their_troops": sum(c.troops for c in theirs),
+            "your_allies": al.allies_of(state, target),
+        }
+        self.usage["calls"] += 1
+        try:
+            raw = self._completer(ALLIANCE_REPLY_SYSTEM,
+                                  "提議：" + json.dumps(info, ensure_ascii=False, separators=(",", ":")))
+            self.usage["response_chars"] += len(raw)
+            m = re.search(r"\{.*\}", raw, re.S)
+            return bool(json.loads(m.group(0))["accept"]) if m else fallback
+        except ConfigError:
+            raise
+        except Exception:
+            self.usage["errors"] += 1
+            return fallback
+
     def _record_error(self, msg: str) -> None:
         sample = msg[:300]
         if sample not in self.errors_seen and len(self.errors_seen) < 5:
@@ -287,13 +335,14 @@ class LLMFactionAgent(FactionAgent):
 
         for _ in range(max_attempts):
             user_prompt = build_user_prompt(view, error=last_error, with_verdict=self._with_verdict)
-            prompt_chars = len(self._system_prompt) + len(user_prompt)
+            system_prompt = self._system_prompt + (ALLIANCE_NOTE if combat.active().alliance else "")
+            prompt_chars = len(system_prompt) + len(user_prompt)
 
             self.usage["calls"] += 1
             self.usage["prompt_chars"] += prompt_chars
 
             try:
-                raw = self._completer(self._system_prompt, user_prompt)
+                raw = self._completer(system_prompt, user_prompt)
             except ConfigError as exc:
                 self.usage["calls"] -= 1
                 self.usage["prompt_chars"] -= prompt_chars

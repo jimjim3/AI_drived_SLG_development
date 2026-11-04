@@ -20,6 +20,7 @@ from ..schema import (
     PETITION_LOYALTY_BELOW,
     ResolutionEvent,
 )
+from . import alliance
 from .legal_actions import generate_legal_actions
 from .resolution import estimate_siege_ratio
 
@@ -35,9 +36,16 @@ class FactionView:
     roster: Mapping[str, tuple]
     events: tuple = ()
     feedback: tuple = ()
+    diplomacy: tuple = ()  # one dict per other active faction; empty unless the ruleset has alliances
 
     def to_dict(self) -> dict:
         """Return pure JSON-serializable representation of this view."""
+        d = self._base_dict()
+        if self.diplomacy:
+            d["diplomacy"] = [dict(x) for x in self.diplomacy]
+        return d
+
+    def _base_dict(self) -> dict:
         return {
             "turn": self.turn,
             "faction_id": self.faction_id,
@@ -275,6 +283,7 @@ def build_faction_view(
         key=lambda c: c.city_id,
     )
     frontier_data = []
+    allied_ids = set(alliance.allies_of(state, faction_id)) if alliance.enabled() else set()
     for ec in frontier_cities:
         adj = sorted(nid for nid in state.adjacency.get(ec.city_id, ()) if nid in friendly_cids)
         frontier_data.append({
@@ -284,7 +293,20 @@ def build_faction_view(
             "troops": ec.troops,
             "defense": ec.defense,
             "adjacent_to": adj,
+            **({"ally": True} if ec.owner in allied_ids else {}),
         })
+    if allied_ids:
+        # shared vision: what the allies see is visible too
+        listed = {f["id"] for f in frontier_data}
+        for cid in sorted(alliance.allied_sight(state, faction_id)):
+            c = state.city(cid)
+            if cid in friendly_cids or cid in listed:
+                continue
+            frontier_data.append({
+                "id": c.city_id, "name": c.name, "owner": c.owner, "troops": c.troops, "defense": c.defense,
+                "adjacent_to": [], "via_ally": True,
+                **({"ally": True} if c.owner in allied_ids else {}),
+            })
 
     cast_data = []
     cast_set = set()
@@ -337,6 +359,17 @@ def build_faction_view(
     described_events = describe_events(events, state, faction_id, limit=EVENT_LIMIT)
     trimmed_feedback = tuple(feedback[:EVENT_LIMIT])
 
+    diplomacy_data = []
+    if alliance.enabled():
+        for fid in sorted(state.factions):
+            if fid == faction_id or not state.factions[fid].is_active:
+                continue
+            diplomacy_data.append({
+                "faction": fid,
+                "friendship": alliance.friendship(state, faction_id, fid),
+                "allied": alliance.allied(state, faction_id, fid),
+            })
+
     return FactionView(
         turn=state.turn,
         faction_id=faction_id,
@@ -347,4 +380,5 @@ def build_faction_view(
         roster=roster_data,
         events=described_events,
         feedback=trimmed_feedback,
+        diplomacy=tuple(diplomacy_data),
     )

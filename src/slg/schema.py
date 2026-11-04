@@ -177,6 +177,25 @@ class FactionState:
     is_active: bool = True
 
 
+def pair_key(a: str, b: str) -> str:
+    """Order-independent key for a pair of factions."""
+    return "|".join(sorted((a, b)))
+
+
+@dataclass(frozen=True)
+class Diplomacy:
+    """Faction-to-faction relations (only used under rulesets with ``alliance`` on).
+
+    ``friendship``: pair_key -> 0..100 (absent = alliance.DEFAULT_FRIENDSHIP).
+    ``alliances``: pair_key -> turn the alliance was formed.
+    ``cooldown``: pair_key -> last turn on which a new proposal is still refused.
+    """
+
+    friendship: Mapping[str, int] = field(default_factory=dict)
+    alliances: Mapping[str, int] = field(default_factory=dict)
+    cooldown: Mapping[str, int] = field(default_factory=dict)
+
+
 @dataclass(frozen=True)
 class GameState:
     turn: int
@@ -184,6 +203,7 @@ class GameState:
     cities: Mapping[str, CityState]
     officers: Mapping[str, OfficerState]
     adjacency: Mapping[str, tuple[str, ...]] = field(default_factory=dict)
+    diplomacy: Diplomacy = field(default_factory=Diplomacy)
 
     def adjacent(self, a: str, b: str) -> bool:
         """True if cities ``a`` and ``b`` are connected on the map."""

@@ -19,7 +19,7 @@ from .legal_actions import generate_legal_actions
 
 KNOWN_ACTIONS = {
     "develop_agri", "develop_commerce", "develop_defense",
-    "recruit", "move", "siege", "rest",
+    "recruit", "move", "siege", "rest", "propose_alliance", "break_alliance",
 }
 
 

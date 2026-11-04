@@ -33,6 +33,7 @@ class CombatRules:
     city_caps: bool = False  # per-city development / population ceilings (CITY_CAPS); off = unlimited, as shipped
     cap_tiers: bool | str = False  # with city_caps: use Koei size tiers (True for KOEI_TIER_CAPS, "flat" for KOEI_FLAT_TIER_CAPS)
     march_food_rate: float = 0.0  # a siege eats troops * km / 1000 * rate food at launch; 0 = free, as shipped
+    alliance: bool = False  # factions may ally (docs/DESIGN_ALLIANCE.md): no mutual sieges, shared vision, betrayal penalty
 
 
 RULESETS: dict[str, CombatRules] = {
@@ -61,6 +62,10 @@ RULESETS: dict[str, CombatRules] = {
     # tuned economy (docs/EVALUATION.md §21.2): march_food_rate=0.5 keeps Sun active while preventing edge dominance
     "softer_pool2_econ3": CombatRules("softer_pool2_econ3", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
                                       pool_factor=0.5, pool_depth=2, city_caps=True, cap_tiers=True, march_food_rate=0.5),
+    # econ3 plus alliances (phase 1: state, propose/break, no mutual sieges, shared vision)
+    "softer_pool2_econ3_ally": CombatRules("softer_pool2_econ3_ally", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
+                                           pool_factor=0.5, pool_depth=2, city_caps=True, cap_tiers=True,
+                                           march_food_rate=0.5, alliance=True),
 }
 
 # Real great-circle distances in km between neighbouring cities (from agy-reported coordinates in

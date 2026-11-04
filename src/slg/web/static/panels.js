@@ -42,7 +42,7 @@ export function ingestRoster(state) {
   );
 }
 
-export const ACTION_ICONS = { develop_agri: "develop", develop_commerce: "develop", develop_defense: "defend", recruit: "recruit", move: "march", siege: "siege", rest: "defend" };
+export const ACTION_ICONS = { develop_agri: "develop", develop_commerce: "develop", develop_defense: "defend", recruit: "recruit", move: "march", siege: "siege", rest: "defend", propose_alliance: "report", break_alliance: "report" };
 export const actionIcon = (k) => ACTION_ICONS[k] ? `<img class="action-icon" src="./assets/art/icons/${ACTION_ICONS[k]}.svg" alt="">` : "";
 
 export const ACTION_NAMES = {
@@ -53,6 +53,8 @@ export const ACTION_NAMES = {
   move: "將領調度",
   siege: "出征攻城",
   rest: "休養生息",
+  propose_alliance: "遣使結盟",
+  break_alliance: "撕毀盟約",
 };
 
 /**
