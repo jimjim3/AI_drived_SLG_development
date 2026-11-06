@@ -77,8 +77,8 @@ class AllianceTests(unittest.TestCase):
                                  random.Random(0))
         self.assertFalse(alliance.allied(s, "faction_1", "faction_2"))
         self.assertTrue(alliance.allied(s, "faction_1", "faction_3"))
-        self.assertEqual(alliance.friendship(s, "faction_1", "faction_3"), before3 - alliance.BREAK_OTHER_PENALTY)
-        self.assertLessEqual(alliance.friendship(s, "faction_1", "faction_2"), 60 - alliance.BREAK_VICTIM_PENALTY)
+        self.assertEqual(alliance.friendship(s, "faction_1", "faction_3"), before3 - combat.active().ally_break[1])
+        self.assertLessEqual(alliance.friendship(s, "faction_1", "faction_2"), 60 - combat.active().ally_break[0])
         self.assertFalse(alliance.can_propose(s, "faction_1", "faction_2"))
 
     def test_validation_rejects_siege_on_an_ally(self):
@@ -87,6 +87,15 @@ class AllianceTests(unittest.TestCase):
         target = next(c.city_id for c in s.cities_of("faction_2"))
         bad = AgentDecision(o.officer_id, "siege", {"to": target, "troops": 500})
         self.assertFalse(validate_decision(s, o, bad)[0])
+
+    def test_heavier_betrayal_ruleset(self):
+        combat.set_rules("softer_pool2_econ3_ally2")
+        s, _ = propose(self.s, "faction_1", "faction_2")
+        e = envoy(s, "faction_1")
+        s, _ = resolve_decision(s, e, AgentDecision(e.officer_id, "break_alliance", {"with": "faction_2"}),
+                                random.Random(0))
+        self.assertEqual(alliance.friendship(s, "faction_1", "faction_2"), 0)
+        self.assertEqual(s.diplomacy.cooldown["faction_1|faction_2"], s.turn + 10)
 
     def test_view_shares_vision_and_lists_relations(self):
         s, _ = propose(self.s, "faction_1", "faction_2")

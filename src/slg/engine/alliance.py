@@ -16,12 +16,9 @@ DEFAULT_FRIENDSHIP = 50      # between factions with no history
 PEACE_CAP = 60               # peace alone never raises friendship above this
 ACCEPT_THRESHOLD = 50        # the rule AI accepts a proposal at or above this friendship
 SIEGE_PENALTY = 20           # an attack costs the pair this much friendship
-BREAK_VICTIM_PENALTY = 40    # breaking an alliance: the abandoned partner
-BREAK_OTHER_PENALTY = 25     # breaking an alliance: every other ally of the breaker
 DECAY_EVERY = 3              # an alliance loses 1 friendship every this many turns
 DISSOLVE_BELOW = 20          # friendship this low ends the alliance quietly
 REJECT_COOLDOWN = 3
-BREAK_COOLDOWN = 5
 
 
 def enabled() -> bool:
@@ -99,15 +96,16 @@ def propose(state: GameState, proposer: str, target: str, accept: bool) -> GameS
 
 def break_alliance(state: GameState, breaker: str, victim: str) -> GameState:
     """Betrayal: the abandoned partner and every other ally of the breaker lose friendship."""
+    victim_loss, other_loss, cooldown = combat.active().ally_break
     others = [f for f in allies_of(state, breaker) if f != victim]
     al = dict(state.diplomacy.alliances)
     al.pop(pair_key(breaker, victim), None)
     cd = dict(state.diplomacy.cooldown)
-    cd[pair_key(breaker, victim)] = state.turn + BREAK_COOLDOWN
+    cd[pair_key(breaker, victim)] = state.turn + cooldown
     state = _with(state, alliances=al, cooldown=cd)
-    state = adjust(state, breaker, victim, -BREAK_VICTIM_PENALTY)
+    state = adjust(state, breaker, victim, -victim_loss)
     for f in others:
-        state = adjust(state, breaker, f, -BREAK_OTHER_PENALTY)
+        state = adjust(state, breaker, f, -other_loss)
     return state
 
 

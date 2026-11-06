@@ -45,6 +45,13 @@ def summarize(res, seed):
         "breaks": sum(1 for e in res.events if e.action == "break_alliance"),
         "final": sorted(st.diplomacy.alliances),
     }
+    from collections import Counter
+    import re
+    why = Counter()
+    for fl in res.log.faction_logs:
+        for _oid, act, reason in fl.rejected:
+            why[f"{act}: " + re.sub(r"\d+", "N", reason)[:60]] += 1
+    out["reject_reasons"] = dict(why.most_common(12))
     out["rejected"] = res.stats.get("rejected", 0)
     out["decisions"] = res.stats.get("decisions", 0)
     out["usage"] = {k: v for k, v in res.usage.items()}

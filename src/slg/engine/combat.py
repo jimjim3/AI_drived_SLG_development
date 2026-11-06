@@ -33,6 +33,7 @@ class CombatRules:
     city_caps: bool = False  # per-city development / population ceilings (CITY_CAPS); off = unlimited, as shipped
     cap_tiers: bool | str = False  # with city_caps: use Koei size tiers (True for KOEI_TIER_CAPS, "flat" for KOEI_FLAT_TIER_CAPS)
     march_food_rate: float = 0.0  # a siege eats troops * km / 1000 * rate food at launch; 0 = free, as shipped
+    ally_break: tuple[int, int, int] = (40, 25, 5)  # betrayal: (victim friendship loss, other allies' loss, re-alliance cooldown)
     alliance: bool = False  # factions may ally (docs/DESIGN_ALLIANCE.md): no mutual sieges, shared vision, betrayal penalty
 
 
@@ -66,6 +67,10 @@ RULESETS: dict[str, CombatRules] = {
     "softer_pool2_econ3_ally": CombatRules("softer_pool2_econ3_ally", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
                                            pool_factor=0.5, pool_depth=2, city_caps=True, cap_tiers=True,
                                            march_food_rate=0.5, alliance=True),
+    # heavier betrayal: victim -60, other allies -45, 10 turns before the pair may ally again
+    "softer_pool2_econ3_ally2": CombatRules("softer_pool2_econ3_ally2", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
+                                            pool_factor=0.5, pool_depth=2, city_caps=True, cap_tiers=True,
+                                            march_food_rate=0.5, alliance=True, ally_break=(60, 45, 10)),
 }
 
 # Real great-circle distances in km between neighbouring cities (from agy-reported coordinates in
