@@ -9,6 +9,7 @@ sieges the LLM *ordered* from sieges made by officers the rule-AI delegate handl
 """
 import argparse
 import json
+import re
 import sys
 from types import SimpleNamespace
 
@@ -43,10 +44,13 @@ def summarize(res, seed):
     out["alliance"] = {
         "proposals": len(props), "accepted": sum(1 for e in props if "accepted" in e.detail),
         "breaks": sum(1 for e in res.events if e.action == "break_alliance"),
+        "pledges": [int(m.group(1)) if (m := re.search(r"pledge (\d+) gold", e.detail)) else 0 for e in props],
+        "pledges_accepted": [int(m.group(1)) for e in props if "accepted" in e.detail and (m := re.search(r"pledge (\d+) gold", e.detail))],
+        "seized": sum(1 for e in res.events if e.action == "break_alliance" and "seized" in e.detail),
+        "returned": sum(1 for e in res.events if e.action == "break_alliance" and "returned" in e.detail),
         "final": sorted(st.diplomacy.alliances),
     }
     from collections import Counter
-    import re
     why = Counter()
     for fl in res.log.faction_logs:
         for _oid, act, reason in fl.rejected:
