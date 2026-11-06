@@ -1,0 +1,101 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹魏佔有荊州核心城池：wan(宛)、xinye(新野)、xiangyang(襄陽)、shangyong(上庸)——225 年屬蜀漢/東吳，非魏有",
+   "fix": "將上述四城移給蜀漢(襄陽、上庸)與東吳(宛、新野屬吳邊境)，或設為中立"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹魏佔有揚州/淮南重鎮：shouchun(壽春)、hefei(合肥)、lujiang(廬江)——225 年為孫吳所有",
+   "fix": "三城歸屬 f_sunwu"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹魏佔有徐州/青州全境：pengcheng(彭城)、xiapi(下邳)、guangling(廣陵)、jiangdu(江都)、linzi(臨淄) 等——實為孫吳勢力範圍",
+   "fix": "徐州、青州諸城歸 f_sunwu"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹魏佔有涼州全境：wuwei(武威)、jincheng(金城)、tianshui(天水)、dunhuang(敦煌)、zhangye(張掖)、anding(安定)——225 年屬蜀漢(天水等隴右)或獨立勢力",
+   "fix": "隴右諸郡歸 f_shuhan，河西走廊設中立或單獨勢力"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "徐晃 219 年卒，225 年不應在世",
+   "fix": "移除徐晃"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "夏侯尚 225 年正月卒於洛陽，不應駐守宛城",
+   "fix": "移除夏侯尚或改為剛卒事件"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "鍾繇 230 年卒，但 225 年已 76 歲致仕，不宜列為活躍謀士",
+   "fix": "改為閒居/顧問狀態或移除"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "華歆 232 年卒，225 年 78 歲已退休",
+   "fix": "移除或標記退休"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "丁奉生於 220 年前後，225 年僅 5-6 歲，不應為武將",
+   "fix": "移除丁奉"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "步騭 225 年尚未顯用，初見於 229 年",
+   "fix": "移除或延後登場"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "賀齊 225 年未見史載，初見 234 年",
+   "fix": "移除或延後登場"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "公孫恭 220 年已被公孫淵奪位，225 年非遼東主君",
+   "fix": "君主改為公孫淵，公孫恭移除或設為俘虜"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "遼東僅有一城 xiangping(襄平)，缺 liucheng(柳城)、yuyang(漁陽) 等實控城池",
+   "fix": "補充遼東實控城池或併入曹魏"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "蜀漢缺 yuesui(越巂)、jianning(建寧) 兩郡——南中四郡(建寧、越巂、牂牁、興古)應屬蜀漢名義管轄，再由叛軍佔據",
+   "fix": "兩城歸 f_shuhan，事件觸發後轉叛軍"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "李嚴 225 年實鎮永安(建興三年遷鎮)，city 設定正確，但 role 應為「都督前部」而非泛武將",
+   "fix": "role 細化為「都督前部/鎮將」"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "曹魏 strength「S」過高，實際 225 年國力雖強但內外交困，建議 A；蜀漢 B 合理；孫吳 A 合理",
+   "fix": "曹魏 strength 改為 A"
+  }
+ ]
+}

@@ -1,0 +1,119 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "魏國佔有襄陽、新野、上庸、宛、武威、金城、天水、敦煌、張掖、安定，史實屬蜀漢或空白/羌胡地",
+   "fix": "襄陽、新野、上庸、宛歸蜀漢；武威、金城、天水、敦煌、張掖、安定設為中立或移除"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "吳國佔有夷陵、江陵、江夏、武陵、長沙、桂陽、零陵，史實 222 年仍屬蜀漢",
+   "fix": "上述七城歸蜀漢；吳國保留建業、吳郡、會稽、柴桑、京口、豫章、建安、廬江、蒼梧、番禺、合浦、交趾"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "馬超於 221 年病逝，不應出現在 222 年武將名單",
+   "fix": "移除馬超，改補張翼、吳班、陳式等實際參戰將領"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "馬良於 221 年隨劉備東征，222 年戰死夷陵，不應留守永安",
+   "fix": "馬良移至夷陵前線（或標記戰死），永安補劉巴、李福等後方文官"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "黃權 222 年隨劉備東征，戰後被截斷歸降魏國，不應在永安",
+   "fix": "黃權隨主力出征夷陵，戰後事件觸發歸魏"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "馮習、張南、吳懿、蔣琬 222 年皆隨劉備東征，不應分別留守永安、成都",
+   "fix": "馮習、張南、吳懿移至夷陵前線；蔣琬留成都輔政可保留"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "徐盛、韓當、駱統 222 年實際駐守夷陵前線，非建業",
+   "fix": "三人 city 改為 yiling"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "諸葛瑾 222 年為大都督督軍江陵外圍，非駐守江陵城內",
+   "fix": "city 改為 yiling 或前線座標"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "步騭 222 年隨陸遜參戰，非駐長沙",
+   "fix": "city 改為 yiling"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "賀齊 222 年任建威中郎將從征，非留守建業",
+   "fix": "city 改為 yiling"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "張遼於 222 年病重（不久卒），不應駐江都一線",
+   "fix": "移除張遼或標記病重不可用，改補滿寵、蔣濟等淮南將領"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "賈詡於 223 年卒，222 年已極老致仕，不應為活躍謀士",
+   "fix": "移除賈詡，改補蔣濟、陳矯等"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "鍾繇 222 年 79 歲致仕，不應為活躍謀士",
+   "fix": "移除鍾繇，改補劉曄、孫資等"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "文聘 222 年已卒（約 220 年前後），不應在新野",
+   "fix": "移除文聘，改補胡質、王淩等"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "魏國佔有廣陵、江都、壽春、合肥、廬江，史實屬吳國或爭奪區",
+   "fix": "廣陵、江都、壽春、合肥、廬江歸吳國或設為中立"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "彭城、下邳、郯縣、開陽、朐縣、淮陰 222 年屬吳國勢力範圍",
+   "fix": "上述徐州諸城歸吳國或中立"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "青州、冀州、幽州、并州、涼州大部城池 222 年確屬魏國，無誤",
+   "fix": "保持現狀"
+  },
+  {
+   "severity": "low",
+   "type": "faction",
+   "detail": "漏掉孟達新城（房陵/上庸一帶）半獨立勢力",
+   "fix": "可新增中立勢力 f_mengda，首都 shangyong，武將孟達、申儀"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "劉備 capital 設為成都，但 222 年親征前線，行在永安/夷陵",
+   "fix": "capital 維持成都，但君主 city 應為 yongan 或前線營帳"
+  }
+ ]
+}

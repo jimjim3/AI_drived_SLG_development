@@ -1,0 +1,239 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "鍾會（生於 225 年）249 年僅 24 歲，尚未出仕，不應出現在洛陽武將名單。",
+   "fix": "移除鍾會；如需司馬懿幕僚，可改用已在朝的陳泰、荀顗、羊祜等。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "賈充（生於 217 年）249 年 32 歲，此時仍隨父賈逵在邊鎮或未入核心，不應在洛陽。",
+   "fix": "移除賈充。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "鄧艾（生於 197 年）249 年已 52 歲，實際鎮守隴右（隴西/南安一帶），不在長安。",
+   "fix": "將鄧艾移至隴右前線（如新增城池「隴西」或「南安」），或暫不登場。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "王基（生於 190 年）249 年任荊州刺史鎮襄陽，不在洛陽。",
+   "fix": "將王基移至襄陽（xiangyang），歸屬曹爽勢力或中立。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "諸葛誕 249 年任揚州刺史鎮壽春，不在汝南。",
+   "fix": "將諸葛誕移至壽春（shouchun）。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "王凌 249 年任揚州刺史鎮壽春，不在壽春以外；且事件寫他起兵，開局即放壽春屬曹爽勢力易誤導。",
+   "fix": "王凌留壽春但標記為「曹爽勢力下的揚州刺史」，事件觸發後再叛變。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "毌丘儉 249 年任征東將軍屯淮南/壽春一帶，不在宛。",
+   "fix": "將毌丘儉移至壽春或淮南前線。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "文欽 249 年尚未顯貴，隨毌丘儉在淮南，不在譙。",
+   "fix": "移除文欽或移至壽春。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "桓範 249 年隨曹爽出謁高平陵，事變時在洛陽隨行，不在許昌。",
+   "fix": "將桓範移至洛陽（luoyang），歸屬曹爽勢力。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "何晏、鄧颺、丁謐、畢軌、李勝 249 年皆為曹爽近臣，隨駕高平陵，應在洛陽而非許昌。",
+   "fix": "將上述五人移至洛陽（luoyang），歸屬曹爽勢力。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "曹羲、曹訓 249 年隨曹爽出謁，應在洛陽。",
+   "fix": "移至洛陽（luoyang）。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "孫峻（生約 219 年）249 年 30 歲，尚未崛起，不在建業核心層。",
+   "fix": "移除孫峻。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "陸抗（生於 226 年）249 年僅 23 歲，尚未出仕，不在柴桑。",
+   "fix": "移除陸抗。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "留贊、鍾離牧 249 年無史載在吳郡、會稽任職。",
+   "fix": "移除或替換為當時實際駐守將領（如全琮、朱然等）。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹爽勢力擁有荊州諸城（宛、新野、襄陽、上庸），實際 249 年荊州全屬司馬懿掌控（王基鎮襄陽、胡質鎮江夏等）。",
+   "fix": "將宛、新野、襄陽、上庸、江夏、江陵等歸司馬懿勢力；曹爽勢力僅保留淮河以北。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹爽勢力擁有揚州諸城（壽春、合肥、廬江、廣陵、江都等），實際 249 年揚州由諸葛誕、毌丘儉鎮守，歸司馬懿體系。",
+   "fix": "將揚州諸城歸司馬懿勢力；曹爽勢力縮減至許昌、譙、陳留等兗豫核心。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹爽勢力擁有青州諸城（平原、濟南、臨淄等），青州 249 年屬司馬懿體系。",
+   "fix": "青州諸城歸司馬懿勢力。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹爽勢力擁有幽州諸城（薊、襄平等），幽州 249 年屬司馬懿體系（王淩無管轄權）。",
+   "fix": "幽州諸城歸司馬懿勢力。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹爽勢力擁有涼州諸城（天水、安定、金城、武威），涼州 249 年由郭淮、陳泰、鄧艾鎮守，歸司馬懿。",
+   "fix": "涼州諸城歸司馬懿勢力。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹爽勢力擁有并州諸城（晉陽、平陽、上黨等），并州 249 年屬司馬懿體系。",
+   "fix": "并州諸城歸司馬懿勢力。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "曹爽勢力 strength「A」且擁有半個魏國版圖，嚴重失衡；實際政變瞬間曹爽僅控制隨駕人馬及許昌殘部。",
+   "fix": "曹爽勢力 cities 僅保留許昌、譙、陳留、潁川、汝南等兗豫核心 8-10 座城，strength 降為「C」或「D」。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "司馬懿勢力 strength「S」且囊括長安、洛陽及全北方，過於強勢；建議拆分為「司馬懿（洛陽朝廷）」與「郭淮/陳泰（隴右）」兩勢力以利平衡。",
+   "fix": "拆分勢力或大幅降低 strength 至「A」，並補充隴右、荊州、揚州實際鎮將。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "傅嘏 249 年任散騎常侍輔佐曹爽，政變時在洛陽隨駕，不屬司馬懿陣營。",
+   "fix": "移至洛陽歸曹爽勢力，政變後再投司馬懿。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "孫禮 249 年任征西將軍鎮關中，不在洛陽。",
+   "fix": "移至長安或陳倉。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "蔣濟 249 年任司徒在洛陽，屬中立舊臣，非司馬懿核心幕僚。",
+   "fix": "保留洛陽但標記為「中立/舊臣」，事件後歸司馬懿。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "高柔 249 年任光祿大夫在洛陽，同屬中立舊臣。",
+   "fix": "同蔣濟處理。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "陳泰 249 年任安西將軍鎮關中/隴右，不在長安城內。",
+   "fix": "移至隴右前線（如新增「隴西」城）或陳倉。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "郭淮 249 年任雍州刺史鎮隴右，不在長安。",
+   "fix": "移至隴右前線。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "呂岱 249 年已卒（卒於 246 年），不應在建業。",
+   "fix": "移除呂岱，改用朱然、全琮等在世將領。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "滕胤 249 年任交州刺史鎮交州，不在建業。",
+   "fix": "移至交州（如蒼梧或番禺）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "丁奉 249 年尚未顯貴，不在建業核心。",
+   "fix": "移除或降為普通武將。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "施績 249 年任建威將軍鎮柴桑/江州，不在江陵。",
+   "fix": "移至柴桑（chaisang）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "諸葛恪 249 年任丹楊太守/將軍鎮丹楊，不在建業。",
+   "fix": "移至丹楊（若無城池可放廣陵或建業但標記外任）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "柳隱（即柳承）249 年無史載在漢中，可能未出仕。",
+   "fix": "移除或替換為張嶷、王平等實際駐漢中將領。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "霍弋 249 年任建寧太守鎮建寧，不在成都。",
+   "fix": "移至建寧（jianning）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "呂乂、陳祗 249 年確在成都輔政，可保留。",
+   "fix": "無需修改。"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "事件「麴山之戰」發生於 249 年 4-5 月（正始十年三四月），turn 3 合理；但郭淮、陳泰、鄧艾皆不在正確位置。",
+   "fix": "配合上述將領位置修正。"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "事件「王凌起兵」實際發生於 251 年（嘉平三年），非 249 年。",
+   "fix": "移除該事件或改為「王凌密謀醞釀」作為伏筆。"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "事件「二宮之爭終局」孫權廢太子立孫亮發生於 250 年（赤烏十三年），turn 6 尚可接受。",
+   "fix": "無需修改。"
+  }
+ ]
+}

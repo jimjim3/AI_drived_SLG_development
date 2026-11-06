@@ -1,0 +1,143 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操勢力佔有漢中、南鄭，實為劉備於 219 年定軍山之戰後才佔領；217 年仍屬曹魏夏侯淵防區，但城池歸屬應屬曹操無誤，惟劉備勢力同時也列入這兩城，造成重複歸屬。",
+   "fix": "從劉備勢力 cities 移除 hanzhong、nanzheng。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操勢力佔有襄陽、新野、上庸、宛，實際 217 年這四城屬劉備荊州牧關羽管轄（襄陽、新野、宛）及劉封/孟達（上庸），不屬曹操。",
+   "fix": "從曹操勢力 cities 移除 xiangyang、xinye、shangyong、wan。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操勢力佔有廣陵、江都、下邳、彭城、郯縣、開陽、朐縣、淮陰，這些徐州/揚州北部城池 217 年屬孫權勢力（呂蒙等駐守），非曹操所有。",
+   "fix": "從曹操勢力 cities 移除 guangling、jiangdu、xiapi、pengcheng、tanxian、kaiyang、quxian、huaiyin。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操勢力佔有壽春、合肥、廬江，實際 217 年這三城為孫權前線重鎮（呂蒙、甘寧、凌統等駐守），非曹操所有。",
+   "fix": "從曹操勢力 cities 移除 shouchun、hefei、lujiang。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操勢力佔有武威、金城、天水、張掖、安定，這五城屬涼州，217 年實際由馬超舊部/張魯殘部或獨立軍閥控制，非曹操直轄（曹操 211 年平定關中後未深入涼州腹地）。",
+   "fix": "從曹操勢力 cities 移除 wuwei、jincheng、tianshui、zhangye、anding。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操勢力佔有敦煌，敦煌 217 年屬西域都護府/張掖屬國管轄，距曹操勢力範圍極遠，不應歸屬。",
+   "fix": "從曹操勢力 cities 移除 dunhuang。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "丁奉出生於 209 年，217 年僅 8 歲，不可能已為武將駐守建業。",
+   "fix": "從孫權勢力 officers 移除丁奉。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "步騭出生約 190 年代，217 年約 27 歲，尚未入仕（實際 229 年才被孫權徵召），不應出現在桂陽。",
+   "fix": "從孫權勢力 officers 移除步騭。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "廖化（本名廖淳）217 年仍在荊州隨關羽，未投降蜀漢，不應列為劉備武將；且史載他隨關羽北伐襄樊時才顯露，217 年身份應為關羽部曲而非獨立武將。",
+   "fix": "從劉備勢力 officers 移除廖化，或改為關羽屬下（若系統支援屬下關係）。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "孟達 217 年隨劉備入蜀後留守江州/永安一帶，不在劍閣；劍閣為益州北門，當時由張飛/吳懿把守。",
+   "fix": "將孟達 city 改為 jiangzhou 或 yongan；jiange 改派張飛或吳懿。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "馬良 217 年隨劉備在成都任職，未駐江陵；江陵由關羽鎮守，文官以趙累、韓福等為主。",
+   "fix": "將馬良 city 改為 chengtu。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "蔣琬 217 年剛進入劉備幕府（約 214-215 年入蜀），尚未擔任謀士要職，不應與諸葛亮、法正並列核心謀士。",
+   "fix": "降低蔣琬角色權重或移除；保留諸葛亮、法正、黃權為核心謀士。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "郭淮 217 年隨夏侯淵駐守漢中，角色應為武將而非謀士（史載其以勇烈聞名，後轉型謀將）。",
+   "fix": "將郭淮 role 改為武將。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "滿寵 217 年任廬江太守駐守合肥一帶，不在汝南；汝南當時由曹操直轄或朱靈等將領把守。",
+   "fix": "將滿寵 city 改為 hefei 或 shouchun 附近；runan 改派朱靈或曹操直轄。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "徐晃 217 年隨曹操在濡須前線或許昌一帶，不在長安；長安由曹洪、夏侯楙把守。",
+   "fix": "將徐晃 city 改為 xuchang 或 hefei 前線。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "曹仁 217 年駐守樊城（襄陽北），而非宛城；宛城為荊州南陽郡治，屬劉備/關羽勢力範圍。",
+   "fix": "將曹仁 city 改為 xiangyang 附近（若有樊城城池）或移至前線；移除 wan 城池歸屬。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "于禁 217 年駐守樊城協助曹仁，不在許昌；許昌由曹操中央機構管轄。",
+   "fix": "將于禁 city 改為 xiangyang 前線。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "漏掉張魯勢力（漢中舊主），217 年初張魯已死，其弟張衛、將領楊昂、閻圃仍據漢中北部，直到夏侯淵完全平定；建議作為中立或子勢力存在。",
+   "fix": "新增 faction f_zhanglu，lord 張衛/楊昂，capital nanzheng，cities 含 nanzheng、hanzhong 部分城池，strength D。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "襄平、柳城、臨渝等遼東/玄菟城池列為 neutral_cities，實際 217 年屬公孫淵（公孫康卒，公孫淵襲位）勢力，非中立。",
+   "fix": "新增 faction f_gongsunyuan，lord 公孫淵，capital xiangping，cities 含 xiangping、liucheng、linyu、beiping 等，strength C。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "交州四城（蒼梧、番禺、合浦、交趾）列為 neutral，實際 217 年屬士燮勢力（士燮任交阯太守，割據交州），非中立。",
+   "fix": "新增 faction f_shixie，lord 士燮，capital jiaozhi，cities 含 cangwu、panyu、hepu、jiaozhi，strength C。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "劉曄 217 年任曹操軍師祭酒，隨軍在濡須前線，不在鄴城；鄴城為曹丕、賈詡、司馬懿等中樞所在。",
+   "fix": "將劉曄 city 改為 hefei 或前線城池。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "司馬懿 217 年任丞相主簿/文學掾，在鄴城輔佐曹丕處理後方政務，角色屬實，但軍事權重較低；可保留。",
+   "fix": "保留但降低軍事權重。"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "strength 排序：曹操 S、劉備 A、孫權 A 合理，但曹操實際軍力遠超雙方總和，S+ 更貼切；劉備剛佔益州未穩，A- 較妥。",
+   "fix": "曹操 strength 改為 S+ 或 SS；劉備改為 A-。"
+  }
+ ]
+}

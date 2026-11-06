@@ -1,0 +1,77 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "何進勢力佔據全漢帝國 70+ 城，實為「漢廷」而非何進個人勢力；且缺少劉宏(漢靈帝)作為名義君主，導致政治架構失真。",
+   "fix": "新增勢力 f_han (君主: 劉宏, capital: luoyang, side: han, strength: S) 擁有全國州郡城池；何進改為 f_hejin (capital: luoyang, strength: B) 僅控司隸、冀州核心城池及禁軍將領。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "董卓、李傕、郭汜、張濟、樊稠、牛輔、徐榮、段煨、華雄、李儒 全數歸屬何進勢力並駐紮涼州諸城。史實 184 年董卓為涼州刺史/前鋒都尉獨立作戰，非何進部屬；諸將多隨董卓自立門戶。",
+   "fix": "新增勢力 f_dongzhuo (君主: 董卓, capital: jincheng/tianshui, side: others, strength: A) 納入上述將領及涼州城池 (jincheng, tianshui, wuwei, zhangye, dunhuang, anding 等)。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "公孫瓚置於 beiping 歸屬何進。184 年公孫瓚為遼西郡屬吏，後因討黃巾立功始得遷補；此時未擁兵自立，不應為可玩勢力核心武將。",
+   "fix": "移出 f_hejin.officers；若需登場，歸入 f_han 或 f_hejin 但 city 改為 youzhou 首府 ji 或 liucheng，role 降為一般武將。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "劉備、關羽、張飛置於 zhuoxian 歸屬何進。184 年劉備尚未起兵（中平元年冬始於涿郡募兵），三人不應以「武將」身分屬官方勢力。",
+   "fix": "移出 f_hejin.officers；如劇本需呈現劉備起家，可另建 f_liubei (capital: zhuoxian, strength: D, playable: true) 僅含三人。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "孫堅、陶謙、劉表、袁紹、袁術、王允、傅燮 全列為何進麾下武將/謀士。史實：孫堅為長沙郡佐、陶謙為兗州刺史部將、劉表未出仕、袁紹/袁術尚在京師未領兵、王允為尚書、傅燮為司隸校尉——均非何進私屬。",
+   "fix": "歸入 f_han (漢廷) 或各自所在郡國勢力；孫堅→長沙/江夏、陶謙→兗州/徐州、劉表→荊州未登場、袁紹/袁術→洛陽漢廷文官、王允→漢廷謀士、傅燮→司隸校尉(漢廷)。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "何進勢力 cities 囊括益州、涼州、交州、揚州深處等遠地 (chengtu, jiangzhou, hanzhong, nanzheng, tianshui, wuwei, jincheng, anding, cangwu, panyu 等)。184 年中央控制力未及邊陲，涼州更屬董卓/邊章/韓遂勢力範圍。",
+   "fix": "f_han 保留司隸、冀州、兗州、豫州、徐州、青州、幽州、并州、荊州北部、揚州北部核心郡城；益州、涼州、交州、南荊州、南揚州歸 neutral 或另建地方割據勢力。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "張角勢力 cities 含 puyang(兗州)、boma(兗州)、xiangcheng(豫州)、qiao(豫州)、runan(豫州)、xincai(豫州)、wan(荊州)。史實黃巾主力集中於冀州(鉅鹿、廣宗、下曲陽)、潁川(長社)、汝南、南陽、江夏、東郡；puyang、boma 非首波起義核心區。",
+   "fix": "保留 julu, qinghe, xindu, zhending, lunu, xiangcheng, runan, xincai, wan；移除 puyang, boma, qiao；若需豫州黃巾可增設波才/彭脫為獨立小勢力駐 xiangcheng/runan。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "缺少邊章、韓遂、北宮伯玉、李文侯等涼州/三輔叛軍勢力。events 第 5 輪提及邊章、韓遂起兵，但 factions 無對應勢力。",
+   "fix": "新增 f_bianzhang (君主: 邊章, capital: jincheng/anding, side: others, strength: B) 含韓遂、馬騰、韓暹等將領，佔據涼州西部城池。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "缺少徐州/青州黃巾 (徐州牧嚴象、青州刺史龔儁討賊)、荊州南部黃巾 (張曼成/趙弘/韓忠/孫仲已在 wan 但缺江夏/長沙方向)、益州馬相/趙祇叛軍。",
+   "fix": "視遊戲規模增設 f_zhangmancheng (江夏/長沙)、f_maxiang (益州)、f_qingzhou_yellow (北海/東萊) 等小勢力。"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "盧植駐 ye(鄴) 為何進武將。史實盧植為北中郎將，率北軍討廣宗黃巾，駐節冀州前線，非駐紮鄴城聽命何進。",
+   "fix": "city 改為 julu 或 qinghe 等前線城；faction 歸 f_han。"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "皇甫嵩、朱儁駐 xuchang(許昌) 為何進武將。史實二人為左/右中郎將，分別討潁川、汝南/南陽黃巾，行動獨立於何進指揮。",
+   "fix": "city 分別改為 chenxian(陳留/潁川一帶) 與 runan/xiangcheng；faction 歸 f_han。"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "strength 排序失衡：何進 S、張角 A，但何進實控全圖 70% 城池、擁董卓等頂級武將，實力遠超張角；且缺少漢靈帝勢力導致對比無意義。",
+   "fix": "依上述拆分勢力後重新評級：f_han S、f_hejin B、f_dongzhuo A、f_zhangjiao A、f_bianzhang B、其他小勢力 C/D。"
+  }
+ ]
+}

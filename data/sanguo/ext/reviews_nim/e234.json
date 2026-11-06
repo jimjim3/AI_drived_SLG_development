@@ -1,0 +1,107 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹魏佔有襄陽、新野、上庸、武威、金城、天水、敦煌、張掖、安定等蜀漢/涼州城池",
+   "fix": "將 xiangyang、xinye、shangyong 歸屬蜀漢；將 wuwei、jincheng、tianshui、dunhuang、zhangye、anding 設為中立或歸屬涼州勢力"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹魏佔有廣陵、江都、壽春、合肥、廬江等東吳/淮南前線城池",
+   "fix": "將 guangling、jiangdu、shouchun、hefei、lujiang 歸屬東吳"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "丁奉(生於 229 年)在 234 年年僅 5 歲，不應作武將登場",
+   "fix": "移除丁奉或改為潛力新人"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "孫韶(生年不詳，史載 250 年才任偏將軍)在 234 年不應作武將登場",
+   "fix": "移除孫韶"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "諸葛恪(生於 203 年)在 234 年年僅 31 歲，尚未出仕，不應作謀士登場",
+   "fix": "移除諸葛恪"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "步騭(生年不詳，史載 229 年始拜奮威將軍)在 234 年不應以謀士身分駐守夷陵",
+   "fix": "移除步騭或改為武將駐守江夏/江陵"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "闞澤(生於 176 年)在 234 年已 58 歲，史載 225 年卒，不應登場",
+   "fix": "移除闞澤"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "孫禮(史載 230 年卒)在 234 年已死，不應登場",
+   "fix": "移除孫禮"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "辛毗(生於 177 年)在 234 年已 57 歲，史載 235 年卒，但 234 年應在洛陽輔政而非長安",
+   "fix": "將辛毗移至洛陽"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "鄧芝在 234 年隨諸葛亮北伐，不應駐守江州",
+   "fix": "將鄧芝移至漢中"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "王凌實際駐守青州(壽光/臨淄)，不在壽春",
+   "fix": "將王凌移至 linzi 或青州城池"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "毌丘儉在 234 年尚未任遼東相，不應駐守薊",
+   "fix": "移除毌丘儉或改為洛陽/長安待命"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "田豫在 234 年應駐守平原/樂安一帶，不在薊",
+   "fix": "將田豫移至 pingyuan 或 lean"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "遺漏涼州勢力(馬賢/郭淮實際管轄)，導致涼州城池錯歸曹魏直轄",
+   "fix": "新增涼州勢力(f_liangzhou)佔有 wuwei、jincheng、tianshui、dunhuang、zhangye、anding"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "夷陵(yiling)在 234 年屬蜀漢(劉備死後未割讓)，現歸東吳",
+   "fix": "將 yiling 歸屬蜀漢"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "江陵(jiangling)在 234 年屬東吳(陸遜駐守)，現歸東吳正確，但襄陽應屬蜀漢",
+   "fix": "確認 xiangyang 歸蜀漢，jiangling 留東吳"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "劇本 summary 提及孫權三路北伐攻合肥、襄陽，但合肥、襄陽城池歸屬錯誤導致事件邏輯不通",
+   "fix": "修正城池歸屬後，事件文本自動合理"
+  }
+ ]
+}

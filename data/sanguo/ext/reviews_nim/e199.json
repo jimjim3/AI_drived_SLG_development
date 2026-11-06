@@ -1,0 +1,71 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "呂蒙出生於 178 年，199 年僅 21 歲，尚未出仕（200 年孫權破黃祖時始從周瑜），不應在武將名單。",
+   "fix": "移除呂蒙；如需填補武將可改用已投效的陳武、蔣欽、徐逸等。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "董襲於 197 年隨孫策平定會稽時投效，199 年已在麾下，但史載其為文吏/都尉，非武將定位。",
+   "fix": "改為謀士或文官角色，或移除換入陳武、周泰等確實為武將者。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "劉備、關羽、張飛 199 年仍屬曹操麾下（建安四年劉備始受車騎將軍節制），但 200 年初劉備殺車冑叛曹，劇本開局即放入曹營屬實，惟關羽、張飛實際駐守下邳/小沛，不在許昌。",
+   "fix": "關羽、張飛 city 改為 xiapi 或 pengcheng；劉備留許昌符合史實（侍從天子）。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操勢力佔有 guangling、jiangdu、juxian、huaiyin、quxian、kaiyang、tanxian 等揚/徐州沿海城池，199 年實為袁術、陶謙舊部或孫策勢力範圍，曹操未曾佔領。",
+   "fix": "將上述城池移出曹操 cities；guangling、jiangdu 歸孫策或中立，juxian、huaiyin 等歸袁術或中立。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "袁紹勢力佔有 jinyang、yanmen、dingxiang、lishi、pingyang、shangdang、huguan 等并州諸城，199 年并州牧為張楊（後轉韓峙），袁紹未染指并州。",
+   "fix": "移出袁紹 cities，改歸張楊勢力（新增）或設為中立。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "袁紹勢力佔有 pingyuan、jinan、lean、linzi、beihai、donglai 等青州諸城，199 年青州牧為袁譚（袁紹長子）自治，非袁紹直轄。",
+   "fix": "新增袁譚勢力 (f_yuantan) 統轄青州諸城，袁紹僅保留冀、幽、并北部。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "孫策勢力僅有 wujun、kuaiji、jianye、jingkou、jianan 五城，缺失 199 年已平定的曲阿、丹陽、陵陽、烏程、海昌、永興等吳郡、會稽、丹陽屬縣。",
+   "fix": "補充孫策 cities：qu'a、danyang、lingyang、wucheng、haichang、yongxing 等（需在城池表新增或映射既有 id）。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "漏掉張楊（并州）、袁譚（青州）、陶謙已歿但劉備未接徐州前的徐州殘部（車冑）、公孫度（遼東）等獨立勢力。",
+   "fix": "新增 f_zhangyang、f_yuantan、f_chezhou、f_gongsundu；若簡化可併入中立城但需註明。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "馬超生於 176 年，199 年 23 歲，史載 202 年始隨馬騰入關，此時尚未出仕。",
+   "fix": "移除馬超；馬騰麾下改放龐德、馬岱（馬岱稍晚）或僅保留韓遂。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "法正 199 年仍在劉璋麾下任職（建安六年才投劉備），放在劉璋無誤，但角色定位為謀士合理。",
+   "fix": "保留。"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "劇本 summary 提及「曹操下邳滅呂布」，實為建安三年（198）二月事，199 年開局已屬過去式，敘述無誤但易混淆時間點。",
+   "fix": "summary 改為「曹操已於去年平定呂布」以明確時序。"
+  }
+ ]
+}

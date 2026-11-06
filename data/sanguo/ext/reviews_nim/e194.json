@@ -1,0 +1,263 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "程昱（字仲德）194 年尚未投奔曹操，史載建安初（196 年後）始歸曹。",
+   "fix": "從曹操勢力移除程昱。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "戲志才（字文友）194 年尚未投奔曹操，史載建安初始歸曹。",
+   "fix": "從曹操勢力移除戲志才。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "李典（字曼成）194 年尚未投奔曹操，史載建安初始歸曹。",
+   "fix": "從曹操勢力移除李典。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "典韋194 年尚未投奔曹操，史載張邈叛變時典韋始歸曹（約 194 年底或 195 年）。",
+   "fix": "從曹操勢力移除典韋。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "張遼194 年仍屬丁原/董卓/呂布舊部，隨呂布流浪，直到 198 年呂布滅亡後才降曹；不應出現在呂布勢力武將名單中（此時張遼尚未正式歸屬呂布麾下為核心將領）。",
+   "fix": "從呂布勢力移除張遼，或改為呂布流寇時期的臨時屬將（建議移除）。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "高順194 年尚未歸呂布，史載高順隨呂布時間較晚（約 196 年後）。",
+   "fix": "從呂布勢力移除高順。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "趙雲（生於 169 年）194 年年僅 25 歲，尚未出仕公孫瓚，史載趙雲隨劉備始於 200 年前後。",
+   "fix": "從公孫瓚勢力移除趙雲。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "孫策194 年隨父孫堅在荊州/揚州交界，未歸袁術；孫策渡江東乃 195 年事。",
+   "fix": "從袁術勢力移除孫策、程普、黃蓋、韓當、朱治等江東舊將。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "徐晃194 年尚未投奔李傕/郭汜，史載徐晃初從楊奉，後歸曹操（建安年間）。",
+   "fix": "從李傕勢力移除徐晃。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "董承194 年為漢朝宗室將領，隨獻帝西遷長安，非李傕部將；後獻帝東歸時才顯現。",
+   "fix": "從李傕勢力移除董承。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "馬超（生 176 年）194 年年僅 18 歲，尚未出仕；馬岱更晚。",
+   "fix": "從馬騰勢力移除馬超、馬岱。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "龐德194 年尚未出仕，史載龐德初平年間隨馬騰，但實際活躍於建安年間。",
+   "fix": "從馬騰勢力移除龐德。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "太史慈194 年尚未歸孔融，史載太史慈初平年間在遼東、後歸劉繇，建安初才投孔融。",
+   "fix": "從孔融勢力移除太史慈。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "許劭（字子將）190 年已卒，194 年不應在世。",
+   "fix": "從劉繇勢力移除許劭。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "許昌（xuchang）194 年屬李傕/郭汜控制（漢獻帝尚在長安），曹操迎駕遷都許昌乃 196 年（建安元年）事。",
+   "fix": "將 xuchang 從 neutral_cities 移至李傕勢力（f_lijue）城市。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "襄城（xiangcheng）194 年屬李傕/郭汜勢力範圍，非中立。",
+   "fix": "將 xiangcheng 從 neutral_cities 移至李傕勢力城市。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "懷縣（huai）屬司隸河內郡，194 年為袁紹勢力範圍（袁紹控制冀州、河內）。",
+   "fix": "將 huai 從 neutral_cities 移至袁紹勢力城市。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "安定（anding）屬涼州，194 年馬騰/韓遂勢力範圍，非中立。",
+   "fix": "將 anding 從 neutral_cities 移至馬騰勢力城市。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "天水（tianshui）屬涼州，194 年馬騰/韓遂勢力範圍，不應屬李傕。",
+   "fix": "將 tianshui 從李傕勢力移至馬騰勢力城市。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "陳留（chenliu）、定陶（dingtao）、昌邑（changyi）、任城（rencheng）、奉高（fenggao）194 年初屬曹操，陳宮張邈叛變後才歸呂布；開局不應全屬呂布。",
+   "fix": "上述城市初屬曹操（f_caocao），事件觸發後轉歸呂布。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "濮陽（puyang）194 年初屬曹操，張邈叛變後呂布才入據；開局不應屬呂布。",
+   "fix": "puyang 初屬曹操，事件後轉歸呂布。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "白馬（boma）屬東郡，194 年曹操控制，合理；但鄄城（juancheng）為曹操據點正確。",
+   "fix": "保持現狀。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "譙縣（qiao）屬沛國，194 年曹操籍貫地但非其控制核心城池；曹操此時主力在兗州，譙縣可能屬陶謙/徐州勢力範圍。",
+   "fix": "將 qiao 從曹操勢力移至陶謙勢力或中立。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉劉虞勢力：194 年劉虞仍據幽州（薊），公孫瓚尚未完全吞併劉虞（劉虞死於 193 年底/194 年初，其子劉和繼立，194 年仍存）。",
+   "fix": "新增劉虞/劉和勢力，首都薊（ji），涵蓋幽州部分城池。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉張楊勢力：194 年張楊據河內（野王/懷縣一帶），為獨立軍閥。",
+   "fix": "新增張楊勢力，首都懷縣（huai）或野王（不在城池表），涵蓋河內地區。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "田豫（字國讓）為曹魏名臣，早年事跡不詳，194 年是否在公孫瓚麾下無確鑿史料。",
+   "fix": "從公孫瓚勢力移除田豫，或改為通用謀士。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "單經、鄒丹為公孫瓚將領，史載見於 191-193 年間，194 年是否仍在需考證。",
+   "fix": "保留但標註存疑。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "張勳、雷薄、閻象、楊弘為袁術部將，194 年袁術在壽春、淮南，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "陳登、陳珪父子194 年確在陶謙麾下，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "臧霸、孫觀、趙昱為陶謙/徐州將領，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "簡雍、孫乾194 年已隨劉備，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "袁譚駐平原（pingyuan）符合史實（袁譚治平原）。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "張郃駐黎陽（liyang）符合史實（張郃早年歸袁紹，守河內/黎陽）。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "黃忠在長沙（changsha）為劉表部將，史載黃忠早年從劉表，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "劉璋、張任、吳懿、龐羲、黃權、董扶均為劉焉/劉璋部屬，194 年劉焉尚在，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "嚴顏為劉焉部將鎮江州，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "韓遂、馬騰、閻行、梁興、成公英均為涼州軍閥核心，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "張魯、張衛、閻圃、楊昂、楊任、楊柏、楊松、申耽為五斗米道/漢中勢力，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "劉繇、張英、樊能、于糜、華歆、盛憲均為江東劉繇勢力，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "孔融、王修、孫邵、彭璆、左承祖、宗寶、武安國為北海孔融勢力，編制合理。",
+   "fix": "保持。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "柳城（liucheng）、襄平（xiangping）屬遼東公孫度勢力，194 年公孫度割據遼東，非中立。",
+   "fix": "新增公孫度勢力或歸入公孫瓚（但史實獨立），建議新增勢力。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "交州諸城（蒼梧、番禺、合浦、交趾）194 年屬士燮勢力，非中立。",
+   "fix": "新增士燮勢力。"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "strength 排序：袁紹 S、曹操 A、呂布 A、袁術 A、劉表 A、李傕 A 過高；曹操 194 年僅據兗州一隅，兵力遠遜袁紹、劉表、袁術，建議曹操 B、呂布 B、袁術 B、劉表 A、李傕 B。",
+   "fix": "調整 strength：袁紹 S、劉表 A、袁術 B、曹操 B、呂布 B、李傕 B、公孫瓚 B、劉焉 B、馬騰 C、劉繇 C、孔融 D、張魯 D、劉備 B。"
+  }
+ ]
+}

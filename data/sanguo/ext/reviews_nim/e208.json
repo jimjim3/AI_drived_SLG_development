@@ -1,0 +1,71 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操勢力佔有「襄陽(xiangyang)」、「江陵(jiangling)」、「夷陵(yiling)」、「江夏(jiangxia)」、「上庸(shangyong)」、「武陵(wuling)」、「長沙(changsha)」、「桂陽(guiyang)」、「零陵(lingling)」等荊州南郡諸城，208 年赤壁前夜這些城池均屬劉表管轄，曹操尚未南下佔領。",
+   "fix": "將上述 9 座城池從 f_caocao.cities 移除，歸入 f_liubiao.cities（原已包含，保留即可）。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操勢力佔有「壽春(shouchun)」、「合肥(hefei)」、「廬江(lujiang)」、「宛(wan)」，208 年此時仍為孫權勢力範圍（孫權於建安十三年已佔廬江、屯兵合肥、爭奪壽春），曹操赤壁敗退後才逐步取得。",
+   "fix": "將 shouchun、hefei、lujiang、wan 從 f_caocao.cities 移除，歸入 f_sunquan.cities。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操勢力佔有「彭城(pengcheng)」、「下邳(xiapi)」、「郯縣(tanxian)」、「開陽(kaiyang)」、「朐縣(quxian)」、「淮陰(huaiyin)」、「廣陵(guangling)」、「江都(jiangdu)」等徐州/揚州北部諸城，208 年此時屬孫權勢力（孫權建安十六年才割讓予曹操），赤壁前夜不應歸曹。",
+   "fix": "將上述 8 座城池從 f_caocao.cities 移除，歸入 f_sunquan.cities。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "曹操麾下列「張郃(zhanghe)」，張郃實際於建安十四年(209)隨曹操攻漢中時才降曹，208 年仍在袁紹/袁譚麾下。",
+   "fix": "從 f_caocao.officers 移除張郃；如需補充袁紹殘部可另設勢力或暫不安排。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "劉備麾下列「趙雲(zhaoyun)」，趙雲於建安十三年(208)劉備投奔劉表後才隨行至新野，赤壁前夜確實已在劉備身邊，此處無誤；但「徐庶(xushu)」於建安十三年被曹操徵召離開劉備，赤壁前夜已不在劉備麾下。",
+   "fix": "從 f_liubei.officers 移除徐庶；可改放入 f_caocao.officers（city: xuchang）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "孫權麾下列「諸葛瑾(zhugejin)」，諸葛瑾早年在孫權幕府，208 年確實在江東，但史載赤壁前後才正式任職，放在 jingkou 尚可接受；「凌統(lingtong)」生於 189 年，208 年僅 19 歲，已隨父凌操征戰，列為武將可接受。",
+   "fix": "無需修改。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "劉表麾下列「李嚴(liyan)」駐守夷陵(yiling)，李嚴實為劉備入蜀後(214 後)才投降，208 年不在荊州。",
+   "fix": "從 f_liubiao.officers 移除李嚴；夷陵可改派「韓玄」或「杜濩」等史實將領。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "馬騰勢力列「馬岱(madai)」，馬岱為馬超從弟，生年不詳，208 年極可能尚未出仕或隨馬超在涼州，放在 tianshui 尚可接受；但「程銀(chengyin)」史載為馬超部將，208 年是否已歸馬騰存疑，風險較低可保留。",
+   "fix": "無需修改。"
+  },
+  {
+   "severity": "low",
+   "type": "faction",
+   "detail": "漏掉「袁譚/袁尚」殘部勢力（青、幽、并三州尚未完全平定），208 年初曹操剛平定鄴城，袁氏餘部仍盤踞青州(袁譚)、幽州(袁尚)、并州(高幹)，建議補充為可玩或 NPC 勢力。",
+   "fix": "新增 f_yuantan(青州)、f_yuanshang(幽州)、f_gaogan(并州) 或併入一個「袁氏殘部」勢力。"
+  },
+  {
+   "severity": "low",
+   "type": "faction",
+   "detail": "漏掉「張繡」勢力，張繡於建安十二年(207)投降曹操，208 年已編入曹軍，不需獨立勢力，此處無誤。",
+   "fix": "無需修改。"
+  },
+  {
+   "severity": "low",
+   "type": "city",
+   "detail": "neutral_cities 列「敦煌(dunhuang)」、「張掖(zhangye)」，208 年屬涼州刺史部/馬騰勢力範圍，不應為中立。",
+   "fix": "從 neutral_cities 移除 dunhuang、zhangye，歸入 f_mateng.cities。"
+  }
+ ]
+}

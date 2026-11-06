@@ -1,0 +1,2179 @@
+{
+ "鮮于輔": {
+  "name": "鮮于輔",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "劉虞",
+   "曹操",
+   "曹丕"
+  ],
+  "home_city": "yuyang",
+  "tags": [
+   "統帥",
+   "內政"
+  ],
+  "bio": "劉虞舊部，劉虞遇害後率部大破公孫瓚報仇，後率幽州軍民歸降曹操受封重用。",
+  "stats_estimate": {
+   "war": 68,
+   "leadership": 75,
+   "intelligence": 72,
+   "politics": 74,
+   "charm": 75
+  },
+  "seen_in": [
+   "190:劉虞"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 74.0,
+   "武力": 69.0,
+   "智力": 65.0,
+   "政治": 70.0,
+   "魅力": 72.0
+  }
+ },
+ "龐季": {
+  "name": "龐季",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "劉表"
+  ],
+  "home_city": "xiangyang",
+  "tags": [
+   "智將",
+   "內政"
+  ],
+  "bio": "劉表部下，劉表初入荊州時單騎前往說降佔據襄陽的張虎與陳生，助劉表立足荊襄。",
+  "stats_estimate": {
+   "war": 42,
+   "leadership": 48,
+   "intelligence": 71,
+   "politics": 69,
+   "charm": 67
+  },
+  "seen_in": [
+   "199:劉表"
+  ],
+  "verification": "unverified"
+ },
+ "糜竺": {
+  "name": "糜竺",
+  "exists": true,
+  "courtesy": "子仲",
+  "birth": 165,
+  "death": 221,
+  "faction_path": [
+   "陶謙",
+   "劉備"
+  ],
+  "home_city": "quxian",
+  "tags": [
+   "內政",
+   "富豪"
+  ],
+  "bio": "東海朐縣富商，散盡家產資助劉備起家，深受禮遇位居群臣之首。",
+  "stats_estimate": {
+   "war": 34,
+   "leadership": 42,
+   "intelligence": 75,
+   "politics": 80,
+   "charm": 83
+  },
+  "seen_in": [
+   "189:陶謙",
+   "196:劉備",
+   "197:劉備",
+   "200:劉備",
+   "208:劉備"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 31.1,
+   "武力": 32.6,
+   "智力": 70.2,
+   "政治": 81.5,
+   "魅力": 81.0
+  }
+ },
+ "糜芳": {
+  "name": "糜芳",
+  "exists": true,
+  "courtesy": "子方",
+  "birth": null,
+  "death": 223,
+  "faction_path": [
+   "陶謙",
+   "劉備",
+   "孫權"
+  ],
+  "home_city": "quxian",
+  "tags": [
+   "將領"
+  ],
+  "bio": "糜竺之弟，守南郡時因不滿關羽逼責且畏罪投降東吳，致關羽敗亡。",
+  "stats_estimate": {
+   "war": 63,
+   "leadership": 58,
+   "intelligence": 26,
+   "politics": 65,
+   "charm": 32
+  },
+  "seen_in": [
+   "189:陶謙",
+   "196:劉備",
+   "197:劉備",
+   "200:劉備",
+   "208:劉備",
+   "219:劉備"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 55.8,
+   "武力": 62.3,
+   "智力": 32.9,
+   "政治": 22.8,
+   "魅力": 21.8
+  }
+ },
+ "索靖": {
+  "name": "索靖",
+  "exists": true,
+  "courtesy": "幼安",
+  "birth": 239,
+  "death": 303,
+  "faction_path": [
+   "西晉"
+  ],
+  "home_city": "dunhuang",
+  "tags": [
+   "智將",
+   "書法家"
+  ],
+  "bio": "敦煌五龍之一、著名書法名家，入西晉屢立軍功平定西陲與內亂。",
+  "stats_estimate": {
+   "war": 64,
+   "leadership": 76,
+   "intelligence": 79,
+   "politics": 74,
+   "charm": 78
+  },
+  "seen_in": [
+   "280:司馬炎",
+   "280:司馬駿"
+  ],
+  "verification": "unverified"
+ },
+ "范方": {
+  "name": "范方",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "公孫瓚"
+  ],
+  "home_city": null,
+  "tags": [
+   "將領"
+  ],
+  "bio": "公孫瓚部將，曾率騎兵受命南下支援袁術，後公孫瓚召還回師。",
+  "stats_estimate": {
+   "war": 68,
+   "leadership": 63,
+   "intelligence": 46,
+   "politics": 42,
+   "charm": 50
+  },
+  "seen_in": [
+   "197:公孫瓚"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 54.0,
+   "武力": 58.0,
+   "智力": 38.0,
+   "政治": 33.0,
+   "魅力": 45.0
+  }
+ },
+ "荀勖": {
+  "name": "荀勖",
+  "exists": true,
+  "courtesy": "公曾",
+  "birth": null,
+  "death": 289,
+  "faction_path": [
+   "曹魏",
+   "西晉"
+  ],
+  "home_city": "xuchang",
+  "tags": [
+   "智將",
+   "內政"
+  ],
+  "bio": "潁川名士，深得司馬昭與司馬炎器重，參預西晉開國機密與禮樂典章制定。",
+  "stats_estimate": {
+   "war": 26,
+   "leadership": 48,
+   "intelligence": 83,
+   "politics": 85,
+   "charm": 64
+  },
+  "seen_in": [
+   "280:司馬炎"
+  ],
+  "verification": "unverified"
+ },
+ "董元": {
+  "name": "董元",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 271,
+  "faction_path": [
+   "蜀漢",
+   "曹魏",
+   "西晉"
+  ],
+  "home_city": "jiaozhi",
+  "tags": [
+   "將領"
+  ],
+  "bio": "霍弋部將，隨軍平定並鎮守交趾，屢敗東吳名將，後戰死於交州之戰。",
+  "stats_estimate": {
+   "war": 71,
+   "leadership": 69,
+   "intelligence": 58,
+   "politics": 51,
+   "charm": 59
+  },
+  "seen_in": [
+   "265:司馬昭",
+   "265:霍弋"
+  ],
+  "verification": "unverified"
+ },
+ "董扶": {
+  "name": "董扶",
+  "exists": true,
+  "courtesy": "茂安",
+  "birth": null,
+  "death": 194,
+  "faction_path": [
+   "劉焉"
+  ],
+  "home_city": "chengtu",
+  "tags": [
+   "名士"
+  ],
+  "bio": "益州名儒，精通讖緯之學，因預言益州有天子氣而促成劉焉入蜀割據。",
+  "stats_estimate": {
+   "war": 21,
+   "leadership": 36,
+   "intelligence": 77,
+   "politics": 71,
+   "charm": 73
+  },
+  "seen_in": [
+   "190:劉焉",
+   "192:劉焉",
+   "194:劉焉"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 5.0,
+   "武力": 4.0,
+   "智力": 67.0,
+   "政治": 56.0,
+   "魅力": 68.0
+  }
+ },
+ "衛茲": {
+  "name": "衛茲",
+  "exists": true,
+  "courtesy": "子許",
+  "birth": null,
+  "death": 190,
+  "faction_path": [
+   "曹操"
+  ],
+  "home_city": "chenliu",
+  "tags": [
+   "義士",
+   "將領"
+  ],
+  "bio": "陳留富豪名士，傾家蕩產資助曹操首度募兵起義，於滎陽之戰力戰殉國。",
+  "stats_estimate": {
+   "war": 61,
+   "leadership": 62,
+   "intelligence": 67,
+   "politics": 73,
+   "charm": 77
+  },
+  "seen_in": [
+   "189:曹操",
+   "190:曹操"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 58.0,
+   "武力": 38.0,
+   "智力": 62.0,
+   "政治": 73.0,
+   "魅力": 71.0
+  }
+ },
+ "賀劭": {
+  "name": "賀劭",
+  "exists": true,
+  "courtesy": "興伯",
+  "birth": 226,
+  "death": 275,
+  "faction_path": [
+   "東吳"
+  ],
+  "home_city": "kuaiji",
+  "tags": [
+   "內政",
+   "名士"
+  ],
+  "bio": "賀齊之孫，吳末忠正能臣，屢次上疏直言進諫暴虐的孫皓，終遭構陷遇害。",
+  "stats_estimate": {
+   "war": 30,
+   "leadership": 47,
+   "intelligence": 74,
+   "politics": 78,
+   "charm": 76
+  },
+  "seen_in": [
+   "265:孫皓"
+  ],
+  "verification": "unverified"
+ },
+ "趙昱": {
+  "name": "趙昱",
+  "exists": true,
+  "courtesy": "元達",
+  "birth": null,
+  "death": 193,
+  "faction_path": [
+   "陶謙"
+  ],
+  "home_city": "juxian",
+  "tags": [
+   "名士",
+   "內政"
+  ],
+  "bio": "瑯邪高士，任廣陵太守廉潔清明，後遭過境叛亂的笮融恩將仇報所害。",
+  "stats_estimate": {
+   "war": 33,
+   "leadership": 54,
+   "intelligence": 74,
+   "politics": 78,
+   "charm": 80
+  },
+  "seen_in": [
+   "190:陶謙",
+   "194:陶謙"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 45.0,
+   "武力": 34.0,
+   "智力": 71.0,
+   "政治": 81.0,
+   "魅力": 79.0
+  }
+ },
+ "趙韙": {
+  "name": "趙韙",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 201,
+  "faction_path": [
+   "劉焉",
+   "劉璋"
+  ],
+  "home_city": "langzhong",
+  "tags": [
+   "統帥"
+  ],
+  "bio": "劉焉入蜀時的主將與重臣，後擁立劉璋，但因專權與東州兵矛盾發動叛亂兵敗被殺。",
+  "stats_estimate": {
+   "war": 65,
+   "leadership": 73,
+   "intelligence": 68,
+   "politics": 64,
+   "charm": 58
+  },
+  "seen_in": [
+   "192:劉焉"
+  ],
+  "verification": "unverified"
+ },
+ "鄧颺": {
+  "name": "鄧颺",
+  "exists": true,
+  "courtesy": "玄茂",
+  "birth": null,
+  "death": 249,
+  "faction_path": [
+   "曹魏"
+  ],
+  "home_city": "xinye",
+  "tags": [
+   "名士"
+  ],
+  "bio": "曹爽心腹「四聰」之一，浮華貪利，高平陵之變後與曹爽同受族誅。",
+  "stats_estimate": {
+   "war": 29,
+   "leadership": 43,
+   "intelligence": 66,
+   "politics": 57,
+   "charm": 38
+  },
+  "seen_in": [
+   "249:曹爽"
+  ],
+  "verification": "unverified"
+ },
+ "李球": {
+  "name": "李球",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 263,
+  "faction_path": [
+   "劉禪"
+  ],
+  "home_city": "jianning",
+  "tags": [
+   "忠臣",
+   "勇將"
+  ],
+  "bio": "蜀漢羽林右部督，李恢之侄，隨諸葛瞻守綿竹，力戰鄧艾魏軍戰死。",
+  "stats_estimate": {
+   "war": 65,
+   "leadership": 63,
+   "intelligence": 56,
+   "politics": 50,
+   "charm": 62
+  },
+  "seen_in": [
+   "263:劉禪"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 66.0,
+   "武力": 71.0,
+   "智力": 53.0,
+   "政治": 58.0
+  }
+ },
+ "柳毅": {
+  "name": "柳毅",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "公孫度"
+  ],
+  "home_city": "xiangping",
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "bio": "遼東公孫度麾下重將，曾奉命率軍渡海攻佔東萊諸縣開拓疆土。",
+  "stats_estimate": {
+   "war": 70,
+   "leadership": 72,
+   "intelligence": 54,
+   "politics": 48,
+   "charm": 56
+  },
+  "seen_in": [
+   "202:公孫度"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 62.0,
+   "武力": 54.5,
+   "智力": 19.5,
+   "政治": 49.0,
+   "魅力": 45.0
+  }
+ },
+ "柳甫": {
+  "name": "柳甫",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 238,
+  "faction_path": [
+   "公孫恭",
+   "公孫淵"
+  ],
+  "home_city": "xiangping",
+  "tags": [
+   "文官",
+   "內政"
+  ],
+  "bio": "公孫淵部下御史大夫，襄平被司馬懿圍困時出城請降，遭斬首示眾。",
+  "stats_estimate": {
+   "war": 30,
+   "leadership": 34,
+   "intelligence": 56,
+   "politics": 60,
+   "charm": 52
+  },
+  "seen_in": [
+   "228:公孫恭",
+   "228:公孫淵"
+  ],
+  "verification": "unverified",
+  "koei_mean": {}
+ },
+ "柳隱": {
+  "name": "柳隱",
+  "exists": true,
+  "courtesy": "休然",
+  "birth": 197,
+  "death": 269,
+  "faction_path": [
+   "劉禪",
+   "司馬炎"
+  ],
+  "home_city": "chengtu",
+  "tags": [
+   "名將",
+   "統帥",
+   "堅守"
+  ],
+  "bio": "蜀漢名將，長年隨姜維北伐，鎮守黃金城堅拒魏軍，後隨後主敕令降晉。",
+  "stats_estimate": {
+   "war": 72,
+   "leadership": 79,
+   "intelligence": 74,
+   "politics": 66,
+   "charm": 73
+  },
+  "seen_in": [
+   "249:劉禪",
+   "263:劉禪"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 77.0,
+   "武力": 74.0,
+   "智力": 68.0,
+   "政治": 43.0,
+   "魅力": 64.0
+  }
+ },
+ "桓邵": {
+  "name": "桓邵",
+  "exists": true,
+  "courtesy": "鴻緒",
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "士燮"
+  ],
+  "home_city": "peixian",
+  "tags": [
+   "名士",
+   "內政"
+  ],
+  "bio": "沛國名士，早年輕視曹操，後南逃交趾依附士燮，終為曹操所捕殺。",
+  "stats_estimate": {
+   "war": 26,
+   "leadership": 32,
+   "intelligence": 67,
+   "politics": 65,
+   "charm": 50
+  },
+  "seen_in": [
+   "202:士燮"
+  ],
+  "verification": "unverified"
+ },
+ "楊定": {
+  "name": "楊定",
+  "exists": true,
+  "courtesy": "整修",
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "李傕",
+   "劉協"
+  ],
+  "home_city": "changan",
+  "tags": [
+   "猛將",
+   "軍閥"
+  ],
+  "bio": "董卓部將，董卓死後參與涼州軍內鬥，後與楊奉等護送漢獻帝東歸。",
+  "stats_estimate": {
+   "war": 71,
+   "leadership": 66,
+   "intelligence": 47,
+   "politics": 40,
+   "charm": 43
+  },
+  "seen_in": [
+   "194:李傕"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 62.0,
+   "武力": 60.0,
+   "智力": 46.0,
+   "政治": 33.0,
+   "魅力": 37.0
+  }
+ },
+ "楊帛": {
+  "name": "楊帛",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "張魯"
+  ],
+  "home_city": "hanzhong",
+  "tags": [
+   "武將"
+  ],
+  "bio": "漢中張魯部將，曾欲加害寄身於漢中的馬超，促使馬超密謀投奔劉備。",
+  "stats_estimate": {
+   "war": 61,
+   "leadership": 57,
+   "intelligence": 52,
+   "politics": 44,
+   "charm": 41
+  },
+  "seen_in": [
+   "215:張魯"
+  ],
+  "verification": "unverified"
+ },
+ "楊稷": {
+  "name": "楊稷",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 271,
+  "faction_path": [
+   "劉禪",
+   "霍弋",
+   "司馬昭",
+   "司馬炎"
+  ],
+  "home_city": "chengtu",
+  "tags": [
+   "統帥",
+   "勇將",
+   "忠臣"
+  ],
+  "bio": "原蜀漢將領，降晉後奉命率軍經略交阯屢破吳兵，城破被圍力竭殉難。",
+  "stats_estimate": {
+   "war": 74,
+   "leadership": 77,
+   "intelligence": 68,
+   "politics": 64,
+   "charm": 70
+  },
+  "seen_in": [
+   "265:司馬昭",
+   "265:霍弋"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 76.0,
+   "武力": 53.0,
+   "智力": 72.0,
+   "政治": 67.0
+  }
+ },
+ "楊駿": {
+  "name": "楊駿",
+  "exists": true,
+  "courtesy": "文長",
+  "birth": null,
+  "death": 291,
+  "faction_path": [
+   "司馬炎"
+  ],
+  "home_city": "hongnong",
+  "tags": [
+   "權臣",
+   "內政"
+  ],
+  "bio": "西晉外戚權臣，晉武帝楊皇后之父，武帝崩後專攬大權，後死於賈后政變。",
+  "stats_estimate": {
+   "war": 28,
+   "leadership": 40,
+   "intelligence": 46,
+   "politics": 62,
+   "charm": 45
+  },
+  "seen_in": [
+   "280:司馬炎"
+  ],
+  "verification": "unverified"
+ },
+ "段灼": {
+  "name": "段灼",
+  "exists": true,
+  "courtesy": "休然",
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "曹奐",
+   "司馬炎",
+   "司馬駿"
+  ],
+  "home_city": "dunhuang",
+  "tags": [
+   "智將",
+   "內政",
+   "忠臣"
+  ],
+  "bio": "敦煌人，仕魏晉，為人忠直，曾上疏力陳鄧艾之忠勇以求平反昭雪。",
+  "stats_estimate": {
+   "war": 54,
+   "leadership": 63,
+   "intelligence": 77,
+   "politics": 78,
+   "charm": 76
+  },
+  "seen_in": [
+   "280:司馬炎",
+   "280:司馬駿"
+  ],
+  "verification": "unverified"
+ },
+ "毌丘宗": {
+  "name": "毌丘宗",
+  "exists": true,
+  "courtesy": "子仁",
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "毌丘儉",
+   "孫亮",
+   "司馬炎"
+  ],
+  "home_city": "anyi",
+  "tags": [
+   "內政",
+   "武將"
+  ],
+  "bio": "毌丘儉之子，壽春兵變時被送往東吳請援質押，吳亡後歸晉歷任官職。",
+  "stats_estimate": {
+   "war": 58,
+   "leadership": 60,
+   "intelligence": 64,
+   "politics": 66,
+   "charm": 63
+  },
+  "seen_in": [
+   "255:孫亮",
+   "255:毌丘儉"
+  ],
+  "verification": "unverified"
+ },
+ "毛炅": {
+  "name": "毛炅",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 271,
+  "faction_path": [
+   "劉禪",
+   "霍弋",
+   "司馬昭",
+   "司馬炎"
+  ],
+  "home_city": "langzhong",
+  "tags": [
+   "猛將",
+   "勇將"
+  ],
+  "bio": "原蜀漢牙門將，隨霍弋經略交阯斬殺吳將修則等人，被俘後寧死不降而遇害。",
+  "stats_estimate": {
+   "war": 81,
+   "leadership": 73,
+   "intelligence": 54,
+   "politics": 42,
+   "charm": 67
+  },
+  "seen_in": [
+   "265:司馬昭",
+   "265:霍弋"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 73.0,
+   "武力": 72.0,
+   "智力": 64.0,
+   "政治": 48.0
+  }
+ },
+ "江統": {
+  "name": "江統",
+  "exists": true,
+  "courtesy": "應元",
+  "birth": null,
+  "death": 310,
+  "faction_path": [
+   "西晉"
+  ],
+  "home_city": "chenliu",
+  "tags": [
+   "內政",
+   "名士"
+  ],
+  "bio": "西晉名臣，官至散騎常侍，曾作名篇《徙戎論》力主內遷胡人各返舊土。",
+  "stats_estimate": {
+   "war": 26,
+   "leadership": 42,
+   "intelligence": 79,
+   "politics": 83,
+   "charm": 75
+  },
+  "seen_in": [
+   "280:司馬炎",
+   "280:司馬駿"
+  ],
+  "verification": "unverified"
+ },
+ "汪昭": {
+  "name": "汪昭",
+  "exists": false,
+  "seen_in": [
+   "202:袁譚"
+  ],
+  "verification": "unverified"
+ },
+ "涼茂": {
+  "name": "涼茂",
+  "exists": true,
+  "courtesy": "伯方",
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "漢",
+   "公孫度",
+   "曹魏"
+  ],
+  "home_city": "changyi",
+  "tags": [
+   "內政",
+   "名士"
+  ],
+  "bio": "曹魏重臣，客居遼東時曾以大義駁斥公孫度襲擊曹操的企圖，後官至太子太傅。",
+  "stats_estimate": {
+   "war": 28,
+   "leadership": 44,
+   "intelligence": 74,
+   "politics": 79,
+   "charm": 77
+  },
+  "seen_in": [
+   "202:公孫度"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 43.0,
+   "武力": 26.0,
+   "智力": 67.0,
+   "政治": 77.0,
+   "魅力": 70.0
+  }
+ },
+ "爨谷": {
+  "name": "爨谷",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 265,
+  "faction_path": [
+   "蜀漢",
+   "曹魏",
+   "西晉"
+  ],
+  "home_city": "jianning",
+  "tags": [
+   "統帥",
+   "武將"
+  ],
+  "bio": "南中大姓出身，蜀亡後隨霍弋降晉，受命出任交趾太守平定交州南境。",
+  "stats_estimate": {
+   "war": 68,
+   "leadership": 70,
+   "intelligence": 62,
+   "politics": 64,
+   "charm": 65
+  },
+  "seen_in": [
+   "265:司馬昭",
+   "265:霍弋"
+  ],
+  "verification": "unverified"
+ },
+ "牽秀": {
+  "name": "牽秀",
+  "exists": true,
+  "courtesy": "成舒",
+  "birth": null,
+  "death": 304,
+  "faction_path": [
+   "曹魏",
+   "西晉"
+  ],
+  "home_city": "xindu",
+  "tags": [
+   "武將",
+   "統帥"
+  ],
+  "bio": "魏晉名將牽招之次子，西晉將領，官至平虜將軍、司州刺史，八王之亂中被殺。",
+  "stats_estimate": {
+   "war": 66,
+   "leadership": 65,
+   "intelligence": 60,
+   "politics": 56,
+   "charm": 54
+  },
+  "seen_in": [
+   "280:司馬炎",
+   "280:司馬駿"
+  ],
+  "verification": "unverified"
+ },
+ "王修": {
+  "name": "王修",
+  "exists": true,
+  "courtesy": "叔治",
+  "birth": null,
+  "death": 216,
+  "faction_path": [
+   "孔融",
+   "袁譚",
+   "曹魏"
+  ],
+  "home_city": "beihai",
+  "tags": [
+   "內政",
+   "忠節"
+  ],
+  "bio": "東漢末名臣，為人忠貞正直，歷仕孔融與袁譚，入魏後官至大司農。",
+  "stats_estimate": {
+   "war": 38,
+   "leadership": 56,
+   "intelligence": 75,
+   "politics": 82,
+   "charm": 81
+  },
+  "seen_in": [
+   "194:孔融",
+   "202:袁譚"
+  ],
+  "verification": "unverified"
+ },
+ "王建": {
+  "name": "王建",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 238,
+  "faction_path": [
+   "公孫淵"
+  ],
+  "home_city": "xiangping",
+  "tags": [
+   "內政"
+  ],
+  "bio": "公孫淵的相國，司馬懿圍困襄平時受命出城請求解圍乞降，為司馬懿所斬。",
+  "stats_estimate": {
+   "war": 25,
+   "leadership": 30,
+   "intelligence": 60,
+   "politics": 65,
+   "charm": 56
+  },
+  "seen_in": [
+   "228:公孫恭",
+   "228:公孫淵"
+  ],
+  "verification": "unverified"
+ },
+ "王素": {
+  "name": "王素",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "蜀漢",
+   "曹魏",
+   "西晉"
+  ],
+  "home_city": "jianning",
+  "tags": [
+   "武將"
+  ],
+  "bio": "南中建寧人，蜀漢牙門將軍，降晉後隨霍弋平定交趾並出任日南太守。",
+  "stats_estimate": {
+   "war": 63,
+   "leadership": 61,
+   "intelligence": 53,
+   "politics": 51,
+   "charm": 55
+  },
+  "seen_in": [
+   "265:司馬昭",
+   "265:霍弋"
+  ],
+  "verification": "unverified"
+ },
+ "留贊": {
+  "name": "留贊",
+  "exists": true,
+  "courtesy": "正明",
+  "birth": 183,
+  "death": 255,
+  "faction_path": [
+   "東吳"
+  ],
+  "home_city": "kuaiji",
+  "tags": [
+   "猛將",
+   "統帥"
+  ],
+  "bio": "東吳宿將，為人勇猛剛烈，臨陣必先高歌以振軍心，官至左將軍。",
+  "stats_estimate": {
+   "war": 82,
+   "leadership": 77,
+   "intelligence": 67,
+   "politics": 54,
+   "charm": 69
+  },
+  "seen_in": [
+   "249:孫權",
+   "255:孫亮"
+  ],
+  "verification": "unverified"
+ },
+ "畢軌": {
+  "name": "畢軌",
+  "exists": true,
+  "courtesy": "昭先",
+  "birth": null,
+  "death": 249,
+  "faction_path": [
+   "曹魏"
+  ],
+  "home_city": "rencheng",
+  "tags": [
+   "內政"
+  ],
+  "bio": "曹魏官員，大將軍曹爽心腹黨羽，官至司隸校尉，高平陵之變後被誅連三族。",
+  "stats_estimate": {
+   "war": 30,
+   "leadership": 36,
+   "intelligence": 66,
+   "politics": 68,
+   "charm": 48
+  },
+  "seen_in": [
+   "249:曹爽"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 49.0,
+   "武力": 30.5,
+   "智力": 57.0,
+   "政治": 53.5,
+   "魅力": 16.0
+  }
+ },
+ "盛憲": {
+  "name": "盛憲",
+  "exists": true,
+  "courtesy": "孝章",
+  "birth": null,
+  "death": 204,
+  "faction_path": [
+   "漢",
+   "劉繇"
+  ],
+  "home_city": "kuaiji",
+  "tags": [
+   "名士",
+   "內政"
+  ],
+  "bio": "東漢末年名士，曾任吳郡太守，器量器度見重於當世，後為孫權所害。",
+  "stats_estimate": {
+   "war": 22,
+   "leadership": 40,
+   "intelligence": 72,
+   "politics": 76,
+   "charm": 80
+  },
+  "seen_in": [
+   "194:劉繇"
+  ],
+  "verification": "unverified"
+ },
+ "管統": {
+  "name": "管統",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "袁譚",
+   "曹魏"
+  ],
+  "home_city": "lean",
+  "tags": [
+   "武將",
+   "忠節"
+  ],
+  "bio": "袁譚部將，任樂安太守，袁譚敗亡後諸城皆降而其獨守孤城不屈，曹操感其忠而赦之。",
+  "stats_estimate": {
+   "war": 64,
+   "leadership": 67,
+   "intelligence": 58,
+   "politics": 62,
+   "charm": 68
+  },
+  "seen_in": [
+   "202:袁譚"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 64.5,
+   "武力": 68.5,
+   "智力": 29.5,
+   "政治": 26.5,
+   "魅力": 53.0
+  }
+ },
+ "閔純": {
+  "name": "閔純",
+  "exists": true,
+  "courtesy": "伯典",
+  "birth": null,
+  "death": 191,
+  "faction_path": [
+   "韓馥"
+  ],
+  "home_city": "ye",
+  "tags": [
+   "內政"
+  ],
+  "bio": "韓馥別駕從事，曾力勸韓馥勿讓冀州於袁紹，後遭袁紹殺害。",
+  "stats_estimate": {
+   "war": 36,
+   "leadership": 42,
+   "intelligence": 64,
+   "politics": 68,
+   "charm": 62
+  },
+  "seen_in": [
+   "190:韓馥"
+  ],
+  "verification": "unverified"
+ },
+ "閻蒲": {
+  "name": "閻蒲",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "張魯",
+   "曹操"
+  ],
+  "home_city": "nanzheng",
+  "tags": [
+   "智將",
+   "內政"
+  ],
+  "bio": "張魯功曹，深得信任，曾勸張魯暫勿稱王，曹操征漢中時建議歸降以保宗族。",
+  "stats_estimate": {
+   "war": 38,
+   "leadership": 52,
+   "intelligence": 78,
+   "politics": 75,
+   "charm": 72
+  },
+  "seen_in": [
+   "211:張魯"
+  ],
+  "verification": "unverified"
+ },
+ "陳祗": {
+  "name": "陳祗",
+  "exists": true,
+  "courtesy": "奉宗",
+  "birth": null,
+  "death": 258,
+  "faction_path": [
+   "蜀漢"
+  ],
+  "home_city": "runan",
+  "tags": [
+   "內政"
+  ],
+  "bio": "蜀漢侍中、尚書令，深受劉禪寵信，結納宦官黃皓並支持姜維北伐。",
+  "stats_estimate": {
+   "war": 28,
+   "leadership": 46,
+   "intelligence": 73,
+   "politics": 78,
+   "charm": 56
+  },
+  "seen_in": [
+   "249:劉禪"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 40.0,
+   "武力": 30.0,
+   "智力": 73.0,
+   "政治": 82.5,
+   "魅力": 23.0
+  }
+ },
+ "陳群": {
+  "name": "陳群",
+  "exists": true,
+  "courtesy": "長文",
+  "birth": null,
+  "death": 237,
+  "faction_path": [
+   "劉備",
+   "曹操",
+   "曹丕",
+   "曹叡"
+  ],
+  "home_city": "xuchang",
+  "tags": [
+   "內政",
+   "統帥"
+  ],
+  "bio": "曹魏重臣，制定九品中正制與《魏律》，歷仕曹丕、曹叡兩代輔政托孤。",
+  "stats_estimate": {
+   "war": 28,
+   "leadership": 42,
+   "intelligence": 82,
+   "politics": 96,
+   "charm": 85
+  },
+  "seen_in": [
+   "220:曹丕",
+   "222:曹丕",
+   "225:曹丕",
+   "228:曹叡",
+   "234:曹叡"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 38.5,
+   "武力": 24.9,
+   "智力": 80.1,
+   "政治": 95.6,
+   "魅力": 76.1
+  }
+ },
+ "陶璜": {
+  "name": "陶璜",
+  "exists": true,
+  "courtesy": "世英",
+  "birth": null,
+  "death": 290,
+  "faction_path": [
+   "孫吳",
+   "西晉"
+  ],
+  "home_city": "jiaozhi",
+  "tags": [
+   "名將",
+   "統帥",
+   "智將"
+  ],
+  "bio": "吳國名將，用兵有謀略，收復交趾並長期鎮撫南疆，吳亡後歸降西晉。",
+  "stats_estimate": {
+   "war": 76,
+   "leadership": 84,
+   "intelligence": 80,
+   "politics": 78,
+   "charm": 82
+  },
+  "seen_in": [
+   "263:孫休",
+   "265:孫皓",
+   "280:孫皓"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 77.0,
+   "武力": 67.0,
+   "智力": 69.0,
+   "政治": 74.5,
+   "魅力": 80.0
+  }
+ },
+ "陸晏": {
+  "name": "陸晏",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 280,
+  "faction_path": [
+   "孫吳"
+  ],
+  "home_city": "wujun",
+  "tags": [
+   "將領"
+  ],
+  "bio": "陸抗長子，官至裨將軍，晉滅吳之戰中於江陵督軍禦敵，力戰陣亡。",
+  "stats_estimate": {
+   "war": 65,
+   "leadership": 68,
+   "intelligence": 62,
+   "politics": 56,
+   "charm": 64
+  },
+  "seen_in": [
+   "280:孫皓"
+  ],
+  "verification": "unverified"
+ },
+ "陸景": {
+  "name": "陸景",
+  "exists": true,
+  "courtesy": "士仁",
+  "birth": 250,
+  "death": 280,
+  "faction_path": [
+   "孫吳"
+  ],
+  "home_city": "wujun",
+  "tags": [
+   "智將",
+   "將領"
+  ],
+  "bio": "陸抗次子，尚孫休女公主，文武兼備，晉滅吳之戰中率水軍力戰殉國。",
+  "stats_estimate": {
+   "war": 67,
+   "leadership": 71,
+   "intelligence": 69,
+   "politics": 63,
+   "charm": 70
+  },
+  "seen_in": [
+   "280:孫皓"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 72.0,
+   "武力": 64.0,
+   "智力": 76.0,
+   "政治": 75.0,
+   "魅力": 74.0
+  }
+ },
+ "陸機": {
+  "name": "陸機",
+  "exists": true,
+  "courtesy": "士衡",
+  "birth": 261,
+  "death": 303,
+  "faction_path": [
+   "孫吳",
+   "西晉"
+  ],
+  "home_city": "wujun",
+  "tags": [
+   "內政"
+  ],
+  "bio": "陸抗四子，西晉著名文學家與書法家，太康年間入洛，世稱「太康之英」。",
+  "stats_estimate": {
+   "war": 52,
+   "leadership": 63,
+   "intelligence": 83,
+   "politics": 76,
+   "charm": 84
+  },
+  "seen_in": [
+   "280:孫皓"
+  ],
+  "verification": "unverified"
+ },
+ "陽儀": {
+  "name": "陽儀",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "公孫度"
+  ],
+  "home_city": "xiangping",
+  "tags": [
+   "內政"
+  ],
+  "bio": "公孫度司馬，曾與長史柳毅共同聽受公孫度謀劃自立圖霸之事。",
+  "stats_estimate": {
+   "war": 42,
+   "leadership": 46,
+   "intelligence": 65,
+   "politics": 62,
+   "charm": 58
+  },
+  "seen_in": [
+   "202:公孫度"
+  ],
+  "verification": "unverified"
+ },
+ "韓忠": {
+  "name": "韓忠",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 184,
+  "faction_path": [
+   "黃巾"
+  ],
+  "home_city": "wan",
+  "tags": [
+   "猛將"
+  ],
+  "bio": "黃巾軍將領，張角死後據守宛城對抗官軍，最終被朱儁擊破並遭秦頡斬殺。",
+  "stats_estimate": {
+   "war": 68,
+   "leadership": 61,
+   "intelligence": 34,
+   "politics": 22,
+   "charm": 36
+  },
+  "seen_in": [
+   "184:張角"
+  ],
+  "verification": "unverified"
+ },
+ "馬融": {
+  "name": "馬融",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 265,
+  "faction_path": [
+   "蜀漢",
+   "西晉"
+  ],
+  "home_city": "jianning",
+  "tags": [
+   "將領"
+  ],
+  "bio": "蜀漢降將，隨霍弋部隊南征救援交趾，接替爨谷為交阯太守，旋即病逝於軍中。",
+  "stats_estimate": {
+   "war": 66,
+   "leadership": 63,
+   "intelligence": 56,
+   "politics": 58,
+   "charm": 58
+  },
+  "seen_in": [
+   "265:司馬昭",
+   "265:霍弋"
+  ],
+  "verification": "unverified"
+ },
+ "馬隆": {
+  "name": "馬隆",
+  "exists": true,
+  "courtesy": "孝興",
+  "birth": null,
+  "death": 296,
+  "faction_path": [
+   "曹魏",
+   "西晉"
+  ],
+  "home_city": "changyi",
+  "tags": [
+   "名將",
+   "統帥",
+   "智將"
+  ],
+  "bio": "西晉名將，精通兵略與八陣圖，率偏箱車部隊大破禿髮樹機能，克復涼州。",
+  "stats_estimate": {
+   "war": 74,
+   "leadership": 89,
+   "intelligence": 85,
+   "politics": 72,
+   "charm": 78
+  },
+  "seen_in": [
+   "265:司馬昭",
+   "280:司馬炎",
+   "280:司馬駿"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 80.5,
+   "武力": 71.5,
+   "智力": 75.0,
+   "政治": 67.5,
+   "魅力": 66.0
+  }
+ },
+ "孫賁": {
+  "name": "孫賁",
+  "exists": true,
+  "courtesy": "伯陽",
+  "birth": null,
+  "death": 210,
+  "faction_path": [
+   "孫堅",
+   "袁術",
+   "孫策",
+   "孫權"
+  ],
+  "home_city": "wujun",
+  "tags": [
+   "統帥",
+   "猛將"
+  ],
+  "bio": "孫堅之侄，隨孫策平定江東，歷任豫章太守並封征虜將軍。",
+  "stats_estimate": {
+   "war": 72,
+   "leadership": 74,
+   "intelligence": 61,
+   "politics": 65,
+   "charm": 68
+  },
+  "seen_in": [
+   "190:孫堅",
+   "192:袁術"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 59.5,
+   "武力": 64.5,
+   "智力": 41.0,
+   "政治": 35.0,
+   "魅力": 49.0
+  }
+ },
+ "孫邵": {
+  "name": "孫邵",
+  "exists": true,
+  "courtesy": "長緒",
+  "birth": 163,
+  "death": 225,
+  "faction_path": [
+   "孔融",
+   "劉繇",
+   "孫權"
+  ],
+  "home_city": "beihai",
+  "tags": [
+   "內政"
+  ],
+  "bio": "初仕孔融與劉繇，後歸孫權，為東吳政權首任丞相。",
+  "stats_estimate": {
+   "war": 32,
+   "leadership": 55,
+   "intelligence": 75,
+   "politics": 82,
+   "charm": 80
+  },
+  "seen_in": [
+   "194:孔融"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 17.0,
+   "武力": 33.0,
+   "智力": 79.0,
+   "政治": 83.0,
+   "魅力": 71.0
+  }
+ },
+ "宗寶": {
+  "name": "宗寶",
+  "exists": false,
+  "seen_in": [
+   "194:孔融"
+  ],
+  "verification": "unverified",
+  "koei_mean": {}
+ },
+ "尹楷": {
+  "name": "尹楷",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 204,
+  "faction_path": [
+   "袁尚"
+  ],
+  "home_city": "ye",
+  "tags": [
+   "將領"
+  ],
+  "bio": "袁尚部將，曾屯兵毛城以維繫上黨糧道，後被曹操擊破陣亡。",
+  "stats_estimate": {
+   "war": 65,
+   "leadership": 62,
+   "intelligence": 50,
+   "politics": 46,
+   "charm": 51
+  },
+  "seen_in": [
+   "202:袁尚"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 54.0,
+   "武力": 56.0,
+   "智力": 42.0,
+   "政治": 44.0,
+   "魅力": 43.0
+  }
+ },
+ "山濤": {
+  "name": "山濤",
+  "exists": true,
+  "courtesy": "巨源",
+  "birth": 205,
+  "death": 283,
+  "faction_path": [
+   "曹魏",
+   "西晉"
+  ],
+  "home_city": "huai",
+  "tags": [
+   "內政",
+   "名士"
+  ],
+  "bio": "竹林七賢之一，西晉重臣，長於選拔人才與吏治政務。",
+  "stats_estimate": {
+   "war": 30,
+   "leadership": 62,
+   "intelligence": 83,
+   "politics": 88,
+   "charm": 85
+  },
+  "seen_in": [
+   "265:司馬昭",
+   "280:司馬炎"
+  ],
+  "verification": "unverified"
+ },
+ "岑璧": {
+  "name": "岑璧",
+  "exists": false,
+  "seen_in": [
+   "202:袁譚"
+  ],
+  "verification": "unverified"
+ },
+ "左承祖": {
+  "name": "左承祖",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 194,
+  "faction_path": [
+   "孔融"
+  ],
+  "home_city": "beihai",
+  "tags": [
+   "智將",
+   "內政"
+  ],
+  "bio": "孔融幕僚，因勸孔融結納袁紹或曹操而被孔融殺害。",
+  "stats_estimate": {
+   "war": 26,
+   "leadership": 38,
+   "intelligence": 72,
+   "politics": 69,
+   "charm": 62
+  },
+  "seen_in": [
+   "194:孔融"
+  ],
+  "verification": "unverified"
+ },
+ "張南": {
+  "name": "張南",
+  "exists": true,
+  "courtesy": "文進",
+  "birth": null,
+  "death": 222,
+  "faction_path": [
+   "袁尚",
+   "劉備"
+  ],
+  "home_city": "jiangling",
+  "tags": [
+   "將領"
+  ],
+  "bio": "三國時期將領，隨劉備伐吳征戰，於夷陵之戰中陣亡。",
+  "stats_estimate": {
+   "war": 71,
+   "leadership": 67,
+   "intelligence": 52,
+   "politics": 48,
+   "charm": 60
+  },
+  "seen_in": [
+   "202:袁尚",
+   "205:袁尚",
+   "222:劉備"
+  ],
+  "verification": "unverified"
+ },
+ "彭璆": {
+  "name": "彭璆",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "孔融"
+  ],
+  "home_city": "beihai",
+  "tags": [
+   "名士"
+  ],
+  "bio": "北海名士，孔融幕府賓客，以虛名見禮而少治實之才。",
+  "stats_estimate": {
+   "war": 24,
+   "leadership": 30,
+   "intelligence": 65,
+   "politics": 58,
+   "charm": 64
+  },
+  "seen_in": [
+   "194:孔融"
+  ],
+  "verification": "unverified"
+ },
+ "彭脫": {
+  "name": "彭脫",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 184,
+  "faction_path": [
+   "張角"
+  ],
+  "home_city": "runan",
+  "tags": [
+   "猛將"
+  ],
+  "bio": "黃巾軍渠帥，曾率部轉戰汝南一帶抗擊漢軍，後被皇甫嵩破殺。",
+  "stats_estimate": {
+   "war": 69,
+   "leadership": 65,
+   "intelligence": 42,
+   "politics": 32,
+   "charm": 45
+  },
+  "seen_in": [
+   "184:張角"
+  ],
+  "verification": "unverified"
+ },
+ "施績": {
+  "name": "施績",
+  "exists": true,
+  "courtesy": "公緒",
+  "birth": null,
+  "death": 270,
+  "faction_path": [
+   "孫權",
+   "孫亮",
+   "孫休",
+   "孫皓"
+  ],
+  "home_city": "wujun",
+  "tags": [
+   "統帥",
+   "智將"
+  ],
+  "bio": "朱然之子，後復姓為施，東吳後期名將，官至大司馬。",
+  "stats_estimate": {
+   "war": 77,
+   "leadership": 83,
+   "intelligence": 78,
+   "politics": 73,
+   "charm": 76
+  },
+  "seen_in": [
+   "249:孫權",
+   "255:孫亮",
+   "263:孫休",
+   "265:孫皓"
+  ],
+  "verification": "unverified"
+ },
+ "李松": {
+  "name": "李松",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 271,
+  "faction_path": [
+   "霍弋",
+   "司馬昭"
+  ],
+  "home_city": "jianning",
+  "tags": [
+   "將領"
+  ],
+  "bio": "蜀漢降晉將領，受霍弋派遣南征交趾，後被吳軍將領陶璜擊破俘殺。",
+  "stats_estimate": {
+   "war": 66,
+   "leadership": 64,
+   "intelligence": 54,
+   "politics": 48,
+   "charm": 55
+  },
+  "seen_in": [
+   "265:司馬昭",
+   "265:霍弋"
+  ],
+  "verification": "unverified"
+ },
+ "丁謐": {
+  "name": "丁謐",
+  "exists": true,
+  "courtesy": "彥靖",
+  "birth": null,
+  "death": 249,
+  "faction_path": [
+   "曹魏"
+  ],
+  "home_city": "qiao",
+  "tags": [
+   "智將",
+   "內政"
+  ],
+  "bio": "曹爽的心腹智囊，號稱「默狗」，官至尚書，高平陵之變後與曹爽一同被誅。",
+  "stats_estimate": {
+   "war": 28,
+   "leadership": 35,
+   "intelligence": 74,
+   "politics": 68,
+   "charm": 25
+  },
+  "seen_in": [
+   "249:曹爽"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 20.0,
+   "武力": 32.0,
+   "智力": 77.0,
+   "政治": 34.0
+  }
+ },
+ "傅燮": {
+  "name": "傅燮",
+  "exists": true,
+  "courtesy": "南容",
+  "birth": null,
+  "death": 187,
+  "faction_path": [
+   "東漢"
+  ],
+  "home_city": "anding",
+  "tags": [
+   "統帥",
+   "猛將",
+   "忠義"
+  ],
+  "bio": "東漢末年名臣與忠臣，歷任護軍司馬、漢陽太守，為人剛直忠烈，後於漢陽力戰叛軍殉國。",
+  "stats_estimate": {
+   "war": 75,
+   "leadership": 78,
+   "intelligence": 76,
+   "politics": 72,
+   "charm": 84
+  },
+  "seen_in": [
+   "184:何進"
+  ],
+  "verification": "unverified"
+ },
+ "劉整": {
+  "name": "劉整",
+  "exists": false,
+  "seen_in": [
+   "255:毌丘儉"
+  ],
+  "verification": "unverified"
+ },
+ "劉獻": {
+  "name": "劉獻",
+  "exists": false,
+  "seen_in": [
+   "202:袁譚"
+  ],
+  "verification": "unverified"
+ },
+ "卜己": {
+  "name": "卜己",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 184,
+  "faction_path": [
+   "黃巾軍"
+  ],
+  "home_city": "puyang",
+  "tags": [
+   "猛將"
+  ],
+  "bio": "東漢末年黃巾軍渠帥，於東郡一帶起兵響應張角，後在倉亭之戰被皇甫嵩擊破被俘。",
+  "stats_estimate": {
+   "war": 68,
+   "leadership": 62,
+   "intelligence": 42,
+   "politics": 30,
+   "charm": 45
+  },
+  "seen_in": [
+   "184:張角"
+  ],
+  "verification": "unverified"
+ },
+ "司馬駿": {
+  "name": "司馬駿",
+  "exists": true,
+  "courtesy": "子臧",
+  "birth": 232,
+  "death": 286,
+  "faction_path": [
+   "曹魏",
+   "西晉"
+  ],
+  "home_city": "huai",
+  "tags": [
+   "統帥",
+   "名士",
+   "內政"
+  ],
+  "bio": "司馬懿第七子，西晉宗室名將，都督關中諸軍事，威震西陲、德政著稱，深受百姓與羌戎愛戴。",
+  "stats_estimate": {
+   "war": 64,
+   "leadership": 83,
+   "intelligence": 80,
+   "politics": 85,
+   "charm": 86
+  },
+  "seen_in": [
+   "280:司馬炎",
+   "280:司馬駿"
+  ],
+  "verification": "unverified"
+ },
+ "呂乂": {
+  "name": "呂乂",
+  "exists": true,
+  "courtesy": "季陽",
+  "birth": null,
+  "death": 251,
+  "faction_path": [
+   "蜀漢"
+  ],
+  "home_city": "wan",
+  "tags": [
+   "內政"
+  ],
+  "bio": "蜀漢重臣，歷任巴西太守、蜀郡太守，後接替董允任尚書令，治民嚴簡，恪盡職守。",
+  "stats_estimate": {
+   "war": 30,
+   "leadership": 46,
+   "intelligence": 72,
+   "politics": 84,
+   "charm": 76
+  },
+  "seen_in": [
+   "249:劉禪"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 53.0,
+   "武力": 32.0,
+   "智力": 63.0,
+   "政治": 77.0,
+   "魅力": 51.0
+  }
+ },
+ "周處": {
+  "name": "周處",
+  "exists": true,
+  "courtesy": "子隱",
+  "birth": 236,
+  "death": 297,
+  "faction_path": [
+   "東吳",
+   "西晉"
+  ],
+  "home_city": "wujun",
+  "tags": [
+   "猛將",
+   "統帥",
+   "忠義"
+  ],
+  "bio": "東吳名將周魴之子，留下除三害之典故，入晉後為官清正剛直，征討氐羌時力戰殉國。",
+  "stats_estimate": {
+   "war": 85,
+   "leadership": 81,
+   "intelligence": 74,
+   "politics": 70,
+   "charm": 78
+  },
+  "seen_in": [
+   "280:司馬駿",
+   "280:孫皓"
+  ],
+  "verification": "unverified"
+ },
+ "士䵋": {
+  "name": "士䵋",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": 226,
+  "faction_path": [
+   "士燮",
+   "東吳"
+  ],
+  "home_city": "jiaozhi",
+  "tags": [
+   "內政"
+  ],
+  "bio": "士燮之弟，曾任九真太守，隨兄長割據嶺南，後隨族歸附東吳，士徽反叛後伏誅。",
+  "stats_estimate": {
+   "war": 45,
+   "leadership": 53,
+   "intelligence": 64,
+   "politics": 67,
+   "charm": 66
+  },
+  "seen_in": [
+   "202:士燮",
+   "207:士燮"
+  ],
+  "verification": "unverified"
+ },
+ "士武": {
+  "name": "士武",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "士燮"
+  ],
+  "home_city": "jiaozhi",
+  "tags": [
+   "內政"
+  ],
+  "bio": "士燮之弟，曾任南海太守，早於士燮病逝。",
+  "stats_estimate": {
+   "war": 42,
+   "leadership": 48,
+   "intelligence": 61,
+   "politics": 64,
+   "charm": 64
+  },
+  "seen_in": [
+   "202:士燮",
+   "207:士燮"
+  ],
+  "verification": "unverified",
+  "koei_mean": {
+   "統率": 46.0,
+   "武力": 42.0,
+   "智力": 60.5,
+   "政治": 69.0,
+   "魅力": 66.0
+  }
+ },
+ "孟幹": {
+  "name": "孟幹",
+  "exists": true,
+  "courtesy": null,
+  "birth": null,
+  "death": null,
+  "faction_path": [
+   "蜀漢",
+   "西晉"
+  ],
+  "home_city": "jianning",
+  "tags": [
+   "猛將",
+   "忠義"
+  ],
+  "bio": "蜀漢牙門將，隨霍弋降晉後南征收復交阯，作戰勇猛，兵敗被俘後智謀逃歸洛陽。",
+  "stats_estimate": {
+   "war": 74,
+   "leadership": 67,
+   "intelligence": 62,
+   "politics": 48,
+   "charm": 65
+  },
+  "seen_in": [
+   "265:司馬昭",
+   "265:霍弋"
+  ],
+  "verification": "unverified"
+ },
+ "孫皓": {
+  "name": "孫皓",
+  "exists": true,
+  "courtesy": "元宗",
+  "birth": 242,
+  "death": 284,
+  "faction_path": [
+   "東吳"
+  ],
+  "home_city": "jianye",
+  "tags": [
+   "君主"
+  ],
+  "bio": "東吳末代皇帝，即位初期行撫恤之策，後沉溺酒色、大肆殺戮，終致吳國滅亡降晉。",
+  "stats_estimate": {
+   "war": 56,
+   "leadership": 50,
+   "intelligence": 60,
+   "politics": 25,
+   "charm": 16
+  },
+  "seen_in": [
+   "265:孫皓",
+   "280:孫皓"
+  ],
+  "verification": "unverified"
+ }
+}

@@ -1,0 +1,89 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "漢中、南鄭、上庸、宛、新野、襄陽屬於曹操勢力，史實 219 年 7 月劉備已攻下漢中並稱王，這六城應屬劉備。",
+   "fix": "將 hanzhong、nanzheng、shangyong、wan、xinye、xiangyang 從 f_caocao.cities 移至 f_liubei.cities"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "張郃、曹洪、郭淮被安排在漢中/南鄭，實際上漢中失守後他們已撤退；曹仁、滿寵、徐晃、于禁、龐德駐守襄陽/宛，但襄陽、宛已非曹操控制。",
+   "fix": "將張郃、曹洪、郭淮移至長安或陳倉；曹仁、滿寵移至樊城(無城池可暫置襄陽但需標註為前線)；徐晃、于禁、龐德移至宛(若宛歸劉備則改置長安/洛陽)"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "龐德於 219 年 8 月水淹七軍時被關羽斬殺，開局即已死亡，不應出現在武將名單。",
+   "fix": "從 f_caocao.officers 移除龐德"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "于禁於 219 年 8 月水淹七軍時被關羽生擒降漢，開局即已失蹤/被俘，不應作為曹操可用武將。",
+   "fix": "從 f_caocao.officers 移除于禁"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "法正於 220 年 10 月病逝，219 年尚在世，但蔣琬直到 220 年後才入蜀輔政，219 年仍在荊州隨劉備西征未入成都，不應在成都。",
+   "fix": "將蔣琬移至漢中或江陵，或暫不列入開局名單"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "丁奉生於 220 年前後，219 年尚未出生/未出仕，不應出現在孫權武將名單。",
+   "fix": "從 f_sunquan.officers 移除丁奉"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "江夏、長沙、桂陽、零陵、武陵屬孫權，史實 219 年前仍為劉備荊州四郡(關羽治所)，孫權呂蒙襲取是在 219 年底(關羽敗亡後)。開局應屬劉備。",
+   "fix": "將 jiangxia、changsha、guiyang、lingling、wuling 從 f_sunquan.cities 移至 f_liubei.cities"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "呂蒙、甘寧駐柴桑，史實 219 年呂蒙率軍駐陸口(尋陽一帶)準備襲荊州，甘寧已於 219 年前後病逝(或隨呂蒙在前線)，柴桑非主力屯駐地。",
+   "fix": "呂蒙移至尋陽(無城池可暫置柴桑但需註明前線)；甘寧建議移除或標記病逝"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "陸遜 219 年尚未顯貴，呂蒙薦為偏將軍屯陸口，不應在建業任謀士。",
+   "fix": "將陸遜移至柴桑/尋陽前線或暫不列入"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "朱然 219 年隨呂蒙攻江陵，不在建業。",
+   "fix": "將朱然移至柴桑/前線"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "潘璋、徐盛 219 年隨呂蒙在前線，不在建業。",
+   "fix": "將潘璋、徐盛移至柴桑/前線"
+  },
+  {
+   "severity": "low",
+   "type": "faction",
+   "detail": "漏掉張魯勢力(漢中降曹後張魯受封於曹營)，但 219 年 7 月漢中已歸劉備，張魯已在曹營，可不作獨立勢力。",
+   "fix": "無需新增勢力，但可在曹操麾下加入張魯(已降)作為謀士/武將"
+  },
+  {
+   "severity": "low",
+   "type": "city",
+   "detail": "涼州諸城(武威、金城、天水、敦煌、張掖、安定)列入曹操勢力，實際上 219 年涼州多為馬超舊部/氐羌割據，曹操控制力薄弱，但名義上屬曹操可接受。",
+   "fix": "保留或標註為名義管轄"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "strength 排序：曹操 S、劉備 A、孫權 A 合理，但劉備剛取漢中、關羽威震華夏，軍勢正盛，可調為 S 或 A+；孫權尚未吞荊州，A 適中。",
+   "fix": "建議劉備 strength 改為 S 或維持 A 但加註漢中王加成"
+  }
+ ]
+}
