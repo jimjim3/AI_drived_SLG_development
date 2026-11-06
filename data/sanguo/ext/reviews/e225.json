@@ -1,0 +1,35 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "劇本名為「諸葛亮南征」，卻完全缺少核心叛亂勢力（雍闓、高定、孟獲），並將南中核心叛變據點越巂（yuesui）與建寧（jianning）列為中立無人城（neutral_cities），導致諸葛亮開局無南征平叛對象。",
+   "fix": "自 neutral_cities 移除 yuesui 與 jianning，新增南中叛軍勢力（如 f_nanzhong，君主設雍闓或高定），配屬武將孟獲、高定、雍闓、朱褒。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "遺漏割據遼東的公孫氏勢力。225 年遼東為公孫恭割據統治（受曹魏冊封車騎將軍、襄平侯），襄平（xiangping）不應列為中立無人城。",
+   "fix": "自 neutral_cities 移除 xiangping，建立公孫恭勢力（如 f_gongsun，君主公孫恭，首都 xiangping），或暫設為曹魏屬地並配置公孫恭。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "孫吳首都設定為建業（jianye）不符史實。孫權於 221 年至 229 年稱帝前定都武昌（今湖北鄂州），直到黃龍元年（229 年）九月才正式遷都建業。",
+   "fix": "若城池名單未設武昌，建議將 f_sunwu 的 capital 暫時調整為孫權當時政治與軍事指揮中心所在（如江陵 jiangling 或柴桑 chaisang），或於城池清單補入武昌（wuchang）並設為首都。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "遺漏交州關鍵人物士燮。士燮於 226 年才病逝，225 年仍在世並長期實質治理交趾，劇本交州城池全歸孫吳卻未見士燮登場，亦與劇本事件 turn 8「交趾太守士燮卒」矛盾。",
+   "fix": "在交趾（jiaozhi）新增武將士燮，歸屬孫吳（或設為其附庸勢力）。"
+  },
+  {
+   "severity": "low",
+   "type": "city",
+   "detail": "「漢中」（hanzhong）與「南鄭」（nanzheng）在歷史地理上重疊，南鄭即為漢中郡治所，並列為兩座同屬蜀漢的城池屬地名重出。",
+   "fix": "建議保留 hanzhong 作為郡城，將 nanzheng 改為關隘（如陽平關 yangpingguan）或金城/武都等蜀魏邊界要衝。"
+  }
+ ]
+}

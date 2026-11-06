@@ -97,6 +97,53 @@ class AllianceTests(unittest.TestCase):
         self.assertEqual(alliance.friendship(s, "faction_1", "faction_2"), 0)
         self.assertEqual(s.diplomacy.cooldown["faction_1|faction_2"], s.turn + 10)
 
+    def _pledge_state(self, pledge=300):
+        combat.set_rules("softer_pool2_econ3_ally3")
+        s = alliance.adjust(self.s, "faction_1", "faction_2", -20)  # friendship 30: refused without a pledge
+        e = envoy(s, "faction_1")
+        gold0 = s.city(e.city_id).gold
+        return s, e, gold0
+
+    def test_pledge_sways_the_partner_and_is_held(self):
+        s, e, gold0 = self._pledge_state()
+        _, ev = resolve_decision(s, e, AgentDecision(e.officer_id, "propose_alliance", {"to": "faction_2", "pledge": 0}),
+                                 random.Random(0))
+        self.assertIn("refused", ev.detail)
+        s2, ev = resolve_decision(s, e, AgentDecision(e.officer_id, "propose_alliance", {"to": "faction_2", "pledge": 400}),
+                                  random.Random(0))
+        self.assertIn("accepted", ev.detail)
+        self.assertEqual(s2.city(e.city_id).gold, gold0 - 400)
+        self.assertEqual(alliance.collateral_of(s2, "faction_1", "faction_2"), ("faction_1", 400))
+
+    def test_depositor_betrayal_forfeits_and_holder_betrayal_refunds(self):
+        s, e, gold0 = self._pledge_state()
+        s, _ = resolve_decision(s, e, AgentDecision(e.officer_id, "propose_alliance", {"to": "faction_2", "pledge": 400}),
+                                random.Random(0))
+        total2 = sum(c.gold for c in s.cities_of("faction_2"))
+        sa, ev = resolve_decision(s, e, AgentDecision(e.officer_id, "break_alliance", {"with": "faction_2"}),
+                                  random.Random(0))
+        self.assertIn("seized", ev.detail)
+        self.assertEqual(sum(c.gold for c in sa.cities_of("faction_2")), total2 + 400)
+        self.assertIsNone(alliance.collateral_of(sa, "faction_1", "faction_2"))
+        e2 = envoy(s, "faction_2")
+        total1 = sum(c.gold for c in s.cities_of("faction_1"))
+        sb, ev = resolve_decision(s, e2, AgentDecision(e2.officer_id, "break_alliance", {"with": "faction_1"}),
+                                  random.Random(0))
+        self.assertIn("returned", ev.detail)
+        self.assertEqual(sum(c.gold for c in sb.cities_of("faction_1")), total1 + 400)
+
+    def test_pledge_param_only_under_pledge_rules_and_costs_gold(self):
+        e = envoy(self.s, "faction_1")
+        la = next(l for l in generate_legal_actions(self.s, e) if l.action == "propose_alliance")
+        self.assertNotIn("pledge", la.params)
+        combat.set_rules("softer_pool2_econ3_ally3")
+        la = next(l for l in generate_legal_actions(self.s, e) if l.action == "propose_alliance")
+        self.assertIn("pledge", la.params)
+        gold = self.s.city(e.city_id).gold
+        too_much = AgentDecision(e.officer_id, "propose_alliance", {"to": "faction_2", "pledge": 500})
+        ok, _ = validate_decision(self.s, e, too_much)
+        self.assertEqual(ok, gold >= 500)
+
     def test_view_shares_vision_and_lists_relations(self):
         s, _ = propose(self.s, "faction_1", "faction_2")
         v = build_faction_view(s, "faction_1", ()).to_dict()

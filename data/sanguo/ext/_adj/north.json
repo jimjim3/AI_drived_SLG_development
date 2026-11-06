@@ -1,0 +1,168 @@
+{
+ "jinyang": [
+  "dingxiang",
+  "lishi",
+  "shangdang",
+  "jingxingguan"
+ ],
+ "yanmen": [
+  "dingxiang",
+  "shanggu"
+ ],
+ "dingxiang": [
+  "yanmen",
+  "jinyang"
+ ],
+ "lishi": [
+  "jinyang",
+  "pingyang"
+ ],
+ "pingyang": [
+  "lishi",
+  "shangdang",
+  "anyi"
+ ],
+ "shangdang": [
+  "jinyang",
+  "pingyang",
+  "huguan",
+  "huai"
+ ],
+ "huguan": [
+  "shangdang",
+  "ye"
+ ],
+ "ye": [
+  "huguan",
+  "liyang",
+  "qinghe",
+  "julu"
+ ],
+ "liyang": [
+  "ye",
+  "boma",
+  "puyang",
+  "qinghe"
+ ],
+ "qinghe": [
+  "ye",
+  "liyang",
+  "xindu",
+  "pingyuan"
+ ],
+ "julu": [
+  "ye",
+  "zhending",
+  "xindu",
+  "lunu"
+ ],
+ "xindu": [
+  "julu",
+  "qinghe",
+  "nanpi",
+  "yijing"
+ ],
+ "nanpi": [
+  "xindu",
+  "pingyuan",
+  "lean",
+  "yijing"
+ ],
+ "zhending": [
+  "jingxingguan",
+  "julu",
+  "lunu"
+ ],
+ "jingxingguan": [
+  "jinyang",
+  "zhending"
+ ],
+ "lunu": [
+  "zhending",
+  "julu",
+  "zhuoxian"
+ ],
+ "ji": [
+  "zhuoxian",
+  "yuyang",
+  "shanggu",
+  "beiping"
+ ],
+ "zhuoxian": [
+  "lunu",
+  "yijing",
+  "ji",
+  "shanggu"
+ ],
+ "yijing": [
+  "zhuoxian",
+  "xindu",
+  "nanpi",
+  "beiping"
+ ],
+ "shanggu": [
+  "yanmen",
+  "zhuoxian",
+  "ji"
+ ],
+ "yuyang": [
+  "ji",
+  "beiping"
+ ],
+ "beiping": [
+  "yuyang",
+  "ji",
+  "yijing",
+  "linyu"
+ ],
+ "linyu": [
+  "beiping",
+  "liucheng"
+ ],
+ "liucheng": [
+  "linyu",
+  "xiangping"
+ ],
+ "xiangping": [
+  "liucheng",
+  "donglai"
+ ],
+ "pingyuan": [
+  "qinghe",
+  "nanpi",
+  "jinan",
+  "puyang"
+ ],
+ "jinan": [
+  "pingyuan",
+  "lean",
+  "linzi",
+  "fenggao"
+ ],
+ "lean": [
+  "nanpi",
+  "jinan",
+  "linzi"
+ ],
+ "linzi": [
+  "jinan",
+  "lean",
+  "beihai",
+  "juxian"
+ ],
+ "beihai": [
+  "linzi",
+  "donglai",
+  "juxian"
+ ],
+ "donglai": [
+  "beihai",
+  "xiangping"
+ ],
+ "juxian": [
+  "linzi",
+  "beihai",
+  "kaiyang",
+  "tanxian"
+ ]
+}

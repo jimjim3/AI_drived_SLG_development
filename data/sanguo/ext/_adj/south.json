@@ -1,0 +1,146 @@
+{
+ "shouchun": [
+  "xincai",
+  "runan",
+  "hefei",
+  "qiao"
+ ],
+ "hefei": [
+  "shouchun",
+  "lujiang",
+  "jianye"
+ ],
+ "lujiang": [
+  "hefei",
+  "chaisang",
+  "jiangxia",
+  "jianye"
+ ],
+ "jianye": [
+  "jingkou",
+  "jiangdu",
+  "hefei",
+  "wujun"
+ ],
+ "wujun": [
+  "jingkou",
+  "jianye",
+  "kuaiji"
+ ],
+ "kuaiji": [
+  "wujun",
+  "jianan",
+  "yuzhang"
+ ],
+ "chaisang": [
+  "jiangxia",
+  "yuzhang",
+  "lujiang",
+  "changsha"
+ ],
+ "jingkou": [
+  "jiangdu",
+  "jianye",
+  "wujun",
+  "guangling"
+ ],
+ "yuzhang": [
+  "chaisang",
+  "changsha",
+  "jianan",
+  "guiyang"
+ ],
+ "jianan": [
+  "kuaiji",
+  "yuzhang",
+  "panyu"
+ ],
+ "wan": [
+  "xiangcheng",
+  "xinye",
+  "luoyang",
+  "runan"
+ ],
+ "xinye": [
+  "wan",
+  "xiangyang",
+  "shangyong"
+ ],
+ "xiangyang": [
+  "xinye",
+  "jiangling",
+  "shangyong",
+  "jiangxia"
+ ],
+ "shangyong": [
+  "xiangyang",
+  "xinye",
+  "hanzhong",
+  "yiling"
+ ],
+ "yiling": [
+  "yongan",
+  "jiangling",
+  "shangyong",
+  "wuling"
+ ],
+ "jiangling": [
+  "xiangyang",
+  "yiling",
+  "jiangxia",
+  "wuling"
+ ],
+ "jiangxia": [
+  "jiangling",
+  "xiangyang",
+  "chaisang",
+  "changsha",
+  "lujiang"
+ ],
+ "wuling": [
+  "jiangling",
+  "yiling",
+  "changsha",
+  "lingling"
+ ],
+ "changsha": [
+  "jiangxia",
+  "wuling",
+  "yuzhang",
+  "lingling",
+  "guiyang"
+ ],
+ "guiyang": [
+  "changsha",
+  "lingling",
+  "panyu",
+  "cangwu"
+ ],
+ "lingling": [
+  "changsha",
+  "wuling",
+  "guiyang",
+  "cangwu"
+ ],
+ "cangwu": [
+  "lingling",
+  "guiyang",
+  "panyu",
+  "hepu"
+ ],
+ "panyu": [
+  "cangwu",
+  "guiyang",
+  "jianan",
+  "hepu"
+ ],
+ "hepu": [
+  "cangwu",
+  "panyu",
+  "jiaozhi"
+ ],
+ "jiaozhi": [
+  "hepu",
+  "cangwu"
+ ]
+}

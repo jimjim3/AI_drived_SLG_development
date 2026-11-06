@@ -1,0 +1,41 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉漢中割據勢力張魯。207年漢中與南鄭為五斗米道張魯政權實質統治，不應置於中立城池（neutral_cities）。",
+   "fix": "新增勢力「張魯」(f_zhanglu)，分配城池 hanzhong 與 nanzheng，並自 neutral_cities 中移除。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉遼東割據勢力公孫康。襄平為公孫度、公孫康父子長期割據之所，且劇本事件2明載「袁尚袁熙奔遼東後被公孫康誅殺」，襄平不應為中立城池。",
+   "fix": "新增勢力「公孫康」(f_gongsun_kang)，分配城池 xiangping，並自 neutral_cities 中移除。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "李嚴在207年尚仕於劉表（任秭歸令），208年曹操南征荊州時李嚴方西入蜀投奔劉璋（見《三國志·李嚴傳》），207年開局不應在劉璋麾下。",
+   "fix": "將武將「李嚴」從勢力 f_liuzhang 移除，改置於勢力 f_liubiao（所屬城池可設為 yiling 或 xiangyang）。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "漏掉交州割據勢力士燮。交州諸城（cangwu、panyu、hepu、jiaozhi）當時由交趾太守士燮家族長期實質管轄，不應全部列為中立城池。",
+   "fix": "新增勢力「士燮」(f_shixie)，分配城池 jiaozhi、cangwu、panyu、hepu，並自 neutral_cities 中移除。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "孫權勢力之首都設為京口（jingkou）不合史實。孫權於建安十四年（209年）赤壁戰後始徙治京口，207年其治所仍在吳郡（wujun）。",
+   "fix": "將勢力 f_sunquan 之 capital 改為 wujun，並將孫權及多數文武之 city 移至 wujun。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "甘寧於207年初仍在江夏太守黃祖部下，直至207年末至208年春始投奔孫權（劇本事件5亦載甘寧建言西討江夏），開局不應直接屬於孫權並駐於柴桑。",
+   "fix": "將武將「甘寧」從勢力 f_sunquan 移除，改置於勢力 f_liubiao 之 jiangxia 城（作為黃祖部屬），或設定為在野/後續事件投奔。"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "劇本命名為「漢中王與水淹七軍」（219年秋7~8月），但漢中（hanzhong）與南鄭（nanzheng）仍劃給曹操勢力，與劉備已擊敗曹操並進位漢中王的史實嚴重矛盾。",
+   "fix": "將城池 hanzhong、nanzheng 自 f_caocao 移出並劃歸 f_liubei；若本意欲從建安二十四年春開局，則劇本名與開局文案應改為定軍山之戰，避免時間線倒錯。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "夏侯淵於219年正月定軍山之戰已陣亡。劉備稱漢中王（219年7月）與關羽水淹七軍（219年8月）皆發生於其死後，夏侯淵不應存活於開局名單中。",
+   "fix": "將武將夏侯淵自 f_caocao 的 officers 名單中移除（或將劇本時間點嚴格重設為219年正月定軍山戰前）。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉遼東割據勢力公孫氏。襄平（xiangping）與柳城（liucheng）在219年為公孫康統治之獨立割據政權，設為 neutral_cities 不符史實。",
+   "fix": "自 neutral_cities 移除 xiangping、liucheng，新增勢力 f_gongsun（君主公孫康，首都 xiangping，所轄城市 xiangping、liucheng）。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉交州士氏割據勢力。蒼梧（cangwu）、番禺（panyu）、合浦（hepu）、交趾（jiaozhi）在219年由士燮家族長期盤踞自治，列為 neutral_cities 空城不符史實。",
+   "fix": "自 neutral_cities 移除該四城，新增勢力 f_shixie（君主士燮，首都 jiaozhi）；若為簡化小勢力，亦應依當時宗主名義劃歸 f_sunquan，而非無人中立城。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "上庸（shangyong）列為中立城池不符史實。219年初為曹魏部將申耽據守，同年五至六月劉備派孟達、劉封攻取並降服申耽。",
+   "fix": "若按「劉備稱漢中王/水淹七軍」的時間點，將 shangyong 自 neutral_cities 移除並改歸 f_liubei；若為年初則歸 f_caocao。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "劉備進位漢中王後拔魏延為鎮遠將軍、領漢中太守，全權坐鎮漢中防務，配置在成都（chengtu）不符合當時官職任命與史實軍事部署。",
+   "fix": "將 f_liubei 的武將魏延所在城市由 chengtu 改為 hanzhong 或 nanzheng。"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "219年關羽北伐前夕，呂蒙受命都督前線各軍，常駐尋陽、陸口防備與圖謀關羽，全勢力武將除甘寧外全堆在建業（jianye）不合理。",
+   "fix": "將 f_sunquan 的武將呂蒙所在城市由 jianye 改為 chaisang 或長江前線據點。"
+  }
+ ]
+}

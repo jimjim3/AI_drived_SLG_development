@@ -1,0 +1,41 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉重要割據勢力張繡。199年初張繡與賈詡割據宛城（wan）並與劉表結盟抗曹，事件4亦包含張繡降曹事件，但草稿將宛城列為中立城池（neutral_cities），且張繡、賈詡完全未登場。",
+   "fix": "在 factions 新增勢力 f_zhangxiu（君主：張繡，謀士：賈詡，capital: wan，cities: [\"wan\"]），並將 wan 自 neutral_cities 移除。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉尚未敗亡的袁術勢力。劇本時間為199年初（建安四年春），袁術至同年六月才病死於江亭，事件2亦有袁術潰亡情節，但開局卻將壽春（shouchun）、合肥（hefei）列為中立城池，袁術勢力缺席。",
+   "fix": "在 factions 新增勢力 f_yuanshu（君主：袁術，capital: shouchun，cities: [\"shouchun\", \"hefei\"]），並將該兩城自 neutral_cities 移除。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉漢中張魯勢力。199年張魯已割據漢中多年並與劉璋反目，草稿卻將漢中（hanzhong）與南鄭（nanzheng）設為中立城池。",
+   "fix": "在 factions 新增勢力 f_zhanglu（君主：張魯，capital: hanzhong，cities: [\"hanzhong\", \"nanzheng\"]），並自 neutral_cities 移除。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "漏掉涼州軍閥馬騰與韓遂勢力。199年馬騰、韓遂雄踞涼州與關中以西，草稿將西涼所有城池（wuwei, jincheng, tianshui, dunhuang, zhangye, anding）全數列為中立空白城池不符實情。",
+   "fix": "在 factions 新增勢力 f_mateng（君主：馬騰，武將：韓遂、馬超，capital: jincheng，cities: [\"jincheng\", \"wuwei\", \"tianshui\", \"anding\"]），並自 neutral_cities 移除。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "長安（changan）、潼關（tongguan）、安邑（anyi）劃歸曹操直轄不符199年初實情。李傕郭汜亂後關中殘破，諸將割據，199年曹操才派鍾繇以司隸校尉督關中諸軍並爭取馬騰、韓遂送質子，長安並非曹操直控領地。",
+   "fix": "將 changan、tongguan、anyi 自 f_caocao.cities 移除，改置於關中獨立勢力或列入 neutral_cities。"
+  },
+  {
+   "severity": "low",
+   "type": "faction",
+   "detail": "勢力強度（strength）評定未能反映當時客觀實力對比。199年袁紹盡取河北四州、兵精糧足、帶甲十萬，為天下最強實力者；曹操當時腹背受敵、兵力物資均處劣勢。兩者同列為 S 級無法體現「紹強操弱」的戰略背景。",
+   "fix": "將 f_yuanshao strength 維持為 S，將 f_caocao strength 調整為 A（或在擊敗袁術、張繡來降後再行動態調整）。"
+  }
+ ]
+}

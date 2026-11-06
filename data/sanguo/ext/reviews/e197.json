@@ -1,0 +1,41 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "劇本將「宛（wan）」設為中立城池且未設張繡勢力，但事件1即為「宛城事變：曹操南征張繡」。197年張繡屯駐宛城並有賈詡為謀士，為當時關鍵獨立勢力。",
+   "fix": "新增勢力 f_zhangxiu（君主：張繡，謀士：賈詡，城池：wan），並將 wan 從 neutral_cities 中移除。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "呂布勢力包含「郝萌」，但郝萌已於建安元年（196年）六月反叛並被高順斬殺，197年已故。",
+   "fix": "將武將「郝萌」從勢力 f_lvbu 的 officers 清單中移除。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "呂布勢力包含「曹豹」，曹豹在196年呂布襲取下邳期間即已戰死，197年已故。",
+   "fix": "將武將「曹豹」從勢力 f_lvbu 的 officers 清單中移除。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "公孫瓚勢力包含「鄒丹」，鄒丹於興平二年（195年）鮑丘之戰兵敗被斬，197年已故。",
+   "fix": "將武將「鄒丹」從勢力 f_gongsunzan 的 officers 清單中移除。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "韓遂被列為馬騰勢力下屬武將。歷史上韓遂與馬騰為地位平等的涼州聯軍軍閥（時戰時和），且閻行為韓遂部將兼女婿，並非馬騰下屬。",
+   "fix": "將韓遂獨立為勢力 f_hansui（領有 jincheng，部將閻行），馬騰勢力 f_mateng 據點調整至 tianshui 或 wuwei。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "漢中（hanzhong、nanzheng）被列為中立城池，但197年張魯已割據漢中多年，實行五斗米道政教合一政權。",
+   "fix": "新增勢力 f_zhanglu（君主：張魯，城池：hanzhong、nanzheng），並將 hanzhong、nanzheng 從 neutral_cities 中移除。"
+  }
+ ]
+}

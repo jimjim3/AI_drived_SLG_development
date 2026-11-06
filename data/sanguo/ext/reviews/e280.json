@@ -1,0 +1,35 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "280年天下僅西晉與東吳南北對峙。司馬駿為西晉扶風王、鎮西大將軍兼都督關中諸軍事，乃西晉中央皇族重臣，絕非獨立勢力；關中與涼州諸郡亦皆為西晉版圖。",
+   "fix": "刪除勢力 id: f_sima_jun；將其所轄城池（changan、chencang、tongguan、wuwei、jincheng、tianshui、dunhuang、zhangye、anding）與麾下將領（司馬駿、文鴦、馬隆、索靖、段灼、牽秀等）全部併入勢力 id: f_jin。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "周處在280年晉滅吳戰役時為東吳將領（曾任東觀左丞、無難督），吳亡後方歸降西晉，絕不可能在開局時隸屬於長安的晉軍勢力。",
+   "fix": "將武將「周處」從勢力 id: f_sima_jun 移至勢力 id: f_wu，所屬城池改為 jianye 或 wujun。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "事件中已明確寫出「斬吳都督孫歆，平定江陵」，但東吳勢力武將名單中漏掉了當時坐鎮江陵的關鍵指揮官孫歆（鎮南將軍、都督江陵）。",
+   "fix": "在勢力 id: f_wu 中補入武將「孫歆」，所屬城池設為 jiangling，role 設為「武將」。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "吾彥在滅吳戰役時官拜建平太守，負責於長江三峽水道設鐵鎖鏈江以阻擊王濬樓船，非江陵守將。",
+   "fix": "將東吳勢力武將「吾彥」所屬城池從 jiangling 改為 yiling。"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "陸機生於261年，280年吳亡時年僅約二十歲，其父陸抗去世後居於吳郡退隱苦讀，未在孫皓朝出仕（太康末年方與陸雲入洛入仕晉朝）。",
+   "fix": "將武將「陸機」從東吳勢力 id: f_wu 現役軍政名單移除，或改為在野狀態。"
+  }
+ ]
+}

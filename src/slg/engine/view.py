@@ -368,6 +368,8 @@ def build_faction_view(
                 "faction": fid,
                 "friendship": alliance.friendship(state, faction_id, fid),
                 "allied": alliance.allied(state, faction_id, fid),
+                **({"collateral": {"by": held[0], "gold": held[1]}}
+                   if (held := alliance.collateral_of(state, faction_id, fid)) else {}),
             })
 
     return FactionView(

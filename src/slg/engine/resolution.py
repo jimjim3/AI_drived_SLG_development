@@ -53,18 +53,26 @@ def resolve_decision(
 
     if action == "propose_alliance":
         target = decision.params["to"]
-        accept = alliance.default_accept(state, officer.faction_id, target) if alliance_accept is None else alliance_accept
-        new_state = alliance.propose(state, officer.faction_id, target, accept)
+        pledge = int(decision.params.get("pledge", 0))
+        accept = (alliance.default_accept(state, officer.faction_id, target, pledge)
+                  if alliance_accept is None else alliance_accept)
+        new_state = alliance.propose(state, officer.faction_id, target, accept, pledge, city.city_id)
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id, action, city.city_id,
-                                f"{target} {'accepted' if accept else 'refused'} the alliance",
+                                f"{target} {'accepted' if accept else 'refused'} the alliance"
+                                + (f" (pledge {pledge} gold)" if pledge else ""),
                                 defender_faction=target)
         return new_state, event
 
     if action == "break_alliance":
         victim = decision.params["with"]
+        held = alliance.collateral_of(state, officer.faction_id, victim)
         new_state = alliance.break_alliance(state, officer.faction_id, victim)
+        extra = ""
+        if held:
+            extra = (f"; {held[1]} gold collateral seized by {victim}" if held[0] == officer.faction_id
+                     else f"; {held[1]} gold collateral returned to {victim}")
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id, action, city.city_id,
-                                f"broke the alliance with {victim}", defender_faction=victim)
+                                f"broke the alliance with {victim}" + extra, defender_faction=victim)
         return new_state, event
 
     if action == "develop_agri":

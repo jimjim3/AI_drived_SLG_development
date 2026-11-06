@@ -1,0 +1,41 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "長安（changan）、潼關（tongguan）、陳倉（chencang）被劃入馬騰勢力。史實上 202 年關中由曹操委派之司隸校尉鍾繇鎮撫管轄，馬騰、韓遂僅割據涼州並臣服於漢廷；同年高幹、郭援進攻河東平陽時，鍾繇坐鎮長安並調動馬騰軍助戰，長安絕非馬騰領地。",
+   "fix": "將城池 changan、tongguan、chencang 從 f_mateng 移交給 f_caocao，並將武將鍾繇的所在城池由 luoyang 改為 changan。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "公孫度勢力下的卑衍、楊祚為 238 年公孫淵叛變時的遼東將領，距 202 年尚有 36 年，此時尚未出仕甚至尚未出生。",
+   "fix": "將卑衍、楊祚從 f_gongsundu 陣容中移除。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "李嚴在 202 年尚在劉表麾下任秭歸令，直到 208 年曹操南征荊州時才西奔入蜀歸附劉璋，此時不應在劉璋麾下。",
+   "fix": "將李嚴由 f_liuzhang 移至 f_liubiao（配置於 yiling 或 jiangling）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "凌統生於 189 年，202 年僅約 13 歲尚未出仕；其父凌操此時仍在孫權軍中效力（後於征黃祖時陣亡，凌統方代領其兵）。",
+   "fix": "將 f_sunquan 的凌統替換為其父凌操（city: wujun）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "蒯良於初平年間（約 192 年前後）即已逝世，202 年早不在人世，輔佐劉表者僅餘其弟蒯越。",
+   "fix": "將蒯良從 f_liubiao 的武將名單中移除。"
+  },
+  {
+   "severity": "low",
+   "type": "city",
+   "detail": "南皮（nanpi）隸屬勃海郡，202 年袁紹死後仍由袁尚派系掌控；袁譚此時僅自號車騎將軍屯平原兼據青州，直到 204 年兄弟反目攻打鄴城失敗後才退保並佔據南皮。",
+   "fix": "將 nanpi 由 f_yuantan 劃歸 f_yuanshang，並將武將劉獻調回平原（pingyuan）或移至 f_yuanshang。"
+  }
+ ]
+}

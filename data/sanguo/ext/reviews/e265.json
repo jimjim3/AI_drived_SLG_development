@@ -1,0 +1,29 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "劇本將霍弋設為獨立勢力（f_huoyi）且陣營標註為蜀漢（side: \"shu\"）。史實上蜀漢已於263年滅亡，霍弋於264年得知後主劉禪安全抵達洛陽後，率南中官吏歸降曹魏，司馬昭仍拜霍弋為南中都督統理南中。265年南中為魏/晉統治版圖，霍弋並非獨立軍閥，亦非蜀漢殘餘勢力。",
+   "fix": "刪除勢力 f_huoyi，將其城池 jianning、yuesui 及所屬武將（霍弋、爨谷、馬融、孟幹、毛炅、董元、王素、李松、楊稷）全數併入晉勢力（f_jin）。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "交趾（jiaozhi）被列為中立城池（neutral_cities）。史實上263年交趾呂興反吳降魏，264年魏廷命南中都督霍弋進軍經略交趾，霍弋先後派遣爨谷、馬融、楊稷等率軍進駐並出任交趾太守，咸熙二年（265年）交趾實際受魏/晉管轄並奉其正朔，並非中立城池。",
+   "fix": "將 jiaozhi 從 neutral_cities 移除，歸入晉勢力（f_jin）之城池名單。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "合浦（hepu）被列為中立城池（neutral_cities）。史實上交趾雖降魏，但孫吳仍牢固掌控合浦郡，並以此為前哨基地多次反攻交州，265年合浦實屬孫吳領土。",
+   "fix": "將 hepu 從 neutral_cities 移除，歸入孫吳勢力（f_wu）之城池名單。"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "南中將領爨谷、馬融、楊稷、毛炅等人若全數配置在建寧（jianning）與史實駐地不符。264年至265年間，爨谷已率部進駐交趾任太守，後續馬融、楊稷亦接任都督交趾諸軍事與太守職責，前線對吳作戰。",
+   "fix": "若將 jiaozhi 歸入 f_jin，建議將爨谷（或楊稷、毛炅等前線將領）之所在地由 jianning 改為 jiaozhi。"
+  }
+ ]
+}

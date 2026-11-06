@@ -1,0 +1,41 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "公孫瓚勢力擁有「易京（yijing）」，但易京是195年後公孫瓚為防禦袁紹才修築的防禦堡壘，190年尚不存在易京城池。",
+   "fix": "自公孫瓚勢力 (f_gongsunzan) 的 cities 中移除 yijing，將其改為幽州其他城池（如漁陽 yuyang）或置於中立城池清單中。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "韓馥麾下的「潘鳳」為《三國演義》虛構人物，正史查無此人。",
+   "fix": "將潘鳳自韓馥勢力 (f_hanfu) 的 officers 中移除，建議替換為史實韓馥部將麴義、趙浮或程渙。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "劉璋在190年時仍在京師長安擔任奉車都尉，直至興平元年（194年）劉焉稱病時才被朝廷遣往益州，190年不應在成都劉焉麾下。",
+   "fix": "將劉璋自劉焉勢力 (f_liuyan) 的 officers 中移除，改於董卓勢力 (f_dongzhuo) 長安城或延後登場。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "荀諶、辛評、郭圖在190年反董卓起兵時皆在冀州牧韓馥麾下，直到191年韓馥讓冀州給袁紹時才轉投袁紹。",
+   "fix": "將荀諶、辛評、郭圖自袁紹勢力 (f_yuanshao) 移至韓馥勢力 (f_hanfu)，城池設為 ye。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "懷縣（huai）為河內郡治所，190年時河內太守為王匡，王匡為反董卓聯盟主力並引兵屯於河內，絕非董卓地盤。",
+   "fix": "將 huai 自董卓勢力 (f_dongzhuo) 的 cities 移除，改設為中立城池或建立王匡勢力。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉幽州牧劉虞勢力。劉虞治薊縣（ji），統領幽州且威望崇高，反董聯軍更曾謀劃推戴其為帝，此時薊縣不應為中立空城。",
+   "fix": "新增幽州牧劉虞勢力 (f_liuyu)，首都設於 ji，從中立清單移除 ji，並配置武將如鮮于輔、閻柔。"
+  }
+ ]
+}

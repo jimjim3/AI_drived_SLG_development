@@ -1,0 +1,41 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "劇本將襄平(xiangping)設為中立城池(neutral_cities)，遺漏了當時割據遼東的獨立勢力遼東公孫氏。222年公孫恭主政遼東，並受魏文帝曹丕冊封為車騎將軍、襄平侯，並非無主中立地。",
+   "fix": "新增勢力 id: f_gongsun（君主：公孫恭，首都：xiangping，所屬城池：xiangping），並將 xiangping 從 neutral_cities 中移除。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "孫權勢力(f_sunquan)首都與君主駐地設為建業(jianye)不符史實。221年孫權自公安遷都至鄂縣並改名武昌（今湖北鄂州），夷陵之戰期間（222年）孫權政權行在與指揮大本營皆在武昌，直到229年稱帝後方遷都建業。",
+   "fix": "在城池清單中補入武昌，並將勢力 f_sunquan 的 capital 改為武昌，孫權城池位置亦改為武昌；若受限於現有城池清單，應暫以柴桑(chaisang)或江夏(jiangxia)代之，不應設在建業。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "交州四城（cangwu、panyu、hepu、jiaozhi）直接全數劃歸孫權勢力(f_sunquan)不符史實。222年交州實質上處於士燮家族（士燮、士壹、士䵋等）高度自治割據狀態，士燮雖名義稱臣，但直到226年士燮逝世後孫權才派呂岱武力平定交州並收歸直轄。",
+   "fix": "新增士燮割據勢力 id: f_shixie（君主：士燮，首都：jiaozhi，持有城池：jiaozhi、hepu、cangwu、panyu），或至少在 f_sunquan 陣營補入士燮並將其配置於交趾(jiaozhi)。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "曹丕麾下張遼配置於合肥(hefei)不符史實。張遼威震逍遙津為215年之事；221年張遼屯雍丘，222年秋曹丕三路伐吳，張遼抱病督江都(jiangdu)防禦呂範並於洞口破吳軍，同年底病逝於江都，222年並不在合肥。",
+   "fix": "將武將張遼所在城池從 hefei 改為 jiangdu 或首都 luoyang。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "曹丕麾下文聘配置於新野(xinye)不符史實。文聘自208年起即出任江夏太守，長年治石陽重鎮以抗東吳，222年其防區核心一直在魏屬江夏一線，非後方小縣新野。",
+   "fix": "若江夏城歸吳，文聘所在城池應改置於魏國南線重鎮宛(wan)或襄陽(xiangyang)。"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "孫權麾下步騭配置於蒼梧(cangwu)。221年至222年夷陵之戰爆發期間，孫權已調步騭率交州義勇兵萬人北上進駐益陽以威懾武陵蠻族、支援夷陵戰局，並非留駐交州後方蒼梧。",
+   "fix": "將武將步騭所在城池改為長沙(changsha)或武陵(wuling)。"
+  }
+ ]
+}

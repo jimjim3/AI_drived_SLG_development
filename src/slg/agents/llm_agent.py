@@ -74,6 +74,12 @@ ALLIANCE_NOTE = (
     "背盟（break_alliance）會使你與所有盟友的友好值大幅下降，請謹慎。"
 )
 
+ALLIANCE_PLEDGE_NOTE = (
+    "\n【抵押】propose_alliance 另有 pledge 參數（0 或以 100 為單位的金額，從該武將所在城的金扣除）："
+    "對方若接受，這筆金由對方保管作為抵押；若你日後背盟，抵押由被背棄者沒收；若對方背盟或同盟自然失效則歸還。"
+    "抵押越多，對方越願意接受。pledge 為必填，不想抵押就填 0。"
+)
+
 ALLIANCE_REPLY_SYSTEM = (
     "你是勢力的謀主，最終目標是吞併他人、統一天下（回合結束時城池最多者勝）。"
     "要決定是否接受他國的同盟提議：結盟只在對你統一天下有利時才接受（例如穩住強敵、換取時機），"
@@ -298,15 +304,15 @@ class LLMFactionAgent(FactionAgent):
         }
         self.errors_seen: list[str] = []
 
-    def respond_alliance(self, state, proposer: str, target: str) -> bool:
+    def respond_alliance(self, state, proposer: str, target: str, pledge: int = 0) -> bool:
         """The target faction's own judgement of an alliance proposal; falls back to the rule on any failure."""
         from ..engine import alliance as al
-        fallback = al.default_accept(state, proposer, target)
+        fallback = al.default_accept(state, proposer, target, pledge)
         mine = [c for c in state.cities_of(target)]
         theirs = [c for c in state.cities_of(proposer)]
         info = {
             "proposer": proposer, "you": target, "turn": state.turn,
-            "friendship": al.friendship(state, proposer, target),
+            "friendship": al.friendship(state, proposer, target), "pledge_gold": pledge,
             "your_cities": len(mine), "your_troops": sum(c.troops for c in mine),
             "their_cities": len(theirs), "their_troops": sum(c.troops for c in theirs),
             "your_allies": al.allies_of(state, target),
@@ -335,7 +341,8 @@ class LLMFactionAgent(FactionAgent):
 
         for _ in range(max_attempts):
             user_prompt = build_user_prompt(view, error=last_error, with_verdict=self._with_verdict)
-            system_prompt = self._system_prompt + (ALLIANCE_NOTE if combat.active().alliance else "")
+            system_prompt = self._system_prompt + (ALLIANCE_NOTE if combat.active().alliance else "") + (
+                ALLIANCE_PLEDGE_NOTE if combat.active().ally_pledge else "")
             prompt_chars = len(system_prompt) + len(user_prompt)
 
             self.usage["calls"] += 1

@@ -1,0 +1,47 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "毌丘甸被列為毌丘儉勢力壽春謀士。史實上毌丘甸任治書侍御史，身在洛陽，聞其父謀反後攜家出奔安邑即遭魏廷捕殺，從未抵達壽春參戰。",
+   "fix": "將武將毌丘甸從勢力 f_guanqiujian 中移除（該年已歿）。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "毌丘秀與毌丘宗被列為毌丘儉麾下壽春武將。史實上毌丘儉起兵時，弟毌丘秀與子毌丘宗直接攜家小逃奔孫吳避禍，並未在壽春參與反叛。",
+   "fix": "將武將毌丘秀、毌丘宗從勢力 f_guanqiujian 移除，或改配置於勢力 f_sunliang（城池 jianye）。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "合肥（hefei）被劃歸毌丘儉勢力。史實上毌丘儉與文欽僅據壽春起兵並移屯項縣，合肥始終由曹魏駐軍掌控，孫吳甚至趁淮南之亂出兵合肥新城。",
+   "fix": "將城池 hefei 從勢力 f_guanqiujian 的 cities 清單移至勢力 f_simashi。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "諸葛誕被配置於宛（wan）。史實上當時諸葛誕官拜鎮南將軍、都督豫州諸軍事（駐豫州防區），宛城為荊州都督王昶之治所，諸葛誕並未駐宛。",
+   "fix": "將武將諸葛誕在勢力 f_simashi 的所屬城池從 wan 改為豫州重鎮如 runan、chenxian 或 qiao。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "遺漏當時防禦東吳與隴西的曹魏前線核心統帥王昶與王經。王昶為征南大將軍都督荊州鎮守宛城；王經為雍州刺史，且事件中明確提及王經在洮西之戰戰敗。",
+   "fix": "在勢力 f_simashi 補入武將王昶（所屬城池 wan）與王經（所屬城池 tianshui）。"
+  },
+  {
+   "severity": "low",
+   "type": "city",
+   "detail": "城池清單中同時存在漢中（hanzhong）與南鄭（nanzheng），南鄭即漢中郡治所，兩者在地理上實為同一座城池。",
+   "fix": "將城池 nanzheng 移除，或以其他益州險隘/重鎮替代（如陽平關、武都、陰平）。"
+  },
+  {
+   "severity": "low",
+   "type": "faction",
+   "detail": "勢力國力評級不協調。蜀漢僅領益州10城評為 A，而坐擁揚州、荊州大部及交州共19城的孫吳亦評為 A；僅據淮南孤城的毌丘儉評為 B 亦偏高。",
+   "fix": "將勢力 f_liushan 的 strength 下調為 B，勢力 f_guanqiujian 下調為 C，以符合三國末期實況。"
+  }
+ ]
+}

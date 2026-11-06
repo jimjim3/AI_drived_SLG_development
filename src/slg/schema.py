@@ -189,11 +189,13 @@ class Diplomacy:
     ``friendship``: pair_key -> 0..100 (absent = alliance.DEFAULT_FRIENDSHIP).
     ``alliances``: pair_key -> turn the alliance was formed.
     ``cooldown``: pair_key -> last turn on which a new proposal is still refused.
+    ``collateral``: pair_key -> (depositor, gold) pledged to win the alliance; seized if the depositor betrays.
     """
 
     friendship: Mapping[str, int] = field(default_factory=dict)
     alliances: Mapping[str, int] = field(default_factory=dict)
     cooldown: Mapping[str, int] = field(default_factory=dict)
+    collateral: Mapping[str, tuple] = field(default_factory=dict)  # pair_key -> (depositor faction, gold held by the partner)
 
 
 @dataclass(frozen=True)

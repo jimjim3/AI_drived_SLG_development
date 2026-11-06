@@ -1,0 +1,41 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "幽州牧劉虞勢力漏設。192年初薊縣（ji）為幽州牧劉虞治所，公孫瓚此時主要駐紮右北平一帶，公孫瓚殺劉虞奪取薊縣是在193年，直接將薊縣設為公孫瓚首都且兼併上谷、漁陽與史實不符。",
+   "fix": "新增劉虞勢力（id: f_liuyu，首府 ji，轄 ji、shanggu、yuyang），並將公孫瓚勢力（f_gongsunzan）之首府改為 beiping，從其名下移除 ji、shanggu、yuyang。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "兗州刺史劉岱及陳留太守張邈漏設。劇本事件3明確寫有「刺史劉岱戰死，曹操臨危受命入主兗州」，但開局兗州核心郡縣（changyi、dingtao、chenliu）皆為中立，缺少關鍵割據人物。",
+   "fix": "新增劉岱勢力（首府 changyi，領 changyi、dingtao）與張邈勢力（領 chenliu），待事件觸發劉岱戰死後再由曹操（f_caocao）接收兗州。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "孫策於192年初尚未出仕袁術。孫堅戰死後部眾由孫賁統領依附袁術，孫策當時年僅17歲，居江都、舒縣為父守孝，直至194年前後才正式前往壽春依附袁術。",
+   "fix": "自袁術勢力（f_yuanshu）移除武將「孫策」（可改加入「孫賁」於 wan），設定孫策為在野或於194年後登場。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "易京（yijing）在192年尚未修築。公孫瓚是在興平二年（195年）殺劉虞並遭袁紹重兵反擊後，才在易水旁築易京樓壘割據。",
+   "fix": "自公孫瓚勢力（f_gongsunzan）城池列表中移除 yijing，城池清單中建議改為代郡或右北平屬縣。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "西北涼州群雄（韓遂、馬騰）與漢中張魯漏設。191-192年馬騰、韓遂已割據涼州金城、武威一帶；張魯亦受劉焉派遣奪取漢中並割據稱雄，不應將西北及漢中城池全置為中立。",
+   "fix": "在涼州新增馬騰/韓遂勢力（領 jincheng、wuwei、tianshui），並在漢中新增張魯勢力（首府 hanzhong，領 hanzhong、nanzheng）。"
+  },
+  {
+   "severity": "low",
+   "type": "city",
+   "detail": "「建業」（jianye）與「許昌」（xuchang）名稱存在年代錯置。建業在192年名為「秣陵」（212年孫權改名建業）；許昌當時為潁川郡「許縣」（221年魏文帝曹丕稱帝方改名許昌）。",
+   "fix": "城池清單中 jianye 的 name 改為「秣陵」，xuchang 的 name 改為「許縣」。"
+  }
+ ]
+}

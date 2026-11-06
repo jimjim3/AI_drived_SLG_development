@@ -1,0 +1,35 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉漢中五斗米道割據勢力張魯。漢中與南鄭在208年由張魯牢固統治，並非無人佔領的中立城池。",
+   "fix": "從 neutral_cities 移除 hanzhong、nanzheng，新增勢力 f_zhanglu（君主張魯，首府 hanzhong，領有 hanzhong、nanzheng，配置閻圃、張衛等武將）。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "李嚴在208年春赤壁之戰前夕尚未入蜀。李嚴原為劉表部屬（歷任秭歸令），曹操南下入荊州後才避亂入蜀投奔劉璋。",
+   "fix": "將武將「李嚴」從勢力 f_liuzhang（zitong）移至勢力 f_liubiao（xiangyang 或 yiling）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "劇本設定第1回合為孫權再伐江夏斬黃祖，表示開局時黃祖尚存；而歷史上劉琦是黃祖戰死後為避蔡瑁迫害、經諸葛亮指點才出任江夏太守，兩人不應同時任職江夏。",
+   "fix": "將勢力 f_liubiao 的武將「劉琦」初始城池由 jiangxia 改為 xiangyang。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "遼東太守公孫康為北方獨立割據勢力（207年斬二袁歸降曹操但保持高度自治割據），襄平不應為無主中立城池。",
+   "fix": "從 neutral_cities 移除 xiangping，新增勢力 f_gongsun（君主公孫康，首府 xiangping，領有 xiangping，配置公孫恭等武將）或歸為獨立地方勢力。"
+  },
+  {
+   "severity": "low",
+   "type": "city",
+   "detail": "城池名稱時空錯置。「建業」是孫權於建安十七年（212年）改秣陵後才出現的名稱，208年該地名為「秣陵」。",
+   "fix": "將城池 id: jianye 名稱「建業」更名為「秣陵」，或沿用舊治所丹徒/吳郡體系。"
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "verdict": "minor",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉遼東割據政權。劇本將襄平(xiangping)、柳城(liucheng)設為中立城池(neutral_cities)，但220年遼東由公孫恭(公孫度一系)世襲割據統治，為獨立軍閥政權，不應為無主中立城池。",
+   "fix": "新增遼東公孫氏勢力(如 f_gongsun)，君主設為公孫恭，分配城池 xiangping、liucheng。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "交州四城(cangwu、panyu、hepu、jiaozhi)被全部列為中立城池(neutral_cities)。220年交州由士燮家族治理，且士燮早於210年便臣服孫權、遣子入質並納貢，名義上為東吳屬地，不應為中立無主城池。",
+   "fix": "將 cangwu、panyu、hepu、jiaozhi 劃歸孫權勢力(f_sunquan)，或新增士燮勢力(f_shixie)統轄並設為孫權附庸。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "江都(jiangdu)劃歸孫權勢力(f_sunquan)與史實不符。江都位於長江以北廣陵郡境內，三國魏吳以大江為界，江都與廣陵當時均牢固受曹魏臧霸等部掌控，孫權並未佔領江都。",
+   "fix": "將 jiangdu 從孫權勢力(f_sunquan)的 cities 移除，改加入曹丕勢力(f_caopi)的 cities。"
+  },
+  {
+   "severity": "low",
+   "type": "city",
+   "detail": "孫權勢力首都(capital)設為建業(jianye)不符220年實況。孫權襲取荊州後親自移駐公安防備蜀魏，221年改鄂縣為武昌並遷都，至229年稱帝時才正式定都建業。",
+   "fix": "將孫權勢力(f_sunquan)的 capital 改為 jiangling(江陵)或維持長江南岸重鎮，以反映孫權當時親鎮荊州前線的佈局。"
+  }
+ ]
+}

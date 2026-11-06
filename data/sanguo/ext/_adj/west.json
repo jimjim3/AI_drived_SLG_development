@@ -1,0 +1,84 @@
+{
+ "wuwei": [
+  "zhangye",
+  "jincheng",
+  "anding"
+ ],
+ "jincheng": [
+  "wuwei",
+  "tianshui",
+  "anding"
+ ],
+ "tianshui": [
+  "jincheng",
+  "anding",
+  "chencang",
+  "hanzhong"
+ ],
+ "dunhuang": [
+  "zhangye",
+  "wuwei"
+ ],
+ "zhangye": [
+  "dunhuang",
+  "wuwei"
+ ],
+ "anding": [
+  "wuwei",
+  "jincheng",
+  "tianshui",
+  "changan"
+ ],
+ "hanzhong": [
+  "chencang",
+  "tianshui",
+  "shangyong",
+  "nanzheng"
+ ],
+ "nanzheng": [
+  "hanzhong",
+  "jiange",
+  "langzhong"
+ ],
+ "jiange": [
+  "nanzheng",
+  "zitong",
+  "langzhong"
+ ],
+ "zitong": [
+  "jiange",
+  "langzhong",
+  "chengtu"
+ ],
+ "langzhong": [
+  "nanzheng",
+  "jiange",
+  "zitong",
+  "jiangzhou"
+ ],
+ "chengtu": [
+  "zitong",
+  "jiangzhou",
+  "yuesui"
+ ],
+ "jiangzhou": [
+  "chengtu",
+  "langzhong",
+  "yongan",
+  "jianning"
+ ],
+ "yongan": [
+  "jiangzhou",
+  "yiling",
+  "shangyong",
+  "wuling"
+ ],
+ "yuesui": [
+  "chengtu",
+  "jianning"
+ ],
+ "jianning": [
+  "yuesui",
+  "jiangzhou"
+ ]
+}

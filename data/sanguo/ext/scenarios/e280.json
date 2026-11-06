@@ -1,0 +1,366 @@
+{
+ "id": "e280",
+ "year": 280,
+ "name": "晉滅吳",
+ "summary_zh": "太康元年春，晉武帝命六路大軍水陸齊進伐吳。王濬樓船破鎖東下，杜預、王渾勢如破竹；吳主孫皓暴虐無道、眾叛親離。晉軍直抵建業，延續近百年的三國割據終歸一統。",
+ "factions": [
+  {
+   "id": "f_jin",
+   "lord": "司馬炎",
+   "side": "jin",
+   "capital": "luoyang",
+   "playable": true,
+   "strength": "S",
+   "cities": [
+    "jinyang",
+    "yanmen",
+    "dingxiang",
+    "lishi",
+    "pingyang",
+    "shangdang",
+    "huguan",
+    "ye",
+    "liyang",
+    "qinghe",
+    "julu",
+    "xindu",
+    "nanpi",
+    "zhending",
+    "jingxingguan",
+    "lunu",
+    "ji",
+    "zhuoxian",
+    "yijing",
+    "shanggu",
+    "yuyang",
+    "beiping",
+    "linyu",
+    "liucheng",
+    "xiangping",
+    "pingyuan",
+    "jinan",
+    "lean",
+    "linzi",
+    "beihai",
+    "donglai",
+    "juxian",
+    "hongnong",
+    "luoyang",
+    "hulaoguan",
+    "anyi",
+    "huai",
+    "puyang",
+    "boma",
+    "chenliu",
+    "juancheng",
+    "dingtao",
+    "changyi",
+    "rencheng",
+    "fenggao",
+    "xuchang",
+    "xiangcheng",
+    "chenxian",
+    "suiyang",
+    "qiao",
+    "peixian",
+    "runan",
+    "xincai",
+    "pengcheng",
+    "xiapi",
+    "tanxian",
+    "kaiyang",
+    "quxian",
+    "huaiyin",
+    "guangling",
+    "jiangdu",
+    "shouchun",
+    "hefei",
+    "lujiang",
+    "wan",
+    "xinye",
+    "xiangyang",
+    "shangyong",
+    "jiangxia",
+    "hanzhong",
+    "nanzheng",
+    "jiange",
+    "zitong",
+    "langzhong",
+    "chengtu",
+    "jiangzhou",
+    "yongan",
+    "yuesui",
+    "jianning"
+   ],
+   "officers": [
+    {
+     "name": "司馬炎",
+     "city": "luoyang",
+     "role": "君主"
+    },
+    {
+     "name": "賈充",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "張華",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "荀勖",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "山濤",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "司馬攸",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "楊駿",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "杜預",
+     "city": "xiangyang",
+     "role": "武將"
+    },
+    {
+     "name": "王濬",
+     "city": "yongan",
+     "role": "武將"
+    },
+    {
+     "name": "王渾",
+     "city": "shouchun",
+     "role": "武將"
+    },
+    {
+     "name": "王戎",
+     "city": "xuchang",
+     "role": "謀士"
+    },
+    {
+     "name": "司馬伷",
+     "city": "xiapi",
+     "role": "武將"
+    },
+    {
+     "name": "衛瓘",
+     "city": "jinyang",
+     "role": "謀士"
+    },
+    {
+     "name": "胡奮",
+     "city": "jiangxia",
+     "role": "武將"
+    },
+    {
+     "name": "唐彬",
+     "city": "yongan",
+     "role": "武將"
+    },
+    {
+     "name": "陳騫",
+     "city": "luoyang",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_wu",
+   "lord": "孫皓",
+   "side": "wu",
+   "capital": "jianye",
+   "playable": true,
+   "strength": "B",
+   "cities": [
+    "jianye",
+    "wujun",
+    "kuaiji",
+    "chaisang",
+    "jingkou",
+    "yuzhang",
+    "jianan",
+    "yiling",
+    "jiangling",
+    "wuling",
+    "changsha",
+    "guiyang",
+    "lingling",
+    "cangwu",
+    "panyu",
+    "hepu",
+    "jiaozhi"
+   ],
+   "officers": [
+    {
+     "name": "孫皓",
+     "city": "jianye",
+     "role": "君主"
+    },
+    {
+     "name": "張悌",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "諸葛靚",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "沈瑩",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "孫震",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "薛瑩",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "岑昏",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "何植",
+     "city": "jingkou",
+     "role": "武將"
+    },
+    {
+     "name": "陸機",
+     "city": "wujun",
+     "role": "謀士"
+    },
+    {
+     "name": "吾彥",
+     "city": "jiangling",
+     "role": "武將"
+    },
+    {
+     "name": "陸景",
+     "city": "jiangling",
+     "role": "武將"
+    },
+    {
+     "name": "陸晏",
+     "city": "yiling",
+     "role": "武將"
+    },
+    {
+     "name": "陶璜",
+     "city": "jiaozhi",
+     "role": "武將"
+    },
+    {
+     "name": "滕脩",
+     "city": "panyu",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_sima_jun",
+   "lord": "司馬駿",
+   "side": "jin",
+   "capital": "changan",
+   "playable": true,
+   "strength": "C",
+   "cities": [
+    "changan",
+    "chencang",
+    "tongguan",
+    "wuwei",
+    "jincheng",
+    "tianshui",
+    "dunhuang",
+    "zhangye",
+    "anding"
+   ],
+   "officers": [
+    {
+     "name": "司馬駿",
+     "city": "changan",
+     "role": "君主"
+    },
+    {
+     "name": "文鴦",
+     "city": "changan",
+     "role": "武將"
+    },
+    {
+     "name": "周處",
+     "city": "changan",
+     "role": "武將"
+    },
+    {
+     "name": "段灼",
+     "city": "changan",
+     "role": "謀士"
+    },
+    {
+     "name": "江統",
+     "city": "changan",
+     "role": "謀士"
+    },
+    {
+     "name": "牽秀",
+     "city": "changan",
+     "role": "武將"
+    },
+    {
+     "name": "馬隆",
+     "city": "wuwei",
+     "role": "武將"
+    },
+    {
+     "name": "索靖",
+     "city": "dunhuang",
+     "role": "謀士"
+    }
+   ]
+  }
+ ],
+ "neutral_cities": [],
+ "opening_zh": "漢室傾頹，鼎峙三分，兵戈延綿近百載。晉武受禪，蓄力多年，起水陸大軍二十萬直指江東。此時吳主暴虐失民，人心離散；王濬樓船破鎖東下，杜預勢如破竹直逼江陵。三國終局已至，天下一統指日可待！",
+ "goal_zh": "攻滅孫吳，平定江南，重歸天下一統。",
+ "events": [
+  {
+   "turn": 1,
+   "text_zh": "王濬水軍自巴蜀順流直下，焚熔長江鐵鎖，克西陵、建平，陣斬吳將陸晏、陸景。"
+  },
+  {
+   "turn": 1,
+   "text_zh": "杜預督諸軍勢如破竹，斬吳都督孫歆，平定江陵，荊湘諸郡望風而降。"
+  },
+  {
+   "turn": 2,
+   "text_zh": "吳丞相張悌率沈瑩、諸葛靚渡江抗晉，版橋決戰敗績，張悌、沈瑩力戰而亡。"
+  },
+  {
+   "turn": 2,
+   "text_zh": "王濬樓船直入三山，孫皓銜璧輿櫬出降，東吳滅亡，三國鼎立宣告終結。"
+  },
+  {
+   "turn": 3,
+   "text_zh": "晉武帝司馬炎頒詔大赦天下，改元太康，下令州郡罷兵，四海混一。"
+  }
+ ],
+ "difficulty": 1,
+ "verification": "unverified"
+}

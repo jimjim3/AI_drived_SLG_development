@@ -1,0 +1,668 @@
+{
+ "anding": [
+  "changan",
+  "jincheng",
+  "tianshui",
+  "wuwei"
+ ],
+ "anyi": [
+  "hongnong",
+  "huai",
+  "pingyang",
+  "tongguan"
+ ],
+ "beihai": [
+  "donglai",
+  "juxian",
+  "linzi",
+  "xiapi"
+ ],
+ "beiping": [
+  "ji",
+  "jinyang",
+  "linyu",
+  "nanpi",
+  "xiangping",
+  "ye",
+  "yijing",
+  "yuyang"
+ ],
+ "boma": [
+  "chenliu",
+  "hulaoguan",
+  "juancheng",
+  "liyang",
+  "puyang"
+ ],
+ "cangwu": [
+  "guiyang",
+  "hepu",
+  "jiaozhi",
+  "lingling",
+  "panyu"
+ ],
+ "chaisang": [
+  "changsha",
+  "jiangling",
+  "jiangxia",
+  "jianye",
+  "lujiang",
+  "yuzhang"
+ ],
+ "changan": [
+  "anding",
+  "chencang",
+  "hanzhong",
+  "tianshui",
+  "tongguan"
+ ],
+ "changsha": [
+  "chaisang",
+  "guiyang",
+  "jiangling",
+  "jiangxia",
+  "lingling",
+  "wuling",
+  "yuzhang"
+ ],
+ "changyi": [
+  "dingtao",
+  "juancheng",
+  "peixian",
+  "rencheng",
+  "suiyang"
+ ],
+ "chencang": [
+  "changan",
+  "hanzhong",
+  "tianshui"
+ ],
+ "chengtu": [
+  "jiangzhou",
+  "yongan",
+  "yuesui",
+  "zitong"
+ ],
+ "chenliu": [
+  "boma",
+  "dingtao",
+  "hulaoguan",
+  "puyang",
+  "suiyang",
+  "xuchang",
+  "ye"
+ ],
+ "chenxian": [
+  "qiao",
+  "runan",
+  "suiyang",
+  "xuchang"
+ ],
+ "dingtao": [
+  "changyi",
+  "chenliu",
+  "juancheng",
+  "puyang",
+  "suiyang",
+  "xiapi"
+ ],
+ "dingxiang": [
+  "jinyang",
+  "yanmen"
+ ],
+ "donglai": [
+  "beihai",
+  "xiangping"
+ ],
+ "dunhuang": [
+  "wuwei",
+  "zhangye"
+ ],
+ "fenggao": [
+  "jinan",
+  "kaiyang",
+  "linzi",
+  "rencheng"
+ ],
+ "guangling": [
+  "huaiyin",
+  "jiangdu",
+  "jianye",
+  "jingkou",
+  "shouchun",
+  "xiapi"
+ ],
+ "guiyang": [
+  "cangwu",
+  "changsha",
+  "lingling",
+  "panyu",
+  "yuzhang"
+ ],
+ "hanzhong": [
+  "changan",
+  "chencang",
+  "nanzheng",
+  "shangyong",
+  "tianshui"
+ ],
+ "hefei": [
+  "jianye",
+  "lujiang",
+  "shouchun"
+ ],
+ "hepu": [
+  "cangwu",
+  "jiaozhi",
+  "panyu"
+ ],
+ "hongnong": [
+  "anyi",
+  "luoyang",
+  "tongguan"
+ ],
+ "huai": [
+  "anyi",
+  "hulaoguan",
+  "luoyang",
+  "shangdang",
+  "ye"
+ ],
+ "huaiyin": [
+  "guangling",
+  "quxian",
+  "shouchun",
+  "xiapi"
+ ],
+ "huguan": [
+  "shangdang",
+  "ye"
+ ],
+ "hulaoguan": [
+  "boma",
+  "chenliu",
+  "huai",
+  "luoyang",
+  "xuchang"
+ ],
+ "ji": [
+  "beiping",
+  "shanggu",
+  "yuyang",
+  "zhuoxian"
+ ],
+ "jianan": [
+  "kuaiji",
+  "panyu",
+  "yuzhang"
+ ],
+ "jiangdu": [
+  "guangling",
+  "jianye",
+  "jingkou"
+ ],
+ "jiange": [
+  "langzhong",
+  "nanzheng",
+  "zitong"
+ ],
+ "jiangling": [
+  "chaisang",
+  "changsha",
+  "jiangxia",
+  "wuling",
+  "xiangyang",
+  "yiling",
+  "yongan"
+ ],
+ "jiangxia": [
+  "chaisang",
+  "changsha",
+  "jiangling",
+  "lujiang",
+  "xiangyang"
+ ],
+ "jiangzhou": [
+  "chengtu",
+  "jianning",
+  "langzhong",
+  "yongan"
+ ],
+ "jianning": [
+  "jiangzhou",
+  "yuesui"
+ ],
+ "jianye": [
+  "chaisang",
+  "guangling",
+  "hefei",
+  "jiangdu",
+  "jingkou",
+  "lujiang",
+  "wujun"
+ ],
+ "jiaozhi": [
+  "cangwu",
+  "hepu"
+ ],
+ "jinan": [
+  "fenggao",
+  "lean",
+  "linzi",
+  "pingyuan",
+  "rencheng"
+ ],
+ "jincheng": [
+  "anding",
+  "tianshui",
+  "wuwei"
+ ],
+ "jingkou": [
+  "guangling",
+  "jiangdu",
+  "jianye",
+  "wujun"
+ ],
+ "jingxingguan": [
+  "jinyang",
+  "zhending"
+ ],
+ "jinyang": [
+  "beiping",
+  "dingxiang",
+  "jingxingguan",
+  "lishi",
+  "luoyang",
+  "shangdang",
+  "ye"
+ ],
+ "juancheng": [
+  "boma",
+  "changyi",
+  "dingtao",
+  "puyang"
+ ],
+ "julu": [
+  "lunu",
+  "xindu",
+  "ye",
+  "zhending"
+ ],
+ "juxian": [
+  "beihai",
+  "kaiyang",
+  "linzi",
+  "tanxian"
+ ],
+ "kaiyang": [
+  "fenggao",
+  "juxian",
+  "quxian",
+  "tanxian"
+ ],
+ "kuaiji": [
+  "jianan",
+  "wujun",
+  "yuzhang"
+ ],
+ "langzhong": [
+  "jiange",
+  "jiangzhou",
+  "nanzheng",
+  "zitong"
+ ],
+ "lean": [
+  "jinan",
+  "linzi",
+  "nanpi"
+ ],
+ "lingling": [
+  "cangwu",
+  "changsha",
+  "guiyang",
+  "panyu",
+  "wuling"
+ ],
+ "linyu": [
+  "beiping",
+  "liucheng"
+ ],
+ "linzi": [
+  "beihai",
+  "fenggao",
+  "jinan",
+  "juxian",
+  "lean",
+  "pingyuan",
+  "xiapi"
+ ],
+ "lishi": [
+  "jinyang",
+  "pingyang"
+ ],
+ "liucheng": [
+  "linyu",
+  "xiangping"
+ ],
+ "liyang": [
+  "boma",
+  "puyang",
+  "qinghe",
+  "ye"
+ ],
+ "lujiang": [
+  "chaisang",
+  "hefei",
+  "jiangxia",
+  "jianye",
+  "xiangyang"
+ ],
+ "lunu": [
+  "julu",
+  "zhending",
+  "zhuoxian"
+ ],
+ "luoyang": [
+  "hongnong",
+  "huai",
+  "hulaoguan",
+  "jinyang",
+  "tongguan",
+  "wan",
+  "xiangcheng",
+  "xuchang"
+ ],
+ "nanpi": [
+  "beiping",
+  "lean",
+  "pingyuan",
+  "xindu",
+  "ye",
+  "yijing"
+ ],
+ "nanzheng": [
+  "hanzhong",
+  "jiange",
+  "langzhong",
+  "zitong"
+ ],
+ "panyu": [
+  "cangwu",
+  "guiyang",
+  "hepu",
+  "jianan",
+  "lingling"
+ ],
+ "peixian": [
+  "changyi",
+  "pengcheng",
+  "qiao",
+  "rencheng"
+ ],
+ "pengcheng": [
+  "peixian",
+  "rencheng",
+  "tanxian",
+  "xiapi"
+ ],
+ "pingyang": [
+  "anyi",
+  "lishi",
+  "shangdang"
+ ],
+ "pingyuan": [
+  "jinan",
+  "linzi",
+  "nanpi",
+  "puyang",
+  "qinghe"
+ ],
+ "puyang": [
+  "boma",
+  "chenliu",
+  "dingtao",
+  "juancheng",
+  "liyang",
+  "pingyuan"
+ ],
+ "qiao": [
+  "chenxian",
+  "peixian",
+  "shouchun",
+  "suiyang",
+  "xincai"
+ ],
+ "qinghe": [
+  "liyang",
+  "pingyuan",
+  "xindu",
+  "ye"
+ ],
+ "quxian": [
+  "huaiyin",
+  "kaiyang",
+  "tanxian"
+ ],
+ "rencheng": [
+  "changyi",
+  "fenggao",
+  "jinan",
+  "peixian",
+  "pengcheng"
+ ],
+ "runan": [
+  "chenxian",
+  "shouchun",
+  "wan",
+  "xiangcheng",
+  "xincai",
+  "xuchang"
+ ],
+ "shangdang": [
+  "huai",
+  "huguan",
+  "jinyang",
+  "pingyang"
+ ],
+ "shanggu": [
+  "ji",
+  "yanmen",
+  "zhuoxian"
+ ],
+ "shangyong": [
+  "hanzhong",
+  "xiangyang",
+  "xinye",
+  "yiling",
+  "yongan"
+ ],
+ "shouchun": [
+  "guangling",
+  "hefei",
+  "huaiyin",
+  "qiao",
+  "runan",
+  "xiapi",
+  "xincai"
+ ],
+ "suiyang": [
+  "changyi",
+  "chenliu",
+  "chenxian",
+  "dingtao",
+  "qiao"
+ ],
+ "tanxian": [
+  "juxian",
+  "kaiyang",
+  "pengcheng",
+  "quxian",
+  "xiapi"
+ ],
+ "tianshui": [
+  "anding",
+  "changan",
+  "chencang",
+  "hanzhong",
+  "jincheng"
+ ],
+ "tongguan": [
+  "anyi",
+  "changan",
+  "hongnong",
+  "luoyang",
+  "wan"
+ ],
+ "wan": [
+  "luoyang",
+  "runan",
+  "tongguan",
+  "xiangcheng",
+  "xiangyang",
+  "xinye",
+  "xuchang"
+ ],
+ "wujun": [
+  "jianye",
+  "jingkou",
+  "kuaiji"
+ ],
+ "wuling": [
+  "changsha",
+  "jiangling",
+  "lingling",
+  "yiling",
+  "yongan"
+ ],
+ "wuwei": [
+  "anding",
+  "dunhuang",
+  "jincheng",
+  "zhangye"
+ ],
+ "xiangcheng": [
+  "luoyang",
+  "runan",
+  "wan",
+  "xuchang"
+ ],
+ "xiangping": [
+  "beiping",
+  "donglai",
+  "liucheng"
+ ],
+ "xiangyang": [
+  "jiangling",
+  "jiangxia",
+  "lujiang",
+  "shangyong",
+  "wan",
+  "xinye"
+ ],
+ "xiapi": [
+  "beihai",
+  "dingtao",
+  "guangling",
+  "huaiyin",
+  "linzi",
+  "pengcheng",
+  "shouchun",
+  "tanxian"
+ ],
+ "xincai": [
+  "qiao",
+  "runan",
+  "shouchun"
+ ],
+ "xindu": [
+  "julu",
+  "nanpi",
+  "qinghe",
+  "yijing"
+ ],
+ "xinye": [
+  "shangyong",
+  "wan",
+  "xiangyang"
+ ],
+ "xuchang": [
+  "chenliu",
+  "chenxian",
+  "hulaoguan",
+  "luoyang",
+  "runan",
+  "wan",
+  "xiangcheng"
+ ],
+ "yanmen": [
+  "dingxiang",
+  "shanggu"
+ ],
+ "ye": [
+  "beiping",
+  "chenliu",
+  "huai",
+  "huguan",
+  "jinyang",
+  "julu",
+  "liyang",
+  "nanpi",
+  "qinghe"
+ ],
+ "yijing": [
+  "beiping",
+  "nanpi",
+  "xindu",
+  "zhuoxian"
+ ],
+ "yiling": [
+  "jiangling",
+  "shangyong",
+  "wuling",
+  "yongan"
+ ],
+ "yongan": [
+  "chengtu",
+  "jiangling",
+  "jiangzhou",
+  "shangyong",
+  "wuling",
+  "yiling"
+ ],
+ "yuesui": [
+  "chengtu",
+  "jianning"
+ ],
+ "yuyang": [
+  "beiping",
+  "ji"
+ ],
+ "yuzhang": [
+  "chaisang",
+  "changsha",
+  "guiyang",
+  "jianan",
+  "kuaiji"
+ ],
+ "zhangye": [
+  "dunhuang",
+  "wuwei"
+ ],
+ "zhending": [
+  "jingxingguan",
+  "julu",
+  "lunu"
+ ],
+ "zhuoxian": [
+  "ji",
+  "lunu",
+  "shanggu",
+  "yijing"
+ ],
+ "zitong": [
+  "chengtu",
+  "jiange",
+  "langzhong",
+  "nanzheng"
+ ]
+}

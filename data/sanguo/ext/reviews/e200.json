@@ -1,0 +1,41 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漢中勢力張魯缺失。200年張魯已斬張脩割據漢中自立，與劉璋反目，非無主中立空城。",
+   "fix": "新增勢力 id: f_zhanglu，君主張魯，包含城池 hanzhong、nanzheng，從 neutral_cities 移除該二城。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "涼州割據勢力（馬騰、韓遂）缺失。建安五年馬騰、韓遂割據涼州關中以西，不應將金城、武威、天水等列為中立空城。",
+   "fix": "新增涼州軍閥勢力（如 f_mateng 或 f_hansui），領有 jincheng、wuwei、tianshui、anding 等城，從 neutral_cities 移除。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "袁紹勢力遺漏核心謀士許攸。事件4明確提及「許攸夜奔曹營獻計」，但袁紹勢力 officers 名單中缺少許攸。",
+   "fix": "在 f_yuanshao 的 officers 列表中加入 {\"name\": \"許攸\", \"city\": \"ye\", \"role\": \"謀士\"}。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "青州北海（beihai）、東萊（donglai）被列為中立城不合史實。建安初年袁譚已擊走孔融，盡兼青州故地，200年青州各郡皆在袁譚統治之下。",
+   "fix": "將 beihai、donglai 從 neutral_cities 移除，加入 f_yuanshao 的 cities 列表中。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "賈詡配置於宛城（wan）不合史實。建安四年冬張繡隨賈詡降曹，賈詡拜執金吾入許都，官渡之戰時隨侍曹操劃策，非留守宛城。",
+   "fix": "將 f_caocao 中賈詡的 city 改為 xuchang。"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "劉備配置於下邳（xiapi）與史實相反。建安五年春曹操親征前，劉備親自引兵屯小沛（沛縣 peixian），留關羽守下邳領徐州事。",
+   "fix": "將 f_liubei 中劉備的 city 改為 peixian（或與張飛同在 peixian，關羽留鎮 xiapi）。"
+  }
+ ]
+}

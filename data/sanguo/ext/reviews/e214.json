@@ -1,0 +1,53 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "張任在建安十八至十九年（213-214年）雒城/雁橋之戰中戰敗被俘，拒降被殺。214年劉備合圍成都前張任已亡，不應作為劉璋勢力武將守成都。",
+   "fix": "將張任自勢力 f_liuzhang 及城池 chengtu 中移除（標記為已死亡）。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "吳懿、李嚴、費觀已於建安十八至十九年間在涪城、綿竹等地先後降蜀，劉備進逼成都時三人已為劉備麾下，不應隸屬劉璋勢力且置於成都。",
+   "fix": "將吳懿、李嚴、費觀自勢力 f_liuzhang 轉移至劉備勢力 f_liubei。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "嚴顏在張飛攻破江州時已被俘投降。劇本中劉備已佔有江州（jiangzhou），嚴顏卻仍隸屬劉璋勢力並身處成都（chengtu）。",
+   "fix": "將嚴顏自勢力 f_liuzhang 轉移至劉備勢力 f_liubei，所屬城池調整為 jiangzhou 或 zitong。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉當時割據交州的士燮割據勢力。劇本將交州四城（cangwu、panyu、hepu、jiaozhi）全列為中立城池，與史實不符。",
+   "fix": "新增士燮勢力（如 f_shixie），君主為士燮，領有 jiaozhi、panyu、cangwu、hepu，並將上述城池自 neutral_cities 移除。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉世襲割據遼東的公孫氏政權（公孫康/公孫恭）。襄平（xiangping）被置為中立城池不合史實。",
+   "fix": "新增公孫氏勢力（如 f_gongsun），君主設為公孫康（或公孫恭），領有 xiangping，並自 neutral_cities 移除。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "張魯勢力同時擁有 hanzhong 與 nanzheng 兩座獨立城池，但南鄭即為漢中郡治所，兩者實為同一政治地理實體，並列重疊。",
+   "fix": "刪除或合併 hanzhong 與 nanzheng 其一；若保留兩處，可將其中一處改為陽平關（或西城、上庸等）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "龐統於214年圍攻雒城時中流矢身亡。劇本中劉備已破江州並包圍成都（劉璋僅剩成都），此時雒城已陷，龐統早已陣亡。",
+   "fix": "若設定為214年成都包圍網形成時，應將龐統自 f_liubei 移除（標記已死亡）。"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "簡雍隨劉備入蜀作戰，並在成都之圍時擔任使者入城勸降劉璋，不應配置於遠在荊州的江陵（jiangling）。",
+   "fix": "將簡雍的所屬城池自 jiangling 調整至 zitong（或前線）。"
+  }
+ ]
+}

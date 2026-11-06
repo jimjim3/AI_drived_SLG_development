@@ -28,6 +28,8 @@ def _action_cost(action: str, params) -> int:
         return DEVELOP_COST
     if action == "recruit":
         return int(params.get("troops", 0)) * GOLD_PER_TROOP
+    if action == "propose_alliance":
+        return int(params.get("pledge", 0))
     return 0
 
 

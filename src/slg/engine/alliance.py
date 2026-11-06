@@ -19,6 +19,7 @@ SIEGE_PENALTY = 20           # an attack costs the pair this much friendship
 DECAY_EVERY = 3              # an alliance loses 1 friendship every this many turns
 DISSOLVE_BELOW = 20          # friendship this low ends the alliance quietly
 REJECT_COOLDOWN = 3
+PLEDGE_BONUS = 5             # each 100 gold pledged counts as this much extra friendship when judging a proposal
 
 
 def enabled() -> bool:
@@ -60,9 +61,9 @@ def can_propose(state: GameState, proposer: str, target: str) -> bool:
     )
 
 
-def default_accept(state: GameState, proposer: str, target: str) -> bool:
+def default_accept(state: GameState, proposer: str, target: str, pledge: int = 0) -> bool:
     """Rule-AI judgement; an LLM faction may override it via ``respond_alliance``."""
-    return friendship(state, proposer, target) >= ACCEPT_THRESHOLD
+    return friendship(state, proposer, target) + pledge // 100 * PLEDGE_BONUS >= ACCEPT_THRESHOLD
 
 
 def _with(state: GameState, **fields) -> GameState:
@@ -71,7 +72,34 @@ def _with(state: GameState, **fields) -> GameState:
         friendship=fields.get("friendship", dict(d.friendship)),
         alliances=fields.get("alliances", dict(d.alliances)),
         cooldown=fields.get("cooldown", dict(d.cooldown)),
+        collateral=fields.get("collateral", dict(d.collateral)),
     ))
+
+
+def collateral_of(state: GameState, a: str, b: str) -> tuple | None:
+    return state.diplomacy.collateral.get(pair_key(a, b))
+
+
+def _credit(state: GameState, fid: str, gold: int) -> GameState:
+    """Pay gold into the faction's richest city (lowest id on ties)."""
+    cities = state.cities_of(fid)
+    if not cities or gold <= 0:
+        return state
+    c = min(cities, key=lambda c: (-c.gold, c.city_id))
+    ncs = dict(state.cities)
+    ncs[c.city_id] = replace(c, gold=c.gold + gold)
+    return replace(state, cities=ncs)
+
+
+def _settle(state: GameState, key: str, to: str | None) -> GameState:
+    """Release the collateral held for a pair: to ``to`` (None = back to the depositor)."""
+    held = dict(state.diplomacy.collateral)
+    entry = held.pop(key, None)
+    state = _with(state, collateral=held)
+    if entry:
+        depositor, gold = entry
+        state = _credit(state, to or depositor, gold)
+    return state
 
 
 def adjust(state: GameState, a: str, b: str, delta: int) -> GameState:
@@ -81,9 +109,16 @@ def adjust(state: GameState, a: str, b: str, delta: int) -> GameState:
     return _with(state, friendship=fr)
 
 
-def propose(state: GameState, proposer: str, target: str, accept: bool) -> GameState:
+def propose(state: GameState, proposer: str, target: str, accept: bool,
+            pledge: int = 0, origin_city: str | None = None) -> GameState:
     key = pair_key(proposer, target)
     if accept:
+        if pledge and origin_city:
+            ncs = dict(state.cities)
+            ncs[origin_city] = replace(ncs[origin_city], gold=ncs[origin_city].gold - pledge)
+            held = dict(state.diplomacy.collateral)
+            held[key] = (proposer, pledge)
+            state = replace(_with(state, collateral=held), cities=ncs)
         al = dict(state.diplomacy.alliances)
         al[key] = state.turn
         fr = dict(state.diplomacy.friendship)
@@ -103,6 +138,9 @@ def break_alliance(state: GameState, breaker: str, victim: str) -> GameState:
     cd = dict(state.diplomacy.cooldown)
     cd[pair_key(breaker, victim)] = state.turn + cooldown
     state = _with(state, alliances=al, cooldown=cd)
+    held = state.diplomacy.collateral.get(pair_key(breaker, victim))
+    if held:  # the depositor betraying forfeits it to the victim; the holder betraying gives it back
+        state = _settle(state, pair_key(breaker, victim), victim if held[0] == breaker else None)
     state = adjust(state, breaker, victim, -victim_loss)
     for f in others:
         state = adjust(state, breaker, f, -other_loss)
@@ -125,7 +163,7 @@ def tick(state: GameState) -> GameState:
                 if friendship(state, a, b) < DISSOLVE_BELOW:
                     al = dict(state.diplomacy.alliances)
                     al.pop(key, None)
-                    state = _with(state, alliances=al)
+                    state = _settle(_with(state, alliances=al), key, None)
             elif friendship(state, a, b) < PEACE_CAP:
                 state = adjust(state, a, b, 1)
     return state

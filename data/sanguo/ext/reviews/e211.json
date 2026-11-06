@@ -1,0 +1,29 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "曹操與關中聯軍城池歸屬嚴重顛倒。本劇本名稱為「潼關之戰」，開局卻將「tongguan（潼關）」與「changan（長安）」劃給曹操（f_caocao），陳倉（chencang）設為中立，馬超（f_machao）僅有隴西四城。史實上建安十六年春馬超、韓遂等關中十部舉兵反曹，聚眾十萬進據潼關阻截曹軍，長安以西皆為聯軍控制，曹操隨後由洛陽、弘農西征攻打潼關。曹操開局直接控制潼關與長安完全瓦解了潼關之戰的地理戰略邏輯。",
+   "fix": "將 tongguan、changan 及 chencang 劃歸馬超勢力（f_machao）；曹操勢力（f_caocao）西線退守至 hongnong（弘農）與 luoyang（洛陽），原配置於長安的夏侯淵、徐晃、張郃、鍾繇應移駐弘農或洛陽。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "嚴重漏掉劇本核心勢力「張魯（漢中政權）」。曹操西征關中的名義正是「討伐漢中張魯」，劉璋迎劉備入蜀的起因亦是「懼張魯犯境，迎劉備抗拒漢中」，劇本簡介與事件多次提及張魯，但城池清單中「hanzhong（漢中）」與「nanzheng（南鄭）」卻被設為中立無人城（neutral_cities），完全抹除張魯勢力。",
+   "fix": "在 neutral_cities 中移除 hanzhong 與 nanzheng（亦可包含 shangyong），新增漢中勢力（id: f_zhanglu），君主為張魯，首都設為 nanzheng，配置張衛、閻蒲、楊任、楊松等武將。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "勢力實力評級（strength）不符合史實。劇本將劉備（f_liubei）評為 A，與孫權（f_sunquan）同級，且高於劉璋（f_liuzhang）的 B。211 年劉備剛向孫權借得南郡江陵，僅領荊南四郡，兵微將寡，實力與版圖遠遜於坐擁江東六郡精銳的孫權，亦不及佔據天府之土全益州的劉璋（開局佔有8座城池）。",
+   "fix": "將劉備（f_liubei）的 strength 下調為 B；孫權（f_sunquan）維持 A 或評為 S-；劉璋（f_liuzhang）城池眾多、物資充裕，評級可調整為 B+ 或 A-（若考量將領素質可維持 B，但劉備絕不可高於劉璋）。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "遺漏當時客觀割據的「士燮（交州）」與「公孫康（遼東）」勢力。劇本將交州四城（cangwu、panyu、hepu、jiaozhi）與東北重鎮 xiangping（襄平）全數列為中立空白城池。211 年公孫康稱霸遼東，士燮家族割據嶺南交州數十年，均為不可忽視的獨立割據政權。",
+   "fix": "新增公孫康勢力（id: f_gongsun, 領 xiangping）與士燮勢力（id: f_shixie, 領 jiaozhi、cangwu、hepu、panyu）；若考慮遊戲規模欲簡化勢力，交州諸城亦應歸入孫權（f_sunquan）勢力（當時步騭已受命督交州），不應設為中立城。"
+  }
+ ]
+}

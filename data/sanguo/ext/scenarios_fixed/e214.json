@@ -1,0 +1,541 @@
+{
+ "id": "e214",
+ "year": 214,
+ "name": "劉備取益州",
+ "summary_zh": "建安十九年春，劉備自葭萌關進逼成都，諸葛亮、張飛溯江合圍益州；曹操受封魏公雄踞中原，整飭北方；孫權坐鎮江東，窺伺荊揚；張魯割據漢中，馬超來投。天下鼎足之勢已然成形，蜀道風雲驟起。",
+ "factions": [
+  {
+   "id": "f_caocao",
+   "lord": "曹操",
+   "side": "wei",
+   "capital": "ye",
+   "playable": true,
+   "strength": "S",
+   "cities": [
+    "jinyang",
+    "yanmen",
+    "dingxiang",
+    "lishi",
+    "pingyang",
+    "shangdang",
+    "huguan",
+    "ye",
+    "liyang",
+    "qinghe",
+    "julu",
+    "xindu",
+    "nanpi",
+    "zhending",
+    "jingxingguan",
+    "lunu",
+    "ji",
+    "zhuoxian",
+    "yijing",
+    "shanggu",
+    "yuyang",
+    "beiping",
+    "linyu",
+    "liucheng",
+    "pingyuan",
+    "jinan",
+    "lean",
+    "linzi",
+    "beihai",
+    "donglai",
+    "juxian",
+    "changan",
+    "chencang",
+    "tongguan",
+    "hongnong",
+    "luoyang",
+    "hulaoguan",
+    "anyi",
+    "huai",
+    "puyang",
+    "boma",
+    "chenliu",
+    "juancheng",
+    "dingtao",
+    "changyi",
+    "rencheng",
+    "fenggao",
+    "xuchang",
+    "xiangcheng",
+    "chenxian",
+    "suiyang",
+    "qiao",
+    "peixian",
+    "runan",
+    "xincai",
+    "pengcheng",
+    "xiapi",
+    "tanxian",
+    "kaiyang",
+    "quxian",
+    "huaiyin",
+    "guangling",
+    "jiangdu",
+    "shouchun",
+    "hefei",
+    "lujiang",
+    "wan",
+    "xinye",
+    "xiangyang",
+    "tianshui",
+    "anding"
+   ],
+   "officers": [
+    {
+     "name": "曹操",
+     "city": "ye",
+     "role": "君主"
+    },
+    {
+     "name": "荀攸",
+     "city": "ye",
+     "role": "謀士"
+    },
+    {
+     "name": "賈詡",
+     "city": "ye",
+     "role": "謀士"
+    },
+    {
+     "name": "程昱",
+     "city": "ye",
+     "role": "謀士"
+    },
+    {
+     "name": "曹丕",
+     "city": "ye",
+     "role": "官吏"
+    },
+    {
+     "name": "夏侯惇",
+     "city": "ye",
+     "role": "武將"
+    },
+    {
+     "name": "許褚",
+     "city": "ye",
+     "role": "武將"
+    },
+    {
+     "name": "夏侯淵",
+     "city": "changan",
+     "role": "武將"
+    },
+    {
+     "name": "張郃",
+     "city": "changan",
+     "role": "武將"
+    },
+    {
+     "name": "徐晃",
+     "city": "changan",
+     "role": "武將"
+    },
+    {
+     "name": "曹仁",
+     "city": "xiangyang",
+     "role": "武將"
+    },
+    {
+     "name": "張遼",
+     "city": "hefei",
+     "role": "武將"
+    },
+    {
+     "name": "樂進",
+     "city": "hefei",
+     "role": "武將"
+    },
+    {
+     "name": "李典",
+     "city": "hefei",
+     "role": "武將"
+    },
+    {
+     "name": "滿寵",
+     "city": "runan",
+     "role": "官吏"
+    },
+    {
+     "name": "臧霸",
+     "city": "kaiyang",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_liubei",
+   "lord": "劉備",
+   "side": "shu",
+   "capital": "zitong",
+   "playable": true,
+   "strength": "A",
+   "cities": [
+    "jiange",
+    "zitong",
+    "langzhong",
+    "jiangzhou",
+    "yongan",
+    "yiling",
+    "jiangling",
+    "wuling",
+    "changsha",
+    "guiyang",
+    "lingling"
+   ],
+   "officers": [
+    {
+     "name": "劉備",
+     "city": "zitong",
+     "role": "君主"
+    },
+    {
+     "name": "法正",
+     "city": "zitong",
+     "role": "謀士"
+    },
+    {
+     "name": "黃忠",
+     "city": "zitong",
+     "role": "武將"
+    },
+    {
+     "name": "魏延",
+     "city": "zitong",
+     "role": "武將"
+    },
+    {
+     "name": "吳懿",
+     "city": "zitong",
+     "role": "武將"
+    },
+    {
+     "name": "李嚴",
+     "city": "zitong",
+     "role": "武將"
+    },
+    {
+     "name": "費觀",
+     "city": "zitong",
+     "role": "武將"
+    },
+    {
+     "name": "簡雍",
+     "city": "zitong",
+     "role": "官吏"
+    },
+    {
+     "name": "諸葛亮",
+     "city": "jiangzhou",
+     "role": "謀士"
+    },
+    {
+     "name": "張飛",
+     "city": "jiangzhou",
+     "role": "武將"
+    },
+    {
+     "name": "趙雲",
+     "city": "jiangzhou",
+     "role": "武將"
+    },
+    {
+     "name": "嚴顏",
+     "city": "jiangzhou",
+     "role": "武將"
+    },
+    {
+     "name": "關羽",
+     "city": "jiangling",
+     "role": "武將"
+    },
+    {
+     "name": "馬良",
+     "city": "jiangling",
+     "role": "謀士"
+    },
+    {
+     "name": "麋竺",
+     "city": "jiangling",
+     "role": "官吏"
+    },
+    {
+     "name": "孫乾",
+     "city": "jiangling",
+     "role": "官吏"
+    }
+   ]
+  },
+  {
+   "id": "f_sunquan",
+   "lord": "孫權",
+   "side": "wu",
+   "capital": "jianye",
+   "playable": true,
+   "strength": "A",
+   "cities": [
+    "jianye",
+    "wujun",
+    "kuaiji",
+    "chaisang",
+    "jingkou",
+    "yuzhang",
+    "jianan",
+    "jiangxia"
+   ],
+   "officers": [
+    {
+     "name": "孫權",
+     "city": "jianye",
+     "role": "君主"
+    },
+    {
+     "name": "張昭",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "顧雍",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "諸葛瑾",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "步騭",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "魯肅",
+     "city": "chaisang",
+     "role": "都督"
+    },
+    {
+     "name": "呂蒙",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "甘寧",
+     "city": "chaisang",
+     "role": "武將"
+    },
+    {
+     "name": "凌統",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "周泰",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "潘璋",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "韓當",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "朱然",
+     "city": "wujun",
+     "role": "武將"
+    },
+    {
+     "name": "徐盛",
+     "city": "jianye",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_liuzhang",
+   "lord": "劉璋",
+   "side": "others",
+   "capital": "chengtu",
+   "playable": true,
+   "strength": "C",
+   "cities": [
+    "chengtu"
+   ],
+   "officers": [
+    {
+     "name": "劉璋",
+     "city": "chengtu",
+     "role": "君主"
+    },
+    {
+     "name": "黃權",
+     "city": "chengtu",
+     "role": "謀士"
+    },
+    {
+     "name": "劉巴",
+     "city": "chengtu",
+     "role": "謀士"
+    },
+    {
+     "name": "董和",
+     "city": "chengtu",
+     "role": "謀士"
+    },
+    {
+     "name": "冷苞",
+     "city": "chengtu",
+     "role": "武將"
+    },
+    {
+     "name": "鄧賢",
+     "city": "chengtu",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_zhanglu",
+   "lord": "張魯",
+   "side": "others",
+   "capital": "nanzheng",
+   "playable": true,
+   "strength": "D",
+   "cities": [
+    "hanzhong",
+    "nanzheng"
+   ],
+   "officers": [
+    {
+     "name": "張魯",
+     "city": "nanzheng",
+     "role": "君主"
+    },
+    {
+     "name": "張衛",
+     "city": "nanzheng",
+     "role": "武將"
+    },
+    {
+     "name": "閻圃",
+     "city": "nanzheng",
+     "role": "謀士"
+    },
+    {
+     "name": "楊松",
+     "city": "nanzheng",
+     "role": "謀士"
+    },
+    {
+     "name": "馬超",
+     "city": "nanzheng",
+     "role": "武將"
+    },
+    {
+     "name": "馬岱",
+     "city": "nanzheng",
+     "role": "武將"
+    },
+    {
+     "name": "龐德",
+     "city": "hanzhong",
+     "role": "武將"
+    },
+    {
+     "name": "楊昂",
+     "city": "hanzhong",
+     "role": "武將"
+    },
+    {
+     "name": "楊任",
+     "city": "hanzhong",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_shixie",
+   "lord": "士燮",
+   "side": "others",
+   "capital": "jiaozhi",
+   "playable": true,
+   "strength": "D",
+   "cities": [
+    "cangwu",
+    "panyu",
+    "hepu",
+    "jiaozhi"
+   ],
+   "officers": [
+    {
+     "name": "士燮",
+     "city": "jiaozhi",
+     "role": "君主"
+    }
+   ]
+  },
+  {
+   "id": "f_gongsun",
+   "lord": "公孫康",
+   "side": "others",
+   "capital": "xiangping",
+   "playable": true,
+   "strength": "D",
+   "cities": [
+    "xiangping"
+   ],
+   "officers": [
+    {
+     "name": "公孫康",
+     "city": "xiangping",
+     "role": "君主"
+    }
+   ]
+  }
+ ],
+ "neutral_cities": [
+  "wuwei",
+  "jincheng",
+  "dunhuang",
+  "zhangye",
+  "shangyong",
+  "yuesui",
+  "jianning"
+ ],
+ "opening_zh": "漢祚傾頹，梟雄並起。建安十九年，玄德引兵入蜀，兵臨益州心腹；曹操進爵魏公，虎視江南；孫仲謀兼跨荊揚，志在全壁。西南崇山峻嶺間，三國鼎立之局即將塵埃落定。",
+ "goal_zh": "平定益州全境，鼎足三分，繼而北伐中原以興復漢室。",
+ "events": [
+  {
+   "turn": 2,
+   "text_zh": "孫權親率大軍攻破皖城，生擒太守朱光，曹操南侵淮南攻勢受挫。"
+  },
+  {
+   "turn": 3,
+   "text_zh": "馬超密信投奔劉備，兵臨成都城下；劉璋見大勢已去，遂開城歸降，劉備領益州牧。"
+  },
+  {
+   "turn": 6,
+   "text_zh": "孫權與劉備以湘水為界平分荊州，江夏、長沙、桂陽歸孫權，南郡、零陵、武陵歸劉備。"
+  },
+  {
+   "turn": 7,
+   "text_zh": "張遼率八百敢死士於合肥逍遙津大破孫權十萬大軍，威震江東。"
+  },
+  {
+   "turn": 8,
+   "text_zh": "曹操親征漢中，於陽平關擊潰張衛，張魯納土歸降，漢中盡歸魏公。"
+  }
+ ],
+ "difficulty": 2,
+ "verification": "unverified",
+ "repaired": true
+}

@@ -1,0 +1,35 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "劇本名為「曹操平定河北」，但河北關鍵敵對勢力（袁譚、袁尚、高幹）完全未建立，南皮、薊、晉陽、壺關等均被誤置於中立城池（neutral_cities），與開局背景描述嚴重割裂。",
+   "fix": "新增袁譚勢力（f_yuantan，領南皮 nanpi、平原 pingyuan）、袁尚/袁熙勢力（f_yuanshang，領薊 ji、涿縣 zhuoxian 等）、高幹勢力（f_gaogan，領晉陽 jinyang、上黨 shangdang、壺關 huguan）。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "李嚴在 205 年仍在劉表麾下擔任秭歸令，直至 208 年曹操南下荊州時始逃奔入蜀投劉璋，205 年不可直接歸屬於劉璋陣營。",
+   "fix": "將武將「李嚴」自劉璋勢力（f_liuzhang）移至劉表勢力（f_liubiao，城池 yiling 或 xiangyang）。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "韓遂與關中諸將（侯選、程銀、楊秋、梁興）被直接塞入馬騰勢力作為部將。史實上韓遂為並列割據涼州的獨立軍閥，關中諸將亦各擁兵馬，並非馬騰部屬。",
+   "fix": "設立韓遂勢力（f_hansui，capital: jincheng，管轄金城 jincheng），將韓遂與閻行劃入該勢力；或與馬騰合併為「馬騰韓遂聯軍」。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "漢中張魯（割據漢中數十年）、遼東公孫康（204年繼位割據遼東）、交州士燮（長期割據交趾嶺南）均為當時重要割據政權，卻全部被列入中立城池。",
+   "fix": "新增張魯勢力（f_zhanglu，領 hanzhong、nanzheng）、公孫康勢力（f_gongsunkang，領 xiangping）、士燮勢力（f_shixie，領 jiaozhi、cangwu、panyu、hepu）。"
+  },
+  {
+   "severity": "low",
+   "type": "city",
+   "detail": "揚州「建業（jianye）」地名在 205 年尚未出現。建安十年此地名為「秣陵」，孫權於建安十七年（212年）始改秣陵為建業。",
+   "fix": "將城池 id: jianye 的名稱由「建業」更名為「秣陵」。"
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉割據遼東的公孫康勢力。劇本將遼東首府「襄平」列入中立城池（neutral_cities），但215年遼東由公孫康獨立割據統治，並非無主空城。",
+   "fix": "新增勢力 f_gongsun（君主：公孫康，capital：xiangping），將 xiangping 從 neutral_cities 移除並指派給 f_gongsun。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉割據交州的士燮勢力。劇本將交州四城（交趾、蒼梧、番禺、合浦）全部置於 neutral_cities，但215年交州由士燮家族實質割據統治，並非無人佔領。",
+   "fix": "新增勢力 f_shixie（君主：士燮，capital：jiaozhi），將 jiaozhi、cangwu、panyu、hepu 從 neutral_cities 移除並指派給 f_shixie。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "城池「漢中(hanzhong)」與「南鄭(nanzheng)」並存且皆分配給張魯，屬行政建制重疊錯誤。南鄭為漢中郡治所，兩者實為同一政治中心；張衛、楊任等人實質防守點為陽平關。",
+   "fix": "移除重複城池 hanzhong（或更名為關隘 yangpingguan 陽平關），並將張衛、楊任、楊昂改駐 nanzheng（或陽平關）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "張魯勢力包含城池「上庸(shangyong)」且將「申耽」列為張魯部下不符史實。建安年間申耽割據上庸聚眾數千家，早已歸順曹操並被曹操封為上庸都尉，並非張魯部屬。",
+   "fix": "將 shangyong 從勢力 f_zhanglu 移除並劃歸 f_caocao（或設為獨立中立城池），武將申耽從 f_zhanglu 改劃入 f_caocao（駐 shangyong）。"
+  }
+ ]
+}

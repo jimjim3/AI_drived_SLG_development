@@ -1,0 +1,337 @@
+{
+ "id": "e184",
+ "year": 184,
+ "name": "黃巾之亂",
+ "summary_zh": "中平元年，太平道首領張角號稱「大賢良師」，率三十六方信徒揭竿而起，天下八州響應。漢廷拜何進為大將軍拱衛京畿，遣盧植、皇甫嵩、朱儁分路征討，亂世序幕自此拉開。",
+ "factions": [
+  {
+   "id": "f_hejin",
+   "lord": "何進",
+   "side": "others",
+   "capital": "luoyang",
+   "playable": true,
+   "strength": "S",
+   "cities": [
+    "luoyang",
+    "changan",
+    "chencang",
+    "tongguan",
+    "hongnong",
+    "hulaoguan",
+    "anyi",
+    "huai",
+    "ye",
+    "liyang",
+    "nanpi",
+    "jingxingguan",
+    "ji",
+    "zhuoxian",
+    "yuyang",
+    "beiping",
+    "pingyuan",
+    "jinan",
+    "lean",
+    "linzi",
+    "beihai",
+    "chenliu",
+    "juancheng",
+    "dingtao",
+    "changyi",
+    "rencheng",
+    "fenggao",
+    "xuchang",
+    "chenxian",
+    "suiyang",
+    "peixian",
+    "pengcheng",
+    "xiapi",
+    "tanxian",
+    "kaiyang",
+    "quxian",
+    "huaiyin",
+    "guangling",
+    "jiangdu",
+    "shouchun",
+    "hefei",
+    "lujiang",
+    "jianye",
+    "wujun",
+    "kuaiji",
+    "chaisang",
+    "jingkou",
+    "yuzhang",
+    "xinye",
+    "xiangyang",
+    "jiangling",
+    "jiangxia",
+    "chengtu",
+    "jiangzhou",
+    "hanzhong",
+    "nanzheng"
+   ],
+   "officers": [
+    {
+     "name": "何進",
+     "city": "luoyang",
+     "role": "君主"
+    },
+    {
+     "name": "皇甫嵩",
+     "city": "luoyang",
+     "role": "武將"
+    },
+    {
+     "name": "朱儁",
+     "city": "luoyang",
+     "role": "武將"
+    },
+    {
+     "name": "盧植",
+     "city": "luoyang",
+     "role": "武將"
+    },
+    {
+     "name": "曹操",
+     "city": "luoyang",
+     "role": "武將"
+    },
+    {
+     "name": "孫堅",
+     "city": "luoyang",
+     "role": "武將"
+    },
+    {
+     "name": "袁紹",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "袁術",
+     "city": "luoyang",
+     "role": "武將"
+    },
+    {
+     "name": "王允",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "劉表",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "陶謙",
+     "city": "luoyang",
+     "role": "武將"
+    },
+    {
+     "name": "傅燮",
+     "city": "luoyang",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_zhangjiao",
+   "lord": "張角",
+   "side": "others",
+   "capital": "julu",
+   "playable": true,
+   "strength": "A",
+   "cities": [
+    "julu",
+    "qinghe",
+    "xindu",
+    "zhending",
+    "lunu",
+    "puyang",
+    "boma",
+    "xiangcheng",
+    "qiao",
+    "runan",
+    "xincai",
+    "wan"
+   ],
+   "officers": [
+    {
+     "name": "張角",
+     "city": "julu",
+     "role": "君主"
+    },
+    {
+     "name": "張寶",
+     "city": "julu",
+     "role": "武將"
+    },
+    {
+     "name": "張梁",
+     "city": "julu",
+     "role": "武將"
+    },
+    {
+     "name": "波才",
+     "city": "xiangcheng",
+     "role": "武將"
+    },
+    {
+     "name": "彭脫",
+     "city": "runan",
+     "role": "武將"
+    },
+    {
+     "name": "卜己",
+     "city": "puyang",
+     "role": "武將"
+    },
+    {
+     "name": "張曼成",
+     "city": "wan",
+     "role": "武將"
+    },
+    {
+     "name": "趙弘",
+     "city": "wan",
+     "role": "武將"
+    },
+    {
+     "name": "韓忠",
+     "city": "wan",
+     "role": "武將"
+    },
+    {
+     "name": "孫仲",
+     "city": "wan",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_dongzhuo",
+   "lord": "董卓",
+   "side": "others",
+   "capital": "tianshui",
+   "playable": true,
+   "strength": "B",
+   "cities": [
+    "tianshui",
+    "wuwei",
+    "jincheng",
+    "anding"
+   ],
+   "officers": [
+    {
+     "name": "董卓",
+     "city": "tianshui",
+     "role": "君主"
+    },
+    {
+     "name": "李傕",
+     "city": "tianshui",
+     "role": "武將"
+    },
+    {
+     "name": "郭汜",
+     "city": "tianshui",
+     "role": "武將"
+    },
+    {
+     "name": "張濟",
+     "city": "wuwei",
+     "role": "武將"
+    },
+    {
+     "name": "樊稠",
+     "city": "tianshui",
+     "role": "武將"
+    },
+    {
+     "name": "牛輔",
+     "city": "tianshui",
+     "role": "武將"
+    },
+    {
+     "name": "徐榮",
+     "city": "tianshui",
+     "role": "武將"
+    },
+    {
+     "name": "段煨",
+     "city": "wuwei",
+     "role": "武將"
+    },
+    {
+     "name": "華雄",
+     "city": "tianshui",
+     "role": "武將"
+    },
+    {
+     "name": "李儒",
+     "city": "tianshui",
+     "role": "謀士"
+    }
+   ]
+  }
+ ],
+ "neutral_cities": [
+  "jinyang",
+  "yanmen",
+  "dingxiang",
+  "lishi",
+  "pingyang",
+  "shangdang",
+  "huguan",
+  "yijing",
+  "shanggu",
+  "linyu",
+  "liucheng",
+  "xiangping",
+  "donglai",
+  "juxian",
+  "jianan",
+  "shangyong",
+  "yiling",
+  "wuling",
+  "changsha",
+  "guiyang",
+  "lingling",
+  "cangwu",
+  "panyu",
+  "hepu",
+  "jiaozhi",
+  "dunhuang",
+  "zhangye",
+  "jiange",
+  "zitong",
+  "langzhong",
+  "yongan",
+  "yuesui",
+  "jianning"
+ ],
+ "opening_zh": "蒼天已死，黃天當立。歲在甲子，天下大吉。中平元年春，鉅鹿張角揭竿而起，黃巾蔽野，旬月之間九州震動。漢廷拜何進為大將軍，發天下精兵三路進剿。四海鼎沸，豪傑並起，漢家四百年江山風雨飄搖，群雄爭霸之世自此而始。",
+ "goal_zh": "平定四方叛亂，剿滅黃巾主力，恢復大漢天下之一統。",
+ "events": [
+  {
+   "turn": 1,
+   "text_zh": "張角自號天公將軍，與張寶、張梁率三十六方黃巾信眾起兵，天下震動。"
+  },
+  {
+   "turn": 2,
+   "text_zh": "漢廷拜何進為大將軍拱衛洛陽，盧植、皇甫嵩、朱儁分領精兵三路討賊。"
+  },
+  {
+   "turn": 3,
+   "text_zh": "皇甫嵩與朱儁於潁川長社火攻大破波才，斬首數萬，朝野士氣大振。"
+  },
+  {
+   "turn": 4,
+   "text_zh": "張角病死鉅鹿，皇甫嵩連破廣宗與下曲陽，斬張梁、張寶，黃巾主力覆滅。"
+  },
+  {
+   "turn": 5,
+   "text_zh": "邊章、韓遂與羌胡聯軍於涼州起兵叛亂，寇掠隴西，漢室西陲警報大作。"
+  }
+ ],
+ "difficulty": 2,
+ "verification": "unverified"
+}

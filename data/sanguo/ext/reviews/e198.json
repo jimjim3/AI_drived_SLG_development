@@ -1,0 +1,35 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "劇本簡介與事件明確提及『袁紹圍攻公孫瓚於易京』，且198年易京之戰正激烈進行（公孫瓚於199年春方敗亡），但勢力清單中完全遺漏公孫瓚，並將易京(yijing)、薊(ji)等幽州重鎮列為中立城。",
+   "fix": "新增勢力公孫瓚(f_gongsunzan)，首都設於易京(yijing)，配屬武將公孫瓚、公孫續、田楷、關靖等，領有yijing、ji、zhuoxian、yuyang、beiping等幽州城池。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "198年張繡與賈詡割據宛城(wan)，同年曹操親征張繡爆發穰城之戰，宛城為威脅許昌的關鍵門戶，劇本卻將宛(wan)與新野(xinye)列為中立城，且遺漏張繡、賈詡。",
+   "fix": "新增勢力張繡(f_zhangxiu)，首都宛(wan)，領有wan、xinye，配屬武將張繡、賈詡、胡車兒。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "198年漢中早已由張魯割據獨立（建立五斗米道政權），與益州劉璋反目，劇本卻將漢中(hanzhong)與南鄭(nanzheng)列為中立城池。",
+   "fix": "新增勢力張魯(f_zhanglu)，首都南鄭(nanzheng)，領有hanzhong、nanzheng，配屬武將張魯、閻圃、張衛。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "懷縣(huai，河內郡治)在198年為河內太守張楊所據。下邳之戰時張楊欲出兵救呂布，屯兵東市，後遭部下楊醜刺殺，曹操遲至199年擊滅眭固後方奪得河內。將懷縣劃入曹操(f_caocao)勢力不合史實。",
+   "fix": "將懷縣(huai)從曹操(f_caocao)的城池清單中移除，改設獨立勢力張楊或列為中立城；董昭自懷縣(huai)移駐許昌(xuchang)。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "陳登早在197年便受朝廷封為廣陵太守並與曹操結盟反呂，198年下邳之戰時陳登已公開起兵做曹操先鋒。劇本將陳登列為呂布(f_lubu)麾下謀士，且將廣陵(guangling)劃歸呂布勢力，與史實不符。",
+   "fix": "將陳登移出呂布(f_lubu)勢力改隸曹操(f_caocao)；廣陵(guangling)與江都(jiangdu)自呂布(f_lubu)劃歸曹操(f_caocao)管轄，陳登配置於guangling。"
+  }
+ ]
+}

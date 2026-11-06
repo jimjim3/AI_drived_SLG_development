@@ -1,0 +1,186 @@
+{
+ "changan": [
+  "chencang",
+  "tongguan",
+  "anding",
+  "hanzhong"
+ ],
+ "chencang": [
+  "changan",
+  "tianshui",
+  "hanzhong"
+ ],
+ "tongguan": [
+  "changan",
+  "hongnong",
+  "anyi"
+ ],
+ "hongnong": [
+  "tongguan",
+  "luoyang",
+  "anyi"
+ ],
+ "luoyang": [
+  "hongnong",
+  "hulaoguan",
+  "huai",
+  "wan"
+ ],
+ "hulaoguan": [
+  "luoyang",
+  "chenliu",
+  "huai",
+  "xuchang"
+ ],
+ "anyi": [
+  "pingyang",
+  "tongguan",
+  "hongnong",
+  "huai"
+ ],
+ "huai": [
+  "luoyang",
+  "hulaoguan",
+  "anyi",
+  "ye"
+ ],
+ "puyang": [
+  "boma",
+  "juancheng",
+  "liyang",
+  "pingyuan"
+ ],
+ "boma": [
+  "liyang",
+  "puyang",
+  "chenliu",
+  "hulaoguan"
+ ],
+ "chenliu": [
+  "hulaoguan",
+  "boma",
+  "xuchang",
+  "suiyang"
+ ],
+ "juancheng": [
+  "puyang",
+  "dingtao",
+  "boma",
+  "changyi"
+ ],
+ "dingtao": [
+  "juancheng",
+  "changyi",
+  "suiyang"
+ ],
+ "changyi": [
+  "dingtao",
+  "rencheng",
+  "peixian",
+  "suiyang"
+ ],
+ "rencheng": [
+  "changyi",
+  "fenggao",
+  "pengcheng",
+  "jinan"
+ ],
+ "fenggao": [
+  "rencheng",
+  "jinan",
+  "linzi",
+  "kaiyang"
+ ],
+ "xuchang": [
+  "hulaoguan",
+  "chenliu",
+  "xiangcheng",
+  "chenxian"
+ ],
+ "xiangcheng": [
+  "xuchang",
+  "wan",
+  "luoyang",
+  "runan"
+ ],
+ "chenxian": [
+  "xuchang",
+  "suiyang",
+  "qiao",
+  "runan"
+ ],
+ "suiyang": [
+  "chenliu",
+  "dingtao",
+  "chenxian",
+  "qiao"
+ ],
+ "qiao": [
+  "suiyang",
+  "chenxian",
+  "peixian",
+  "shouchun"
+ ],
+ "peixian": [
+  "qiao",
+  "changyi",
+  "pengcheng",
+  "rencheng"
+ ],
+ "runan": [
+  "xuchang",
+  "chenxian",
+  "xincai",
+  "wan"
+ ],
+ "xincai": [
+  "runan",
+  "shouchun",
+  "qiao"
+ ],
+ "pengcheng": [
+  "peixian",
+  "rencheng",
+  "xiapi",
+  "tanxian"
+ ],
+ "xiapi": [
+  "pengcheng",
+  "tanxian",
+  "huaiyin",
+  "shouchun"
+ ],
+ "tanxian": [
+  "xiapi",
+  "pengcheng",
+  "kaiyang",
+  "quxian"
+ ],
+ "kaiyang": [
+  "tanxian",
+  "fenggao",
+  "juxian",
+  "quxian"
+ ],
+ "quxian": [
+  "kaiyang",
+  "tanxian",
+  "huaiyin"
+ ],
+ "huaiyin": [
+  "xiapi",
+  "quxian",
+  "guangling",
+  "shouchun"
+ ],
+ "guangling": [
+  "huaiyin",
+  "jiangdu",
+  "shouchun"
+ ],
+ "jiangdu": [
+  "guangling",
+  "jingkou",
+  "jianye"
+ ]
+}

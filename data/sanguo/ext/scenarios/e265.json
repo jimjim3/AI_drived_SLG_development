@@ -1,0 +1,387 @@
+{
+ "id": "e265",
+ "year": 265,
+ "name": "晉代魏",
+ "summary_zh": "魏滅蜀後，司馬昭晉爵為王，總攬曹魏軍政大權。南方孫吳孫皓初立，政局動盪；南中霍弋保境安民。司馬氏代魏一統天下之勢已成，三國終局呼之欲出。",
+ "factions": [
+  {
+   "id": "f_jin",
+   "lord": "司馬昭",
+   "side": "jin",
+   "capital": "luoyang",
+   "playable": true,
+   "strength": "S",
+   "cities": [
+    "jinyang",
+    "yanmen",
+    "lishi",
+    "pingyang",
+    "shangdang",
+    "huguan",
+    "ye",
+    "liyang",
+    "qinghe",
+    "julu",
+    "xindu",
+    "nanpi",
+    "zhending",
+    "jingxingguan",
+    "lunu",
+    "ji",
+    "zhuoxian",
+    "yijing",
+    "shanggu",
+    "yuyang",
+    "beiping",
+    "linyu",
+    "xiangping",
+    "pingyuan",
+    "jinan",
+    "lean",
+    "linzi",
+    "beihai",
+    "donglai",
+    "juxian",
+    "changan",
+    "chencang",
+    "tongguan",
+    "hongnong",
+    "luoyang",
+    "hulaoguan",
+    "anyi",
+    "huai",
+    "puyang",
+    "boma",
+    "chenliu",
+    "juancheng",
+    "dingtao",
+    "changyi",
+    "rencheng",
+    "fenggao",
+    "xuchang",
+    "xiangcheng",
+    "chenxian",
+    "suiyang",
+    "qiao",
+    "peixian",
+    "runan",
+    "xincai",
+    "pengcheng",
+    "xiapi",
+    "tanxian",
+    "kaiyang",
+    "quxian",
+    "huaiyin",
+    "guangling",
+    "jiangdu",
+    "shouchun",
+    "hefei",
+    "lujiang",
+    "wan",
+    "xinye",
+    "xiangyang",
+    "shangyong",
+    "wuwei",
+    "jincheng",
+    "tianshui",
+    "dunhuang",
+    "zhangye",
+    "anding",
+    "hanzhong",
+    "nanzheng",
+    "jiange",
+    "zitong",
+    "langzhong",
+    "chengtu",
+    "jiangzhou",
+    "yongan"
+   ],
+   "officers": [
+    {
+     "name": "司馬昭",
+     "city": "luoyang",
+     "role": "君主"
+    },
+    {
+     "name": "司馬炎",
+     "city": "luoyang",
+     "role": "重臣"
+    },
+    {
+     "name": "司馬望",
+     "city": "changan",
+     "role": "都督"
+    },
+    {
+     "name": "賈充",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "羊祜",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "杜預",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "裴秀",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "荀顗",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "山濤",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "石苞",
+     "city": "shouchun",
+     "role": "都督"
+    },
+    {
+     "name": "陳騫",
+     "city": "xuchang",
+     "role": "武將"
+    },
+    {
+     "name": "衛瓘",
+     "city": "chengtu",
+     "role": "都督"
+    },
+    {
+     "name": "王濬",
+     "city": "chengtu",
+     "role": "武將"
+    },
+    {
+     "name": "羅憲",
+     "city": "yongan",
+     "role": "武將"
+    },
+    {
+     "name": "胡烈",
+     "city": "xiangyang",
+     "role": "武將"
+    },
+    {
+     "name": "牽弘",
+     "city": "tianshui",
+     "role": "武將"
+    },
+    {
+     "name": "楊欣",
+     "city": "jincheng",
+     "role": "武將"
+    },
+    {
+     "name": "馬隆",
+     "city": "luoyang",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_wu",
+   "lord": "孫皓",
+   "side": "wu",
+   "capital": "jianye",
+   "playable": true,
+   "strength": "A",
+   "cities": [
+    "jianye",
+    "wujun",
+    "kuaiji",
+    "chaisang",
+    "jingkou",
+    "yuzhang",
+    "jianan",
+    "yiling",
+    "jiangling",
+    "jiangxia",
+    "wuling",
+    "changsha",
+    "guiyang",
+    "lingling",
+    "cangwu",
+    "panyu"
+   ],
+   "officers": [
+    {
+     "name": "孫皓",
+     "city": "jianye",
+     "role": "君主"
+    },
+    {
+     "name": "陸抗",
+     "city": "jiangling",
+     "role": "都督"
+    },
+    {
+     "name": "施績",
+     "city": "chaisang",
+     "role": "武將"
+    },
+    {
+     "name": "丁奉",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "陸凱",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "孟宗",
+     "city": "jianye",
+     "role": "重臣"
+    },
+    {
+     "name": "張悌",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "華覈",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "賀劭",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "步協",
+     "city": "yiling",
+     "role": "武將"
+    },
+    {
+     "name": "步闡",
+     "city": "yiling",
+     "role": "武將"
+    },
+    {
+     "name": "陶璜",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "吾彥",
+     "city": "jiangling",
+     "role": "武將"
+    },
+    {
+     "name": "諸葛靚",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "樓玄",
+     "city": "jianye",
+     "role": "謀士"
+    }
+   ]
+  },
+  {
+   "id": "f_huoyi",
+   "lord": "霍弋",
+   "side": "shu",
+   "capital": "jianning",
+   "playable": true,
+   "strength": "D",
+   "cities": [
+    "jianning",
+    "yuesui"
+   ],
+   "officers": [
+    {
+     "name": "霍弋",
+     "city": "jianning",
+     "role": "君主"
+    },
+    {
+     "name": "爨谷",
+     "city": "jianning",
+     "role": "武將"
+    },
+    {
+     "name": "馬融",
+     "city": "jianning",
+     "role": "武將"
+    },
+    {
+     "name": "孟幹",
+     "city": "jianning",
+     "role": "武將"
+    },
+    {
+     "name": "毛炅",
+     "city": "jianning",
+     "role": "武將"
+    },
+    {
+     "name": "董元",
+     "city": "jianning",
+     "role": "武將"
+    },
+    {
+     "name": "王素",
+     "city": "jianning",
+     "role": "武將"
+    },
+    {
+     "name": "李松",
+     "city": "jianning",
+     "role": "武將"
+    },
+    {
+     "name": "楊稷",
+     "city": "jianning",
+     "role": "謀士"
+    }
+   ]
+  }
+ ],
+ "neutral_cities": [
+  "dingxiang",
+  "liucheng",
+  "hepu",
+  "jiaozhi"
+ ],
+ "opening_zh": "蜀漢既滅，司馬氏位極人臣，天下大勢十已得其七。咸熙二年春，晉王司馬昭總領百揆，禪代之兆昭然若揭。江東孫皓新立，偏安一隅；南中霍弋撫綏夷民，各守封疆。鼎革之機已至，混一天下之運，盡繫於中原。",
+ "goal_zh": "掃平江東孫吳與四方勢力，定鼎中原，完成天下一統。",
+ "events": [
+  {
+   "turn": 3,
+   "text_zh": "晉王司馬昭薨逝，世子司馬炎繼承相國、晉王之位。"
+  },
+  {
+   "turn": 4,
+   "text_zh": "魏帝曹奐禪讓帝位於司馬炎，國號大晉，改元泰始，曹魏告終。"
+  },
+  {
+   "turn": 8,
+   "text_zh": "孫吳主孫皓徙都武昌，大治宮室，賦役繁重，民怨漸生。"
+  },
+  {
+   "turn": 12,
+   "text_zh": "孫吳將領分道攻晉，圍襄陽、寇合肥，皆為晉軍擊破潰退。"
+  },
+  {
+   "turn": 18,
+   "text_zh": "西北鮮卑部落首領禿髮樹機能起兵反晉，秦涼二州震動。"
+  }
+ ],
+ "difficulty": 2,
+ "verification": "unverified"
+}

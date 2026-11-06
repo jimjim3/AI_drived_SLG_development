@@ -1,0 +1,29 @@
+{
+ "verdict": "minor",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "228年春諸葛亮首次出師北伐時，遼東割據勢力之主仍為公孫恭。公孫淵脅逼奪取叔父公孫恭之位發生於太和二年（228年）冬十二月，劇本開局時公孫淵尚未繼位。",
+   "fix": "將勢力 f_gongsun 的 lord 改為「公孫恭」；officers 中公孫恭 role 改為「君主」，公孫淵 role 改為「武將」。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "228年春諸葛亮初出祁山時，郝昭尚未進駐陳倉。史實中郝昭原在河西，係首次北伐蜀軍退兵後，曹真預判諸葛亮必出散關陳倉，方派遣郝昭、王雙修築陳倉城防備。",
+   "fix": "將勢力 f_caowei 武將郝昭的 city 由「chencang」改為「jincheng」或「changan」，避免在第一次北伐開始前即預置於陳倉。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "蜀漢李嚴此時駐地不應為永安。建興五年（227年）諸葛亮進駐漢中時，命李嚴移屯江州並築大城以備東吳，永安防務改留護軍陳到接管統屬。",
+   "fix": "將勢力 f_shuhan 武將李嚴的 city 由「yongan」改為「jiangzhou」，永安維持由陳到駐守。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "孫吳勢力 capital 設定為建業（jianye）與史實及劇本事件自相矛盾。228年孫權政治大本營為武昌，遲至229年（黃龍元年）九月登基後方遷都建業；劇本 event 第6回合亦載「孫權於武昌登基稱帝...旋即遷都建業」。",
+   "fix": "若城池清單允許增補，應在揚/荊交界增設「武昌」（wuchang）並設為 f_sunwu 的 capital；若僅限於現有城池清單，應統一劇本事件敘述與開局首都邏輯。"
+  }
+ ]
+}

@@ -1,0 +1,400 @@
+{
+ "id": "e220",
+ "year": 220,
+ "name": "曹丕篡漢",
+ "summary_zh": "建安二十五年初，曹操病逝洛陽，曹丕承繼魏王與丞相之位。此時關羽剛敗亡荊州，孫權奪據南郡，劉備痛失重鎮退守益州。曹魏受禪代漢之勢已然成形，天下鼎足三分，鼎革與征伐的大變局一觸即發。",
+ "factions": [
+  {
+   "id": "f_caopi",
+   "lord": "曹丕",
+   "side": "wei",
+   "capital": "luoyang",
+   "playable": true,
+   "strength": "S",
+   "cities": [
+    "jinyang",
+    "yanmen",
+    "dingxiang",
+    "lishi",
+    "pingyang",
+    "shangdang",
+    "huguan",
+    "ye",
+    "liyang",
+    "qinghe",
+    "julu",
+    "xindu",
+    "nanpi",
+    "zhending",
+    "jingxingguan",
+    "lunu",
+    "ji",
+    "zhuoxian",
+    "yijing",
+    "shanggu",
+    "yuyang",
+    "beiping",
+    "linyu",
+    "pingyuan",
+    "jinan",
+    "lean",
+    "linzi",
+    "beihai",
+    "donglai",
+    "juxian",
+    "changan",
+    "chencang",
+    "tongguan",
+    "hongnong",
+    "luoyang",
+    "hulaoguan",
+    "anyi",
+    "huai",
+    "puyang",
+    "boma",
+    "chenliu",
+    "juancheng",
+    "dingtao",
+    "changyi",
+    "rencheng",
+    "fenggao",
+    "xuchang",
+    "xiangcheng",
+    "chenxian",
+    "suiyang",
+    "qiao",
+    "peixian",
+    "runan",
+    "xincai",
+    "pengcheng",
+    "xiapi",
+    "tanxian",
+    "kaiyang",
+    "quxian",
+    "huaiyin",
+    "guangling",
+    "jiangdu",
+    "shouchun",
+    "hefei",
+    "lujiang",
+    "wan",
+    "xinye",
+    "xiangyang",
+    "wuwei",
+    "jincheng",
+    "tianshui",
+    "anding"
+   ],
+   "officers": [
+    {
+     "name": "曹丕",
+     "city": "luoyang",
+     "role": "君主"
+    },
+    {
+     "name": "司馬懿",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "陳群",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "賈詡",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "華歆",
+     "city": "xuchang",
+     "role": "謀士"
+    },
+    {
+     "name": "劉曄",
+     "city": "luoyang",
+     "role": "謀士"
+    },
+    {
+     "name": "曹仁",
+     "city": "wan",
+     "role": "武將"
+    },
+    {
+     "name": "曹真",
+     "city": "changan",
+     "role": "武將"
+    },
+    {
+     "name": "曹休",
+     "city": "qiao",
+     "role": "武將"
+    },
+    {
+     "name": "夏侯尚",
+     "city": "xiangyang",
+     "role": "武將"
+    },
+    {
+     "name": "張遼",
+     "city": "hefei",
+     "role": "武將"
+    },
+    {
+     "name": "張郃",
+     "city": "changan",
+     "role": "武將"
+    },
+    {
+     "name": "徐晃",
+     "city": "wan",
+     "role": "武將"
+    },
+    {
+     "name": "臧霸",
+     "city": "kaiyang",
+     "role": "武將"
+    },
+    {
+     "name": "滿寵",
+     "city": "runan",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_liubei",
+   "lord": "劉備",
+   "side": "shu",
+   "capital": "chengtu",
+   "playable": true,
+   "strength": "B",
+   "cities": [
+    "hanzhong",
+    "nanzheng",
+    "jiange",
+    "zitong",
+    "langzhong",
+    "chengtu",
+    "jiangzhou",
+    "yongan",
+    "yuesui",
+    "jianning",
+    "shangyong"
+   ],
+   "officers": [
+    {
+     "name": "劉備",
+     "city": "chengtu",
+     "role": "君主"
+    },
+    {
+     "name": "諸葛亮",
+     "city": "chengtu",
+     "role": "謀士"
+    },
+    {
+     "name": "許靖",
+     "city": "chengtu",
+     "role": "謀士"
+    },
+    {
+     "name": "法正",
+     "city": "chengtu",
+     "role": "謀士"
+    },
+    {
+     "name": "趙雲",
+     "city": "chengtu",
+     "role": "武將"
+    },
+    {
+     "name": "張飛",
+     "city": "langzhong",
+     "role": "武將"
+    },
+    {
+     "name": "馬超",
+     "city": "chengtu",
+     "role": "武將"
+    },
+    {
+     "name": "黃忠",
+     "city": "chengtu",
+     "role": "武將"
+    },
+    {
+     "name": "魏延",
+     "city": "hanzhong",
+     "role": "武將"
+    },
+    {
+     "name": "李嚴",
+     "city": "jiangzhou",
+     "role": "武將"
+    },
+    {
+     "name": "劉封",
+     "city": "shangyong",
+     "role": "武將"
+    },
+    {
+     "name": "孟達",
+     "city": "shangyong",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_sunquan",
+   "lord": "孫權",
+   "side": "wu",
+   "capital": "jianye",
+   "playable": true,
+   "strength": "A",
+   "cities": [
+    "jianye",
+    "wujun",
+    "kuaiji",
+    "chaisang",
+    "jingkou",
+    "yuzhang",
+    "jianan",
+    "yiling",
+    "jiangling",
+    "jiangxia",
+    "wuling",
+    "changsha",
+    "guiyang",
+    "lingling",
+    "cangwu",
+    "panyu",
+    "hepu",
+    "jiaozhi"
+   ],
+   "officers": [
+    {
+     "name": "孫權",
+     "city": "jianye",
+     "role": "君主"
+    },
+    {
+     "name": "張昭",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "顧雍",
+     "city": "wujun",
+     "role": "謀士"
+    },
+    {
+     "name": "諸葛瑾",
+     "city": "jianye",
+     "role": "謀士"
+    },
+    {
+     "name": "步騭",
+     "city": "chaisang",
+     "role": "謀士"
+    },
+    {
+     "name": "陸遜",
+     "city": "yiling",
+     "role": "武將"
+    },
+    {
+     "name": "朱然",
+     "city": "jiangling",
+     "role": "武將"
+    },
+    {
+     "name": "潘璋",
+     "city": "jiangling",
+     "role": "武將"
+    },
+    {
+     "name": "徐盛",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "丁奉",
+     "city": "jianye",
+     "role": "武將"
+    },
+    {
+     "name": "韓當",
+     "city": "chaisang",
+     "role": "武將"
+    },
+    {
+     "name": "周泰",
+     "city": "chaisang",
+     "role": "武將"
+    },
+    {
+     "name": "全琮",
+     "city": "wujun",
+     "role": "武將"
+    },
+    {
+     "name": "賀齊",
+     "city": "jianan",
+     "role": "武將"
+    }
+   ]
+  },
+  {
+   "id": "f_gongsun",
+   "lord": "公孫恭",
+   "side": "other",
+   "capital": "xiangping",
+   "playable": true,
+   "strength": "C",
+   "cities": [
+    "liucheng",
+    "xiangping"
+   ],
+   "officers": [
+    {
+     "name": "公孫恭",
+     "city": "xiangping",
+     "role": "君主"
+    }
+   ]
+  }
+ ],
+ "neutral_cities": [
+  "dunhuang",
+  "zhangye"
+ ],
+ "opening_zh": "漢獻帝延康元年春，魏王曹操薨於洛陽，世子曹丕繼位。時荊襄底定，關羽授首，孫權全據南郡以抗巴蜀；劉備含悲撫恤蜀中，誓欲復仇。漢家四百年宗廟風雨飄搖，九錫備設，禪代之局已定。天下三分之勢自此底定，英雄問鼎，正當其時。",
+ "goal_zh": "平定魏、蜀、吳三國分裂之勢，席捲中原統一天下。",
+ "events": [
+  {
+   "turn": 4,
+   "text_zh": "漢獻帝下詔禪位，曹丕登基受禪即皇帝位，國號魏，改元黃初，定都洛陽，東漢正式滅亡。"
+  },
+  {
+   "turn": 5,
+   "text_zh": "劉備於成都稱帝以續漢祚，改元章武，隨後不顧群臣勸阻，決意舉兵討伐東吳為關羽復仇。"
+  },
+  {
+   "turn": 6,
+   "text_zh": "車騎將軍張飛整軍待發之際，於閬中遭麾下部將張達、范彊刺殺，身首異處，蜀漢痛失股肱。"
+  },
+  {
+   "turn": 9,
+   "text_zh": "東吳大都督陸遜於夷陵引火連營大破蜀漢大軍，蜀軍潰不成軍，劉備敗退永安白帝城。"
+  },
+  {
+   "turn": 13,
+   "text_zh": "劉備憂憤成疾，病逝於白帝城永安宮，臨終託孤於諸葛亮；諸葛亮旋即遣使東吳重修盟好。"
+  }
+ ],
+ "difficulty": 2,
+ "verification": "unverified",
+ "repaired": true
+}

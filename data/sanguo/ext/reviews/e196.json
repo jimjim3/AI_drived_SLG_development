@@ -1,0 +1,47 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "呂布、陳宮、張遼、高順被直接編入劉備勢力（f_liubei）。196年呂布雖依附劉備暫屯小沛，但軍政獨立、自成一系，隨後即襲取下邳，絕非劉備麾下臣屬。",
+   "fix": "新增獨立勢力「呂布」（f_lubu），領沛縣（peixian），將呂布、陳宮、張遼、高順自 f_liubei 移至 f_lubu；或若劇本設定於襲徐州後，則呂布領下邳（xiapi），劉備移駐沛縣。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "李嚴列於劉璋勢力（f_liuzhang，梓潼）。196年李嚴尚在荊州劉表麾下（歷任郡吏、秭歸令），直到208年曹操南下荊州時才入蜀投奔劉璋。",
+   "fix": "將李嚴自劉璋勢力（f_liuzhang）移除，移入劉表勢力（f_liubiao，駐江陵或夷陵）或設為在野。"
+  },
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "趙雲列於公孫瓚勢力（f_gongsunzan，易京）。趙雲約於191至192年間因兄喪辭別公孫瓚歸鄉守喪隱居，直至200年才在鄴城與劉備重聚，196年並不在公孫瓚麾下。",
+   "fix": "將趙雲自公孫瓚勢力（f_gongsunzan）移除，改為在野（真定 zhending）或暫不登場。"
+  },
+  {
+   "severity": "high",
+   "type": "city",
+   "detail": "長安（changan）、陳倉（chencang）、潼關（tongguan）等司隸城池全列為中立城。196年李傕、郭汜等西涼軍閥仍在長安割據混戰，李傕直至198年才敗亡，長安絕非無主空城。",
+   "fix": "增設李傕勢力（f_lijue），以長安為首都，領長安（changan）、陳倉（chencang）、潼關（tongguan）等關中城池。"
+  },
+  {
+   "severity": "medium",
+   "type": "faction",
+   "detail": "韓遂被設為馬騰勢力屬下（都督），閻行亦被列為馬騰部將。史實中韓遂為與馬騰平起平坐、互有征伐的獨立涼州軍閥，閻行為韓遂女婿兼部屬，並非馬騰下屬。",
+   "fix": "增設韓遂勢力（f_hansui），以金城（jincheng）為據點統轄韓遂、閻行；若維持單一西涼勢力，勢力名應改為「西涼群雄」，並避免將韓遂列為馬騰直屬廷臣。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "孫策開局即擁有會稽（kuaiji），與劇本事件5「孫策擊破劉繇、嚴白虎與王朗，底定江東諸郡」自相矛盾。196年初會稽為漢太守王朗所據，孫策直至196年秋後才渡江擊破王朗佔領會稽。",
+   "fix": "將會稽（kuaiji）移出孫策勢力（f_sunce），設為王朗勢力（f_wanglang）或暫置為中立城。"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "申耽列於張魯勢力（f_zhanglu，南鄭）。申耽為西城、上庸地方豪強，自聚部眾割據自守，非張魯漢中直轄部將。",
+   "fix": "將申耽自張魯勢力（f_zhanglu）移除，移至上庸（shangyong）為在野武將或獨立豪強。"
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "officer",
+   "detail": "李典於建安二十年（215年）合肥之戰後不久病逝（年三十六薨），217年時已去世，不應登場。",
+   "fix": "將李典自曹操勢力（f_caocao）武將名單及合肥（hefei）移除。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉割據遼東的公孫氏政權。襄平（xiangping）在217年由公孫康統治，並非無主的「中立城池」。",
+   "fix": "新增公孫康勢力（f_gongsun），定都襄平（xiangping），武將配置公孫康，並將 xiangping 自 neutral_cities 移除。"
+  },
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "交州四城（蒼梧 cangwu、番禺 panyu、合浦 hepu、交趾 jiaozhi）被列為中立城池與史實不符。當時交州受士燮家族長期統治，且建安十五年（210年）孫權派步騭南下後士燮已奉表歸附孫權。",
+   "fix": "將交州四城劃入孫權勢力（f_sunquan）或獨立設置士燮勢力（f_shixie），自 neutral_cities 移除。"
+  },
+  {
+   "severity": "medium",
+   "type": "city",
+   "detail": "曹操勢力城池同時包含「漢中（hanzhong）」與「南鄭（nanzheng）」。漢中為郡名，南鄭即為漢中郡治所，兩者實為同地，存在地理重複。",
+   "fix": "保留南鄭（nanzheng）作為漢中治所，將 hanzhong 替換為軍事關隘「陽平關（yangpingguan）」或直接自 f_caocao 城池清單刪除 hanzhong。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "劇本主旨為217年春曹操親征濡須口，但曹操所在城池被配置於北方的鄴城（ye），與正於江淮前線督戰的史實及劇本開局敘事矛盾。",
+   "fix": "將曹操（f_caocao）在開局的所在城池由鄴（ye）改為合肥（hefei）或壽春（shouchun）。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "步騭自210年起即督交州（任交州刺史），長期坐鎮嶺南，217年時不應配置在荊州桂陽（guiyang）。",
+   "fix": "將步騭配置於交州的番禺（panyu）或蒼梧（cangwu），並配合將該城劃入孫權勢力（f_sunquan）。"
+  },
+  {
+   "severity": "low",
+   "type": "other",
+   "detail": "事件1描述濡須口之戰「甘寧夜襲曹營（百騎劫營）」，史實此戰發生於建安十八年（213年）第一次濡須之戰，而非217年第二次濡須之戰（演義第68回將兩次濡須口戰役混淆）。",
+   "fix": "修改 turn 1 文本，移除甘寧夜襲曹營描述，改為呂蒙、孫權築濡須塢固守，雙方相持數月曹操引退。"
+  }
+ ]
+}

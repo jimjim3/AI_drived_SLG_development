@@ -1,0 +1,29 @@
+{
+ "verdict": "major",
+ "issues": [
+  {
+   "severity": "high",
+   "type": "faction",
+   "detail": "漏掉當時割據遼東的公孫淵勢力。234年公孫淵盤踞遼東，於魏、吳之間周旋割據，劇本草稿卻將其根據地襄平列為中立城池（neutral_cities），且後續事件（第15、19回合）明確出現公孫淵自立與司馬懿征遼東，開局卻無公孫淵勢力與武將。",
+   "fix": "新增遼東公孫淵勢力（id: f_gongsunyuan，君主：公孫淵，首都：xiangping），將 xiangping 從 neutral_cities 移除並劃入該勢力，並配置武將公孫淵於 xiangping。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "曹魏武將毌丘儉配置於鄴城（ye）不符史實。234年（魏青龍二年）毌丘儉已出任幽州刺史、加度遼將軍，駐於幽州督管東北防務與防範遼東，治所應在薊縣。",
+   "fix": "將勢力 f_caowei 武將「毌丘儉」之城池由 ye 改為 ji。"
+  },
+  {
+   "severity": "medium",
+   "type": "officer",
+   "detail": "東吳武將步騭配置於豫章（yuzhang）不符史實。步騭自226年接替陸遜出任西陵督，長期鎮撫西陵（夷陵）防備蜀漢長達二十年，並非在後方豫章。",
+   "fix": "將勢力 f_sunwu 武將「步騭」之城池由 yuzhang 改為 yiling。"
+  },
+  {
+   "severity": "low",
+   "type": "officer",
+   "detail": "東吳陸遜、諸葛瑾與朱然全數擠在江陵（jiangling）。234年孫權發起三路北伐策應蜀漢，朱然都督江陵，而陸遜與諸葛瑾率軍進駐江夏（沔口/漢津）指向襄陽，全置於江陵與出征部署不合。",
+   "fix": "將勢力 f_sunwu 武將「陸遜」與「諸葛瑾」之城池由 jiangling 改為 jiangxia。"
+  }
+ ]
+}

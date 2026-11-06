@@ -127,7 +127,8 @@ class Game:
         if decision.action == "propose_alliance":
             responder = getattr(self.agents.get(decision.params["to"]), "respond_alliance", None)
             if responder is not None:
-                accept = bool(responder(self.state, officer.faction_id, decision.params["to"]))
+                accept = bool(responder(self.state, officer.faction_id, decision.params["to"],
+                                        int(decision.params.get("pledge", 0))))
         new_state, event = resolve_decision(self.state, officer, decision, self.rng, alliance_accept=accept)
         self.state = new_state
         self.events.append(event)

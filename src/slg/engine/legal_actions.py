@@ -96,12 +96,18 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
         proposable = sorted(f for f in state.factions
                             if alliance.can_propose(state, officer.faction_id, f))
         if proposable:
+            params = {"to": ParamSpec("to", choices=tuple(proposable))}
+            pledge_max = min(combat.active().ally_pledge, city.gold) // 100 * 100
+            if combat.active().ally_pledge:
+                params["pledge"] = ParamSpec("pledge", min=0, max=pledge_max, step=100)
             actions.append(LegalAction(
                 "propose_alliance",
-                params={"to": ParamSpec("to", choices=tuple(proposable))},
+                params=params,
                 cost=0,
                 note="friendship: " + ", ".join(
-                    f"{f}={alliance.friendship(state, officer.faction_id, f)}" for f in proposable),
+                    f"{f}={alliance.friendship(state, officer.faction_id, f)}" for f in proposable)
+                + ("; pledge = gold put up as collateral from this city (swings the partner, seized if you betray)"
+                   if combat.active().ally_pledge else ""),
             ))
         allies = alliance.allies_of(state, officer.faction_id)
         if allies:
