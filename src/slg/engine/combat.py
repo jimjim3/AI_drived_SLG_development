@@ -34,6 +34,7 @@ class CombatRules:
     cap_tiers: bool | str = False  # with city_caps: use Koei size tiers (True for KOEI_TIER_CAPS, "flat" for KOEI_FLAT_TIER_CAPS)
     march_food_rate: float = 0.0  # a siege eats troops * km / 1000 * rate food at launch; 0 = free, as shipped
     ally_break: tuple[int, int, int] = (40, 25, 5)  # betrayal: (victim friendship loss, other allies' loss, re-alliance cooldown)
+    ally_holder_pays: bool = False  # the partner holding a pledge who breaks the alliance also pays the pledge amount from its own gold
     ally_pledge: int = 0  # max gold a proposer may pledge as collateral with an alliance proposal; 0 = no collateral
     alliance: bool = False  # factions may ally (docs/DESIGN_ALLIANCE.md): no mutual sieges, shared vision, betrayal penalty
 
@@ -76,6 +77,11 @@ RULESETS: dict[str, CombatRules] = {
     "softer_pool2_econ3_ally3": CombatRules("softer_pool2_econ3_ally3", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
                                             pool_factor=0.5, pool_depth=2, city_caps=True, cap_tiers=True,
                                             march_food_rate=0.5, alliance=True, ally_break=(60, 45, 10), ally_pledge=500),
+    # ally3 plus: a collateral holder who betrays refunds the pledge AND pays the same amount again
+    "softer_pool2_econ3_ally4": CombatRules("softer_pool2_econ3_ally4", defense_divisor=400.0, dq_base=0.75, dq_div=200.0,
+                                            pool_factor=0.5, pool_depth=2, city_caps=True, cap_tiers=True,
+                                            march_food_rate=0.5, alliance=True, ally_break=(60, 45, 10), ally_pledge=500,
+                                            ally_holder_pays=True),
 }
 
 # Real great-circle distances in km between neighbouring cities (from agy-reported coordinates in

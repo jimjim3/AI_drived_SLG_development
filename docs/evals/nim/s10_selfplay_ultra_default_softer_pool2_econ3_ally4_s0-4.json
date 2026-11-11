@@ -1,0 +1,510 @@
+{
+ "args": {
+  "demo": false,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "extra_body_json": {
+   "chat_template_kwargs": {
+    "enable_thinking": false
+   }
+  },
+  "http_retries": 2,
+  "http_timeout": 120.0,
+  "min_interval": 0.0,
+  "max_consecutive_errors": 5,
+  "siege_verdict": true,
+  "persona": null,
+  "rules": "softer_pool2_econ3_ally4",
+  "seeds": "0-4",
+  "turns": 20,
+  "scenario": "default",
+  "out": "docs/evals/nim/s10_selfplay_ultra_default_softer_pool2_econ3_ally4_s0-4.json",
+  "command": null
+ },
+ "games": [
+  {
+   "seed": 0,
+   "winner": "faction_2",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 1,
+     "troops": 1600,
+     "sieges_llm": 6,
+     "captured_llm": 5,
+     "sieges_delegated": 0,
+     "captured_delegated": 0,
+     "min_loyalty": 60,
+     "officers": 14
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 5,
+     "troops": 8860,
+     "sieges_llm": 8,
+     "captured_llm": 5,
+     "sieges_delegated": 1,
+     "captured_delegated": 1,
+     "min_loyalty": 71,
+     "officers": 14
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 3,
+     "troops": 4694,
+     "sieges_llm": 4,
+     "captured_llm": 3,
+     "sieges_delegated": 0,
+     "captured_delegated": 0,
+     "min_loyalty": 75,
+     "officers": 14
+    }
+   },
+   "alliance": {
+    "proposals": 7,
+    "accepted": 1,
+    "breaks": 1,
+    "pledges": [
+     200,
+     100,
+     100,
+     200,
+     200,
+     100,
+     0
+    ],
+    "pledges_accepted": [
+     200
+    ],
+    "seized": 0,
+    "returned": 1,
+    "final": []
+   },
+   "reject_reasons": {
+    "recruit: action 'recruit' not legal": 29,
+    "develop_defense: action 'develop_defense' not legal": 7,
+    "recruit: param troops=N out of range [N, N]": 6,
+    "siege: insufficient food for the march: need N, have N": 6,
+    "develop_commerce: action 'develop_commerce' not legal": 5,
+    "propose_alliance: param pledge=N out of range [N, N]": 1,
+    "develop_agri: action 'develop_agri' not legal": 1,
+    "move: action 'move' not legal": 1
+   },
+   "rejected": 56,
+   "decisions": 840,
+   "usage": {
+    "faction_1": {
+     "calls": 22,
+     "prompt_chars": 86124,
+     "response_chars": 20487,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 24,
+     "prompt_chars": 100234,
+     "response_chars": 21541,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 21,
+     "prompt_chars": 91802,
+     "response_chars": 21440,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  },
+  {
+   "seed": 1,
+   "winner": "faction_3",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 1,
+     "troops": 1296,
+     "sieges_llm": 9,
+     "captured_llm": 7,
+     "sieges_delegated": 3,
+     "captured_delegated": 3,
+     "min_loyalty": 59,
+     "officers": 14
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 4,
+     "troops": 3712,
+     "sieges_llm": 6,
+     "captured_llm": 6,
+     "sieges_delegated": 3,
+     "captured_delegated": 3,
+     "min_loyalty": 69,
+     "officers": 14
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 4,
+     "troops": 4407,
+     "sieges_llm": 10,
+     "captured_llm": 8,
+     "sieges_delegated": 0,
+     "captured_delegated": 0,
+     "min_loyalty": 76,
+     "officers": 14
+    }
+   },
+   "alliance": {
+    "proposals": 7,
+    "accepted": 1,
+    "breaks": 1,
+    "pledges": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     0,
+     100
+    ],
+    "pledges_accepted": [
+     100
+    ],
+    "seized": 0,
+    "returned": 1,
+    "final": []
+   },
+   "reject_reasons": {
+    "recruit: action 'recruit' not legal": 33,
+    "develop_defense: action 'develop_defense' not legal": 14,
+    "develop_agri: action 'develop_agri' not legal": 10,
+    "recruit: param troops=N out of range [N, N]": 8,
+    "develop_commerce: action 'develop_commerce' not legal": 4,
+    "siege: action 'siege' not legal": 2,
+    "propose_alliance: param pledge=N out of range [N, N]": 1,
+    "siege: param troops=N out of range [N, N]": 1
+   },
+   "rejected": 73,
+   "decisions": 840,
+   "usage": {
+    "faction_1": {
+     "calls": 22,
+     "prompt_chars": 92059,
+     "response_chars": 21068,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 22,
+     "prompt_chars": 97723,
+     "response_chars": 21996,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 23,
+     "prompt_chars": 94636,
+     "response_chars": 21292,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  },
+  {
+   "seed": 2,
+   "winner": "faction_3",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 2,
+     "troops": 2691,
+     "sieges_llm": 8,
+     "captured_llm": 2,
+     "sieges_delegated": 4,
+     "captured_delegated": 4,
+     "min_loyalty": 56,
+     "officers": 14
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 1,
+     "troops": 1600,
+     "sieges_llm": 1,
+     "captured_llm": 0,
+     "sieges_delegated": 2,
+     "captured_delegated": 2,
+     "min_loyalty": 38,
+     "officers": 14
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 6,
+     "troops": 10523,
+     "sieges_llm": 7,
+     "captured_llm": 7,
+     "sieges_delegated": 1,
+     "captured_delegated": 1,
+     "min_loyalty": 77,
+     "officers": 14
+    }
+   },
+   "alliance": {
+    "proposals": 6,
+    "accepted": 2,
+    "breaks": 1,
+    "pledges": [
+     200,
+     100,
+     200,
+     200,
+     100,
+     200
+    ],
+    "pledges_accepted": [
+     200,
+     100
+    ],
+    "seized": 0,
+    "returned": 1,
+    "final": []
+   },
+   "reject_reasons": {
+    "recruit: action 'recruit' not legal": 42,
+    "develop_defense: action 'develop_defense' not legal": 20,
+    "recruit: param troops=N out of range [N, N]": 12,
+    "develop_commerce: action 'develop_commerce' not legal": 10,
+    "develop_agri: action 'develop_agri' not legal": 1,
+    "siege: param troops=N not on step N": 1,
+    "propose_alliance: param pledge=N out of range [N, N]": 1,
+    "siege: param to='luoyang' not in choices": 1,
+    "move: param to='xiangyang' not in choices": 1
+   },
+   "rejected": 89,
+   "decisions": 840,
+   "usage": {
+    "faction_1": {
+     "calls": 22,
+     "prompt_chars": 99526,
+     "response_chars": 24309,
+     "parse_failures": 2,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 24,
+     "prompt_chars": 98485,
+     "response_chars": 23102,
+     "parse_failures": 1,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 22,
+     "prompt_chars": 101334,
+     "response_chars": 21583,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  },
+  {
+   "seed": 3,
+   "winner": "faction_3",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 3,
+     "troops": 2288,
+     "sieges_llm": 15,
+     "captured_llm": 6,
+     "sieges_delegated": 4,
+     "captured_delegated": 4,
+     "min_loyalty": 61,
+     "officers": 14
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 2,
+     "troops": 2338,
+     "sieges_llm": 7,
+     "captured_llm": 2,
+     "sieges_delegated": 2,
+     "captured_delegated": 2,
+     "min_loyalty": 48,
+     "officers": 14
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 4,
+     "troops": 3768,
+     "sieges_llm": 11,
+     "captured_llm": 8,
+     "sieges_delegated": 0,
+     "captured_delegated": 0,
+     "min_loyalty": 73,
+     "officers": 14
+    }
+   },
+   "alliance": {
+    "proposals": 4,
+    "accepted": 1,
+    "breaks": 1,
+    "pledges": [
+     200,
+     0,
+     100,
+     200
+    ],
+    "pledges_accepted": [
+     200
+    ],
+    "seized": 1,
+    "returned": 0,
+    "final": []
+   },
+   "reject_reasons": {
+    "recruit: action 'recruit' not legal": 19,
+    "develop_defense: action 'develop_defense' not legal": 17,
+    "develop_agri: action 'develop_agri' not legal": 10,
+    "recruit: param troops=N out of range [N, N]": 8,
+    "move: param to='xiangyang' not in choices": 3,
+    "siege: insufficient food for the march: need N, have N": 2,
+    "siege: param troops=N not on step N": 2,
+    "siege: action 'siege' not legal": 2,
+    "propose_alliance: param pledge=N out of range [N, N]": 1,
+    "develop_commerce: action 'develop_commerce' not legal": 1,
+    "propose_alliance: action 'propose_alliance' not legal": 1
+   },
+   "rejected": 66,
+   "decisions": 840,
+   "usage": {
+    "faction_1": {
+     "calls": 21,
+     "prompt_chars": 95851,
+     "response_chars": 22301,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 22,
+     "prompt_chars": 93103,
+     "response_chars": 21745,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 21,
+     "prompt_chars": 97219,
+     "response_chars": 21374,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  },
+  {
+   "seed": 4,
+   "winner": "faction_2",
+   "factions": {
+    "faction_1": {
+     "name": "曹操",
+     "cities": 1,
+     "troops": 1593,
+     "sieges_llm": 11,
+     "captured_llm": 7,
+     "sieges_delegated": 3,
+     "captured_delegated": 3,
+     "min_loyalty": 75,
+     "officers": 14
+    },
+    "faction_2": {
+     "name": "劉備",
+     "cities": 5,
+     "troops": 7155,
+     "sieges_llm": 10,
+     "captured_llm": 8,
+     "sieges_delegated": 0,
+     "captured_delegated": 0,
+     "min_loyalty": 65,
+     "officers": 14
+    },
+    "faction_3": {
+     "name": "孫權",
+     "cities": 3,
+     "troops": 3388,
+     "sieges_llm": 6,
+     "captured_llm": 4,
+     "sieges_delegated": 0,
+     "captured_delegated": 0,
+     "min_loyalty": 77,
+     "officers": 14
+    }
+   },
+   "alliance": {
+    "proposals": 6,
+    "accepted": 1,
+    "breaks": 1,
+    "pledges": [
+     100,
+     100,
+     100,
+     100,
+     100,
+     100
+    ],
+    "pledges_accepted": [
+     100
+    ],
+    "seized": 1,
+    "returned": 0,
+    "final": []
+   },
+   "reject_reasons": {
+    "recruit: action 'recruit' not legal": 13,
+    "develop_defense: action 'develop_defense' not legal": 10,
+    "recruit: param troops=N out of range [N, N]": 10,
+    "develop_commerce: action 'develop_commerce' not legal": 9,
+    "develop_agri: action 'develop_agri' not legal": 3,
+    "siege: param troops=N not on step N": 3,
+    "siege: param to='luoyang' not in choices": 2,
+    "siege: action 'siege' not legal": 1
+   },
+   "rejected": 51,
+   "decisions": 840,
+   "usage": {
+    "faction_1": {
+     "calls": 22,
+     "prompt_chars": 94894,
+     "response_chars": 22049,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_2": {
+     "calls": 21,
+     "prompt_chars": 102089,
+     "response_chars": 21938,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    },
+    "faction_3": {
+     "calls": 23,
+     "prompt_chars": 95976,
+     "response_chars": 21801,
+     "parse_failures": 0,
+     "errors": 0,
+     "normalized_params": 0
+    }
+   }
+  }
+ ]
+}

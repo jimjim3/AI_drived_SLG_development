@@ -70,7 +70,8 @@ def resolve_decision(
         extra = ""
         if held:
             extra = (f"; {held[1]} gold collateral seized by {victim}" if held[0] == officer.faction_id
-                     else f"; {held[1]} gold collateral returned to {victim}")
+                     else f"; {held[1]} gold collateral returned to {victim}"
+                     + (f" plus {held[1]} gold compensation" if combat.active().ally_holder_pays else ""))
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id, action, city.city_id,
                                 f"broke the alliance with {victim}" + extra, defender_faction=victim)
         return new_state, event

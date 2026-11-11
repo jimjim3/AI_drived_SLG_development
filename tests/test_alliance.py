@@ -144,6 +144,20 @@ class AllianceTests(unittest.TestCase):
         ok, _ = validate_decision(self.s, e, too_much)
         self.assertEqual(ok, gold >= 500)
 
+    def test_holder_betrayal_pays_compensation_under_ally4(self):
+        s, e, _ = self._pledge_state()
+        combat.set_rules("softer_pool2_econ3_ally4")
+        s, _ = resolve_decision(s, e, AgentDecision(e.officer_id, "propose_alliance", {"to": "faction_2", "pledge": 400}),
+                                random.Random(0))
+        e2 = envoy(s, "faction_2")
+        g1 = sum(c.gold for c in s.cities_of("faction_1"))
+        g2 = sum(c.gold for c in s.cities_of("faction_2"))
+        sb, ev = resolve_decision(s, e2, AgentDecision(e2.officer_id, "break_alliance", {"with": "faction_1"}),
+                                  random.Random(0))
+        self.assertIn("compensation", ev.detail)
+        self.assertEqual(sum(c.gold for c in sb.cities_of("faction_1")), g1 + 800)
+        self.assertEqual(sum(c.gold for c in sb.cities_of("faction_2")), g2 - 400)
+
     def test_view_shares_vision_and_lists_relations(self):
         s, _ = propose(self.s, "faction_1", "faction_2")
         v = build_faction_view(s, "faction_1", ()).to_dict()

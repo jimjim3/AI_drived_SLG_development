@@ -91,6 +91,18 @@ def _credit(state: GameState, fid: str, gold: int) -> GameState:
     return replace(state, cities=ncs)
 
 
+def _debit(state: GameState, fid: str, gold: int) -> tuple[GameState, int]:
+    """Take up to ``gold`` from the faction's cities, richest first; returns the state and what was actually taken."""
+    taken = 0
+    ncs = dict(state.cities)
+    for c in sorted(state.cities_of(fid), key=lambda c: (-c.gold, c.city_id)):
+        part = min(gold - taken, c.gold)
+        if part > 0:
+            ncs[c.city_id] = replace(c, gold=c.gold - part)
+            taken += part
+    return replace(state, cities=ncs), taken
+
+
 def _settle(state: GameState, key: str, to: str | None) -> GameState:
     """Release the collateral held for a pair: to ``to`` (None = back to the depositor)."""
     held = dict(state.diplomacy.collateral)
@@ -141,6 +153,9 @@ def break_alliance(state: GameState, breaker: str, victim: str) -> GameState:
     held = state.diplomacy.collateral.get(pair_key(breaker, victim))
     if held:  # the depositor betraying forfeits it to the victim; the holder betraying gives it back
         state = _settle(state, pair_key(breaker, victim), victim if held[0] == breaker else None)
+        if held[0] != breaker and combat.active().ally_holder_pays:
+            state, paid = _debit(state, breaker, held[1])
+            state = _credit(state, victim, paid)
     state = adjust(state, breaker, victim, -victim_loss)
     for f in others:
         state = adjust(state, breaker, f, -other_loss)
