@@ -231,7 +231,7 @@ export function renderMap(container, state, selectedCityId, onCitySelect) {
       const owner = fcity?.owner || "unknown";
       const fInfo = FACTION_INFO[owner] || { tag: "敵", color: "#ef4444", border: "#f87171", bg: "#7f1d1d" };
       factionEmblem = owner;
-      factionTag = `[${fInfo.tag}] 前線`;
+      factionTag = fcity?.ally ? `[${fInfo.tag}] 盟友` : `[${fInfo.tag}] 前線`;
       factionColor = fInfo.color;
       factionBg = fInfo.bg;
       nodeStroke = fInfo.border;

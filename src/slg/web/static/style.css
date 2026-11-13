@@ -1341,3 +1341,11 @@ body {
 
 .opening-art { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; margin-bottom: 12px; }
 .metric-icon { width: 18px; height: 18px; vertical-align: -4px; margin-right: 3px; border-radius: 4px; }
+
+.dip-card { margin: 10px 0; padding: 10px 12px; background: rgba(255,255,255,.04); border-radius: 6px; }
+.dip-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.dip-badge { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #334155; color: #cbd5e1; }
+.dip-badge.dip-allied { background: #c9a24b; color: #1a1a1a; }
+.dip-bar { height: 8px; background: #0b1220; border-radius: 4px; overflow: hidden; }
+.dip-fill { height: 100%; }
+.dip-meta { margin-top: 6px; font-size: 14px; color: var(--text-sub); }

@@ -45,6 +45,10 @@ export function ingestRoster(state) {
 export const ACTION_ICONS = { develop_agri: "develop", develop_commerce: "develop", develop_defense: "defend", recruit: "recruit", move: "march", siege: "siege", rest: "defend", propose_alliance: "report", break_alliance: "report" };
 export const actionIcon = (k) => ACTION_ICONS[k] ? `<img class="action-icon" src="./assets/art/icons/${ACTION_ICONS[k]}.svg" alt="">` : "";
 
+const PARAM_LABELS = {
+  "propose_alliance.to": "結盟對象", "propose_alliance.pledge": "抵押金（背盟即被沒收）", "break_alliance.with": "撕毀盟約的對象",
+};
+
 export const ACTION_NAMES = {
   develop_agri: "開墾農業",
   develop_commerce: "發展商業",
@@ -486,11 +490,12 @@ export function renderDispatch(
           // Discrete choice parameter
           html += `
             <div class="param-row">
-              <label class="param-label">${pName === "to" ? "目的地" : pName}：</label>
+              <label class="param-label">${PARAM_LABELS[actKey + "." + pName] || (pName === "to" ? "目的地" : pName)}：</label>
               <select class="param-input-choice" name="param_${actKey}_${pName}">
           `;
           spec.choices.forEach((choice) => {
-            const label = CITY_NAMES[choice] ? `${CITY_NAMES[choice]} (${choice})` : choice;
+            const label = CITY_NAMES[choice] ? `${CITY_NAMES[choice]} (${choice})`
+              : FACTION_INFO[choice] ? `${FACTION_INFO[choice].name}（${FACTION_INFO[choice].tag}）` : choice;
             const isChoiceSelected = existingVal !== undefined ? existingVal === choice : false;
             html += `<option value="${choice}" ${isChoiceSelected ? "selected" : ""}>${label}</option>`;
           });
@@ -504,7 +509,7 @@ export function renderDispatch(
 
           html += `
             <div class="param-row param-range-row">
-              <label class="param-label">${pName === "troops" ? "出征/招募兵力" : pName}：</label>
+              <label class="param-label">${pName === "troops" ? "出征/招募兵力" : (PARAM_LABELS[actKey + "." + pName] || pName)}：</label>
               <div class="range-controls">
                 <input type="range" class="param-range-slider"
                        name="param_${actKey}_${pName}_slider"
@@ -1120,4 +1125,28 @@ export function renderGameOver(container, status, state, onRestart) {
       if (onRestart) onRestart();
     });
   }
+}
+
+export function renderDiplomacy(container, state) {
+  const rows = state.diplomacy || [];
+  const fname = (id) => (FACTION_INFO[id] ? `${FACTION_INFO[id].name}（${FACTION_INFO[id].tag}）` : id);
+  let html = `<div class="panel-content diplomacy-panel"><div class="panel-header-bar"><h3 class="panel-title">【外交 · 同盟】</h3></div>`;
+  html += `<p class="text-muted">結盟與撕毀盟約由「政治最高的武將」下令（在「派遣軍令」中選「遣使結盟」）。同盟者互不攻城並共享視野；背盟會使你與所有盟友的友好度大降，且抵押金被沒收。</p>`;
+  rows.forEach((d) => {
+    const f = Math.max(0, Math.min(100, d.friendship));
+    const level = f >= 60 ? "友善" : f >= 50 ? "尚可" : f >= 20 ? "冷淡" : "敵視";
+    const col = FACTION_INFO[d.faction]?.color || "#64748b";
+    html += `<div class="dip-card" style="border-left:4px solid ${col}">
+      <div class="dip-head"><strong>${fname(d.faction)}</strong>
+        <span class="dip-badge ${d.allied ? "dip-allied" : ""}">${d.allied ? "同盟中" : "無盟約"}</span></div>
+      <div class="dip-bar" role="img" aria-label="友好度 ${f}"><div class="dip-fill" style="width:${f}%;background:${col}"></div></div>
+      <div class="dip-meta">友好度 <strong>${f}</strong>（${level}）${d.allied ? "" : f >= 50 ? " · 對方多半願意結盟" : " · 對方傾向拒絕，可附抵押金促成"}</div>`;
+    if (d.collateral) {
+      const who = d.collateral.by === state.faction_id ? "我方" : fname(d.collateral.by);
+      html += `<div class="dip-meta">抵押：${who}押出 <strong>${d.collateral.gold}</strong> 金</div>`;
+    }
+    html += `</div>`;
+  });
+  html += `</div>`;
+  container.innerHTML = html;
 }

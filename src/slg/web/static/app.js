@@ -16,6 +16,7 @@ import {
   renderDispatch,
   renderSiege,
   renderWatchlist,
+  renderDiplomacy,
   renderChronicle,
   renderSettlement,
   renderGameOver,
@@ -186,6 +187,9 @@ class SLGApp {
         if (key === "0" || key === "Escape") this.setScreen("title");
       } else if (this.screen === "main") {
         switch (key) {
+          case "9":
+            if ((this.state?.diplomacy || []).length) this.setActiveTab("diplomacy");
+            break;
           case "1":
             this.setActiveTab("city");
             break;
@@ -381,6 +385,10 @@ class SLGApp {
 
   onStateLoaded() {
     if (!this.state) return;
+    const hasDip = (this.state.diplomacy || []).length > 0;
+    const dipBtn = document.getElementById("cmdDiplomacy");
+    if (dipBtn) dipBtn.style.display = hasDip ? "" : "none";
+    if (!hasDip && this.activeTab === "diplomacy") this.activeTab = "city";
 
     // Pick default selected city if not set
     const ownCities = this.state.cities || [];
@@ -561,6 +569,10 @@ class SLGApp {
             this.renderCurrentPanel();
           }
         );
+        break;
+
+      case "diplomacy":
+        renderDiplomacy(container, this.state);
         break;
 
       case "chronicle":
