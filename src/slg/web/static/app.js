@@ -73,6 +73,7 @@ class SLGApp {
 
       // Title & Setup
       btnTitleNewGame: document.getElementById("btnTitleNewGame"),
+      btnTitleResume: document.getElementById("btnTitleResume"),
       btnTitleHelp: document.getElementById("btnTitleHelp"),
       titleHelpBox: document.getElementById("titleHelpBox"),
       setupForm: document.getElementById("setupForm"),
@@ -123,6 +124,8 @@ class SLGApp {
   bindEvents() {
     // Title buttons
     this.dom.btnTitleNewGame.addEventListener("click", () => this.setScreen("setup"));
+    this.dom.btnTitleResume.addEventListener("click", () => this.handleResume());
+    this.refreshResumeButton();
     this.dom.btnTitleHelp.addEventListener("click", () => {
       const isVisible = this.dom.titleHelpBox.style.display !== "none";
       this.dom.titleHelpBox.style.display = isVisible ? "none" : "block";
@@ -228,6 +231,53 @@ class SLGApp {
         }
       }
     });
+  }
+
+  async refreshResumeButton() {
+    try {
+      const resp = await apiFetch("/api/status");
+      const st = resp.ok ? await resp.json() : null;
+      const save = st && st.phase === "no_game" ? st.save : null;
+      this.dom.btnTitleResume.style.display = save ? "" : "none";
+      if (save) document.getElementById("resumeLabel").textContent = `繼續上局：第 ${save.turn} 回合 / 共 ${save.turns} 回合`;
+    } catch (err) {
+      this.dom.btnTitleResume.style.display = "none";
+    }
+  }
+
+  async handleResume() {
+    try {
+      const resp = await apiFetch("/api/resume", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+      if (!resp.ok) {
+        const e = await resp.json().catch(() => ({}));
+        alert("無法繼續上局：" + (e.error || resp.status));
+        return;
+      }
+      const info = (await resp.json()).info || {};
+      this.orders = [];
+      this.chronicle = "";
+      this.nextCast = [];
+      await this.fetchNarrative(info.scenario || "default", info.player_faction || "faction_2");
+      await this.waitForTurn();
+      this.setScreen("main");
+      this.setActiveTab("city");
+    } catch (err) {
+      alert("無法繼續上局：" + err);
+    }
+  }
+
+  async waitForTurn() {
+    for (let i = 0; i < 100; i++) {
+      const resp = await apiFetch("/api/state");
+      if (resp.ok) {
+        this.state = await resp.json();
+        ingestRoster(this.state);
+        this.onStateLoaded();
+        await this.checkInitialStatus();
+        return;
+      }
+      await new Promise((r) => setTimeout(r, 300));
+    }
   }
 
   async handleStartNewGame() {

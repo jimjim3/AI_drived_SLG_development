@@ -4,12 +4,15 @@ from __future__ import annotations
 
 import random
 import threading
+from pathlib import Path
 
 from ..agents.base import FactionAgent
 from ..engine.game import Game, compute_winner
 from ..engine.initial_state import build_initial_state, resolve_scenario
 from ..engine.resolution import estimate_siege_ratio
 from ..schema import AgentDecision, CAST_LIMIT, FactionPlan
+from ..engine import combat
+from . import savegame
 from .backends import make_ai_agent
 from .payload import STORY_ART, report_lines, scene_text, state_payload, story_items
 
@@ -69,8 +72,14 @@ class HumanFactionAgent(FactionAgent):
 
 
 class Session:
-    def __init__(self, scenario="default", seed=0, player_faction="faction_2", turns=20, human_timeout=900.0, ai=None):
+    def __init__(self, scenario="default", seed=0, player_faction="faction_2", turns=20, human_timeout=900.0, ai=None,
+                 save_path: Path | None = None):
         self.lock = threading.RLock()
+        self.save_path = Path(save_path) if save_path else None
+        self.steps_done = 0
+        self.abandoned = False
+        self.meta = {"scenario": scenario, "seed": seed, "player_faction": player_faction, "turns": turns,
+                     "ai": dict(ai or {}), "rules": combat.active().name}
         self.turns = turns
         self.player_faction = player_faction
         self.phase = "starting"
@@ -94,12 +103,36 @@ class Session:
     def start(self):
         self.thread.start()
 
+    @classmethod
+    def resume(cls, save_path: Path, human_timeout=900.0) -> "Session":
+        snap = savegame.read(Path(save_path))
+        m = snap["meta"]
+        if m["rules"] != combat.active().name:
+            raise ValueError(f"save was made under ruleset {m['rules']!r}, server runs {combat.active().name!r}")
+        s = cls(scenario=m["scenario"], seed=m["seed"], player_faction=m["player_faction"], turns=m["turns"],
+                human_timeout=human_timeout, ai=m["ai"], save_path=save_path)
+        s.steps_done = savegame.restore(s.game, snap)
+        return s
+
+    def abandon(self):
+        """Called when a newer game replaces this one: stop writing its save file and let the thread end."""
+        self.abandoned = True
+        self.human.submit(FactionPlan())
+
+    def _checkpoint(self):
+        if self.save_path is not None and not self.abandoned:
+            savegame.write(self.save_path, savegame.snapshot(self.game, self.meta, self.steps_done))
+
     def _run(self):
         try:
-            for _ in range(self.turns):
+            while self.steps_done < self.turns and not self.abandoned:
                 if not self.game.state.cities_of(self.player_faction):
                     break
+                self._checkpoint()
                 self.game.step()
+                self.steps_done += 1
+            if self.save_path is not None and not self.abandoned:
+                self.save_path.unlink(missing_ok=True)  # finished games are not resumable
             with self.lock:
                 self.winner = compute_winner(self.game.state)
                 self.phase = "game_over"

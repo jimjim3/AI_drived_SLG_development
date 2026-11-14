@@ -25,6 +25,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
+from . import savegame
 from .payload import narrative_payload
 from .session import PlanError, Session
 
@@ -36,8 +37,9 @@ MIME = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=ut
 
 
 class App:
-    def __init__(self, max_sessions: int = MAX_SESSIONS):
+    def __init__(self, max_sessions: int = MAX_SESSIONS, save_dir: str | Path | None = None):
         self.max_sessions = max_sessions
+        self.save_dir = Path(save_dir) if save_dir else None
         self.sessions: dict[str, Session] = {}  # insertion order doubles as recency order
         self.lock = threading.Lock()
 
@@ -53,15 +55,42 @@ class App:
                 self.sessions[sid] = s  # mark as most recently used
             return s
 
-    def new(self, body: dict, sid: str = "main") -> dict:
-        s = Session(scenario=body.get("scenario", "default"), seed=int(body.get("seed", 0)),
-                    player_faction=body.get("player_faction", "faction_2"), turns=int(body.get("turns", 20)),
-                    ai=body.get("ai") if isinstance(body.get("ai"), dict) else None)
+    def _install(self, sid: str, s: Session) -> None:
+        dropped = []
         with self.lock:
-            self.sessions.pop(sid, None)
+            old = self.sessions.pop(sid, None)
+            if old is not None:
+                dropped.append(old)
             self.sessions[sid] = s
             while len(self.sessions) > self.max_sessions:
-                self.sessions.pop(next(iter(self.sessions)))
+                dropped.append(self.sessions.pop(next(iter(self.sessions))))
+        for d in dropped:
+            d.abandon()
+
+    def save_path(self, sid: str) -> Path | None:
+        return self.save_dir / f"{sid}.sav" if self.save_dir else None
+
+    def save_info(self, sid: str) -> dict | None:
+        p = self.save_path(sid)
+        return savegame.describe(p) if p and p.is_file() else None
+
+    def resume(self, sid: str = "main") -> dict:
+        p = self.save_path(sid)
+        if not (p and p.is_file()):
+            raise PlanError("no saved game")
+        try:
+            s = Session.resume(p)
+        except Exception as e:  # corrupt or incompatible save
+            raise PlanError(f"cannot resume: {e}")
+        self._install(sid, s)
+        s.start()
+        return {"session_id": sid, "info": savegame.describe(p)}
+
+    def new(self, body: dict, sid: str = "main") -> dict:
+        s = Session(save_path=self.save_path(sid), scenario=body.get("scenario", "default"), seed=int(body.get("seed", 0)),
+                    player_faction=body.get("player_faction", "faction_2"), turns=int(body.get("turns", 20)),
+                    ai=body.get("ai") if isinstance(body.get("ai"), dict) else None)
+        self._install(sid, s)
         s.start()
         return {"session_id": sid}
 
@@ -177,7 +206,9 @@ def make_handler(app: App, token: str | None = None):
                 except ValueError as e:
                     return self._json(400, {"error": str(e)})
             if p == "/api/status":
-                return self._json(200, s.status() if s else {"phase": "no_game"})
+                if s:
+                    return self._json(200, s.status())
+                return self._json(200, {"phase": "no_game", "save": app.save_info(self._sid())})
             if p == "/api/state":
                 st = s.state() if s else None
                 return self._json(200 if st else 409, st or {"error": "not awaiting input"})
@@ -203,6 +234,8 @@ def make_handler(app: App, token: str | None = None):
                 sid = self._sid()
                 if p == "/api/new":
                     return self._json(200, app.new(body, sid))
+                if p == "/api/resume":
+                    return self._json(200, app.resume(sid))
                 s = app.get(sid)
                 if s is None:
                     return self._json(409, {"error": "no game"})
@@ -229,12 +262,14 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--insecure", action="store_true", help="allow a non-loopback bind without SLG_ACCESS_TOKEN")
     ap.add_argument("--rules", default=os.environ.get("SLG_RULES") or WEB_DEFAULT_RULES,
                     help=f"combat ruleset (default {WEB_DEFAULT_RULES}; 'v2' is the original, where AI opponents never attack)")
+    ap.add_argument("--save-dir", default=os.environ.get("SLG_SAVE_DIR") or "saves",
+                    help="where turn-start saves are kept (default ./saves; '' disables saving)")
     args = ap.parse_args(argv)
     from slg.engine import combat
     combat.set_rules(args.rules)
     token = os.environ.get("SLG_ACCESS_TOKEN") or None
     check_bind(args.host, token, args.insecure)
-    srv = ThreadingHTTPServer((args.host, args.port), make_handler(App(), token))
+    srv = ThreadingHTTPServer((args.host, args.port), make_handler(App(save_dir=args.save_dir or None), token))
     print(f"SLG web on http://{args.host}:{args.port}/  (access token {'required' if token else 'NOT required'})",
           file=sys.stderr, flush=True)
     srv.serve_forever()
