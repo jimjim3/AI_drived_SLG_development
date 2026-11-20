@@ -59,7 +59,8 @@ const ABILITY_RULES = {
   break_alliance: "只有全軍政治最高的武將能擔任使者。",
 };
 function abilityHint(la) {
-  const rule = ABILITY_RULES[la.action];
+  let rule = ABILITY_RULES[la.action];
+  if (la.action === "recruit" && (la.uses || []).length) rule = "實得兵力 = 付出的徵兵名額 × (統率 + 25) ÷ 100:統率 75 剛好 1 比 1,統率越高徵得越多;金錢與城池兵力上限仍是限制。";
   if (!rule) return "";
   const chips = (la.uses || []).map((u) => {
     const best = u.rank === 1 ? "（全軍最高）" : `（全軍第 ${u.rank}/${u.of}，最高：${u.best_name} ${u.best_value}）`;

@@ -103,9 +103,10 @@ def resolve_decision(
     if action == "recruit":
         troops = int(decision.params["troops"])
         cost = troops * GOLD_PER_TROOP
-        new_city = replace(city, gold=city.gold - cost, troops=city.troops + troops)
+        gained = combat.recruit_yield(officer.leadership, troops)
+        new_city = replace(city, gold=city.gold - cost, troops=city.troops + gained)
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id,
-                                action, city.city_id, f"+{troops} troops (-{cost} gold)")
+                                action, city.city_id, f"+{gained} troops (-{cost} gold)")
         return _replace_city(state, new_city), event
 
     if action == "move":

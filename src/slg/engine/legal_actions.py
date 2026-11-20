@@ -33,13 +33,20 @@ ACTION_USES: dict[str, tuple[str, ...]] = {
     "develop_agri": ("politics",),
     "develop_commerce": ("politics",),
     "develop_defense": ("politics",),
-    "recruit": (),
+    "recruit": (),  # becomes ("leadership",) under rulesets with recruit_leadership (see action_uses)
     "move": (),
     "siege": ("war", "leadership"),
     "rest": (),
     "propose_alliance": ("politics",),  # only the faction's highest-politics officer may be the envoy
     "break_alliance": ("politics",),
 }
+
+
+def action_uses(action: str) -> tuple[str, ...]:
+    """Abilities the action depends on under the active ruleset."""
+    if action == "recruit" and combat.active().recruit_leadership:
+        return ("leadership",)
+    return ACTION_USES.get(action, ())
 
 
 def generate_legal_actions(state: GameState, officer: OfficerState) -> list[LegalAction]:
@@ -60,14 +67,19 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
         actions.append(LegalAction("develop_defense", cost=DEVELOP_COST,
                                    note=f"defense +{defense_gain}"))
 
-    max_troops = min(MAX_RECRUIT, city.gold // GOLD_PER_TROOP, max(0, troop_cap - city.troops))
+    max_troops = min(MAX_RECRUIT, city.gold // GOLD_PER_TROOP,
+                     combat.recruit_paid_for_room(officer.leadership, max(0, troop_cap - city.troops)))
     max_troops = (max_troops // RECRUIT_STEP) * RECRUIT_STEP
     if max_troops >= MIN_RECRUIT:
+        note = f"max {max_troops}"
+        if combat.active().recruit_leadership:
+            note += (f"; each 100 recruits yields {combat.recruit_yield(officer.leadership, 100)} troops "
+                     f"at leadership {officer.leadership} (max yield {combat.recruit_yield(officer.leadership, max_troops)})")
         actions.append(LegalAction(
             "recruit",
             params={"troops": ParamSpec("troops", min=MIN_RECRUIT, max=max_troops, step=RECRUIT_STEP)},
             cost=MIN_RECRUIT * GOLD_PER_TROOP,
-            note=f"max {max_troops}",
+            note=note,
         ))
 
     friendly_other = sorted(

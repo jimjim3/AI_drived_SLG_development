@@ -16,7 +16,7 @@ replayed unless the same set is selected again (``set_rules``).
 from __future__ import annotations
 
 from contextlib import contextmanager
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from ..schema import SIEGE_MIN_GARRISON, GameState
 
@@ -36,6 +36,7 @@ class CombatRules:
     ally_break: tuple[int, int, int] = (40, 25, 5)  # betrayal: (victim friendship loss, other allies' loss, re-alliance cooldown)
     ally_holder_pays: bool = False  # the partner holding a pledge who breaks the alliance also pays the pledge amount from its own gold
     ally_pledge: int = 0  # max gold a proposer may pledge as collateral with an alliance proposal; 0 = no collateral
+    recruit_leadership: bool = False  # recruit yield depends on the officer: troops gained = paid * (leadership + 25) // 100
     alliance: bool = False  # factions may ally (docs/DESIGN_ALLIANCE.md): no mutual sieges, shared vision, betrayal penalty
 
 
@@ -83,6 +84,11 @@ RULESETS: dict[str, CombatRules] = {
                                             march_food_rate=0.5, alliance=True, ally_break=(60, 45, 10), ally_pledge=500,
                                             ally_holder_pays=True),
 }
+
+# econ3 plus: recruit yield depends on the officer's leadership (user request 2026-11-21); the _ally3 variant also has alliances
+RULESETS["softer_pool2_econ4"] = replace(RULESETS["softer_pool2_econ3"], name="softer_pool2_econ4", recruit_leadership=True)
+RULESETS["softer_pool2_econ4_ally3"] = replace(RULESETS["softer_pool2_econ3_ally3"], name="softer_pool2_econ4_ally3",
+                                               recruit_leadership=True)
 
 # Real great-circle distances in km between neighbouring cities (from agy-reported coordinates in
 # data/sanguo/maps/geo_agy.json; unverified). Edges of 500 km or more count as "far": the route crosses mountains
@@ -150,6 +156,23 @@ _active: CombatRules = RULESETS["v2"]
 
 def active() -> CombatRules:
     return _active
+
+
+RECRUIT_LEADERSHIP_OFFSET = 25  # leadership 75 recruits 1:1; 100 gives 1.25x, 40 gives 0.65x
+
+
+def recruit_yield(leadership: int, paid: int) -> int:
+    """Troops actually gained when ``paid`` recruits are bought (gold = paid * GOLD_PER_TROOP)."""
+    if not _active.recruit_leadership:
+        return paid
+    return paid * (leadership + RECRUIT_LEADERSHIP_OFFSET) // 100
+
+
+def recruit_paid_for_room(leadership: int, room: int) -> int:
+    """Largest ``paid`` whose yield still fits in ``room`` troops of city capacity."""
+    if not _active.recruit_leadership:
+        return room
+    return room * 100 // (leadership + RECRUIT_LEADERSHIP_OFFSET)
 
 
 def set_rules(name: str) -> CombatRules:
