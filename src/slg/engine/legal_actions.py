@@ -27,6 +27,21 @@ from ..schema import (
 )
 
 
+# Which officer abilities an action's result actually depends on (the engine is the source of truth; the web UI
+# shows this next to each order). Empty = the officer's abilities do not matter, only the city's resources do.
+ACTION_USES: dict[str, tuple[str, ...]] = {
+    "develop_agri": ("politics",),
+    "develop_commerce": ("politics",),
+    "develop_defense": ("politics",),
+    "recruit": (),
+    "move": (),
+    "siege": ("war", "leadership"),
+    "rest": (),
+    "propose_alliance": ("politics",),  # only the faction's highest-politics officer may be the envoy
+    "break_alliance": ("politics",),
+}
+
+
 def generate_legal_actions(state: GameState, officer: OfficerState) -> list[LegalAction]:
     city = state.city(officer.city_id)
     actions: list[LegalAction] = []

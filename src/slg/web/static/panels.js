@@ -45,6 +45,29 @@ export function ingestRoster(state) {
 export const ACTION_ICONS = { develop_agri: "develop", develop_commerce: "develop", develop_defense: "defend", recruit: "recruit", move: "march", siege: "siege", rest: "defend", propose_alliance: "report", break_alliance: "report" };
 export const actionIcon = (k) => ACTION_ICONS[k] ? `<img class="action-icon" src="./assets/art/icons/${ACTION_ICONS[k]}.svg" alt="">` : "";
 
+const STAT_NAMES = { politics: "政治", war: "武力", leadership: "統率" };
+// How each action's outcome depends on the officer (mirrors the engine: schema.develop_gain, resolution._siege_strengths).
+const ABILITY_RULES = {
+  develop_agri: "成果 = 基礎值 × (50 + 政治) ÷ 100。政治越高,開墾越多。",
+  develop_commerce: "成果 = 基礎值 × (50 + 政治) ÷ 100。政治越高,商業成長越多。",
+  develop_defense: "成果 = 基礎值 × (50 + 政治) ÷ 100。政治越高,城防增加越多。",
+  recruit: "與武將能力無關,只受城中金錢、兵力上限與徵兵間隔限制,派誰都一樣。",
+  move: "與武將能力無關。",
+  rest: "與武將能力無關。",
+  siege: "進攻戰力 ∝ 出征兵力 × (0.5 + (武力 + 統率) ÷ 200);守方看城中最強守將的(武力 + 統率)÷ 2。",
+  propose_alliance: "只有全軍政治最高的武將能擔任使者。",
+  break_alliance: "只有全軍政治最高的武將能擔任使者。",
+};
+function abilityHint(la) {
+  const rule = ABILITY_RULES[la.action];
+  if (!rule) return "";
+  const chips = (la.uses || []).map((u) => {
+    const best = u.rank === 1 ? "（全軍最高）" : `（全軍第 ${u.rank}/${u.of}，最高：${u.best_name} ${u.best_value}）`;
+    return `<span class="ability-chip ${u.rank === 1 ? "ability-top" : ""}">${STAT_NAMES[u.stat] || u.stat} ${u.value}${best}</span>`;
+  }).join(" ");
+  return `<div class="ability-hint"><strong>所需能力：</strong>${chips || "無"}<div class="ability-rule">${rule}</div></div>`;
+}
+
 const PARAM_LABELS = {
   "propose_alliance.to": "結盟對象", "propose_alliance.pledge": "抵押金（背盟即被沒收）", "break_alliance.with": "撕毀盟約的對象",
 };
@@ -466,6 +489,7 @@ export function renderDispatch(
           <span class="action-cost-badge">花費: ${la.cost || 0} 金</span>
         </div>
         <div class="action-note">${la.note ? `說明: ${la.note}` : ""}</div>
+        ${abilityHint(la)}
     `;
 
     // Render siege odds if action is siege

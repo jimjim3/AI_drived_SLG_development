@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from .. import narrative
 from ..engine.initial_state import FACTION_IDS, parse_scenario, resolve_scenario
-from ..engine.legal_actions import generate_legal_actions
+from ..engine.legal_actions import ACTION_USES, generate_legal_actions
 from ..engine.view import FactionView, relevant_events
 from ..schema import GameState
 
@@ -29,9 +29,20 @@ def _param(p) -> dict:
 
 def legal_structured(state: GameState, officer_id: str) -> list[dict]:
     off = state.officers[officer_id]
+    team = [o for o in state.officers.values() if o.faction_id == off.faction_id and o.is_alive]
+
+    def uses(action: str) -> list[dict]:
+        out = []
+        for stat in ACTION_USES.get(action, ()):
+            best = max(team, key=lambda o: (getattr(o, stat), o.officer_id))
+            out.append({"stat": stat, "value": getattr(off, stat), "best_value": getattr(best, stat),
+                        "best_name": best.name, "rank": 1 + sum(getattr(o, stat) > getattr(off, stat) for o in team),
+                        "of": len(team)})
+        return out
+
     return [
         {"action": la.action, "params": {k: _param(v) for k, v in la.params.items()},
-         "cost": la.cost, "note": la.note}
+         "cost": la.cost, "note": la.note, "uses": uses(la.action)}
         for la in generate_legal_actions(state, off)
     ]
 

@@ -51,6 +51,10 @@ with sync_playwright() as p:
             pg.screenshot(path=str(out / "propose.png"))
             break
     res["propose_offered"] = found
+    pg.locator(".officer-tab-btn").first.click(); time.sleep(0.3)
+    res["ability_hint_shown"] = pg.locator(".ability-hint").count() >= 2 and "所需能力" in pg.inner_text(".actions-form-box")
+    res["ability_rule_text"] = "50 + 政治" in pg.inner_text(".actions-form-box")
+    pg.screenshot(path=str(out / "abilities.png"))
     # save exists at turn start; leave the game and the title screen offers to continue
     res["save_written"] = (pathlib.Path(saves) / f"{sid['v']}.sav").is_file()
     s_old = app.get(sid["v"])

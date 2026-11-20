@@ -1349,3 +1349,8 @@ body {
 .dip-bar { height: 8px; background: #0b1220; border-radius: 4px; overflow: hidden; }
 .dip-fill { height: 100%; }
 .dip-meta { margin-top: 6px; font-size: 14px; color: var(--text-sub); }
+
+.ability-hint { margin-top: 6px; font-size: 13px; color: var(--text-sub); }
+.ability-chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: #334155; color: #e2e8f0; margin-right: 4px; }
+.ability-chip.ability-top { background: #c9a24b; color: #1a1a1a; }
+.ability-rule { margin-top: 3px; opacity: .85; }
