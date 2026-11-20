@@ -59,7 +59,7 @@ class RecruitLeadershipTest(unittest.TestCase):
         self.assertTrue(combat.RULESETS["softer_pool2_econ4"].recruit_leadership)
         self.assertTrue(combat.RULESETS["softer_pool2_econ4_ally3"].alliance)
         from slg.web.server import WEB_DEFAULT_RULES
-        self.assertEqual(WEB_DEFAULT_RULES, "softer_pool2_econ4")
+        self.assertTrue(combat.RULESETS[WEB_DEFAULT_RULES].recruit_leadership)
 
 
 if __name__ == "__main__":

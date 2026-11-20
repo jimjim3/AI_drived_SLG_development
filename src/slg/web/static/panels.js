@@ -45,6 +45,11 @@ export function ingestRoster(state) {
 export const ACTION_ICONS = { develop_agri: "develop", develop_commerce: "develop", develop_defense: "defend", recruit: "recruit", move: "march", siege: "siege", rest: "defend", propose_alliance: "report", break_alliance: "report" };
 export const actionIcon = (k) => ACTION_ICONS[k] ? `<img class="action-icon" src="./assets/art/icons/${ACTION_ICONS[k]}.svg" alt="">` : "";
 
+function staminaBadge(v) {
+  const eff = Math.round(Math.min(1, 0.5 + v / 100) * 100);
+  const cls = v >= 50 ? "badge-good" : v >= 25 ? "badge-warning" : "badge-danger";
+  return `<span class="badge ${cls}" title="體力 ${v}/100：目前發揮 ${eff}% 效果。休整可回復。">${v} (${eff}%)</span>`;
+}
 const STAT_NAMES = { politics: "政治", war: "武力", leadership: "統率" };
 // How each action's outcome depends on the officer (mirrors the engine: schema.develop_gain, resolution._siege_strengths).
 const ABILITY_RULES = {
@@ -266,6 +271,7 @@ export function renderOfficers(container, state, orders, onGoDispatch) {
             <th>武力</th>
             <th>政治</th>
             <th>忠誠</th>
+            ${(state.cast || []).some((c) => c.stamina !== undefined) ? "<th>體力</th>" : ""}
             <th>冷落</th>
             <th>當前軍令</th>
             <th>操作</th>
@@ -304,6 +310,7 @@ export function renderOfficers(container, state, orders, onGoDispatch) {
         <td class="stat-cell">${o.war}</td>
         <td class="stat-cell">${o.politics}</td>
         <td>${loyBadge}</td>
+        ${o.stamina !== undefined ? `<td>${staminaBadge(o.stamina)}</td>` : ""}
         <td>${negBadge}</td>
         <td>${orderDesc}</td>
         <td>
@@ -447,7 +454,8 @@ export function renderDispatch(
       <div class="officer-brief-main">
         <h4 class="officer-name">★ ${selectedOfficer.name}</h4>
         <span class="officer-loc">駐守於：${cityName}</span>
-        <span class="brief-stats">統 ${selectedOfficer.leadership} | 武 ${selectedOfficer.war} | 政 ${selectedOfficer.politics} | 忠 ${selectedOfficer.loyalty}</span>
+        <span class="brief-stats">統 ${selectedOfficer.leadership} | 武 ${selectedOfficer.war} | 政 ${selectedOfficer.politics} | 忠 ${selectedOfficer.loyalty}${selectedOfficer.stamina !== undefined ? ` | 體 ${selectedOfficer.stamina}` : ""}</span>
+        ${selectedOfficer.stamina !== undefined && selectedOfficer.stamina < 50 ? `<span class="stamina-warn">⚠ 體力不足，所有行動只發揮 ${Math.round((0.5 + selectedOfficer.stamina / 100) * 100)}% 效果，建議讓他休整</span>` : ""}
       </div>
       <div class="city-budget-box ${remainingGold < 0 ? "budget-overdrawn" : ""}">
         <div class="budget-title">【${cityName} 庫存金錢預算】</div>

@@ -155,6 +155,7 @@ class OfficerState:
     ambition: int
     is_alive: bool = True
     neglect: int = 0
+    stamina: int = 100  # 0..100; only changes under rulesets with ``stamina`` (combat.py)
 
 
 @dataclass(frozen=True)

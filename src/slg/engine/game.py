@@ -29,7 +29,7 @@ from ..schema import (
     LogEntry,
     ResolutionEvent,
 )
-from . import alliance
+from . import alliance, combat
 from .legal_actions import generate_legal_actions
 from .resolution import resolve_decision
 from .validation import validate_decision
@@ -141,6 +141,10 @@ class Game:
         that the seed influences who moves first.
         """
         self.state = apply_income(self.state, self.rng)
+        if combat.active().stamina:
+            self.state = replace(self.state, officers={
+                oid: replace(o, stamina=min(combat.STAMINA_MAX, o.stamina + combat.STAMINA_REGEN)) if o.is_alive else o
+                for oid, o in self.state.officers.items()})
         if alliance.enabled():
             self.state = alliance.tick(self.state)
         order = sorted(self.state.factions)

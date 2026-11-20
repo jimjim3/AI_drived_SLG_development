@@ -6,7 +6,7 @@ from slg.engine import combat
 from slg.web.server import App, make_handler
 from playwright.sync_api import sync_playwright
 
-combat.set_rules("softer_pool2_econ3_ally3")
+combat.set_rules("softer_pool2_econ5_ally3")
 out = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "/tmp/e2e_alliance"); out.mkdir(parents=True, exist_ok=True)
 saves = tempfile.mkdtemp()
 app = App(save_dir=saves); srv = ThreadingHTTPServer(("127.0.0.1", 0), make_handler(app)); base = f"http://127.0.0.1:{srv.server_address[1]}"
@@ -55,6 +55,11 @@ with sync_playwright() as p:
     res["ability_hint_shown"] = pg.locator(".ability-hint").count() >= 2 and "所需能力" in pg.inner_text(".actions-form-box")
     res["ability_rule_text"] = "50 + 政治" in pg.inner_text(".actions-form-box")
     pg.screenshot(path=str(out / "abilities.png"))
+    res["stamina_in_brief"] = "體 100" in pg.inner_text(".officer-brief-card")
+    pg.click('[data-tab="officers"]'); time.sleep(0.3)
+    res["stamina_column"] = "體力" in pg.inner_text("#panelsContainer")
+    pg.screenshot(path=str(out / "stamina_officers.png"))
+    pg.click('[data-tab="dispatch"]'); time.sleep(0.3)
     # save exists at turn start; leave the game and the title screen offers to continue
     res["save_written"] = (pathlib.Path(saves) / f"{sid['v']}.sav").is_file()
     s_old = app.get(sid["v"])

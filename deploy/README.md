@@ -13,7 +13,7 @@
 | 變數 | 用途 |
 |---|---|
 | `SLG_ACCESS_TOKEN` | 存取密碼（非本機綁定時必填） |
-| `SLG_RULES` | 戰鬥規則，預設 `softer_pool2_econ4`（AI 對手會進攻；城池規模上限，出兵耗糧隨距離增加；徵兵實得兵力依統率）；`v2` 為原規則（AI 不進攻） |
+| `SLG_RULES` | 戰鬥規則，預設 `softer_pool2_econ5`（AI 對手會進攻；城池規模上限，出兵耗糧隨距離增加；徵兵實得兵力依統率；武將有體力）；`v2` 為原規則（AI 不進攻） |
 | `SLG_SAVE_DIR` | 存檔目錄（預設 `saves`；存檔是本機 pickle，只放信任的目錄） |
 | `SLG_HOST`、`SLG_PORT` | 監聽位址與埠（預設 `127.0.0.1`、`8080`） |
 | `NVIDIA_API_KEY` | 啟用設定畫面的 **nim** 對手（NVIDIA 免費額度；預設模型 `nvidia/nemotron-3-super-120b-a12b`，可用 `SLG_NIM_MODEL` 換） |

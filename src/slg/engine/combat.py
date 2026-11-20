@@ -36,6 +36,7 @@ class CombatRules:
     ally_break: tuple[int, int, int] = (40, 25, 5)  # betrayal: (victim friendship loss, other allies' loss, re-alliance cooldown)
     ally_holder_pays: bool = False  # the partner holding a pledge who breaks the alliance also pays the pledge amount from its own gold
     ally_pledge: int = 0  # max gold a proposer may pledge as collateral with an alliance proposal; 0 = no collateral
+    stamina: bool = False  # officers tire: actions cost stamina, it recovers over time, tired officers are less effective
     recruit_leadership: bool = False  # recruit yield depends on the officer: troops gained = paid * (leadership + 25) // 100
     alliance: bool = False  # factions may ally (docs/DESIGN_ALLIANCE.md): no mutual sieges, shared vision, betrayal penalty
 
@@ -89,6 +90,10 @@ RULESETS: dict[str, CombatRules] = {
 RULESETS["softer_pool2_econ4"] = replace(RULESETS["softer_pool2_econ3"], name="softer_pool2_econ4", recruit_leadership=True)
 RULESETS["softer_pool2_econ4_ally3"] = replace(RULESETS["softer_pool2_econ3_ally3"], name="softer_pool2_econ4_ally3",
                                                recruit_leadership=True)
+# econ4 plus officer stamina (user request 2026-11-20: officers need a work limit)
+RULESETS["softer_pool2_econ5"] = replace(RULESETS["softer_pool2_econ4"], name="softer_pool2_econ5", stamina=True)
+RULESETS["softer_pool2_econ5_ally3"] = replace(RULESETS["softer_pool2_econ4_ally3"], name="softer_pool2_econ5_ally3",
+                                               stamina=True)
 
 # Real great-circle distances in km between neighbouring cities (from agy-reported coordinates in
 # data/sanguo/maps/geo_agy.json; unverified). Edges of 500 km or more count as "far": the route crosses mountains
@@ -156,6 +161,29 @@ _active: CombatRules = RULESETS["v2"]
 
 def active() -> CombatRules:
     return _active
+
+
+# --- officer stamina (ruleset flag ``stamina``; numbers are a conservative first guess, untuned) ---
+STAMINA_MAX = 100
+STAMINA_COST = {"develop_agri": 15, "develop_commerce": 15, "develop_defense": 15, "recruit": 15,
+                "siege": 30, "move": 10, "propose_alliance": 10, "break_alliance": 10, "rest": 0}
+STAMINA_REGEN = 10        # every officer, every turn
+STAMINA_REST_BONUS = 20   # extra recovery for an officer who rests
+STAMINA_FULL_AT = 50      # at or above this, full effect; below, effect falls linearly to 50% at 0
+
+
+def stamina_factor(officer) -> float:
+    """Effect multiplier from tiredness (1.0 when the ruleset has no stamina or the officer is rested)."""
+    if not _active.stamina:
+        return 1.0
+    return min(1.0, 0.5 + officer.stamina / (2 * STAMINA_FULL_AT))
+
+
+def stamina_after(officer, action: str) -> int:
+    """Stamina after performing ``action`` this turn (cost, or the rest bonus)."""
+    if action == "rest":
+        return min(STAMINA_MAX, officer.stamina + STAMINA_REST_BONUS)
+    return max(0, officer.stamina - STAMINA_COST.get(action, 0))
 
 
 RECRUIT_LEADERSHIP_OFFSET = 25  # leadership 75 recruits 1:1; 100 gives 1.25x, 40 gives 0.65x

@@ -18,6 +18,7 @@ python3 scripts/e2e_alliance.py       # 外交分頁、結盟選項、存檔續�
 ## 這個月完成(2026-11)
 - **同盟機制**(`engine/alliance.py`,規則集旗標 `alliance`;預設規則不變):友好度、提議與接受(`respond_alliance`)、背盟懲罰、金錢抵押與保管方賠付(`ally3`/`ally4`)、共享視野、LLM 提示含「天下之志」(統一動機)。評測見 EVALUATION §22:背盟率不受懲罰大小影響,**不要再調抵押金額**;留給人質與名聲系統。
 - **徵兵依賴統率**(2026-11-21,EVALUATION §23):`recruit_leadership` 旗標,網頁預設改 `softer_pool2_econ4`;引擎/評測預設仍 `v2`。魅力屬性還沒加,留到做諜報時一起加(使用者決定)。
+- **武將體力**(2026-11-21,EVALUATION §24):`stamina` 旗標,`softer_pool2_econ5`;網頁預設改 `econ5`;數字未調校,沒有傷病與病逝。LLM 行為未驗證。
 - **指令所需能力明示**(`legal_actions.ACTION_USES`、介面「所需能力」)。
 - **網頁**:外交同盟分頁(快捷鍵 9,僅在同盟規則下出現)、地圖盟友標示、存檔與續玩(`web/savegame.py`:回合開始快照,續玩重跑該回合)。
 - **資料**(未核實、引擎未使用):`data/sanguo/ext/` 105 城、29 個時期劇本草稿、74 筆補充武將;agy 作者加 Nemotron 交叉審稿。

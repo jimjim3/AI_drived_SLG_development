@@ -24,6 +24,7 @@ class RuleBasedAgent(Agent):
     SIEGE_RATIO = SIEGE_ODDS  # kept for callers that validate the style
     SIEGE_MIN_COMBAT = 70        # (war + leadership) / 2 threshold to attack
     SIEGE_TROOP_FRACTION = 0.7   # share of the garrison sent on a siege
+    REST_BELOW_STAMINA = 50      # rest when stamina is this low (only under rulesets with stamina)
     RECRUIT_FOOD_MULT = 2.5      # recruit while troops < 2.5 * agriculture
     RECRUIT_TARGET = 600         # preferred recruit size
 
@@ -42,6 +43,10 @@ class RuleBasedAgent(Agent):
     ) -> AgentDecision:
         city = state.city(officer.city_id)
         by_action = {la.action: la for la in legal}
+
+        # 0. Worn out (rulesets with stamina): recover instead of working at half effect.
+        if combat.active().stamina and officer.stamina < self.REST_BELOW_STAMINA:
+            return AgentDecision(officer.officer_id, "rest", {}, "recover stamina")
 
         # a. Food is tight: invest in agriculture whenever we can afford it.
         if city.food < city.troops // 10 * 3 and "develop_agri" in by_action:

@@ -20,7 +20,7 @@ from ..schema import (
     PETITION_LOYALTY_BELOW,
     ResolutionEvent,
 )
-from . import alliance
+from . import alliance, combat
 from .legal_actions import generate_legal_actions
 from .resolution import estimate_siege_ratio
 
@@ -331,6 +331,8 @@ def build_faction_view(
             "neglect": o.neglect,
             "legal": legal_formatted,
         }
+        if combat.active().stamina:
+            officer_dict["stamina"] = o.stamina
         siege_la = next((la for la in legal_actions if la.action == "siege"), None)
         if siege_la is not None:
             max_troops = int(siege_la.params["troops"].max)

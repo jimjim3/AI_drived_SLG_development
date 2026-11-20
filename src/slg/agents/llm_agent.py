@@ -62,6 +62,12 @@ SIEGE_VERDICT_NOTE = (
 )
 
 
+STAMINA_NOTE = (
+    "\n\n【體力】每位武將有體力(stamina,0–100)。行動會消耗體力(開發/徵兵 15、移動/外交 10、攻城 30),"
+    "每回合自然回復 10,休整(rest)額外回復 20。體力低於 50 時效果按比例下降,到 0 時只剩一半效果。"
+    "連續派同一人工作會累垮他;名單中的 stamina 欄位就是目前體力,請輪流使用武將。"
+)
+
 ALLIANCE_NOTE = (
     "\n【天下之志】你的最終目標是吞併他人、統一天下：回合結束時城池最多者獲勝（同數比兵力），"
     "和平共存並不算贏。同盟只是手段，用來穩住一側、集中兵力吞併另一方，或換取時機；"
@@ -341,7 +347,7 @@ class LLMFactionAgent(FactionAgent):
 
         for _ in range(max_attempts):
             user_prompt = build_user_prompt(view, error=last_error, with_verdict=self._with_verdict)
-            system_prompt = self._system_prompt + (ALLIANCE_NOTE if combat.active().alliance else "") + (
+            system_prompt = self._system_prompt + (STAMINA_NOTE if combat.active().stamina else "") + (ALLIANCE_NOTE if combat.active().alliance else "") + (
                 ALLIANCE_PLEDGE_NOTE if combat.active().ally_pledge else "")
             prompt_chars = len(system_prompt) + len(user_prompt)
 

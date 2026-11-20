@@ -55,9 +55,9 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
 
     agri_cap, commerce_cap, troop_cap = combat.city_caps(city.city_id)
     if city.gold >= DEVELOP_COST:
-        agri_gain = develop_gain(DEVELOP_AGRICULTURE_BASE, officer.politics)
-        commerce_gain = develop_gain(DEVELOP_COMMERCE_BASE, officer.politics)
-        defense_gain = develop_gain(DEVELOP_DEFENSE_BASE, officer.politics)
+        agri_gain = int(develop_gain(DEVELOP_AGRICULTURE_BASE, officer.politics) * combat.stamina_factor(officer))
+        commerce_gain = int(develop_gain(DEVELOP_COMMERCE_BASE, officer.politics) * combat.stamina_factor(officer))
+        defense_gain = int(develop_gain(DEVELOP_DEFENSE_BASE, officer.politics) * combat.stamina_factor(officer))
         if city.agriculture < agri_cap:
             actions.append(LegalAction("develop_agri", cost=DEVELOP_COST,
                                        note=f"agri +{agri_gain}"))
@@ -75,6 +75,8 @@ def generate_legal_actions(state: GameState, officer: OfficerState) -> list[Lega
         if combat.active().recruit_leadership:
             note += (f"; each 100 recruits yields {combat.recruit_yield(officer.leadership, 100)} troops "
                      f"at leadership {officer.leadership} (max yield {combat.recruit_yield(officer.leadership, max_troops)})")
+        if combat.active().stamina and combat.stamina_factor(officer) < 1.0:
+            note += f"; tired (stamina {officer.stamina}): yield x{combat.stamina_factor(officer):.2f}"
         actions.append(LegalAction(
             "recruit",
             params={"troops": ParamSpec("troops", min=MIN_RECRUIT, max=max_troops, step=RECRUIT_STEP)},

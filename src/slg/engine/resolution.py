@@ -48,6 +48,21 @@ def resolve_decision(
     alliance_accept: bool | None = None,
 ) -> tuple[GameState, ResolutionEvent]:
     """``alliance_accept``: the target's decision on a proposal (None = the rule-AI default)."""
+    new_state, event = _resolve(state, officer, decision, rng, alliance_accept)
+    if combat.active().stamina:  # the acting officer pays (or recovers) stamina after the action
+        cur = new_state.officers[officer.officer_id]
+        new_state = replace(new_state, officers={**new_state.officers, cur.officer_id: replace(
+            cur, stamina=combat.stamina_after(cur, decision.action))})
+    return new_state, event
+
+
+def _resolve(
+    state: GameState,
+    officer: OfficerState,
+    decision: AgentDecision,
+    rng: random.Random,
+    alliance_accept: bool | None,
+) -> tuple[GameState, ResolutionEvent]:
     city = state.city(officer.city_id)
     action = decision.action
 
@@ -77,7 +92,7 @@ def resolve_decision(
         return new_state, event
 
     if action == "develop_agri":
-        gain = develop_gain(DEVELOP_AGRICULTURE_BASE, officer.politics)
+        gain = int(develop_gain(DEVELOP_AGRICULTURE_BASE, officer.politics) * combat.stamina_factor(officer))
         new_city = replace(city, gold=city.gold - DEVELOP_COST,
                            agriculture=city.agriculture + gain)
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id,
@@ -85,7 +100,7 @@ def resolve_decision(
         return _replace_city(state, new_city), event
 
     if action == "develop_commerce":
-        gain = develop_gain(DEVELOP_COMMERCE_BASE, officer.politics)
+        gain = int(develop_gain(DEVELOP_COMMERCE_BASE, officer.politics) * combat.stamina_factor(officer))
         new_city = replace(city, gold=city.gold - DEVELOP_COST,
                            commerce=city.commerce + gain)
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id,
@@ -93,7 +108,7 @@ def resolve_decision(
         return _replace_city(state, new_city), event
 
     if action == "develop_defense":
-        gain = develop_gain(DEVELOP_DEFENSE_BASE, officer.politics)
+        gain = int(develop_gain(DEVELOP_DEFENSE_BASE, officer.politics) * combat.stamina_factor(officer))
         new_city = replace(city, gold=city.gold - DEVELOP_COST,
                            defense=city.defense + gain)
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id,
@@ -103,7 +118,7 @@ def resolve_decision(
     if action == "recruit":
         troops = int(decision.params["troops"])
         cost = troops * GOLD_PER_TROOP
-        gained = combat.recruit_yield(officer.leadership, troops)
+        gained = int(combat.recruit_yield(officer.leadership, troops) * combat.stamina_factor(officer))
         new_city = replace(city, gold=city.gold - cost, troops=city.troops + gained)
         event = ResolutionEvent(state.turn, officer.officer_id, officer.faction_id,
                                 action, city.city_id, f"+{gained} troops (-{cost} gold)")
@@ -141,7 +156,8 @@ def _siege_strengths(
     defender_faction = defender_city.owner
     def_troops = defender_city.troops
 
-    atk_base = c * (0.5 + (officer.war + officer.leadership) / 200) * combat.far_march_factor(officer.city_id, target_id)
+    atk_base = (c * (0.5 + (officer.war + officer.leadership) / 200) * combat.far_march_factor(officer.city_id, target_id)
+                * combat.stamina_factor(officer))
     defenders = [
         o for o in state.officers.values()
         if o.faction_id == defender_faction and o.city_id == target_id and o.is_alive

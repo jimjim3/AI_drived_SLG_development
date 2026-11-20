@@ -1354,3 +1354,7 @@ body {
 .ability-chip { display: inline-block; padding: 1px 8px; border-radius: 10px; background: #334155; color: #e2e8f0; margin-right: 4px; }
 .ability-chip.ability-top { background: #c9a24b; color: #1a1a1a; }
 .ability-rule { margin-top: 3px; opacity: .85; }
+
+.stamina-warn { display: block; margin-top: 4px; color: #fbbf24; font-size: 13px; }
+.officers-table th, .officers-table td { padding-left: 6px; padding-right: 6px; }
+.officers-table .badge { white-space: nowrap; }
