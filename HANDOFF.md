@@ -21,10 +21,10 @@ python3 scripts/e2e_alliance.py       # 外交分頁、結盟選項、存檔續�
 - **資料**(未核實、引擎未使用):`data/sanguo/ext/` 105 城、29 個時期劇本草稿、74 筆補充武將;agy 作者加 Nemotron 交叉審稿。
 - **瀏覽器驗證**:2026-11-20 兩支 e2e 腳本在 Chromium 全過、無 JS 錯誤(只測 Chromium)。
 
-## M0 還沒做完
-1. **遠端試玩**:這台 Mac 沒有 cloudflared,需安裝並設 `SLG_ACCESS_TOKEN`,由使用者親自玩一局。
-2. 起草**劇本格式 v1**(20 城、多勢力、事件、勝利條件)。
-3. 試玩紀錄範本(問卷 5 題)。
+## M0 狀態
+1. **遠端試玩第一輪已做**(2026-11-20,紀錄在 docs/playtests/2026-11-20.md)。cloudflared 已裝在 `~/.local/bin/cloudflared`;開法:`SLG_ACCESS_TOKEN=… scripts/serve.sh` 加 `cloudflared tunnel --url http://127.0.0.1:8080`。這台 Mac 的 DNS 對新 trycloudflare 網址有延遲,用別的裝置開較穩。使用者回饋:指令所需能力要明示、需要諜報系統、武將需要體力(已排入 M1)。
+2. **劇本格式 v1 已完成**(docs/SCENARIO_FORMAT.md,未接入引擎)。
+3. 試玩紀錄範本(問卷 5 題)還沒寫。
 4. 確認 NOTICE.md 的授權決定(資料、美術)。
 
 ## 已知缺陷與限制
