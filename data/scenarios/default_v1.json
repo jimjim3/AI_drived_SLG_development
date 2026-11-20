@@ -1,0 +1,705 @@
+{
+ "format": 1,
+ "id": "default_v1",
+ "name_zh": "三足鼎立(內建 9 城)",
+ "year": 208,
+ "summary_zh": "曹操、劉備、孫權三方各據三城的內建開局。",
+ "verification": "game_design",
+ "sources": [],
+ "rules": null,
+ "map": {
+  "cities": [
+   {
+    "id": "xuchang",
+    "name_zh": "許昌",
+    "pos": [
+     7.0,
+     4.8
+    ]
+   },
+   {
+    "id": "chenliu",
+    "name_zh": "陳留",
+    "pos": [
+     7.2,
+     7.2
+    ]
+   },
+   {
+    "id": "xiangyang",
+    "name_zh": "襄陽",
+    "pos": [
+     5.6,
+     2.2
+    ]
+   },
+   {
+    "id": "luoyang",
+    "name_zh": "洛陽",
+    "pos": [
+     4.2,
+     6.4
+    ]
+   },
+   {
+    "id": "wancheng",
+    "name_zh": "宛城",
+    "pos": [
+     3.4,
+     3.8
+    ]
+   },
+   {
+    "id": "hanzhong",
+    "name_zh": "漢中",
+    "pos": [
+     1.4,
+     2.6
+    ]
+   },
+   {
+    "id": "jianye",
+    "name_zh": "建業",
+    "pos": [
+     8.8,
+     3.4
+    ]
+   },
+   {
+    "id": "wujun",
+    "name_zh": "吳郡",
+    "pos": [
+     9.8,
+     2.1
+    ]
+   },
+   {
+    "id": "kuaiji",
+    "name_zh": "會稽",
+    "pos": [
+     9.8,
+     0.7
+    ]
+   }
+  ],
+  "edges": [
+   [
+    "chenliu",
+    "xuchang"
+   ],
+   [
+    "hanzhong",
+    "wancheng"
+   ],
+   [
+    "jianye",
+    "wujun"
+   ],
+   [
+    "jianye",
+    "xiangyang"
+   ],
+   [
+    "kuaiji",
+    "wujun"
+   ],
+   [
+    "luoyang",
+    "wancheng"
+   ],
+   [
+    "luoyang",
+    "xiangyang"
+   ],
+   [
+    "luoyang",
+    "xuchang"
+   ],
+   [
+    "xiangyang",
+    "xuchang"
+   ]
+  ]
+ },
+ "factions": [
+  {
+   "id": "faction_1",
+   "name_zh": "曹操",
+   "capital": "xuchang",
+   "playable": true
+  },
+  {
+   "id": "faction_2",
+   "name_zh": "劉備",
+   "capital": "luoyang",
+   "playable": true
+  },
+  {
+   "id": "faction_3",
+   "name_zh": "孫權",
+   "capital": "jianye",
+   "playable": true
+  }
+ ],
+ "cities": [
+  {
+   "id": "xuchang",
+   "owner": "faction_1",
+   "agriculture": 550,
+   "commerce": 550,
+   "defense": 150,
+   "gold": 1000,
+   "food": 1000,
+   "troops": 1400
+  },
+  {
+   "id": "chenliu",
+   "owner": "faction_1",
+   "agriculture": 450,
+   "commerce": 450,
+   "defense": 120,
+   "gold": 600,
+   "food": 600,
+   "troops": 800
+  },
+  {
+   "id": "xiangyang",
+   "owner": "faction_1",
+   "agriculture": 500,
+   "commerce": 500,
+   "defense": 150,
+   "gold": 800,
+   "food": 800,
+   "troops": 1200
+  },
+  {
+   "id": "luoyang",
+   "owner": "faction_2",
+   "agriculture": 550,
+   "commerce": 550,
+   "defense": 120,
+   "gold": 900,
+   "food": 900,
+   "troops": 1100
+  },
+  {
+   "id": "wancheng",
+   "owner": "faction_2",
+   "agriculture": 450,
+   "commerce": 450,
+   "defense": 120,
+   "gold": 600,
+   "food": 600,
+   "troops": 700
+  },
+  {
+   "id": "hanzhong",
+   "owner": "faction_2",
+   "agriculture": 450,
+   "commerce": 450,
+   "defense": 120,
+   "gold": 600,
+   "food": 600,
+   "troops": 700
+  },
+  {
+   "id": "jianye",
+   "owner": "faction_3",
+   "agriculture": 550,
+   "commerce": 550,
+   "defense": 120,
+   "gold": 900,
+   "food": 900,
+   "troops": 1200
+  },
+  {
+   "id": "wujun",
+   "owner": "faction_3",
+   "agriculture": 450,
+   "commerce": 450,
+   "defense": 120,
+   "gold": 600,
+   "food": 600,
+   "troops": 800
+  },
+  {
+   "id": "kuaiji",
+   "owner": "faction_3",
+   "agriculture": 450,
+   "commerce": 450,
+   "defense": 120,
+   "gold": 600,
+   "food": 600,
+   "troops": 800
+  }
+ ],
+ "officers": [
+  {
+   "id": "xun_yu",
+   "name_zh": "荀彧",
+   "faction": "faction_1",
+   "city": "xuchang",
+   "politics": 95,
+   "war": 30,
+   "leadership": 60,
+   "loyalty": 90,
+   "ambition": 30
+  },
+  {
+   "id": "xiahou_dun",
+   "name_zh": "夏侯惇",
+   "faction": "faction_1",
+   "city": "xuchang",
+   "politics": 40,
+   "war": 85,
+   "leadership": 85,
+   "loyalty": 85,
+   "ambition": 40
+  },
+  {
+   "id": "yu_jin",
+   "name_zh": "于禁",
+   "faction": "faction_1",
+   "city": "xuchang",
+   "politics": 45,
+   "war": 78,
+   "leadership": 78,
+   "loyalty": 80,
+   "ambition": 45
+  },
+  {
+   "id": "dian_wei",
+   "name_zh": "典韋",
+   "faction": "faction_1",
+   "city": "xuchang",
+   "politics": 20,
+   "war": 90,
+   "leadership": 75,
+   "loyalty": 80,
+   "ambition": 50
+  },
+  {
+   "id": "cao_ren",
+   "name_zh": "曹仁",
+   "faction": "faction_1",
+   "city": "chenliu",
+   "politics": 50,
+   "war": 80,
+   "leadership": 80,
+   "loyalty": 88,
+   "ambition": 35
+  },
+  {
+   "id": "li_dian",
+   "name_zh": "李典",
+   "faction": "faction_1",
+   "city": "chenliu",
+   "politics": 60,
+   "war": 70,
+   "leadership": 70,
+   "loyalty": 82,
+   "ambition": 30
+  },
+  {
+   "id": "yue_jin",
+   "name_zh": "樂進",
+   "faction": "faction_1",
+   "city": "xiangyang",
+   "politics": 55,
+   "war": 80,
+   "leadership": 72,
+   "loyalty": 80,
+   "ambition": 50
+  },
+  {
+   "id": "cheng_yu",
+   "name_zh": "程昱",
+   "faction": "faction_1",
+   "city": "xiangyang",
+   "politics": 60,
+   "war": 75,
+   "leadership": 68,
+   "loyalty": 80,
+   "ambition": 50
+  },
+  {
+   "id": "guo_jia",
+   "name_zh": "郭嘉",
+   "faction": "faction_1",
+   "city": "xuchang",
+   "politics": 92,
+   "war": 20,
+   "leadership": 55,
+   "loyalty": 90,
+   "ambition": 30
+  },
+  {
+   "id": "jia_xu",
+   "name_zh": "賈詡",
+   "faction": "faction_1",
+   "city": "xiangyang",
+   "politics": 88,
+   "war": 35,
+   "leadership": 60,
+   "loyalty": 80,
+   "ambition": 35
+  },
+  {
+   "id": "xu_chu",
+   "name_zh": "許褚",
+   "faction": "faction_1",
+   "city": "xuchang",
+   "politics": 20,
+   "war": 92,
+   "leadership": 70,
+   "loyalty": 90,
+   "ambition": 25
+  },
+  {
+   "id": "xiahou_yuan",
+   "name_zh": "夏侯淵",
+   "faction": "faction_1",
+   "city": "xiangyang",
+   "politics": 40,
+   "war": 84,
+   "leadership": 80,
+   "loyalty": 88,
+   "ambition": 35
+  },
+  {
+   "id": "zhang_he",
+   "name_zh": "張郃",
+   "faction": "faction_1",
+   "city": "xiangyang",
+   "politics": 45,
+   "war": 82,
+   "leadership": 78,
+   "loyalty": 82,
+   "ambition": 35
+  },
+  {
+   "id": "zhang_liao",
+   "name_zh": "張遼",
+   "faction": "faction_1",
+   "city": "xiangyang",
+   "politics": 45,
+   "war": 85,
+   "leadership": 76,
+   "loyalty": 85,
+   "ambition": 35
+  },
+  {
+   "id": "zhuge_liang",
+   "name_zh": "諸葛亮",
+   "faction": "faction_2",
+   "city": "luoyang",
+   "politics": 98,
+   "war": 60,
+   "leadership": 75,
+   "loyalty": 95,
+   "ambition": 20
+  },
+  {
+   "id": "guan_yu",
+   "name_zh": "關羽",
+   "faction": "faction_2",
+   "city": "luoyang",
+   "politics": 65,
+   "war": 95,
+   "leadership": 90,
+   "loyalty": 92,
+   "ambition": 30
+  },
+  {
+   "id": "zhang_fei",
+   "name_zh": "張飛",
+   "faction": "faction_2",
+   "city": "luoyang",
+   "politics": 30,
+   "war": 92,
+   "leadership": 85,
+   "loyalty": 90,
+   "ambition": 40
+  },
+  {
+   "id": "zhao_yun",
+   "name_zh": "趙雲",
+   "faction": "faction_2",
+   "city": "wancheng",
+   "politics": 50,
+   "war": 93,
+   "leadership": 88,
+   "loyalty": 93,
+   "ambition": 25
+  },
+  {
+   "id": "huang_zhong",
+   "name_zh": "黃忠",
+   "faction": "faction_2",
+   "city": "wancheng",
+   "politics": 40,
+   "war": 88,
+   "leadership": 82,
+   "loyalty": 85,
+   "ambition": 35
+  },
+  {
+   "id": "wei_yan",
+   "name_zh": "魏延",
+   "faction": "faction_2",
+   "city": "hanzhong",
+   "politics": 40,
+   "war": 85,
+   "leadership": 78,
+   "loyalty": 85,
+   "ambition": 45
+  },
+  {
+   "id": "pang_tong",
+   "name_zh": "龐統",
+   "faction": "faction_2",
+   "city": "wancheng",
+   "politics": 92,
+   "war": 40,
+   "leadership": 65,
+   "loyalty": 90,
+   "ambition": 25
+  },
+  {
+   "id": "fa_zheng",
+   "name_zh": "法正",
+   "faction": "faction_2",
+   "city": "wancheng",
+   "politics": 88,
+   "war": 45,
+   "leadership": 70,
+   "loyalty": 88,
+   "ambition": 40
+  },
+  {
+   "id": "ma_chao",
+   "name_zh": "馬超",
+   "faction": "faction_2",
+   "city": "wancheng",
+   "politics": 30,
+   "war": 93,
+   "leadership": 85,
+   "loyalty": 80,
+   "ambition": 45
+  },
+  {
+   "id": "jiang_wei",
+   "name_zh": "姜維",
+   "faction": "faction_2",
+   "city": "hanzhong",
+   "politics": 70,
+   "war": 88,
+   "leadership": 88,
+   "loyalty": 90,
+   "ambition": 40
+  },
+  {
+   "id": "ma_liang",
+   "name_zh": "馬良",
+   "faction": "faction_2",
+   "city": "hanzhong",
+   "politics": 85,
+   "war": 25,
+   "leadership": 50,
+   "loyalty": 90,
+   "ambition": 20
+  },
+  {
+   "id": "xu_shu",
+   "name_zh": "徐庶",
+   "faction": "faction_2",
+   "city": "wancheng",
+   "politics": 88,
+   "war": 50,
+   "leadership": 68,
+   "loyalty": 88,
+   "ambition": 20
+  },
+  {
+   "id": "jian_yong",
+   "name_zh": "簡雍",
+   "faction": "faction_2",
+   "city": "hanzhong",
+   "politics": 72,
+   "war": 25,
+   "leadership": 45,
+   "loyalty": 88,
+   "ambition": 20
+  },
+  {
+   "id": "sun_qian",
+   "name_zh": "孫乾",
+   "faction": "faction_2",
+   "city": "hanzhong",
+   "politics": 75,
+   "war": 25,
+   "leadership": 45,
+   "loyalty": 88,
+   "ambition": 20
+  },
+  {
+   "id": "zhou_yu",
+   "name_zh": "周瑜",
+   "faction": "faction_3",
+   "city": "jianye",
+   "politics": 85,
+   "war": 75,
+   "leadership": 90,
+   "loyalty": 80,
+   "ambition": 50
+  },
+  {
+   "id": "lu_su",
+   "name_zh": "魯肅",
+   "faction": "faction_3",
+   "city": "jianye",
+   "politics": 80,
+   "war": 40,
+   "leadership": 60,
+   "loyalty": 80,
+   "ambition": 50
+  },
+  {
+   "id": "taishi_ci",
+   "name_zh": "太史慈",
+   "faction": "faction_3",
+   "city": "jianye",
+   "politics": 45,
+   "war": 85,
+   "leadership": 78,
+   "loyalty": 80,
+   "ambition": 50
+  },
+  {
+   "id": "huang_gai",
+   "name_zh": "黃蓋",
+   "faction": "faction_3",
+   "city": "wujun",
+   "politics": 50,
+   "war": 78,
+   "leadership": 70,
+   "loyalty": 80,
+   "ambition": 50
+  },
+  {
+   "id": "gan_ning",
+   "name_zh": "甘寧",
+   "faction": "faction_3",
+   "city": "wujun",
+   "politics": 30,
+   "war": 92,
+   "leadership": 80,
+   "loyalty": 80,
+   "ambition": 50
+  },
+  {
+   "id": "zhou_tai",
+   "name_zh": "周泰",
+   "faction": "faction_3",
+   "city": "wujun",
+   "politics": 40,
+   "war": 80,
+   "leadership": 75,
+   "loyalty": 80,
+   "ambition": 50
+  },
+  {
+   "id": "lu_xun",
+   "name_zh": "陸遜",
+   "faction": "faction_3",
+   "city": "jianye",
+   "politics": 88,
+   "war": 75,
+   "leadership": 92,
+   "loyalty": 90,
+   "ambition": 30
+  },
+  {
+   "id": "lu_meng",
+   "name_zh": "呂蒙",
+   "faction": "faction_3",
+   "city": "jianye",
+   "politics": 75,
+   "war": 82,
+   "leadership": 88,
+   "loyalty": 88,
+   "ambition": 35
+  },
+  {
+   "id": "zhang_zhao",
+   "name_zh": "張昭",
+   "faction": "faction_3",
+   "city": "jianye",
+   "politics": 90,
+   "war": 20,
+   "leadership": 45,
+   "loyalty": 85,
+   "ambition": 30
+  },
+  {
+   "id": "ling_tong",
+   "name_zh": "凌統",
+   "faction": "faction_3",
+   "city": "wujun",
+   "politics": 40,
+   "war": 84,
+   "leadership": 78,
+   "loyalty": 85,
+   "ambition": 40
+  },
+  {
+   "id": "cheng_pu",
+   "name_zh": "程普",
+   "faction": "faction_3",
+   "city": "wujun",
+   "politics": 65,
+   "war": 80,
+   "leadership": 80,
+   "loyalty": 88,
+   "ambition": 30
+  },
+  {
+   "id": "han_dang",
+   "name_zh": "韓當",
+   "faction": "faction_3",
+   "city": "kuaiji",
+   "politics": 45,
+   "war": 78,
+   "leadership": 75,
+   "loyalty": 82,
+   "ambition": 35
+  },
+  {
+   "id": "gu_yong",
+   "name_zh": "顧雍",
+   "faction": "faction_3",
+   "city": "kuaiji",
+   "politics": 85,
+   "war": 20,
+   "leadership": 45,
+   "loyalty": 88,
+   "ambition": 20
+  },
+  {
+   "id": "zhu_ran",
+   "name_zh": "朱然",
+   "faction": "faction_3",
+   "city": "kuaiji",
+   "politics": 60,
+   "war": 80,
+   "leadership": 82,
+   "loyalty": 85,
+   "ambition": 35
+  }
+ ],
+ "events": [],
+ "victory": {
+  "type": "most_cities",
+  "turns": 30
+ }
+}
