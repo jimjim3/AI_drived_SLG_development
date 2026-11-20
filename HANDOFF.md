@@ -1,56 +1,48 @@
-# HANDOFF — AI-Driven SLG（更新於 2026-10-26）
+# HANDOFF — AI-Driven SLG(更新於 2026-11-20)
 
 ## 狀態一句話
-引擎、LLM 勢力代理、評測、劇情文本、網頁介面皆可運作並已推送（分支 `claude/ai-hierarchical-slg-game-fl3ojj`，HEAD `5623303`，**435 個測試全過**，工作區乾淨）。網頁預設規則 `softer_pool2_econ3`（光榮規模城池上限、行軍糧耗係數 0.5，見 docs/EVALUATION.md §21），AI 對手會進攻、戰報有敘事句。**仍然沒有真人試玩過、沒有在真實瀏覽器驗證畫面**。
-
-## 快速開始（換機器時）
-```bash
-git clone git@github.com:jimjim3/AI_drived_SLG_development.git && cd AI_drived_SLG_development
-git checkout claude/ai-hierarchical-slg-game-fl3ojj
-python3 -m unittest            # 需 Python 3.10+；教科書製圖測試另需 matplotlib（其餘僅用標準庫）
-scripts/serve.sh               # 網頁介面 http://127.0.0.1:8080/ ；部署與試玩方式見 deploy/README.md
-```
-金鑰與網址**只放環境變數**（`NVIDIA_API_KEY`、`SLG_QWEN_URL`、`SLG_ACCESS_TOKEN`…），不在 repo 內。
+分支 `claude/ai-hierarchical-slg-game-fl3ojj`,**474 個測試全過**,工作區乾淨。專案已定位為**免費開源網頁遊戲**,完整路線圖在 [docs/ROADMAP.md](docs/ROADMAP.md),目前在 **M0 收斂**階段。**仍然沒有真人試玩過。**
 
 ## 先讀
-README.md（較舊）→ deploy/README.md → docs/EVALUATION.md（**第 11、12 節是最新實驗**）→ docs/narrative/README.md → 本檔。
+README.md → docs/ROADMAP.md(§11 已決定事項、§12 兩週清單)→ deploy/README.md → docs/EVALUATION.md(§22 是最新:同盟)→ NOTICE.md(授權與版權)。
 
-## 最近完成了什麼
-- **進攻局**：`advantage` 仍是劉備占優（舊評測不變）；`advantage:faction_N` 讓第 N 家占優，網頁選進攻局時自動讓**玩家所選君主**占優（`resolve_scenario`）。
-- **劇情文本**（`src/slg/narrative/`）：42 武將、3 君主、9 城、事件模板、6 種「劇本×君主」開場；有測試對照引擎資料。事實卡在 `docs/narrative/officer_fact_cards.json`，**尚未對照原典複核**。事件模板還沒接進結算畫面。
-- **網頁**：開局簡報、城池介紹、武將傳略、年季；對手選項 rule/demo/nim/qwen/gemini；每分頁獨立對局；`SLG_ACCESS_TOKEN` 保護。
-- **評測工具**：`--http-retries/--http-timeout/--min-interval`（免費層限速與逾時）、`--siege-verdict`（引擎判定附在勝算比旁）、最低忠誠／最高冷落診斷。
-- **修掉的 bug**：驗證器遇到非數值參數會讓整個評測崩潰（現在拒絕並回報）。
+## 快速開始
+```bash
+python3 -m unittest
+scripts/serve.sh                      # http://127.0.0.1:8080/ ;存檔預設在 ./saves(可用 SLG_SAVE_DIR 改,空字串關閉)
+python3 scripts/e2e_web.py [outdir]   # 瀏覽器端到端(需 playwright;專案 .venv 已裝)
+python3 scripts/e2e_alliance.py       # 外交分頁、結盟選項、存檔續玩
+```
+金鑰與網址**只放環境變數**(`NVIDIA_API_KEY`、`SLG_QWEN_URL`、`SLG_ACCESS_TOKEN`…)。這台 Mac 的工具鏈、金鑰位置見使用者記憶檔(DEVELOPER_DIR、`.venv/bin/python`、agy、NIM)。
 
-## 實驗結論（細節與數字見 EVALUATION.md 第 11、12 節）
-1. **出征判定**（`--siege-verdict`）對會冒進的模型很有效：Super 長局 40 回合 N8→N9 兵力差 -8745→+2718；Ultra N4→N5 -115→+1592；對本來就守紀律的 Qwen 沒有差別。
-2. **Qwen3.8-27B**（Colab Q4 量化）最守紀律，攻城成功率高；Q4 與 Q8 表現相近。
-3. **NIM**：Super 約 6 秒／次，Ultra 品質稍好但尖峰時段常 503；都要重試。兩個 NIM 對手一回合約 27 秒（網頁實測）。
-4. **忠誠／冷落機制在 ≤40 回合的真實 LLM 對局中不會觸發**（最低忠誠 59–68，門檻 50／35）。使用者決定先不調整。
-5. **對手不出兵的根因是戰鬥平衡，不是模型**（EVALUATION.md §13）：預設情境 240 個勢力回合裡從來沒有勝算比 ≥1.0 的目標（最高 0.70），Qwen 加進取個性也不出兵是理性的。守方戰力約為攻方的 1.5–1.7 倍，且出征只能抽單一城池的兵力。用 `scripts/attack_opportunities.py` 量測調整前後的效果。
+## 這個月完成(2026-11)
+- **同盟機制**(`engine/alliance.py`,規則集旗標 `alliance`;預設規則不變):友好度、提議與接受(`respond_alliance`)、背盟懲罰、金錢抵押與保管方賠付(`ally3`/`ally4`)、共享視野、LLM 提示含「天下之志」(統一動機)。評測見 EVALUATION §22:背盟率不受懲罰大小影響,**不要再調抵押金額**;留給人質與名聲系統。
+- **網頁**:外交同盟分頁(快捷鍵 9,僅在同盟規則下出現)、地圖盟友標示、存檔與續玩(`web/savegame.py`:回合開始快照,續玩重跑該回合)。
+- **資料**(未核實、引擎未使用):`data/sanguo/ext/` 105 城、29 個時期劇本草稿、74 筆補充武將;agy 作者加 Nemotron 交叉審稿。
+- **瀏覽器驗證**:2026-11-20 兩支 e2e 腳本在 Chromium 全過、無 JS 錯誤(只測 Chromium)。
 
-## 待辦（依優先序）
-1. **瀏覽器端到端驗證並截圖**（需安裝 playwright；`scripts/e2e_web.py` 已備好），確認戰報敘事句、開場簡報版面。
-2. **真人試玩幾局**，記錄無聊、卡住、看不懂之處（目前完全沒有這方面資料）。
-3. **部署到 SSH 伺服器**（`deploy/README.md`、`deploy/slg-web.service`；需要使用者提供登入方式與 `SLG_ACCESS_TOKEN`）。
-4. 平衡：東南角（建業／吳郡／會稽）勢力幾乎全勝（原地圖 Qwen 4/4、Super 8/10、Ultra 5/5；§14–§17），已排除座位、入口數、起始資源、武將能力，剩「位置」本身。使用者說不平衡屬正常，有機會再看。
-5. 對照原典複核事實卡與武將能力值（能力值自最早提交起手填、無出處）。
-6. 尚未接入的事件模板：忠誠警告／稱讚、饑荒、滅國（引擎無對應事件）。
-7. 補評測：各組只有 3–10 個種子、單一模型，無信賴區間。NIM 的 Nemotron 3 Super 自 2026-10-20 起對本帳號回傳 404，目前用 Ultra。
+## M0 還沒做完
+1. **遠端試玩**:這台 Mac 沒有 cloudflared,需安裝並設 `SLG_ACCESS_TOKEN`,由使用者親自玩一局。
+2. 起草**劇本格式 v1**(20 城、多勢力、事件、勝利條件)。
+3. 試玩紀錄範本(問卷 5 題)。
+4. 確認 NOTICE.md 的授權決定(資料、美術)。
 
-## 近期已完成（2026-10-19～22）
-戰鬥規則可切換（`engine/combat.py`，預設 `v2`；網頁預設 `softer_pool2`）；規則 AI 改用引擎勝算估計出征；系統提示加入金幣花費說明（被拒指令約 -35%）；戰報敘事句（`web/payload.py::story_lines`）；地圖變體 `+sun2`／`+swap13`／`+swapres13`／`+swapoff13`（僅供實驗）。
+## 已知缺陷與限制
+- 沒有真人試玩資料;瀏覽器只測 Chromium;結盟令「送出後的接受或拒絕畫面」未端到端驗證。
+- 存檔用 pickle,只讀伺服器自己的目錄;LLM 對手在續玩時會重新詢問。
+- 平衡:東南角(建業、吳郡、會稽)勢力占優(§14–§17),使用者說屬正常。
+- 規則 AI 的 rest 比例偏高;對局在記憶體內,伺服器重啟就沒了(有存檔時可續玩)。
+- 引擎內 42 名武將能力值無出處(見 NOTICE.md);事實卡未對照原典複核。
+- 每格評測只有 3–10 局、單一模型,沒有信賴區間。
 
-## 已知缺陷
-rest 比例約 47%；faction_2 的宛城／漢中武將不與任何敵城相鄰故無法出奔；`evaluate` 整組結束才寫檔（中止時會寫出已完成的種子）；對局都在記憶體裡，伺服器重啟就沒了；網頁沒有存檔。
-
-## 操作知識（這台 Mac；與舊伺服器不同）
-- 沒有本機 Qwen 與 GPU：Qwen 由使用者的 Colab 提供（每天約 2 小時，網址每次不同，需使用者貼新網址；`reasoning_effort:none` 才能關閉思考）。
-- 助手 AI 順序：**NIM 優先**（免費），agy 只在 NIM 做不到時才用（會消耗 Antigravity 額度）。NIM 金鑰在 `~/.local/state/local-llm/nvidia-api-key`，**不要放進命令列或檔案**。
-- 這台 `git`、`python3` 需 `DEVELOPER_DIR=/Library/Developer/CommandLineTools`（Xcode 授權未接受）；`~/.zshenv` 已設定。推送用 SSH 位址（HTTPS 沒登入）。
-- 驗收慣例：不採信 worker 自述；重跑測試；NIM／agy 的輸出只當線索，會改變結論的宣稱要自己抽查（本專案劇情文本就抓到多處捏造的史實）。
+## 操作知識(這台 Mac)
+- 用 `.venv/bin/python`;BSD sed 不可靠,批次改檔用 python;沒有 `timeout`。
+- NIM 免費(Nemotron 3 Ultra);agy 為備援;Qwen 只在 Colab,網址每次由使用者貼。
+- 自我對弈:`scripts/selfplay.py`(指令範例在 EVALUATION.md §22);五局約 25 分鐘,用背景執行。
+- 提交附 `Co-Authored-By` 行;**絕不印出或提交 NVIDIA 金鑰**。
 
 ---
+
 # 舊交接（2026-10-11／12，保留供查；其中 Qwen 伺服器與路徑指的是舊的 Linux 機器）
 
 

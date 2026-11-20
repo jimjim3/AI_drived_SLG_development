@@ -1,6 +1,6 @@
 # 試玩與部署
 
-網頁介面是純標準庫的 Python 伺服器（無需安裝套件），靜態頁無建置步驟。**所有狀態都在記憶體裡**，重啟就沒有進行中的對局；金鑰與網址只放環境變數，不進 repo。
+網頁介面是純標準庫的 Python 伺服器（無需安裝套件），靜態頁無建置步驟。對局在記憶體裡，但**每回合開始會自動存檔**（預設 `./saves/`，環境變數 `SLG_SAVE_DIR` 可改，設為空字串則關閉），重啟後標題畫面會出現「繼續上局」；金鑰與網址只放環境變數，不進 repo。
 
 ## 先看這三點（安全）
 1. 預設只監聽本機（`127.0.0.1`）。要讓別台機器連進來必須設 `SLG_ACCESS_TOKEN`，否則伺服器拒絕啟動（`--insecure` 可強制，不建議）。
@@ -14,6 +14,7 @@
 |---|---|
 | `SLG_ACCESS_TOKEN` | 存取密碼（非本機綁定時必填） |
 | `SLG_RULES` | 戰鬥規則，預設 `softer_pool2_econ3`（AI 對手會進攻；城池規模上限，出兵耗糧隨距離增加）；`v2` 為原規則（AI 不進攻） |
+| `SLG_SAVE_DIR` | 存檔目錄（預設 `saves`；存檔是本機 pickle，只放信任的目錄） |
 | `SLG_HOST`、`SLG_PORT` | 監聽位址與埠（預設 `127.0.0.1`、`8080`） |
 | `NVIDIA_API_KEY` | 啟用設定畫面的 **nim** 對手（NVIDIA 免費額度；預設模型 `nvidia/nemotron-3-super-120b-a12b`，可用 `SLG_NIM_MODEL` 換） |
 | `SLG_QWEN_URL` | 啟用 **qwen** 對手，例如 Colab 上 Qwen 的 `https://xxx.trycloudflare.com/v1` |
